@@ -2,6 +2,7 @@ package com.DreamBook.BookStoreService.service.member.impl;
 
 
 
+import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
 import com.DreamBook.BookStoreService.mapper.member.MemberMapper;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,8 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.maxNum();
     }
 
-
+    @Override
+    public void insertData(MemberJoinDTO memberJoinDTO) throws Exception {
+        memberMapper.insertData(memberJoinDTO);
+    }
 }

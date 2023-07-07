@@ -9,7 +9,6 @@
     <title>Insert title here</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon/favicon.png">
 
     <!-- CSS here -->
@@ -39,7 +38,7 @@
                                 <div class="header-info-left d-flex align-items-center">
                                     <!-- logo -->
                                     <div class="logo">
-                                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                        <a href="/"><img src="assets/img/logo/logo.png" alt=""></a>
                                     </div>
                                     <!-- Search Box -->
                                     <form action="#" class="form-box">
@@ -56,7 +55,7 @@
                                         <li class="shopping-card">
                                             <a href="cart.html"><img src="assets/img/icon/cart.svg" alt=""></a>
                                         </li>
-                                        <li><a href="login.html" class="btn header-btn">Sign in</a></li>
+                                        <li><a href="/login" class="btn header-btn">log in</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -81,7 +80,8 @@
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="#">Pages</a>
                                             <ul class="submenu">
-                                                <li><a href="login.html">login</a></li>
+                                                <li><a href="/login">login</a></li>
+                                                <li><a href="/register">회원가입</a></li>
                                                 <li><a href="cart.html">Cart</a></li>
                                                 <li><a href="checkout.html">Checkout</a></li>
                                                 <li><a href="book-details.html">book Details</a></li>
@@ -149,8 +149,6 @@
 <!--  Plugins, main-Jquery -->
 <script src="./assets/js/plugins.js"></script>
 <script src="./assets/js/main.js"></script>
-
-
 
 </body>
 
