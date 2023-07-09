@@ -10,6 +10,14 @@
         select nvl(max(memberId),0) from member
     </select>
 
+
+    <select id="loginData" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"
+    resultType="Integer">
+        select nvl(count(*),0) from member
+        where userId =#{userId} and pwd = #{pwd}
+
+    </select>
+
     <insert id="insertData" parameterType="com.DreamBook.BookStoreService.dto.member.MemberJoinDTO">
 
     insert into member(memberId,role,userId,pwd,name,gender,age,nikname,birth,
@@ -19,6 +27,8 @@
             #{tel},#{postcode},#{address},#{detailAddress},#{extraAddress},#{email},#{favoriteGenre},'bronze',0,0)
 
     </insert>
+
+
 
 
 </mapper>

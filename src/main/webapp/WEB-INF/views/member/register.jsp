@@ -28,8 +28,14 @@
       </div>
       <form action="/register" method="post">
       <!-- Single Input Fields -->
-      <input type="text" name="memberId" value="0">
+
       <div class="input-box">
+
+        <div class="single-input-fields">
+
+          <input type="hidden" name="memberId" value="0" placeholder="Enter full name">
+        </div>
+
         <div class="single-input-fields">
           <label>아이디</label>
           <input type="text" name="userId" placeholder="Enter full name">
@@ -46,10 +52,11 @@
         </div>
 
 
-        <div class="single-input-fields">
-          <label>성별</label>
-          <input type="text" name="gender" placeholder="Enter email address">
-        </div>
+
+
+
+<%--          <input type="text" name="gender" placeholder="Enter email address">--%>
+
         <div class="single-input-fields">
           <label>닉네임</label>
           <input type="text"name="nikname" placeholder="Enter Password">
@@ -77,12 +84,18 @@
         </div>
 
         <div class="single-input-fields">
-          <label>Confirm Password</label>
+          <label>좋아하는 장르</label>
           <input type="text" name="favoriteGenre" placeholder="Confirm Password">
         </div>
+          <div class="single-input-fields">
+          <label>성별</label>
+          <select name="gender" style="margin-right: 550px;">
 
+              <option value="남자">남자</option>
+              <option value="여자">여자</option>
 
-
+          </select>
+          </div>
       </div>
       <!-- form Footer -->
       <div class="register-footer">

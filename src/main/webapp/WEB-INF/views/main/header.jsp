@@ -55,7 +55,12 @@
                                         <li class="shopping-card">
                                             <a href="cart.html"><img src="assets/img/icon/cart.svg" alt=""></a>
                                         </li>
+                                        <c:if test="${userId ==null}">
                                         <li><a href="/login" class="btn header-btn">log in</a></li>
+                                        </c:if>
+                                        <c:if test="${userId !=null}">
+                                            <li><a href="/logout" class="btn header-btn">log out</a></li>
+                                        </c:if>
                                     </ul>
                                 </div>
                             </div>
@@ -63,9 +68,10 @@
                     </div>
                 </div>
             </div>
+
             <div class="header-bottom  header-sticky">
                 <div class="container">
-                    <div class="row align-items-center">
+                    <if class="row align-items-center">
                         <div class="col-xl-12">
                             <!-- logo 2 -->
                             <div class="logo2">
@@ -75,7 +81,8 @@
                             <div class="main-menu text-center d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">Home</a></li>
+                                        <c:if test="${userId ==null}">
+                                        <li><a href="/">Home</a></li>
                                         <li><a href="categories.html">Categories</a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="#">Pages</a>
@@ -91,20 +98,47 @@
                                         </li>
                                         <li><a href="blog.html">Blog</a></li>
                                         <li><a href="contact.html">Contect</a></li>
+                                        </c:if>
+
+                                        <c:if test="${userId !=null}">
+                                            <li><a href="/">Home</a></li>
+                                            <li><a href="categories.html">Categories</a></li>
+                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="#">Pages</a>
+                                                <ul class="submenu">
+                                                    <li><a href="/logout">loginout</a></li>
+                                                    <li><a href="cart.html">Cart</a></li>
+                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    <li><a href="book-details.html">book Details</a></li>
+                                                    <li><a href="blog_details.html">Blog Details</a></li>
+                                                    <li><a href="elements.html">Element</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="blog.html">Blog</a></li>
+                                            <li><a href="contact.html">Contect</a></li>
+                                        </c:if>
                                     </ul>
                                 </nav>
                             </div>
+
                         </div>
+
                         <!-- Mobile Menu -->
                         <div class="col-xl-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
                         </div>
+
+
+
+
                     </div>
+
                 </div>
             </div>
         </div>
 
     </div>
+
 </header>
 
 
