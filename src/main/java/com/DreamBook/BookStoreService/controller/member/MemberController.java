@@ -3,19 +3,24 @@ package com.DreamBook.BookStoreService.controller.member;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
 import com.DreamBook.BookStoreService.service.member.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
 
     @Resource
@@ -23,9 +28,7 @@ public class MemberController {
     private MemberService memberService;
 
     @GetMapping("/login")
-    public String login(Model model){
-
-
+    public String login(Model model) {
 
 
         return "member/login";
@@ -34,18 +37,14 @@ public class MemberController {
 
     @PostMapping("/login")
     public String loginOk(Model model, MemberFindDTO memberFindDTO, HttpServletResponse response,
-                          HttpSession session)throws Exception{
+                          HttpSession session) throws Exception {
 
-        if( memberService.loginData(memberFindDTO,response)==1) {
+        if (memberService.loginData(memberFindDTO, response) == 1) {
 
-            session.setAttribute("userId",memberFindDTO.getUserId());
+            session.setAttribute("userId", memberFindDTO.getUserId());
             return "main/main";
-        }
-
-
-        else
+        } else
             return "member/login";
-
 
 
     }
@@ -62,30 +61,61 @@ public class MemberController {
     }
 
     @GetMapping("/register")
-    public String register(MemberJoinDTO memberJoinDTO){
+    public String register(MemberJoinDTO memberJoinDTO) {
 
 
         return "member/register";
     }
 
+    @ResponseBody
+    @PostMapping("/idCheck")
+    public int idCheck(String id,MemberJoinDTO memberJoinDTO) throws Exception {
+        int result = memberService.IdCheck(id);
+
+
+
+        return result;
+    }
+
     @PostMapping("/register")
-    public String registerOk(MemberJoinDTO memberJoinDTO)throws Exception{
 
-
-        int maxNum = memberService.maxNum();
-        memberJoinDTO.setMemberId(maxNum + 1);
-
-        int now =  LocalDate.now().getYear();
-        int birth =memberJoinDTO.getBirth().getYear();
-        int age = now-birth;
-        memberJoinDTO.setAge(age);
+    public String registerOk(@Valid @ModelAttribute("memberJoinDTO") MemberJoinDTO memberJoinDTO,
+                             BindingResult bindingResult, Model model) throws Exception {
 
 
 
-        memberService.insertData(memberJoinDTO);
+
+        if (memberService.IdCheck(memberJoinDTO.getUserId()) == 1) {
+
+            if (bindingResult.hasFieldErrors()) {
+
+
+                model.addAttribute("memberJoinDTO", memberJoinDTO);
+
+
+                return "member/register";
+            }
+
+            int maxNum = memberService.maxNum();
+            memberJoinDTO.setMemberId(maxNum + 1);
+
+            int now = LocalDate.now().getYear();
+            int birth = memberJoinDTO.getBirth().getYear();
+            int age = now - birth;
+            memberJoinDTO.setAge(age);
+
+
+            memberService.insertData(memberJoinDTO);
+
+
+
+            return "member/login";
+        }
 
         return "member/login";
     }
 
 
 }
+
+

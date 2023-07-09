@@ -13,6 +13,8 @@ public interface MemberMapper {
 
     public int maxNum() throws Exception;
 
+    public Integer IdCheck(String id) throws  Exception;
+
     public Integer loginData(MemberFindDTO memberFindDTO) throws  Exception;
 
     public void insertData(MemberJoinDTO memberJoinDTO) throws Exception;

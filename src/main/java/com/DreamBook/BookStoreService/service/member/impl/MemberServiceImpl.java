@@ -51,4 +51,11 @@ public class MemberServiceImpl implements MemberService {
         return 1;
     }
 
+    @Override
+    public Integer IdCheck(String id) throws Exception {
+        if(memberMapper.IdCheck(id) == 1){
+            return 0;
+        }
+        return 1;
+    }
 }

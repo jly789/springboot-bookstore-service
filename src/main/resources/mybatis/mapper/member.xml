@@ -18,6 +18,13 @@
 
     </select>
 
+    <select id="IdCheck" parameterType="String"
+            resultType="Integer">
+        select nvl(count(*),0) from member
+        where userId =#{id}
+
+    </select>
+
     <insert id="insertData" parameterType="com.DreamBook.BookStoreService.dto.member.MemberJoinDTO">
 
     insert into member(memberId,role,userId,pwd,name,gender,age,nikname,birth,

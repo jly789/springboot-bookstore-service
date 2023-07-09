@@ -1,7 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <c:set var="cp" value="<%=request.getContextPath()%>"/>
+
 
 
 <!doctype html>
@@ -16,6 +18,7 @@
 </head>
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
+<form:form action="/register" method="post"  modelAttribute="memberJoinDTO">
 <!-- header end -->
 <main class="login-bg">
   <!-- Register Area Start -->
@@ -26,7 +29,7 @@
         <span>Sign Up</span>
         <p>Create your account to get full access</p>
       </div>
-      <form action="/register" method="post">
+
       <!-- Single Input Fields -->
 
       <div class="input-box">
@@ -38,17 +41,30 @@
 
         <div class="single-input-fields">
           <label>아이디</label>
-          <input type="text" name="userId" placeholder="Enter full name">
+
+          <input type="text" name="userId" value="${memberJoinDTO.userId}" id="userId"/>
+        <form:errors path="userId" cssStyle="font-weight: bold; color: #e95050"/>
+          <input type="button" id="btnCheck"  class="btn btn-default" value="중복검사"/>
+          <span id="result"></span>
+
+          <input type="hidden" id="checkId"  value=""/>
+
+
+<%--          <input type="text" id="idCheck" name="idCheck"/>--%>
+
+<%--          <form:input type="text" path="userId" placeholder="제목을 입력해주세요" cssStyle="height: 42px"/>--%>
         </div>
 
         <div class="single-input-fields">
           <label>비밀번호</label>
-          <input type="password" name="pwd" placeholder="Confirm Password">
+          <input type="password" name="pwd" value="${memberJoinDTO.pwd}"  placeholder="Confirm Password"/>
+          <form:errors path="pwd" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
 
         <div class="single-input-fields">
           <label>이름</label>
-          <input type="text" name="name" placeholder="Confirm Password">
+          <input type="text" name="name" value="${memberJoinDTO.name}" placeholder="Confirm Password">
+          <form:errors path="name" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
 
 
@@ -59,37 +75,47 @@
 
         <div class="single-input-fields">
           <label>닉네임</label>
-          <input type="text"name="nikname" placeholder="Enter Password">
-        </div>
+          <input type="text"name="nikname" value="${memberJoinDTO.name}" placeholder="Enter NickName">
+          <form:errors path="nikname" cssStyle="font-weight: bold; color: #e95050"/>
+<%--        </div>--%>
 
         <div class="single-input-fields">
           <label>생일</label>
-          <input type="date" name="birth" placeholder="birth day">
+          <input type="date" name="birth" value="${memberJoinDTO.birth}" placeholder="birth day">
+          <form:errors path="birth" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
 
         <div class="single-input-fields">
           <label>전화번호</label>
-          <input type="tel" name="tel" placeholder="Confirm Password">
+          <input type="tel" name="tel"value="${memberJoinDTO.tel}" placeholder="Confirm Password">
+          <form:errors path="tel" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
-        <input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호">
+
+        <input type="text" name="postcode" value="${memberJoinDTO.postcode}" id="sample6_postcode" placeholder="우편번호">
+          <form:errors path="postcode" cssStyle="font-weight: bold; color: #e95050"/>
         <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-        <input type="text" name="address" id="sample6_address" placeholder="주소"><br>
-        <input type="text"name="detailAddress" id="sample6_detailAddress" placeholder="상세주소">
-        <input type="text"name="extraAddress" id="sample6_extraAddress" placeholder="참고항목">
+        <input type="text" name="address" value="${memberJoinDTO.address}" id="sample6_address" placeholder="주소"><br>
+          <form:errors path="address" cssStyle="font-weight: bold; color: #e95050"/>
+        <input type="text"name="detailAddress" value="${memberJoinDTO.detailAddress}" id="sample6_detailAddress" placeholder="상세주소">
+          <form:errors path="detailAddress" cssStyle="font-weight: bold; color: #e95050"/>
+        <input type="text"name="extraAddress" value="${memberJoinDTO.extraAddress}" id="sample6_extraAddress" placeholder="참고항목">
 
 
         <div class="single-input-fields">
           <label>이메일</label>
-          <input type="email" name="email" placeholder="Confirm Password">
+          <input type="email" name="email" value="${memberJoinDTO.email}" placeholder="Confirm Password">
+          <form:errors path="email" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
 
         <div class="single-input-fields">
           <label>좋아하는 장르</label>
-          <input type="text" name="favoriteGenre" placeholder="Confirm Password">
+          <input type="text" name="favoriteGenre" value="${memberJoinDTO.favoriteGenre}" placeholder="Confirm Password">
+          <form:errors path="favoriteGenre" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
           <div class="single-input-fields">
           <label>성별</label>
-          <select name="gender" style="margin-right: 550px;">
+          <select name="gender" value="${memberJoinDTO.gender}" style="margin-right: 550px;">
+
 
               <option value="남자">남자</option>
               <option value="여자">여자</option>
@@ -101,19 +127,86 @@
       <div class="register-footer">
         <p> Already have an account? <a href="/login"> Login</a> here</p>
 
-        <button class="submit-btn3" type="submit">Sign Up</button>
+        <button class="submit-btn3" type="submit" id="check">Sign Up</button>
 
       </div>
-      </form>
+
     </div>
 
   </div>
+    </form:form>
   <!-- Register Area End -->
 
 
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
   <script>
+
+
+
+    $('#check').click(function (){
+      if ($('#checkId').val() !=1) {
+        alert('중복확인누르세요');
+        return false;
+      }
+      if( $('#result').text()=='이미 사용중인 아이디입니다.') {
+        alert('이미사용중인 아이디!');
+      return false;
+      }
+
+
+
+
+
+      });
+
+    $('#btnCheck').click(function () {
+
+      if ($('#userId').val() != '') {
+
+        // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+        $.ajax({
+
+          type: 'POST',
+          url: '/idCheck',
+          data: 'id=' + $('#userId').val(),
+          dataType: 'json',
+          success: function(result) {
+            if (result == '1') {
+              $("#result").text('사용 가능한 아이디입니다.');
+
+             $('#checkId').val(1);
+
+
+             document.getElementById('result').style.color ="black";
+              // $("#result").attr('color','green');
+
+
+            } else {
+              $('#result').text('이미 사용중인 아이디입니다.');
+              $('#checkId').val(1);
+              document.getElementById('result').style.color ="red";
+
+            }
+          },
+          error: function(a, b, c) {
+            console.log(a, b, c);
+          }
+
+        });
+
+      } else {
+        alert('아이디를 입력하세요.');
+        $('#userOd').focus();
+      }
+
+    });
+
+
+
+
+
+
     function sample6_execDaumPostcode() {
       new daum.Postcode({
         oncomplete: function(data) {
@@ -161,6 +254,8 @@
         }
       }).open();
     }
+
+
   </script>
 </main>
 
