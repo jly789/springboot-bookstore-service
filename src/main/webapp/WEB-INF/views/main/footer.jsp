@@ -58,7 +58,7 @@
                             <div class="footer-tittle">
                                 <h4>Book Category</h4>
                                 <ul>
-                                    <li><a href="#">History</a></li>
+                                    <li><a href="file:///C:/%EC%9D%B8%ED%85%94%EB%A6%AC%EC%A0%9C%EC%9D%B4/BookStoreService/BookStoreService/src/main/webapp/resources/index.html">데모</a></li>
                                     <li><a href="#">Horror - Thriller</a></li>
                                     <li><a href="#">Love Stories</a></li>
                                     <li><a href="#">Science Fiction</a></li>

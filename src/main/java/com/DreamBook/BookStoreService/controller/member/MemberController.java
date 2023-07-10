@@ -7,17 +7,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Controller
 @RequiredArgsConstructor
@@ -113,6 +109,44 @@ public class MemberController {
         }
 
         return "member/login";
+    }
+
+
+    @GetMapping("/idFind")
+    public String loginFind() throws Exception {
+
+
+        return "member/idFind";
+    }
+
+    @ResponseBody
+    @PostMapping("/idFind")
+    public String idCheck2(MemberFindDTO memberFindDTO,Model model) throws Exception {
+
+   String result = memberService.findUserId(memberFindDTO);
+
+
+
+        return result;
+    }
+
+
+    @GetMapping("/pwdFind")
+    public String pwdFind() throws Exception {
+
+
+
+
+        return "member/pwdFind";
+    }
+    @ResponseBody
+    @PostMapping("/pwdFind")
+    public String pwdFindOk() throws Exception {
+
+
+
+
+        return "member/pwdFind";
     }
 
 

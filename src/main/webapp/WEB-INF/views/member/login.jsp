@@ -37,16 +37,29 @@
           <input type="password" name="pwd" placeholder="Enter Password">
         </div>
 
+
         <div class="single-input-fields login-check">
           <input type="checkbox" id="fruit1" name="keep-log">
           <label for="fruit1">Keep me logged in</label>
-          <a href="#" class="f-right">Forgot Password?</a>
+          <a href="/idFind" class="f-right">아이디찾기</a>
+
         </div>
+
+
+
+        <div class="single-input-fields login-check">
+
+
+          <a href="/pwdFind" style="margin-left: 600px;" >비밀번호 찾기</a>
+
+        </div>
+
       </div>
 
 
       <!-- form Footer -->
       <div class="login-footer">
+
         <p>Don’t have an account? <a href="/register">Sign Up</a>  here</p>
         <button class="submit-btn3">Login</button>
       </div>

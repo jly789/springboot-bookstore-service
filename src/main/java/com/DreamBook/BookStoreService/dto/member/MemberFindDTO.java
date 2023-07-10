@@ -14,6 +14,8 @@ public class MemberFindDTO {
 
         private String userId;
         private String pwd;
+        private String name;
+        private String email;
 
 
 

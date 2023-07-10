@@ -12,6 +12,10 @@ public interface MemberService {
 
     public Integer loginData(MemberFindDTO memberFindDTO,HttpServletResponse response) throws  Exception;
 
+    public Integer findId(MemberFindDTO memberFindDTO) throws  Exception;
+
+    public String findUserId(MemberFindDTO memberFindDTO) throws  Exception;
+
     public Integer IdCheck(String id) throws  Exception;
 
     public void insertData(MemberJoinDTO memberJoinDTO) throws Exception;

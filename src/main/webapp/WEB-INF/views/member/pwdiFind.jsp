@@ -18,15 +18,16 @@
 </head>
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
-<form:form action="/register" method="post"  modelAttribute="memberJoinDTO">
+
 <!-- header end -->
 <main class="login-bg">
   <!-- Register Area Start -->
   <div class="register-form-area">
     <div class="register-form text-center">
       <!-- Login Heading -->
+      <c:if test="${id}==1">
       <div class="register-heading">
-        <span>회원가입</span>
+        <span>아이디 찾기</span>
         <p>Create your account to get full access</p>
       </div>
 
@@ -42,8 +43,8 @@
         <div class="single-input-fields">
           <label>아이디</label>
 
-          <input type="text" name="userId" value="${memberJoinDTO.userId}" id="userId" placeholder="아이디 입력"/>
-        <form:errors path="userId" cssStyle="font-weight: bold; color: #e95050"/>
+          <input type="text" name="userId" id="userId" placeholder="아이디 입력"/>
+
           <input type="button" id="btnCheck"  class="btn btn-default" value="중복검사"/>
           <span id="result"></span>
 
@@ -57,72 +58,36 @@
 
         <div class="single-input-fields">
           <label>비밀번호</label>
-          <input type="password" name="pwd" value="${memberJoinDTO.pwd}"  placeholder="Confirm Password"/>
-          <form:errors path="pwd" cssStyle="font-weight: bold; color: #e95050"/>
+          <input type="password" name="pwd"   placeholder="Confirm Password"/>
+
         </div>
 
-        <div class="single-input-fields">
-          <label>이름</label>
-          <input type="text" name="name" value="${memberJoinDTO.name}" placeholder="이름 입력">
-          <form:errors path="name" cssStyle="font-weight: bold; color: #e95050"/>
-        </div>
+        </c:if>
 
 
 
 
 
-<%--          <input type="text" name="gender" placeholder="Enter email address">--%>
 
-        <div class="single-input-fields">
-          <label>닉네임</label>
-          <input type="text"name="nikname" value="${memberJoinDTO.name}" placeholder="닉네임 입력">
-          <form:errors path="nikname" cssStyle="font-weight: bold; color: #e95050"/>
-<%--        </div>--%>
 
-        <div class="single-input-fields">
-          <label>생일</label>
-          <input type="date" name="birth" value="${memberJoinDTO.birth}" placeholder="birth day">
-          <form:errors path="birth" cssStyle="font-weight: bold; color: #e95050"/>
-        </div>
+
 
         <div class="single-input-fields">
           <label>전화번호</label>
-          <input type="tel" name="tel"value="${memberJoinDTO.tel}" placeholder="전화번호 입력">
-          <form:errors path="tel" cssStyle="font-weight: bold; color: #e95050"/>
+          <input type="tel" name="tel" placeholder="전화번호 입력">
+
         </div>
 
-        <input type="text" name="postcode" value="${memberJoinDTO.postcode}" id="sample6_postcode" placeholder="우편번호">
-          <form:errors path="postcode" cssStyle="font-weight: bold; color: #e95050"/>
-        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-        <input type="text" name="address" value="${memberJoinDTO.address}" id="sample6_address" placeholder="주소"><br>
-          <form:errors path="address" cssStyle="font-weight: bold; color: #e95050"/>
-        <input type="text"name="detailAddress" value="${memberJoinDTO.detailAddress}" id="sample6_detailAddress" placeholder="상세주소">
-          <form:errors path="detailAddress" cssStyle="font-weight: bold; color: #e95050"/>
-        <input type="text"name="extraAddress" value="${memberJoinDTO.extraAddress}" id="sample6_extraAddress" placeholder="참고항목">
 
 
         <div class="single-input-fields">
           <label>이메일</label>
-          <input type="email" name="email" value="${memberJoinDTO.email}" placeholder="이메일을 입력하시오">
-          <form:errors path="email" cssStyle="font-weight: bold; color: #e95050"/>
+          <input type="email" name="email"  placeholder="이메일을 입력하시오">
+
         </div>
 
-        <div class="single-input-fields">
-          <label>좋아하는 장르</label>
-          <input type="text" name="favoriteGenre" value="${memberJoinDTO.favoriteGenre}" placeholder="좋아하는 장르 입력">
-          <form:errors path="favoriteGenre" cssStyle="font-weight: bold; color: #e95050"/>
-        </div>
-          <div class="single-input-fields">
-          <label>성별</label>
-          <select name="gender" value="${memberJoinDTO.gender}" style="margin-right: 550px;">
 
 
-              <option value="남자">남자</option>
-              <option value="여자">여자</option>
-
-          </select>
-          </div>
-      </div>
       <!-- form Footer -->
       <div class="register-footer">
         <p> Already have an account? <a href="/login"> Login</a> here</p>
@@ -134,7 +99,8 @@
     </div>
 
   </div>
-    </form:form>
+
+
   <!-- Register Area End -->
 
 

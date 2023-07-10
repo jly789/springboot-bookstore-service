@@ -18,6 +18,20 @@
 
     </select>
 
+    <select id="findId" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"
+            resultType="Integer">
+        select nvl(count(*),0) from member
+        where name =#{name} and email = #{email}
+
+    </select>
+
+    <select id="findUserId" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"
+           resultType="String" >
+        select userId from member
+        where name =#{name} and email = #{email}
+
+    </select>
+
     <select id="IdCheck" parameterType="String"
             resultType="Integer">
         select nvl(count(*),0) from member

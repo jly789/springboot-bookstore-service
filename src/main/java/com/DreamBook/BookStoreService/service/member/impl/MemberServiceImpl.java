@@ -53,9 +53,26 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Integer IdCheck(String id) throws Exception {
-        if(memberMapper.IdCheck(id) == 1){
+        if (memberMapper.IdCheck(id) == 1) {
             return 0;
         }
         return 1;
+    }
+
+
+
+    @Override
+    public Integer findId(MemberFindDTO memberFindDTO) throws Exception {
+        if (memberMapper.findId(memberFindDTO) == 1) {
+
+            return 0;
+        }
+        return 1;
+
+    }
+
+    @Override
+    public String findUserId(MemberFindDTO memberFindDTO) throws Exception {
+       return memberMapper.findUserId(memberFindDTO);
     }
 }

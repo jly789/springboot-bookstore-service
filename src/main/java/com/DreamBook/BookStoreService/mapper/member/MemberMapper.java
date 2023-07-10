@@ -17,6 +17,10 @@ public interface MemberMapper {
 
     public Integer loginData(MemberFindDTO memberFindDTO) throws  Exception;
 
+    public Integer findId(MemberFindDTO memberFindDTO) throws  Exception;
+
+    public String findUserId(MemberFindDTO memberFindDTO) throws  Exception;
+
     public void insertData(MemberJoinDTO memberJoinDTO) throws Exception;
 
 }
