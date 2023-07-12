@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-/mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.DreamBook.BookStoreService.mapper.book.BookMapper">
+
+
+    <select id="maxNum" resultType="int">
+        select nvl(max(bookId),0) from book
+    </select>
+
+
+    <select id="maxNumCart" resultType="int">
+        select nvl(max(cartId),0) from cart
+    </select>
+
+
+
+        <insert id="insertData" parameterType="com.DreamBook.BookStoreService.dto.book.BookAddDTO">
+
+        insert into book(bookId,memberId,bookName,bookContent,author,publisher,genre,
+                         fileName,filePath,price,salesQuantity,bookLoan,views,publicationYear)
+        values (#{bookId},#{memberId},#{bookName},#{bookContent},#{author},#{publisher},
+                #{genre},#{fileName},#{filePath},#{price},#{salesQuantity},1,0,#{publicationYear})
+
+        </insert>
+
+    <insert id="bookCartInsertData" parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO">
+
+    insert into cart(cartId,memberId,bookId)
+    values (#{cartId},#{memberId},#{bookId})
+
+    </insert>
+
+    <select id="bookList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        select * from book
+
+
+
+    </select>
+
+    <select id="bookIdList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO"
+    parameterType="int">
+        select * from book
+        where bookId = #{bookId}
+
+
+
+    </select>
+
+    <select id="bookCartList"  resultType="com.DreamBook.BookStoreService.dto.book.BookDTO"
+            parameterType="int">
+        select * from  book a
+                           LEFT JOIN cart b ON
+            a.bookId = b.bookId
+                           LEFT JOIN member c ON
+            b.memberId =c.memberId
+        where b.memberId =1
+        ORDER BY b.bookId
+
+
+
+    </select>
+
+
+<!--    <select id="loginData" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->
+<!--    resultType="Integer">-->
+<!--        select nvl(count(*),0) from member-->
+<!--        where userId =#{userId} and pwd = #{pwd}-->
+
+<!--    </select>-->
+
+<!--    <select id="findId" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->
+<!--            resultType="Integer">-->
+<!--        select nvl(count(*),0) from member-->
+<!--        where name =#{name} and email = #{email}-->
+
+<!--    </select>-->
+
+<!--    <select id="findUserId" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->
+<!--           resultType="String" >-->
+<!--        select userId from member-->
+<!--        where name =#{name} and email = #{email}-->
+
+<!--    </select>-->
+
+
+
+<!--    <select id="findPwd" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->
+<!--            resultType="String" >-->
+<!--        select pwd from member-->
+<!--        where userId =#{userId} and email = #{email}-->
+
+<!--    </select>-->
+
+<!--    <select id="IdCheck" parameterType="String"-->
+<!--            resultType="Integer">-->
+<!--        select nvl(count(*),0) from member-->
+<!--        where userId =#{id}-->
+
+<!--    </select>-->
+
+
+
+
+
+
+</mapper>

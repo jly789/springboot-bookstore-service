@@ -36,8 +36,10 @@ public class MemberController {
                           HttpSession session) throws Exception {
 
         if (memberService.loginData(memberFindDTO, response) == 1) {
-
+            int memberId  =memberService.findMemberId(memberFindDTO);
             session.setAttribute("userId", memberFindDTO.getUserId());
+            session.setAttribute("memberId",memberId);
+
             return "main/main";
         } else
             return "member/login";
@@ -121,7 +123,7 @@ public class MemberController {
 
     @ResponseBody
     @PostMapping("/idFind")
-    public String idCheck2(MemberFindDTO memberFindDTO,Model model) throws Exception {
+    public String idCheck2(MemberFindDTO memberFindDTO) throws Exception {
 
    String result = memberService.findUserId(memberFindDTO);
 
@@ -141,12 +143,12 @@ public class MemberController {
     }
     @ResponseBody
     @PostMapping("/pwdFind")
-    public String pwdFindOk() throws Exception {
+    public String pwdFindOk(MemberFindDTO memberFindDTO) throws Exception {
+
+        String result = memberService.findPwd(memberFindDTO);
 
 
-
-
-        return "member/pwdFind";
+        return result;
     }
 
 

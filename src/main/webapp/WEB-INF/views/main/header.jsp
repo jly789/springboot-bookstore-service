@@ -50,14 +50,21 @@
                                 </div>
                                 <div class="header-info-right d-flex align-items-center">
                                     <ul>
+                                        <li><a href="/bookAdd">책 등록하기</a></li>
                                         <li><a href="#">FAQ</a></li>
                                         <li><a href="#">Track Order</a></li>
                                         <li class="shopping-card">
-                                            <a href="cart.html"><img src="assets/img/icon/cart.svg" alt=""></a>
+                                            <a href="/cart"><img src="assets/img/icon/cart.svg" alt=""></a>
                                         </li>
+
+
+
                                         <c:if test="${userId ==null}">
                                         <li><a href="/login" class="btn header-btn">log in</a></li>
                                         </c:if>
+
+
+
                                         <c:if test="${userId !=null}">
                                             <li><a href="/logout" class="btn header-btn">log out</a></li>
                                         </c:if>
@@ -82,8 +89,8 @@
                                 <nav>
                                     <ul id="navigation">
                                         <c:if test="${userId ==null}">
-                                        <li><a href="/">Home</a></li>
-                                        <li><a href="categories.html">Categories</a></li>
+                                        <li><a href="/main">Home</a></li>
+                                        <li><a href="/bookMain">책 보기</a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="#">Pages</a>
                                             <ul class="submenu">
@@ -102,7 +109,7 @@
 
                                         <c:if test="${userId !=null}">
                                             <li><a href="/">Home</a></li>
-                                            <li><a href="categories.html">Categories</a></li>
+                                            <li><a href="/bookMain">책 보기</a></li>
                                             <li><a href="about.html">About</a></li>
                                             <li><a href="#">Pages</a>
                                                 <ul class="submenu">

@@ -19,7 +19,10 @@ public interface MemberMapper {
 
     public Integer findId(MemberFindDTO memberFindDTO) throws  Exception;
 
+    public int findMemberId(MemberFindDTO memberFindDTO) throws  Exception;
     public String findUserId(MemberFindDTO memberFindDTO) throws  Exception;
+
+    public String findPwd(MemberFindDTO memberFindDTO) throws  Exception;
 
     public void insertData(MemberJoinDTO memberJoinDTO) throws Exception;
 

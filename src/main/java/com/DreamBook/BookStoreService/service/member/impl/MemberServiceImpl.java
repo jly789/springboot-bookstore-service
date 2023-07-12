@@ -75,4 +75,14 @@ public class MemberServiceImpl implements MemberService {
     public String findUserId(MemberFindDTO memberFindDTO) throws Exception {
        return memberMapper.findUserId(memberFindDTO);
     }
+
+    @Override
+    public String findPwd(MemberFindDTO memberFindDTO) throws Exception {
+        return memberMapper.findPwd(memberFindDTO);
+    }
+
+    @Override
+    public int findMemberId(MemberFindDTO memberFindDTO) throws Exception {
+        return memberMapper.findMemberId(memberFindDTO);
+    }
 }

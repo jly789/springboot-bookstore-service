@@ -14,6 +14,13 @@ public class MainController {
         return "main/main";
     }
 
+    @GetMapping("/index")
+    public String index(Model model){
+
+
+        return "main/index";
+    }
+
 
 
 

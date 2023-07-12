@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 public class MemberFindDTO {
 
-
+        private int memberId;
         private String userId;
         private String pwd;
         private String name;
