@@ -30,7 +30,7 @@
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
 <main>
-  <form action="/cart" method="post">
+  <form action="/cartAdd" method="post">
   <!--  services-area start-->
   <div class="services-area2">
     <div class="container">

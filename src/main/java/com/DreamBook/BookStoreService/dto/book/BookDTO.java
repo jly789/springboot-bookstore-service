@@ -29,6 +29,6 @@ public class BookDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationYear;
 
-    private int quantity;
+    private int wishQuantity; //수량
 
 }

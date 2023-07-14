@@ -59,9 +59,9 @@
 
     insert into member(memberId,role,userId,pwd,name,gender,age,nikname,birth,
                        tel,postcode,address,detailAddress,extraAddress,email,favoriteGenre,
-                       userGrade,purchaseAmount,point)
+                       userGrade,purchaseAmount,point,wishQuantity)
     values (#{memberId},'MEMBER',#{userId},#{pwd},#{name},#{gender},#{age},#{nikname},#{birth},
-            #{tel},#{postcode},#{address},#{detailAddress},#{extraAddress},#{email},#{favoriteGenre},'bronze',0,0)
+            #{tel},#{postcode},#{address},#{detailAddress},#{extraAddress},#{email},#{favoriteGenre},'bronze',0,0,0)
 
     </insert>
 

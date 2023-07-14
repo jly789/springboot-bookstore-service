@@ -79,8 +79,16 @@
               <td>
                 <div class="product_count">
 <%--                  <span class="input-number-decrement"> <i class="ti-minus" id="minus" ></i></span>--%>
-                  <input class="input-number" type="text" id =quantity name="quantity"  value="1" min="0" max="10"/>
-  <input type="text" id =aa name="aa"  value=""/>
+<%--                  <input class="input-number" type="text" id =quantity[${bookCartList.price}] name="quantity"  value="1" min="0" max="10"/>--%>
+  <table>
+    <tr>
+      <td><input type="text" class="qty" value="1" /></td>
+      <td><input type="hidden" class="price" value="${bookCartList.price}" /></td>
+      <td id="totals"></td>
+
+    </tr>
+
+  </table>
 <%--                  <span class="input-number-increment"> <i class="ti-plus" id="plus"></i></span>--%>
                 </div>
               </td>
@@ -110,7 +118,7 @@
                 <h5>Subtotal</h5>
               </td>
               <td>
-                <h5>$${totalPrice}</h5>
+             <input type="text" class="btn"  name="totalPrice" id="totalPrice" value="${totalPrice}"/>
               </td>
             </tr>
             <tr class="shipping_area">
@@ -172,31 +180,87 @@
 </main>
 
 <script>
-  $('#price').text($('#priceId').val());
 
-  $('#quantity').mouseleave (function () {
 
+
+  $('input.qty, input.price').change(function() {
+    var $t = $(this).parents('tr');
+    var val = $t.find('input.qty').val() * $t.find('input.price').val();
+  $t.find('td').last().html(val);
+
+
+
+
+
+    $.ajax({
+
+      type: 'POST',
+      url: '/cartPlus',
+      data: {"price":$t.find('input.qty').val() * $t.find('input.price').val()},
+      dataType: 'text',
+      success: function(price) {
+
+       let  total =  $('#totalPrice').val();
+
+      total = Number(total) + Number(price);
+
+      $('#totalPrice').val(total);
+
+
+
+
+        document.getElementById('result').style.color ="black";
+        // $("#result").attr('color','green');
+
+
+      }
+      ,
+      error: function(a, b, c) {
+        console.log(a, b, c);
+      }
+
+    });
+
+
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <c:forEach var="bookCartList" items="${bookCartList}">
+
+  $('#quantity\\[${bookCartList.price}\\]').mouseleave (function () {
+
+    alert($('#quantity\\[${bookCartList.price}\\]').val());
 
 
     if ($('#quantity').val() != '') {
 
 
-      var objParams = {
-        "price"      : $('#price').text(), //유저 저장
-        "fruitList" : fruitArray        //과일배열 저장
-      };
+
       // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
       $.ajax({
 
         type: 'POST',
         url: '/cartPlus',
-        data: {"plus": $('#quantity').val(),"aa":objParams,
-          "price": $('#price').text(),
+        data: {"quantity": $('#quantity\\[${bookCartList.price}\\]').val(),
         },
         dataType: 'text',
-        success: function(result) {
+        success: function(quantity) {
 
-       $('#total').text(result * $('#price').text());
+       $('#total').text(quantity * $('#price').text());
 
 
 
@@ -220,7 +284,7 @@
     }
 
   });
-
+  </c:forEach>
 
   $('#minus').click(function () {
 
@@ -259,6 +323,7 @@
     }
 
   });
+
   // $('#quantity').click(function (){
   //
   //   alert('dsfsdfsd');

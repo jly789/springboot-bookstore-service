@@ -74,7 +74,7 @@ public class MemberJoinDTO {
         private int point;
 
 
-
+       private int wishQuantity;
 
 
 

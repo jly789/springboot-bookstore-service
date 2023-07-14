@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class BookController {
@@ -62,12 +62,12 @@ public class BookController {
 
         int memberId = (Integer) session.getAttribute("memberId");
         int totalPrice=0;
-//        int plus = (int) model.getAttribute("plus");
+
 
         List<BookDTO> bookCartList = bookService.bookCartList(memberId);
 
         model.addAttribute("bookCartList", bookCartList);
-        model.getAttribute("result");
+
       for(int i=0; i<bookCartList.size(); i++) {
           totalPrice= totalPrice+  bookCartList.get(i).getPrice();
 
@@ -81,21 +81,28 @@ public class BookController {
 
     @ResponseBody
     @PostMapping("/cartPlus")
-    public int bookCartListAjaxPlus(int plus,int price,Model model){
+    public String bookCartListAjaxPlus(String price,Model model){
 
-        model.addAttribute("plus",plus);
+      //  model.addAttribute("plus",plus);
 
-        int result = plus;
-        System.out.println(price);
+      //  int result = plus;
+       // System.out.println(price);
+
+//        int i = 0;
+//
+//        i = i+ Integer.parseInt(price);
+//
+//        System.out.println(price);
 
 
 
-        System.out.println(result);
+      //  System.out.println(result);
 
 
 
 
-        return result;
+
+        return price;
     }
 
     @ResponseBody
