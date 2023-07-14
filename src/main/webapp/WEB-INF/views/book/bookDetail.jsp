@@ -49,7 +49,7 @@
                   <h3>${bookList.bookName}</h3>
                   <p>${bookList.author}</p>
 
-                  <input type="text" name="bookId" value="${bookList.bookId}">
+                  <input type="hidden" name="bookId" value="${bookList.bookId}">
                   <div class="price">
                     <span>$${bookList.price}</span>
                   </div>

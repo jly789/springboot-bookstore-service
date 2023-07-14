@@ -7,10 +7,7 @@ import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -65,21 +62,57 @@ public class BookController {
 
         int memberId = (Integer) session.getAttribute("memberId");
         int totalPrice=0;
+//        int plus = (int) model.getAttribute("plus");
 
         List<BookDTO> bookCartList = bookService.bookCartList(memberId);
 
         model.addAttribute("bookCartList", bookCartList);
-
+        model.getAttribute("result");
       for(int i=0; i<bookCartList.size(); i++) {
           totalPrice= totalPrice+  bookCartList.get(i).getPrice();
+
 
       }
      model.addAttribute("totalPrice",totalPrice);
 
+
         return "book/cart";
     }
 
-    @PostMapping("/cart")
+    @ResponseBody
+    @PostMapping("/cartPlus")
+    public int bookCartListAjaxPlus(int plus,int price,Model model){
+
+        model.addAttribute("plus",plus);
+
+        int result = plus;
+        System.out.println(price);
+
+
+
+        System.out.println(result);
+
+
+
+
+        return result;
+    }
+
+    @ResponseBody
+    @PostMapping("/cartMinus")
+    public int bookCartListAjaxMinus(int minus){
+
+
+        int result = minus-1;
+
+        System.out.println(result);
+
+
+        return result;
+    }
+
+
+    @PostMapping("/cartAdd")
     public String bookCart(BookCartDTO bookCartDTO, HttpSession session,Model model)throws Exception{
 
         int memberId =(Integer) session.getAttribute("memberId");
