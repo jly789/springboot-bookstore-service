@@ -2,6 +2,7 @@ package com.DreamBook.BookStoreService.service.member.impl;
 
 
 
+import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
 import com.DreamBook.BookStoreService.mapper.member.MemberMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.List;
 
 
 @Service
@@ -84,5 +86,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int findMemberId(MemberFindDTO memberFindDTO) throws Exception {
         return memberMapper.findMemberId(memberFindDTO);
+    }
+
+    @Override
+    public List<MemberDTO> memberDtoList(String userId) throws Exception {
+        return memberMapper.memberDtoList(userId);
     }
 }

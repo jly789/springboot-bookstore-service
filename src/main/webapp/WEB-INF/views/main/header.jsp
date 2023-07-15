@@ -50,13 +50,18 @@
                                 </div>
                                 <div class="header-info-right d-flex align-items-center">
                                     <ul>
+                                            <c:if test="${userId =='admin'}" >
                                         <li><a href="/bookAdd">책 등록하기</a></li>
+                                            </c:if>
                                         <li><a href="#">FAQ</a></li>
-                                        <li><a href="#">Track Order</a></li>
+                                        <c:if test="${userId !=null}" >
+                                        <li><a href="/myPage">My Page</a></li>
+                                        </c:if>
+                                        <c:if test="${userId !=null}" >
                                         <li class="shopping-card">
                                             <a href="/cart"><img src="assets/img/icon/cart.svg" alt=""></a>
                                         </li>
-
+                                        </c:if>
 
 
                                         <c:if test="${userId ==null}">
