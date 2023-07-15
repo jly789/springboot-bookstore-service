@@ -15,6 +15,7 @@ public class OrderController {
     @GetMapping("/order")
     public String  order(){
 
+        System.out.println("안녕하세요");
 
        return  "order/order";
     }
