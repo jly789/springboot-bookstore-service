@@ -2,6 +2,7 @@ package com.DreamBook.BookStoreService.controller.order;
 
 import com.DreamBook.BookStoreService.service.order.OrderService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.Resource;
@@ -13,10 +14,9 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/order")
-    public String  order(){
+    public String  order(Model model){
 
-        System.out.println("안녕하세요");
-        System.out.println("예");
+
        return  "order/order";
     }
 
