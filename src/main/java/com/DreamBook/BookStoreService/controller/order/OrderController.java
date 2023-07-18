@@ -47,17 +47,19 @@ public class OrderController {
         List<MemberDTO> list = memberService.memberDtoList(userId);
 
 
+        return list;
+    }
 
-         List aa = new ArrayList<>();
-        for(int i =0; i<list.size(); i++){
 
-        aa.add(0,list.get(i).getName());
-        aa.add(1,list.get(i).getTel());
-            aa.add(2,list.get(i).getEmail());
-        }
+    @ResponseBody
+    @PostMapping("/pointCheck")
+    public List<MemberDTO>  pointCheck(HttpSession session)throws Exception {
 
-//        System.out.println(aa.get(2));
+        String userId = (String) session.getAttribute("userId");
 
-        return aa;
+        List<MemberDTO> point = memberService.memberDtoList(userId);
+
+
+        return point;
     }
 }

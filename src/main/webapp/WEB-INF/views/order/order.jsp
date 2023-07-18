@@ -20,7 +20,7 @@
 <main>
 
 
-  <input type="text" id="memberId" name="memberId" value="${memberId}"/>
+  <input type="hidden" id="memberId" name="memberId" value="${memberId}"/>
   <!-- Hero area Start-->
   <div class="container">
     <div class="row">
@@ -42,6 +42,7 @@
     <div class="container">
       <div class="returning_customer">
         <div class="check_title">
+          <c:if test="${memberId ==null}">
           <h2>
             Returning Customer?
 
@@ -75,26 +76,29 @@
       <div class="cupon_area">
         <div class="check_title">
           <h2> Have a point?
-            <a style="height: 20px; width: 40px;"  href="#">포인트 확인</a>
+            <a   style="height: 20px; width: 40px;">포인트 확인</a>
           </h2>
         </div>
         <input type="text" placeholder="" />
-        <a id="point" class="btn">포인트 사용하기</a>
-        <a id="delivery" class="btn">기본 배송지적용</a>
       </div>
+      </c:if>
+
 
 
       <div class="billing_details">
         <div class="row">
           <div class="col-lg-8">
-            <h3>Billing Details</h3>
+            <h3>delivery</h3>
+
+
+
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
               <div class="col-md-6 form-group p_star">
 
 
 
                 <input type="text" class="form-control" id="name" name="name"  value=""/>
-                <span id="abc" class="placeholder" data-placeholder="이름을 입력하시오!"></span>
+                <span id="name1" class="placeholder" data-placeholder="이름을 입력하시오!"></span>
               </div>
 
 
@@ -104,40 +108,50 @@
               </div>
               <div class="col-md-6 form-group p_star">
                 <input type="text" class="form-control" id="tel" name="tel" value="" />
-                <span class="placeholder" data-placeholder="핸드폰 번호"></span>
+                <span id="tels" class="placeholder" data-placeholder="핸드폰 번호"></span>
               </div>
               <div class="col-md-6 form-group p_star">
                 <input type="text" class="form-control" id="email" name="email" value="" />
-                <span class="placeholder" data-placeholder="이메일 주소입력"></span>
+                <span id="emails" class="placeholder" data-placeholder="이메일 주소입력"></span>
               </div>
 
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="zip" name="zip" placeholder="우편번호" />
+                <input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호" />
+                <span id="postcodes" class="placeholder" data-placeholder="우편번호 입력"></span>
               </div>
 
 
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add1" />
-                <span class="placeholder" data-placeholder="주소"></span>
+                <input type="text" class="form-control" id="address" name="address" />
+                <span id="addresss" class="placeholder" data-placeholder="주소"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add2" name="add2" />
-                <span class="placeholder" data-placeholder="상세주소"></span>
+                <input type="text" class="form-control" id="detailAddress" name="detailAddress" />
+                <span id="detailAddresss"  class="placeholder" data-placeholder="상세주소"></span>
               </div>
 
 
 
 
-              <div class="col-md-12 form-group">
-                <div class="creat_account">
-                  <h3>Shipping Details</h3>
-                  <div class="checkout-cap">
-                    <input type="checkbox" id="f-option3" name="selector" />
-                    <label for="f-option3">Ship to a different address?</label>
-                  </div>
+
+                <textarea class="form-control" name="extraAddress" id="extraAddress" rows="1" placeholder="참고사항"></textarea>
+                <span id="extraAddresss"  class="placeholder" data-placeholder="참고사항"></span>
+
+              <div class="cupon_area">
+                <div class="check_title">
+                  <h2> Have a point?
+                    <a id="pointCheck" style="height: 20px; width: 40px;"  href="#">포인트 확인</a>
+                  </h2>
                 </div>
-                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
+                <input id="point" name="point" type="text" placeholder="" />
+
+                <%--        <a id="delivery" class="btn">기본 배송지적용</a>--%>
+                <a id="pointApply" class="btn">포인트적용</a>
+
+                <a id="delivery" class="btn">기존 배송지 적용</a>
+                <a id="reset"   href="/order" style="width: 90px; height: 30px; background-color: red" >reset</a>
               </div>
+
             </form>
           </div>
 
@@ -220,7 +234,54 @@
 
 <script>
 
-$('#delivery').click(function () {
+
+  $('#pointCheck').click(function () {
+
+      let point = 0;
+      // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+      $.ajax({
+
+        type: 'POST',
+        url: '/pointCheck',
+        data: {"memberId": $('#memberId').val(),
+
+        },
+        dataType: 'JSON',
+
+        success: function(point) {
+
+          for(let i=0; i<point.length; i++) {
+
+            point =(point[i].point);
+
+            }
+
+          $("#point").val(point);
+
+          // $("#result").text('아이디:'+' '+result+''+'입니다');
+          //
+          // document.getElementById('result').style.color ="red"
+
+
+
+        },
+        error: function(a, b, c) {
+          alert('ㅇㅇㄴ');
+          console.log(a, b, c);
+        }
+
+      });
+
+
+
+  });
+
+
+
+
+
+
+  $('#delivery').click(function () {
 
 if ($('#memberId').val() != '') {
 let memberId = $('#memberId').val();
@@ -234,31 +295,58 @@ $.ajax({
     "memberId": $('#memberId').val(),
 
   },
-  dataType: 'text',
+  dataType: 'JSON',
 
-  success: function (aa) {
+  success: function (list) {
 
-    if(aa !=null){
-
-      $("#abc").hide();
-
-
-    var reg = /[`~!#$%^&*()_|+\=?;:'"<>\{\}\[\]\\\/ ]/gim;
-
-        for(let i=0; i<aa.length; i++){
-
-        console.log(aa[i].length);
-
-        }
+    let name =0;
+    let tel=0;
+    let email =0;
+    let postcode =0;
+    let address =0;
+    let detailAddress =0;
+    let extraAddress =0;
 
 
+    if(list !=null){
+      $("#name1").hide();
+      $("#tels").hide();
+      $("#emails").hide();
+      $("#postcodes").hide();
+      $("#addresss").hide();
+      $("#detailAddresss").hide();
+      $("#extraAddresss").hide();
 
-
-    // $("#name").val(tel.replace(reg , ''));
-      // $("#tel").val(tel.replace(reg , ''));
     }
 
 
+    // var reg = /[`~!#$%^&*()_|+\=?;:'"<>\{\}\[\]\\\/ ]/gim;
+
+
+      for(let i=0; i<list.length; i++) {
+
+      name =(list[i].name);
+       tel =(list[i].tel);
+        email=(list[i].email);
+        postcode=(list[i].postcode);
+        address=(list[i].address);
+        detailAddress=(list[i].detailAddress);
+        extraAddress=(list[i].extraAddress);
+
+      }
+            // console.log(aa.ind);
+
+
+    $("#name").val(name);
+      $("#tel").val(tel);
+      $("#email").val(email);
+    $("#postcode").val(postcode);
+    $("#address").val(address);
+    $("#detailAddress").val(detailAddress);
+    $("#extraAddress").val(extraAddress);
+
+
+      // $("#tel").val(tel.replace(reg , ''));
 
 
 
