@@ -92,4 +92,9 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberDTO> memberDtoList(String userId) throws Exception {
         return memberMapper.memberDtoList(userId);
     }
+
+//    @Override
+//    public List<MemberDTO> memberIdList(int memberId) throws Exception {
+//        return memberMapper.memberIdList(memberId);
+//    }
 }

@@ -28,4 +28,7 @@ public interface MemberMapper {
     public void insertData(MemberJoinDTO memberJoinDTO) throws Exception;
 
     public List<MemberDTO> memberDtoList(String userId) throws  Exception;
+//    public List<MemberDTO> memberIdList(int memberId) throws  Exception;
+
+
 }

@@ -26,4 +26,6 @@ public interface MemberService {
 
     public List<MemberDTO> memberDtoList(String userId) throws  Exception;
 
+//    public List<MemberDTO> memberIdList(int memberId) throws  Exception;
+
 }

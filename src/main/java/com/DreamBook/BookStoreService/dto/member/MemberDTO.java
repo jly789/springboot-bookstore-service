@@ -28,7 +28,7 @@ public class MemberDTO {
     private String userGrade;
     private int purchaseAmount;
     private int point;
-
+    private String extraAddress;
 
 
 

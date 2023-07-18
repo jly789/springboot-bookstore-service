@@ -1,6 +1,7 @@
 package com.DreamBook.BookStoreService.controller.main;
 
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

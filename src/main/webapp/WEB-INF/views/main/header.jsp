@@ -53,7 +53,7 @@
                                             <c:if test="${userId =='admin'}" >
                                         <li><a href="/bookAdd">책 등록하기</a></li>
                                             </c:if>
-                                        <li><a href="#">FAQ</a></li>
+                                        <li><a href="/review">리뷰</a></li>
                                         <c:if test="${userId !=null}" >
                                         <li><a href="/myPage">My Page</a></li>
                                         </c:if>

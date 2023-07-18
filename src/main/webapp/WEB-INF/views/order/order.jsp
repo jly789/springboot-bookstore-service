@@ -18,6 +18,9 @@
 <jsp:include page="../main/header.jsp"></jsp:include>
 
 <main>
+
+
+  <input type="text" id="memberId" name="memberId" value="${memberId}"/>
   <!-- Hero area Start-->
   <div class="container">
     <div class="row">
@@ -50,9 +53,10 @@
           boxes below. If you are a new customer, please proceed to the
           Billing & Shipping section.
         </p>
+
         <form class="row contact_form" action="#" method="post" novalidate="novalidate">
           <div class="col-md-6 form-group p_star">
-            <input type="text" class="form-control" id="name" name="name" value=" " />
+            <input type="text" class="form-control" id="names" name="name" value="" />
             <span class="placeholder" data-placeholder="Username or Email"></span>
           </div>
           <div class="col-md-6 form-group p_star">
@@ -71,31 +75,39 @@
       <div class="cupon_area">
         <div class="check_title">
           <h2> Have a point?
-
+            <a style="height: 20px; width: 40px;"  href="#">포인트 확인</a>
           </h2>
         </div>
         <input type="text" placeholder="" />
-        <a class="btn" href="#">Apply Point</a>
+        <a id="point" class="btn">포인트 사용하기</a>
+        <a id="delivery" class="btn">기본 배송지적용</a>
       </div>
+
+
       <div class="billing_details">
         <div class="row">
           <div class="col-lg-8">
             <h3>Billing Details</h3>
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" />
-                <span class="placeholder" data-placeholder="이름입력!"></span>
+
+
+
+                <input type="text" class="form-control" id="name" name="name"  value=""/>
+                <span id="abc" class="placeholder" data-placeholder="이름을 입력하시오!"></span>
               </div>
+
+
 
               <div class="col-md-12 form-group">
                 <input type="text" class="form-control" id="company" name="company" placeholder="배송지명" />
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" />
+                <input type="text" class="form-control" id="tel" name="tel" value="" />
                 <span class="placeholder" data-placeholder="핸드폰 번호"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="compemailany" />
+                <input type="text" class="form-control" id="email" name="email" value="" />
                 <span class="placeholder" data-placeholder="이메일 주소입력"></span>
               </div>
 
@@ -128,6 +140,16 @@
               </div>
             </form>
           </div>
+
+
+
+
+
+
+
+
+
+
           <div class="col-lg-4">
             <div class="order_box">
               <h2>Your Order</h2>
@@ -185,11 +207,84 @@
         </div>
       </div>
     </div>
-  </section>
-  <!--End Checkout Area -->
 
+  </section>
+
+  <!--End Checkout Area -->
 </main>
 
+
+
+
+
+
+<script>
+
+$('#delivery').click(function () {
+
+if ($('#memberId').val() != '') {
+let memberId = $('#memberId').val();
+
+// 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+$.ajax({
+
+  type: 'POST',
+  url: '/AddressFind',
+  data: {
+    "memberId": $('#memberId').val(),
+
+  },
+  dataType: 'text',
+
+  success: function (aa) {
+
+    if(aa !=null){
+
+      $("#abc").hide();
+
+
+    var reg = /[`~!#$%^&*()_|+\=?;:'"<>\{\}\[\]\\\/ ]/gim;
+
+        for(let i=0; i<aa.length; i++){
+
+        console.log(aa[i].length);
+
+        }
+
+
+
+
+    // $("#name").val(tel.replace(reg , ''));
+      // $("#tel").val(tel.replace(reg , ''));
+    }
+
+
+
+
+
+
+
+
+  <%--  <c:forEach var="memberDTOList" items="${memberDTOList}">--%>
+
+
+// $("#result").text('비밀번호는:'+' '+result+''+'입니다');
+//
+// document.getElementById('result').style.color ="red"
+
+},
+error: function(a, b, c) {
+alert('실패');
+console.log(a, b, c);
+}
+
+});
+
+}
+
+});
+
+</script>
 
 <jsp:include page="../main/footer.jsp"></jsp:include>
 </body>
