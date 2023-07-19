@@ -62,4 +62,23 @@ public class OrderController {
 
         return point;
     }
+
+
+
+    @ResponseBody
+    @PostMapping("/payment")
+    public String  payment(Model model,HttpSession session,
+                           @RequestParam("orderNum")String orderNum,@RequestParam("memberId")int memberId,@RequestParam("imp_uid")String imp_uid){
+
+
+        System.out.println("회원번호"+memberId);
+        System.out.println("impuid번호:"+imp_uid);
+        System.out.println("주문번호 merchant: "+orderNum);
+        System.out.println("테스트");
+
+
+        return  "order/order";
+    }
+
+
 }
