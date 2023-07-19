@@ -11,5 +11,11 @@ public class BookCartDTO {
     private int memberId;
     private int bookId;
 
+    private String bookName;
+    private int bookPrice;
+    private int wishQuantity; //수량
+    private int bookTotal;
+    private int bookRealTotal;
+
 
 }

@@ -1,7 +1,11 @@
 package com.DreamBook.BookStoreService.controller.order;
 
+import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
+import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
+import com.DreamBook.BookStoreService.dto.order.OrderDTO;
+import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import com.DreamBook.BookStoreService.service.order.OrderService;
 import org.springframework.stereotype.Controller;
@@ -22,16 +26,25 @@ public class OrderController {
 
     @Resource
     private MemberService memberService;
+
+    @Resource
+    private BookService bookService;
+
+    @Resource
     private OrderService orderService;
 
 
 
-    @GetMapping("/order")
-    public String  order(Model model,HttpSession session){
+    @PostMapping("/order")
+    public String  order(Model model, HttpSession session,@RequestParam("totalPrice")int totalPrice)throws Exception{
+        int memberId = (Integer) session.getAttribute("memberId");
 
+        model.addAttribute("memberId",memberId);
 
+        List<BookDTO> bookCartList = bookService.bookCartList(memberId);
 
-            model.getAttribute("list");
+        model.addAttribute("bookCartList", bookCartList);
+        model.addAttribute("totalPrice",totalPrice);
 
        return  "order/order";
     }

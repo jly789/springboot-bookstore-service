@@ -63,10 +63,12 @@ public class BookController {
         int memberId = (Integer) session.getAttribute("memberId");
         int totalPrice=0;
 
+        model.addAttribute("memberId",memberId);
 
         List<BookDTO> bookCartList = bookService.bookCartList(memberId);
 
         model.addAttribute("bookCartList", bookCartList);
+        model.addAttribute("bookCartList");
 
       for(int i=0; i<bookCartList.size(); i++) {
           totalPrice= totalPrice+  bookCartList.get(i).getPrice();
@@ -77,6 +79,26 @@ public class BookController {
 
 
         return "book/cart";
+    }
+
+
+    @ResponseBody
+    @PostMapping("/cartList")
+    public List<BookDTO> cartList(BookCartDTO BookCartDTO, HttpSession session, Model model)throws Exception {
+
+
+         //   System.out.println(BookCartDTO.getMemberId());
+
+        List<BookDTO> bookCartList = bookService.bookCartList(BookCartDTO.getMemberId());
+
+
+
+//        model.addAttribute("bookCartList", bookCartList);
+
+
+
+
+        return bookCartList;
     }
 
     @ResponseBody

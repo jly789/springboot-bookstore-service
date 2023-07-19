@@ -177,50 +177,49 @@
 
           <div class="col-lg-4">
             <div class="order_box">
-              <h2>Your Order</h2>
+              <h2>구매 도서</h2>
               <ul class="list">
                 <li>
-                  <a href="#">Product<span>Total</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Fresh Blackberry
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
+                  <a href="#" style="color: red;">
+                    <c:forEach var="bookCartList" items="${bookCartList}">
+                      구매도서:  ${bookCartList.bookName}<br/></c:forEach>
+                    <span>Total</span>
                   </a>
                 </li>
 
               </ul>
               <ul class="list list_2">
                 <li>
-                  <a href="#">Subtotal <span>$2160.00</span></a>
+                  <span></span>    <a href="#"> Total ${totalPrice}원</a>
                 </li>
                 <li>
                   <a href="#">배송비
-                    <span>$5000</span>
+                    <span>5000원</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Total<span>$2210.00</span>
+                  <a href="#">총 금액:
+                    ${totalPrice+5000}
+                    <span></span>
                   </a>
                 </li>
               </ul>
               <div class="payment_item">
                 <div class="radion_btn">
                   <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5">Check payments</label>
+                  <label for="f-option5" id="prepayment">배송비 선불</label>
                   <div class="check"></div>
                 </div>
-                <p> Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode. </p>
+                <p> 선불 결제 </p>
               </div>
               <div class="payment_item active">
                 <div class="radion_btn">
                   <input type="radio" id="f-option6" name="selector" />
-                  <label for="f-option6">Paypal </label>
+                  <label for="f-option6" id="deferredPayment">배송비 후불 </label>
                   <img src="assets/img/gallery/card.jpg" alt="" />
                   <div class="check"></div>
                 </div>
-                <p> Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode. </p>
+                <p> 후불결제 </p>
               </div>
               <div class="creat_account checkout-cap">
                 <input type="checkbox" id="f-option8" name="selector" />

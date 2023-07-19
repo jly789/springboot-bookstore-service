@@ -31,4 +31,5 @@ public class BookDTO {
 
     private int wishQuantity; //수량
 
+
 }
