@@ -30,6 +30,7 @@
 <main>
 
 
+
   <input type="hidden" id="memberId" name="memberId" value="${memberId}"/>
   <!-- Hero area Start-->
   <div class="container">
@@ -153,7 +154,7 @@
                     <a id="pointCheck" style="height: 20px; width: 40px;"  href="#">포인트 확인</a>
                   </h2>
                 </div>
-                <input id="point" name="point" type="text" placeholder="" readonly="readonly" ; />
+                <input id="point" name="point" type="text" placeholder="" value="0" ; />
 
                 <%--        <a id="delivery" class="btn">기본 배송지적용</a>--%>
                 <a  id="pointApply" class="btn">포인트적용</a>
@@ -182,7 +183,8 @@
                 <li>
                   <a href="#" style="color: red;">
                     <c:forEach var="bookCartList" items="${bookCartList}">
-                      구매도서:  ${bookCartList.bookName}<br/></c:forEach>
+                      <input type="text" id="test" value="${bookCartList.bookId}">구매도서 번호 ${bookCartList.bookName}<br/>
+                     <input type="hidden" id="purchaseBook"  value=" ${bookCartList.bookName}"/> 구매도서:  ${bookCartList.bookName}<br/></c:forEach>
                     <span>Total</span>
                   </a>
                 </li>
@@ -199,6 +201,7 @@
                   </a>
                 </li>
                 <li>
+                  <input type="text" id="finaltotalPrice" value="${totalPrice+5000}"/>
                   <a href="#" id="totalPrice">총 금액:
                     ${totalPrice+5000}원
                     <span></span>
@@ -254,9 +257,10 @@
       pg : 'kakaopay.TC0ONETIME',
       pay_method: "card", // 결제방식
       merchant_uid : 'merchant_' + new Date().getTime(), // 주문번호
-      name: "동동주", // 상품명
+      name: $('#purchaseBook').val(), // 상품명
       // amount: parseInt($('#totalPrice').html()), // 결제 금액
-      amount: 1,
+      amount: $("#finaltotalPrice").val(),
+      // usePoint: $("#point").val(),
       buyer_name: $('#name').val(), // 주문자명
       buyer_tel: $('#tel').val(), // 주문자 연락처
       buyer_email: $('#email').val(), // 주문자 이메일                    //우편번호
@@ -265,7 +269,8 @@
         var msg = "결제 완료";
         msg += '고유ID : ' + data.imp_uid;                //아임포트 uid는 실제 결제 시 결제 고유번호를 서버와 비교해서 결제처리하는데 필요없긴함.
         msg += '// 상점 거래ID : ' + data.merchant_uid; // 주문번호
-        msg += '// 결제 금액 : ' + data.paid_amount;
+        msg += '// 결제 금액 : ' + $("#finaltotalPrice").val();
+        // msg += '// 포인트 사용 금액 : ' + data.usePoint;
         msg += '// 카드 승인번호 : ' + data.apply_num;
 
         $.ajax({
@@ -274,12 +279,13 @@
           data: {
 
 
-            imp_uid: data.imp_uid, // 결제번호
-            orderNum: data.merchant_uid,
+            impUid: data.imp_uid, // 결제번호
+            orderNum: data.merchant_uid, //주문번호
             // orderNum: rsp.merchant_uid, // 주문번호
             memberId: parseInt($('#memberId').val()), // 회원번호
             // productId:parseInt($('#productId').val()), // 상품번호
-            // orderPayment: rsp.paid_amount, // 주문가격
+            amount: $('#finaltotalPrice').val(), // 주문가격
+            usePoint: $('#point').val(), // 주문가격
             // userPoint: parseInt($('#usePoint').val()), // 사용포인트
             // delivery: $('#delivery').val(), // 배송여부
             // deliveryCost: parseInt($('#deliveryCost').val()), // 배송비
@@ -298,7 +304,8 @@
         var msg = "결제 실패"
         msg += "에러 내용" + rsp.error_msg;
       }
-      alert(msg);
+      alert("결제성공!");
+      window.location.href = "/bookMain";
     });
 
 
@@ -337,10 +344,13 @@
 
       let finaltotalPrice =pointapply-pointapplys; //최종금액= 최종금액-포인트금액
 
+      $("#finaltotalPrice").val(finaltotalPrice);
+
       $("#totalPrice").html("총 금액: "+ $("#totalPriceEx2").val()+"-"+pointapplys +"=" +finaltotalPrice+"원");
 
       $("#pointApply").html(message);
       document.getElementById('pointApply').style.backgroundColor = "green";
+
       return true;
 
       document.getElementById('point').readOnly = true;
@@ -355,12 +365,13 @@
 
       $("#pointCheck").show();
       $("#point").show();
-      $("#point").val('');
+      $("#point").val(0);
       let message = "포인트적용";
-
 
       $("#pointApply").html(message);
       document.getElementById('pointApply').style.backgroundColor = "red";
+      $("#totalPrice").html("총 금액: "+ $("#totalPriceEx2").val() +"원");
+      $("#finaltotalPrice").val($("#totalPriceEx2").val());
       return false;
     }
 

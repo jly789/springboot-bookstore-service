@@ -81,17 +81,20 @@ public class OrderController {
 
     @ResponseBody
     @PostMapping("/payment")
-    public String  payment(Model model,HttpSession session,
-                           @RequestParam("orderNum")String orderNum,@RequestParam("memberId")int memberId,@RequestParam("imp_uid")String imp_uid){
+    public String  payment(Model model,HttpSession session,OrderDTO orderDTO)
+    throws Exception{
 
 
-        System.out.println("회원번호"+memberId);
-        System.out.println("impuid번호:"+imp_uid);
-        System.out.println("주문번호 merchant: "+orderNum);
-        System.out.println("테스트");
+        List<BookDTO> bookCartList = bookService.bookCartList(orderDTO.getMemberId());
+       // orderDTO.setList(bookCartList);
+        for(int i =0; i<bookCartList.size(); i++) {
+            int maxNum = orderService.maxNum();
+            orderDTO.setOrderId(maxNum+1);
+            orderDTO.setBookId(bookCartList.get(i).getBookId());
+            orderService.orderInsertData(orderDTO);
+        }
 
-
-        return  "order/order";
+        return "book/main";
     }
 
 

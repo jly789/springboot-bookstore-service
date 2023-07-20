@@ -101,44 +101,44 @@ public class BookController {
         return bookCartList;
     }
 
-    @ResponseBody
-    @PostMapping("/cartPlus")
-    public String bookCartListAjaxPlus(String price,Model model){
-
-      //  model.addAttribute("plus",plus);
-
-      //  int result = plus;
-       // System.out.println(price);
-
-//        int i = 0;
+//    @ResponseBody
+//    @PostMapping("/cartPlus")
+//    public String bookCartListAjaxPlus(String price,Model model){
 //
-//        i = i+ Integer.parseInt(price);
+//      //  model.addAttribute("plus",plus);
 //
-//        System.out.println(price);
-
-
-
-      //  System.out.println(result);
-
-
-
-
-
-        return price;
-    }
-
-    @ResponseBody
-    @PostMapping("/cartMinus")
-    public int bookCartListAjaxMinus(int minus){
-
-
-        int result = minus-1;
-
-        System.out.println(result);
-
-
-        return result;
-    }
+//      //  int result = plus;
+//       // System.out.println(price);
+//
+////        int i = 0;
+////
+////        i = i+ Integer.parseInt(price);
+////
+////        System.out.println(price);
+//
+//
+//
+//      //  System.out.println(result);
+//
+//
+//
+//
+//
+//        return price;
+//    }
+//
+//    @ResponseBody
+//    @PostMapping("/cartMinus")
+//    public int bookCartListAjaxMinus(int minus){
+//
+//
+//        int result = minus-1;
+//
+//        System.out.println(result);
+//
+//
+//        return result;
+//    }
 
 
     @PostMapping("/cartAdd")

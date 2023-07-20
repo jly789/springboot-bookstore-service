@@ -6,14 +6,30 @@
 <mapper namespace="com.DreamBook.BookStoreService.mapper.order.OrderMapper">
 
 
-<!--    <select id="maxNum" resultType="int">-->
-<!--        select nvl(max(bookId),0) from book-->
-<!--    </select>-->
+    <select id="maxNum" resultType="int">
+        select nvl(max(orderId),0) from orders
+    </select>
 
 
 
 
 
+<!--    <insert id="orderInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
+<!--        <foreach item="item" index="index" collection="java.util.List" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">-->
+<!--           INSERT INTO orders(orderId,memberId,bookId,orderNum,impUid,amount,orderState,orderDate,usePoint)-->
+<!--            VALUES (#{item.orderId},#{item.memberId},#{item.bookId},#{item.orderNum},-->
+<!--           #{item.impUid},#{item.amount},'ORDER',SYSDATE,#{item.usePoint})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+    <insert id="orderInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.OrderDTO">
+
+        insert into orders(orderId,memberId,bookId,orderNum,impUid,amount,orderState,orderDate,usePoint)
+            VALUES (#{orderId},#{memberId},#{bookId},#{orderNum},
+            #{impUid},#{amount},'ORDER',SYSDATE ,#{usePoint})
+
+
+    </insert>
 
 
 </mapper>
