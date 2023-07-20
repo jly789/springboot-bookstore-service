@@ -153,7 +153,7 @@
                     <a id="pointCheck" style="height: 20px; width: 40px;"  href="#">포인트 확인</a>
                   </h2>
                 </div>
-                <input id="point" name="point" type="text" placeholder="" />
+                <input id="point" name="point" type="text" placeholder="" readonly="readonly" ; />
 
                 <%--        <a id="delivery" class="btn">기본 배송지적용</a>--%>
                 <a  id="pointApply" class="btn">포인트적용</a>
@@ -168,8 +168,8 @@
 
 
 
-
-
+         <input type="hidden" id="totalPriceEx" value="${totalPrice}"/>
+          <input type="hidden" id="totalPriceEx2" value="${totalPrice+5000}"/>
 
 
 
@@ -195,11 +195,12 @@
                 <li>
                   <a href="#">배송비
                     <span>5000원</span>
+                    <input type="hidden" id="delivaryAccount" value="5000">
                   </a>
                 </li>
                 <li>
-                  <a href="#">총 금액:
-                    ${totalPrice+5000}
+                  <a href="#" id="totalPrice">총 금액:
+                    ${totalPrice+5000}원
                     <span></span>
                   </a>
                 </li>
@@ -311,6 +312,10 @@
 
 <script>
 
+
+
+
+
   $('#pointApply').click(function () {
 
     if($("#pointApply").text()=='포인트적용' ){
@@ -326,15 +331,19 @@
       $("#pointCheck").hide();
 
       let message = "포인트 적용취소";
+      let delivaryAccount = $("#delivaryAccount").val(); //배송비 5000원
+      let pointapply =$("#totalPriceEx2").val(); //최종금액
+      let pointapplys =$("#point").val(); //포인틐금액
 
+      let finaltotalPrice =pointapply-pointapplys; //최종금액= 최종금액-포인트금액
 
-      //$("#point").val(message);
-
+      $("#totalPrice").html("총 금액: "+ $("#totalPriceEx2").val()+"-"+pointapplys +"=" +finaltotalPrice+"원");
 
       $("#pointApply").html(message);
       document.getElementById('pointApply').style.backgroundColor = "green";
       return true;
 
+      document.getElementById('point').readOnly = true;
 
     }
 

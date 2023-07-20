@@ -66,13 +66,9 @@
             <tbody>
 
             <c:forEach var="bookCartList" items="${bookCartList}">
-           <button type="text" value="" id="subCategory" name="subCategory"/>
-            <input type="text" name="bookName" id="bookName" value=""/>
-<%--            <input type="text" name="bookPrice" id="bookPrice"/>--%>
-<%--            <input type="text" name="wishQuantity" id="wishQuantity"/>--%>
-<%--            <input type="text" name="bookTotal" id="bookTotal"/>--%>
-<%--            <input type="text" name="bookRealTotal" id="bookRealTotal"/>--%>
-            <input type="text" name="memberId" id="memberId" value="${memberId}"/>
+<%--           <button type="hi" value="" id="subCategory" name="subCategory"/>--%>
+<%--            <input type="text" name="bookName" id="bookName" value=""/>--%>
+            <input type="hidden" name="memberId" id="memberId" value="${memberId}"/>
             <tr>
               <td>
                 <div class="media">
