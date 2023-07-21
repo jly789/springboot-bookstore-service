@@ -4,6 +4,7 @@ import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
+import com.DreamBook.BookStoreService.dto.order.DeliveryDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.member.MemberService;
@@ -81,7 +82,7 @@ public class OrderController {
 
     @ResponseBody
     @PostMapping("/payment")
-    public String  payment(Model model,HttpSession session,OrderDTO orderDTO)
+    public String  payment(Model model, HttpSession session, OrderDTO orderDTO, DeliveryDTO deliveryDTO)
     throws Exception{
 
 
@@ -90,9 +91,13 @@ public class OrderController {
         for(int i =0; i<bookCartList.size(); i++) {
             int maxNum = orderService.maxNum();
             orderDTO.setOrderId(maxNum+1);
+            deliveryDTO.setOrderId(maxNum+1);
             orderDTO.setBookId(bookCartList.get(i).getBookId());
             orderService.orderInsertData(orderDTO);
         }
+
+        orderService.deliveryInsertData(deliveryDTO);
+
 
         return "book/main";
     }

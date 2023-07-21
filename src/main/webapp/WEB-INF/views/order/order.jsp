@@ -115,10 +115,10 @@
 
 
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="company" name="company" placeholder="배송지명" />
+                <input type="text" class="form-control" id="recipient" name="recipient" placeholder="받는사람명" />
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="tel" name="tel" value="" />
+                <input type="text" class="form-control" id="tel" name="deliveryTel" value="" />
                 <span id="tels" class="placeholder" data-placeholder="핸드폰 번호"></span>
               </div>
               <div class="col-md-6 form-group p_star">
@@ -140,6 +140,8 @@
                 <input type="text" class="form-control" id="detailAddress" name="detailAddress" />
                 <span id="detailAddresss"  class="placeholder" data-placeholder="상세주소"></span>
               </div>
+
+            <input type="hidden" id="deliveryCost" name="deliveryCost" value="5000"/>
 
 
 
@@ -183,7 +185,7 @@
                 <li>
                   <a href="#" style="color: red;">
                     <c:forEach var="bookCartList" items="${bookCartList}">
-                      <input type="text" id="test" value="${bookCartList.bookId}">구매도서 번호 ${bookCartList.bookName}<br/>
+                      <input type="hidden" id="test" value="${bookCartList.bookId}">
                      <input type="hidden" id="purchaseBook"  value=" ${bookCartList.bookName}"/> 구매도서:  ${bookCartList.bookName}<br/></c:forEach>
                     <span>Total</span>
                   </a>
@@ -201,7 +203,7 @@
                   </a>
                 </li>
                 <li>
-                  <input type="text" id="finaltotalPrice" value="${totalPrice+5000}"/>
+                  <input type="hidden" id="finaltotalPrice" value="${totalPrice+5000}"/>
                   <a href="#" id="totalPrice">총 금액:
                     ${totalPrice+5000}원
                     <span></span>
@@ -252,6 +254,7 @@
     //pg: "html5_inicis"
     // pg : 'kakaopay.TC0ONETIME',
    // pg : 'danal_tpay',
+  //  pg : 'kakaopay.TC0ONETIME'
 
     IMP.request_pay({
       pg : 'kakaopay.TC0ONETIME',
@@ -286,6 +289,13 @@
             // productId:parseInt($('#productId').val()), // 상품번호
             amount: $('#finaltotalPrice').val(), // 주문가격
             usePoint: $('#point').val(), // 주문가격
+            deliveryTel:$("#tel").val(),
+            postcode: $("#postcode").val(),
+            address: $("#address").val(),
+            detailAddress: $("#detailAddress").val(),
+            extraAddress: $("#extraAddress").val(),
+            deliveryCost: $("#deliveryCost").val(),
+            recipient: $("#recipient").val(),
             // userPoint: parseInt($('#usePoint').val()), // 사용포인트
             // delivery: $('#delivery').val(), // 배송여부
             // deliveryCost: parseInt($('#deliveryCost').val()), // 배송비

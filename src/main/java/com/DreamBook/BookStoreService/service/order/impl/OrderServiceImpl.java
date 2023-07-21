@@ -1,5 +1,6 @@
 package com.DreamBook.BookStoreService.service.order.impl;
 
+import com.DreamBook.BookStoreService.dto.order.DeliveryDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.mapper.order.OrderMapper;
 import com.DreamBook.BookStoreService.service.order.OrderService;
@@ -24,5 +25,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void orderInsertData(OrderDTO orderDTO ) throws Exception {
         orderMapper.orderInsertData(orderDTO);
+    }
+
+    @Override
+    public void deliveryInsertData(DeliveryDTO deliveryDTO) throws Exception {
+        orderMapper.deliveryInsertData(deliveryDTO);
     }
 }

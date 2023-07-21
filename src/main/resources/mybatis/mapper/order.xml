@@ -31,5 +31,14 @@
 
     </insert>
 
+    <insert id="deliveryInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.DeliveryDTO">
+
+        insert into DELIVERY(deliveryId,orderId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost)
+        VALUES (#{deliveryId},#{orderId},#{recipient},#{deliveryTel},
+                #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost})
+
+
+    </insert>
+
 
 </mapper>

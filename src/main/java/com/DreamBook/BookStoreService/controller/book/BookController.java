@@ -87,45 +87,31 @@ public class BookController {
     public List<BookDTO> cartList(BookCartDTO BookCartDTO, HttpSession session, Model model)throws Exception {
 
 
-         //   System.out.println(BookCartDTO.getMemberId());
 
         List<BookDTO> bookCartList = bookService.bookCartList(BookCartDTO.getMemberId());
-
-
-
-//        model.addAttribute("bookCartList", bookCartList);
-
 
 
 
         return bookCartList;
     }
 
-//    @ResponseBody
-//    @PostMapping("/cartPlus")
-//    public String bookCartListAjaxPlus(String price,Model model){
-//
-//      //  model.addAttribute("plus",plus);
-//
-//      //  int result = plus;
-//       // System.out.println(price);
-//
-////        int i = 0;
-////
-////        i = i+ Integer.parseInt(price);
-////
-////        System.out.println(price);
-//
-//
-//
-//      //  System.out.println(result);
-//
-//
-//
-//
-//
-//        return price;
-//    }
+    @ResponseBody
+    @PostMapping("/cartPlus")
+    public String bookCartListAjaxPlus(String price){
+
+
+        System.out.println(price);
+
+        int i = 0;
+
+        i = i+ Integer.parseInt(price);
+
+        System.out.println(price);
+
+
+
+        return price;
+    }
 //
 //    @ResponseBody
 //    @PostMapping("/cartMinus")
