@@ -49,6 +49,19 @@
 
     </select>
 
+    <select id="bookIdList2" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        SELECT a.* from book a
+        left join orders b on a.bookId = b.bookId
+
+
+        WHERE b.bookId IN
+        <foreach item="orderIdList" collection="orderIdList" open="(" close=")" separator=",">
+            #{orderIdList.bookId}
+        </foreach>
+
+
+    </select>
+
     <select id="bookCartList"  resultType="com.DreamBook.BookStoreService.dto.book.BookDTO"
             parameterType="int">
         select * from  book a

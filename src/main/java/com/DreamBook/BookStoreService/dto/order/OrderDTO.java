@@ -21,5 +21,5 @@ public class OrderDTO {
     private String orderState;//주문상태-order,delivery,cancel,complete
     private LocalDateTime orderDate;//주문시간
     private int usePoint;//사용포인트
-    private List<OrderDTO> list;
+
 }

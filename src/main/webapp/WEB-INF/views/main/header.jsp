@@ -25,6 +25,15 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
+<style>
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+padding: 8px 12px;
+}
+</style>
 <body>
 
 <header>
@@ -55,7 +64,14 @@
                                             </c:if>
                                         <li><a href="/review">리뷰</a></li>
                                         <c:if test="${userId !=null}" >
-                                        <li><a href="/myPage">My Page</a></li>
+
+
+                                                <li><a href="/myPage">My Page</a></li>
+                                                <li><a href="/myOrder">Order</a></li>
+
+
+
+
                                         </c:if>
                                         <c:if test="${userId !=null}" >
                                         <li class="shopping-card">

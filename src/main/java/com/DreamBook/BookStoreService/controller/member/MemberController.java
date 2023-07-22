@@ -51,7 +51,7 @@ public class MemberController {
     public String logout(HttpSession session) {
 
         session.getAttribute("userId");
-        session.invalidate();
+        session.removeAttribute("userId");
 
         return "main/main";
 

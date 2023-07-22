@@ -106,7 +106,7 @@
 
               <div class="col-md-6 form-group p_star">
 
-
+                <input type="text" id="orderNum" name="orderNum" value="">
 
                 <input type="text" class="form-control" id="name" name="name"  value=""/>
                 <span id="name1" class="placeholder" data-placeholder="이름을 입력하시오!"></span>
@@ -276,6 +276,8 @@
         // msg += '// 포인트 사용 금액 : ' + data.usePoint;
         msg += '// 카드 승인번호 : ' + data.apply_num;
 
+      $("#orderNum").val(data.merchant_uid);
+
         $.ajax({
           type: 'post',
           url: '/payment',
@@ -296,6 +298,7 @@
             extraAddress: $("#extraAddress").val(),
             deliveryCost: $("#deliveryCost").val(),
             recipient: $("#recipient").val(),
+
             // userPoint: parseInt($('#usePoint').val()), // 사용포인트
             // delivery: $('#delivery').val(), // 배송여부
             // deliveryCost: parseInt($('#deliveryCost').val()), // 배송비
@@ -309,13 +312,16 @@
 
           },
           dataType: 'JSON',
+
         });
       }else{
         var msg = "결제 실패"
         msg += "에러 내용" + rsp.error_msg;
       }
+
       alert("결제성공!");
-      window.location.href = "/bookMain";
+
+      window.location.href = "/myOrder";
     });
 
 

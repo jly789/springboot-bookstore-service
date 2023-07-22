@@ -31,4 +31,21 @@ public class OrderServiceImpl implements OrderService {
     public void deliveryInsertData(DeliveryDTO deliveryDTO) throws Exception {
         orderMapper.deliveryInsertData(deliveryDTO);
     }
+
+    @Override
+    public List<OrderDTO> orderList(String orderNum) throws Exception {
+        return orderMapper.orderList(orderNum);
+    }
+
+
+
+    @Override
+    public List<OrderDTO> orderFindList(int memberId) throws Exception {
+        return orderMapper.orderFindList(memberId);
+    }
+
+    @Override
+    public List<OrderDTO> orderIdList(List<OrderDTO> list) throws Exception {
+        return orderMapper.orderIdList(list);
+    }
 }

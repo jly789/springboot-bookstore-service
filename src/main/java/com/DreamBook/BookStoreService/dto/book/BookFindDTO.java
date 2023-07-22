@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,7 +26,10 @@ public class BookFindDTO {
     private int salesQuantity;
     private int bookLoan;
     private int views;
+    private int orderNum;
     @NotNull(message = "필수 정보입니다.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationYear;
+
+
 }

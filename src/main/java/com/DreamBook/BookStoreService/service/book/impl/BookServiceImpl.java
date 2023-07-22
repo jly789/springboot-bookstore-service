@@ -4,6 +4,7 @@ import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
 import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
+import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.mapper.book.BookMapper;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookFindDTO> bookIdList(int bookId) throws Exception {
         return bookMapper.bookIdList(bookId);
+    }
+
+    @Override
+    public List<BookFindDTO> bookIdList2(List<OrderDTO> orderIdList) throws Exception {
+        return bookMapper.bookIdList2(orderIdList);
     }
 
     @Override

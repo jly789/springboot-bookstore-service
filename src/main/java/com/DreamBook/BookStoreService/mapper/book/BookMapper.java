@@ -5,6 +5,7 @@ import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
+import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,11 @@ public interface BookMapper {
     public List<BookFindDTO> bookList() throws Exception;
 
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
+
+
+    public List<BookFindDTO> bookIdList2(List<OrderDTO>orderIdList) throws Exception;
+
+
 
     public List<BookDTO> bookCartList(int memberId) throws Exception;
 
