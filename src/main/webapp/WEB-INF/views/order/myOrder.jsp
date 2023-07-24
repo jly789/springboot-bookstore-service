@@ -81,6 +81,7 @@
                     </div>
                     <div class="media-body">
                       <p id="bookNames">${bookList.bookName}</p>
+                      <a href="/reviewAdd?bookId=${bookList.bookId}"><p  id="review" style="color: red" >리뷰쓰기</p></a>
                     </div>
                   </div>
                 </td>

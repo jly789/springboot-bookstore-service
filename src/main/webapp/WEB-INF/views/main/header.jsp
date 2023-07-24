@@ -117,11 +117,7 @@ padding: 8px 12px;
                                             <ul class="submenu">
                                                 <li><a href="/login">login</a></li>
                                                 <li><a href="/register">회원가입</a></li>
-                                                <li><a href="cart.html">Cart</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
-                                                <li><a href="book-details.html">book Details</a></li>
-                                                <li><a href="blog_details.html">Blog Details</a></li>
-                                                <li><a href="elements.html">Element</a></li>
+
                                             </ul>
                                         </li>
                                         <li><a href="blog.html">Blog</a></li>
@@ -135,11 +131,8 @@ padding: 8px 12px;
                                             <li><a href="#">Pages</a>
                                                 <ul class="submenu">
                                                     <li><a href="/logout">loginout</a></li>
-                                                    <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="book-details.html">book Details</a></li>
-                                                    <li><a href="blog_details.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Element</a></li>
+                                                    <li><a href="/reviewAdd">리뷰등록</a></li>
+
                                                 </ul>
                                             </li>
                                             <li><a href="blog.html">Blog</a></li>
