@@ -77,5 +77,20 @@ public class BookServiceImpl implements BookService {
         return bookMapper.bookCartList(memberId);
     }
 
+    @Override
+    public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception {
+      bookMapper.update(bookCartList,bookDTO);
+    }
 
+    @Override
+    public void updateWishQuantity(BookCartDTO bookCartDTO) throws Exception {
+        bookMapper.updateWishQuantity(bookCartDTO);
+    }
+
+    @Override
+    public void updateAmount(BookCartDTO bookCartDTO) throws Exception {
+
+        bookMapper.updateAmount(bookCartDTO);
+
+    }
 }

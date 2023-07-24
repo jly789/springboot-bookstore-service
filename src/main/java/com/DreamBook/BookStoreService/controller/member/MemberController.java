@@ -22,14 +22,12 @@ public class MemberController {
     @Resource
 
     private MemberService memberService;
-
     @GetMapping("/login")
     public String login(Model model) {
 
 
         return "member/login";
     }
-
 
     @PostMapping("/login")
     public String loginOk(Model model, MemberFindDTO memberFindDTO, HttpServletResponse response,
@@ -46,7 +44,6 @@ public class MemberController {
 
 
     }
-
     @GetMapping("/logout")
     public String logout(HttpSession session) {
 
@@ -54,7 +51,6 @@ public class MemberController {
         session.removeAttribute("userId");
 
         return "main/main";
-
 
     }
 
@@ -64,13 +60,10 @@ public class MemberController {
 
         return "member/register";
     }
-
     @ResponseBody
     @PostMapping("/idCheck")
     public int idCheck(String id,MemberJoinDTO memberJoinDTO) throws Exception {
         int result = memberService.IdCheck(id);
-
-
 
         return result;
     }
@@ -79,8 +72,6 @@ public class MemberController {
 
     public String registerOk(@Valid @ModelAttribute("memberJoinDTO") MemberJoinDTO memberJoinDTO,
                              BindingResult bindingResult, Model model) throws Exception {
-
-
 
 
         if (memberService.IdCheck(memberJoinDTO.getUserId()) == 1) {
@@ -105,8 +96,6 @@ public class MemberController {
 
             memberService.insertData(memberJoinDTO);
 
-
-
             return "member/login";
         }
 
@@ -117,7 +106,6 @@ public class MemberController {
     @GetMapping("/idFind")
     public String loginFind() throws Exception {
 
-
         return "member/idFind";
     }
 
@@ -127,17 +115,11 @@ public class MemberController {
 
    String result = memberService.findUserId(memberFindDTO);
 
-
-
         return result;
     }
 
-
     @GetMapping("/pwdFind")
     public String pwdFind() throws Exception {
-
-
-
 
         return "member/pwdFind";
     }
@@ -150,7 +132,6 @@ public class MemberController {
 
         return result;
     }
-
 
 }
 

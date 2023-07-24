@@ -48,8 +48,8 @@
                 <div class="features-caption">
                   <h3>${bookList.bookName}</h3>
                   <p>${bookList.author}</p>
-
                   <input type="hidden" name="bookId" value="${bookList.bookId}">
+                  <input type="hidden" name="amount" value="${bookList.price}">
                   <div class="price">
                     <span>$${bookList.price}</span>
                   </div>

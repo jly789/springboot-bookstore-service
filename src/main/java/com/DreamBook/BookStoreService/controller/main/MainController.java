@@ -17,7 +17,6 @@ public class MainController {
     @Resource
     private MemberService memberService;
 
-
     @GetMapping("/")
     public String main(Model model, HttpSession session){
 
@@ -44,14 +43,11 @@ public class MainController {
        List<MemberDTO> memberDTOList =  memberService.memberDtoList(userId);
         model.addAttribute("memberDTOList",memberDTOList);
 
-
-
         return "main/myPage";
     }
 
     @GetMapping("/index")
     public String index(Model model){
-
 
         return "main/index";
     }

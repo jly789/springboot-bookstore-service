@@ -25,4 +25,7 @@ public interface OrderService {
 
     public List<OrderDTO> orderIdList(List<OrderDTO> list) throws Exception;
 
+    public List<OrderDTO> orderListOrderState(List<OrderDTO> list) throws Exception;
+
+
 }

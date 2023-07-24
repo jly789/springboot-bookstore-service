@@ -4,6 +4,7 @@ import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
 import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +26,6 @@ public class BookController {
 
         List<BookFindDTO> bookList = bookService.bookList();
         model.addAttribute("bookList",bookList);
-
-
         return "book/main";
     }
 
@@ -58,7 +57,7 @@ public class BookController {
     }
 
     @GetMapping("/cart")
-    public String bookCartList(BookDTO bookDTO, HttpSession session,Model model)throws Exception {
+    public String bookCartList(BookDTO bookDTO,BookCartDTO bookCartDTO, HttpSession session,Model model)throws Exception {
 
         int memberId = (Integer) session.getAttribute("memberId");
         int totalPrice=0;
@@ -71,12 +70,10 @@ public class BookController {
         model.addAttribute("bookCartList");
 
       for(int i=0; i<bookCartList.size(); i++) {
-          totalPrice= totalPrice+  bookCartList.get(i).getPrice();
 
-
+          totalPrice = totalPrice + bookCartList.get(i).getAmount();
       }
-     model.addAttribute("totalPrice",totalPrice);
-
+        model.addAttribute("totalPrice",totalPrice);
 
         return "book/cart";
     }
@@ -86,68 +83,123 @@ public class BookController {
     @PostMapping("/cartList")
     public List<BookDTO> cartList(BookCartDTO BookCartDTO, HttpSession session, Model model)throws Exception {
 
-
-
         List<BookDTO> bookCartList = bookService.bookCartList(BookCartDTO.getMemberId());
-
-
 
         return bookCartList;
     }
 
-    @ResponseBody
-    @PostMapping("/cartPlus")
-    public String bookCartListAjaxPlus(String price){
-
-
-        System.out.println(price);
-
-        int i = 0;
-
-        i = i+ Integer.parseInt(price);
-
-        System.out.println(price);
+    @GetMapping("/cartPlus")
+    public String cartPlus(HttpSession session , Model model,BookCartDTO bookCartDTO)throws Exception{
 
 
 
-        return price;
-    }
-//
-//    @ResponseBody
-//    @PostMapping("/cartMinus")
-//    public int bookCartListAjaxMinus(int minus){
-//
-//
-//        int result = minus-1;
-//
-//        System.out.println(result);
-//
-//
-//        return result;
-//    }
+        bookService.updateWishQuantity(bookCartDTO);
+        bookService.updateAmount(bookCartDTO);
+
+        int totalPrice = 0;
 
 
-    @PostMapping("/cartAdd")
-    public String bookCart(BookCartDTO bookCartDTO, HttpSession session,Model model)throws Exception{
+        int memberId = (Integer) session.getAttribute("memberId");
 
-        int memberId =(Integer) session.getAttribute("memberId");
-        System.out.println(memberId);
-        int maxNum = bookService.maxNumCart();
-        bookCartDTO.setCartId(maxNum+1);
-        bookCartDTO.setMemberId(memberId);
-        bookService.bookCartInsertData(bookCartDTO);
+        model.addAttribute("memberId",memberId);
 
         List<BookDTO> bookCartList = bookService.bookCartList(memberId);
+        for(int i=0; i<bookCartList.size(); i++) {
 
-        model.addAttribute("bookCartList",bookCartList);
+            totalPrice = totalPrice + bookCartList.get(i).getAmount();
 
+        }
 
-
-
-
+        model.addAttribute("totalPrice",totalPrice);
+        model.addAttribute("bookCartList", bookCartList);
 
         return "book/cart";
     }
+
+    @ResponseBody
+    @PostMapping("/cartPlus")
+    public List<BookDTO> bookCartListAjaxPlus(HttpSession session, String price,BookDTO bookDTO,@RequestParam("cartId")int cartId)throws Exception{
+
+        int memberId = bookDTO.getMemberId();
+
+        List<BookDTO> bookCartList = bookService.bookCartList(memberId);
+
+        return bookCartList;
+    }
+
+    @PostMapping("/cartAdd")
+    public String bookCart(BookCartDTO bookCartDTO, Model model,HttpSession session,Model mode
+    ,@RequestParam("bookId")int bookId,@RequestParam("amount")int amount)throws Exception {
+
+        bookCartDTO.setBookId(bookId);
+        bookCartDTO.setPrice(amount);
+
+        int totalPrice = 0;
+        int memberId = (Integer) session.getAttribute("memberId");
+
+        List<BookDTO> bookDTOList = bookService.bookCartList(memberId);
+
+        if (bookDTOList.size() == 0) {
+
+            int maxNum = bookService.maxNumCart();
+            bookCartDTO.setCartId(maxNum + 1);
+            bookCartDTO.setMemberId(memberId);
+            bookService.bookCartInsertData(bookCartDTO);
+
+            List<BookDTO> bookCartList = bookService.bookCartList(memberId);
+            for (int i = 0; i < bookCartList.size(); i++) {
+
+                totalPrice = totalPrice + bookCartList.get(i).getAmount();
+
+            }
+
+            model.addAttribute("totalPrice", totalPrice);
+            model.addAttribute("bookCartList", bookCartList);
+
+            return "book/cart";
+        }
+
+
+        if (bookDTOList.size() != 0) {
+
+            for (int i = 0; i < bookDTOList.size(); i++) {
+                if (bookDTOList.get(i).getBookId() == bookCartDTO.getBookId()) {
+                    System.out.println(bookCartDTO.getBookId());
+                    bookService.updateWishQuantity(bookCartDTO);
+                    bookService.updateAmount(bookCartDTO);
+                    return "redirect:/cart";
+                }
+
+            }
+
+            int maxNum = bookService.maxNumCart();
+            bookCartDTO.setCartId(maxNum + 1);
+            bookCartDTO.setMemberId(memberId);
+            bookService.bookCartInsertData(bookCartDTO);
+
+            List<BookDTO> bookCartList = bookService.bookCartList(memberId);
+            for (int i = 0; i < bookCartList.size(); i++) {
+
+                totalPrice = totalPrice + bookCartList.get(i).getAmount();
+
+            }
+
+            model.addAttribute("totalPrice", totalPrice);
+            model.addAttribute("bookCartList", bookCartList);
+
+            return "book/cart";
+        }
+        return "book/cart";
+    }
+    @GetMapping("/delete")
+    public String bookCartDelete(BookCartDTO bookCartDTO)throws Exception{
+
+
+        System.out.println(bookCartDTO.getCartId());
+
+        return "book/cart";
+    }
+
 
 
 }

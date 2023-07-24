@@ -40,54 +40,37 @@ public class OrderController {
     @GetMapping("/myOrder")
     public String  myOrder(Model model, HttpSession session,OrderDTO orderDTO)throws Exception{
 
-//        List list = (List) session.getAttribute("orderNum");
         List<OrderDTO> list = orderService.orderFindList((int)session.getAttribute("memberId"));
 
+
+
         List<OrderDTO> orderIdList = orderService.orderIdList(list);
+        model.addAttribute("orderIdList",orderIdList);
 
 
-//        for(int i =0; i<orderIdList.size(); i++){
-//            System.out.println(orderIdList.get(i).getOrderNum());
-//            System.out.println(orderIdList.get(i).getBookId());
-//        }
+
+        List<OrderDTO> orderStateList = orderService.orderListOrderState(list);
+        model.addAttribute("orderStateList",orderStateList);
+
+
+
+
 
 
         List<BookFindDTO> bookList = new ArrayList<>();
 
-      List<BookDTO> bookDTOList=  bookService.bookCartList((int)session.getAttribute("memberId"));
-        model.addAttribute("bookDTOList",bookDTOList);
+//      List<BookDTO> bookDTOList=  bookService.bookCartList((int)session.getAttribute("memberId"));
+//        model.addAttribute("bookDTOList",bookDTOList);
 
-     //   List<OrderDTO> orderFindDTOList = orderService.orderFindList((int)session.getAttribute("memberId"));
-       session.getAttribute("orderNum"); //주문결제 merchant_1689950279236 번호
 
-//       String orderNum = (String) session.getAttribute("orderNum");
-//        List<OrderDTO> orderDTOList = orderService.orderList(orderNum);
 
         bookList = bookService.bookIdList2(orderIdList);
                 model.addAttribute("bookList",bookList);
-
-                for(int i=0; i<bookList.size(); i++){
-                    System.out.println(bookList.get(i).getBookId());
-                }
-
-//        System.out.println(model.getAttribute("orderNum"));
-//
-//        String orderNum = (String) session.getAttribute("orderNum");
-//
-//        List<OrderDTO> orderDTOList = orderService.orderList(orderNum);
-//
-
-//
-//
-//
-
-//
 
 
 
         return  "order/myOrder";
     }
-
 
 
     @PostMapping("/order")
@@ -105,7 +88,6 @@ public class OrderController {
     }
 
 
-
     @ResponseBody
     @PostMapping("/AddressFind")
     public List<MemberDTO>  AddressFind(Model model, HttpSession session, @RequestParam("memberId")int memberId)throws Exception {
@@ -117,7 +99,6 @@ public class OrderController {
 
         return list;
     }
-
 
     @ResponseBody
     @PostMapping("/pointCheck")
@@ -132,17 +113,14 @@ public class OrderController {
     }
 
 
-
     @ResponseBody
     @PostMapping("/payment")
     public String  payment(Model model, HttpSession session, OrderDTO orderDTO, DeliveryDTO deliveryDTO)
     throws Exception{
 
-        //System.out.println(orderDTO.getOrderNum());
-
 
         List<BookDTO> bookCartList = bookService.bookCartList(orderDTO.getMemberId());
-       // orderDTO.setList(bookCartList);
+
         for(int i =0; i<bookCartList.size(); i++) {
             int maxNum = orderService.maxNum();
             orderDTO.setOrderId(maxNum+1);
@@ -154,7 +132,6 @@ public class OrderController {
         }
 
         orderService.deliveryInsertData(deliveryDTO);
-
 
 
 

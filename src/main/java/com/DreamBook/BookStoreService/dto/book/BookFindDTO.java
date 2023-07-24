@@ -27,6 +27,8 @@ public class BookFindDTO {
     private int bookLoan;
     private int views;
     private int orderNum;
+
+    private String orderState;
     @NotNull(message = "필수 정보입니다.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationYear;

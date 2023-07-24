@@ -106,7 +106,7 @@
 
               <div class="col-md-6 form-group p_star">
 
-                <input type="text" id="orderNum" name="orderNum" value="">
+                <input type="hidden" id="orderNum" name="orderNum" value="">
 
                 <input type="text" class="form-control" id="name" name="name"  value=""/>
                 <span id="name1" class="placeholder" data-placeholder="이름을 입력하시오!"></span>

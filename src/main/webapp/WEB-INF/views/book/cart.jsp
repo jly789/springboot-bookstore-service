@@ -45,7 +45,6 @@
     </div>
   </div>
 
-
   <form action="/order" method="post">
 
   <!--  Hero area End -->
@@ -61,13 +60,13 @@
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Total</th>
+                <th scope="col">수량</th>
+
             </tr>
             </thead>
             <tbody>
 
             <c:forEach var="bookCartList" items="${bookCartList}">
-<%--           <button type="hi" value="" id="subCategory" name="subCategory"/>--%>
-<%--            <input type="text" name="bookName" id="bookName" value=""/>--%>
             <input type="hidden" name="memberId" id="memberId" value="${memberId}"/>
             <tr>
               <td>
@@ -81,51 +80,60 @@
                 </div>
               </td>
               <td>
-                <h5 id="price">${bookCartList.price}</h5>
-               <input type="hidden" id="priceId" value="${bookCartList.price}">
+                <h5 id="price">${bookCartList.price}원</h5>
+
+
               </td>
 
               <td>
                 <div class="product_count">
-<%--                  <span class="input-number-decrement"> <i class="ti-minus" id="minus" ></i></span>--%>
-<%--                  <input class="input-number" type="text" id =quantity[${bookCartList.price}] name="quantity"  value="1" min="0" max="10"/>--%>
+
   <table>
     <tr>
-      <td><input type="text" class="qty" id="qty" name="wishQuantity" value="1" /></td>
+
+      <td><input type="text"  name="wishQuantity" value="${bookCartList.wishQuantity}" readonly /></td>
+
       <td><input type="hidden" class="price" value="${bookCartList.price}" /></td>
       <td id="totals"></td>
 
     </tr>
 
   </table>
-<%--                  <span class="input-number-increment"> <i class="ti-plus" id="plus"></i></span>--%>
                 </div>
               </td>
 
               <td>
-                <h5 id="total">${bookCartList.price}</h5>
+                <h5 id="total"></h5>
+              ${bookCartList.amount}원
               </td>
 
+                <td>
+                    <a href="/cartPlus?cartId=${bookCartList.cartId}&price=${bookCartList.price}" style="color: black">
+                        <input type='hidden' class="bb" id="bb" name="bb"
+                               onclick='count("plus")'
+                               value='${bookCartList.cartId}'>+
+
+                    </a>
+
+                    <br/>
+                </td>
+
+                <td>
+                <a href="/delete?cartId=${bookCartList.cartId}" style="color: black"><input type='hidden' class="bb" id="gg" name="bb"
+                                                                                            onclick='count("plus")'
+                                                                                            value='${bookCartList.cartId}'>-</a>
+                </td>
+
               </c:forEach>
-            </tr>
-
-
-            </tr>
-
-
-
-
             <tr>
               <td></td>
               <td></td>
               <td>
 
-
                 <h5>Subtotal</h5>
               </td>
               <td>
-             <input type="text" class="btn"  name="totalPrice" id="totalPrice" value="${totalPrice}"
-             />
+             <input type="text" class="btn"  name="totalPrice" id="totalPrice" value="${totalPrice}"/>
               </td>
             </tr>
 
@@ -146,20 +154,6 @@
 </main>
 
 <script>
-
-  // $('#payment').click(function () {
-  //
-  // alert("aa");
-  //   for(let i=0; i<)
-  //   $("#bookName").val($("#bookNames").html());
-  //   $("#bookPrice").val($("#priceId").val());
-  //   $("#wishQuantity").val($("#qty").val());
-  //   $("#bookName").val($("#bookNames").html());
-  //   $("#bookRealTotal").val($("#totalPrice").val());
-  //
-  //   console.log($("#bookName"));
-  // });
-
 
   $('#payment').click(function () {
 
@@ -186,34 +180,6 @@
         }
 
         $('#subCategory').niceSelect('update')
-       //
-       //        // $("#bookName").val($("#subCategory").html());
-       //
-       //    // bookName =(bookCartList[i].bookName);
-       //    console.log(bookName);
-       // //   const arrayElements = [bookCartList[i].bookName];
-       //      // document.getElementsByName("bookName")[i].value = bookName; //javascritp getElementsByName 사용 시
-       //   // firstElement = arrayElements[i];
-       //
-       //   // $("#bookName\\[text1\\]").val(firstElement);
-       //
-       //
-       //
-       //
-       //
-       //
-       //
-       //
-
-
-
-
-        //
-        // $("#result").text('아이디:'+' '+result+''+'입니다');
-        //
-        // document.getElementById('result').style.color ="red"
-
-
 
       },
       error: function(a, b, c) {
@@ -223,42 +189,81 @@
 
     });
 
-
-
   });
 
+  function count(type)  {
+    // 결과를 표시할 element
+    const resultElement = document.getElementById('result');
+    let sum =0;
+    let price =0;
+    let aa =0;
+    // 현재 화면에 표시된 값
+    let number = resultElement.innerText;
+
+    // 더하기/빼기
+    if(type === 'plus') {
+      number = parseInt(number) + 1;
+      if (number == 2) {
+        price = number * $("#priceId").val();
+
+        resultElement.innerText = number;
+
+        $("#priceId").val(price);
 
 
+      }
+      if (number != 2) {
 
-  $('input.qty, input.price').change(function() {
+        aa = 1 * $("#priceId2").val();
+
+        resultElement.innerText = number;
+        $("#priceId").val( parseInt($("#priceId").val())+parseInt(aa));
+      }
+    }
+    else if(type === 'minus')  {
+      number = parseInt(number) - 1;
+    }
+
+  }
+
+  var number = $("#cc").val();
+
+  $('input.qty, input.price,input.bb').click(function(){
+
+
     var $t = $(this).parents('tr');
     var val = $t.find('input.qty').val() * $t.find('input.price').val();
-  $t.find('td').last().html(val);
+
+   var vv =$t.find('td').last().html(val);
 
 
 
+   if(number==1) {
 
+       var cc = $t.find('p').last().html(number);
+        number++;
+   }
+
+        if(number>1){
+            var cc = $t.find('p').last().html(number);
+            number++;
+        }
+
+      let total =  $("#totalPrice").val();
+
+    $("#totalPrice").val(parseInt(total) + parseInt(vv.html()));
 
     $.ajax({
 
       type: 'POST',
       url: '/cartPlus',
-      data: {"price":$t.find('input.qty').val() * $t.find('input.price').val()},
+      data: {"price":$t.find('input.qty').val() * $t.find('input.price').val(),
+      "cartId":$("#cartId").val(),
+      },
       dataType: 'text',
       success: function(price) {
 
-       let  total =  $('#totalPrice').val();
-
-      total = Number(total) + Number(price);
-
-      $('#totalPrice').val(total);
-
-
-
-
         document.getElementById('result').style.color ="black";
-        // $("#result").attr('color','green');
-
 
       }
       ,
@@ -269,21 +274,7 @@
     });
 
 
-
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   <c:forEach var="bookCartList" items="${bookCartList}">
@@ -310,11 +301,7 @@
        $('#total').text(quantity * $('#price').text());
 
 
-
-
-
             document.getElementById('result').style.color ="black";
-            // $("#result").attr('color','green');
 
 
           }
@@ -349,13 +336,7 @@
 
           $('#total').text(result);
 
-
-
-
             document.getElementById('result').style.color ="black";
-            // $("#result").attr('color','green');
-
-
 
         },
         error: function(a, b, c) {
@@ -372,7 +353,6 @@
   });
 
 </script>
-
 
 <jsp:include page="../main/footer.jsp"></jsp:include>
 <!-- Scroll Up -->

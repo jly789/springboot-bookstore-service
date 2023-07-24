@@ -48,4 +48,10 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> orderIdList(List<OrderDTO> list) throws Exception {
         return orderMapper.orderIdList(list);
     }
+
+
+    @Override
+    public List<OrderDTO> orderListOrderState(List<OrderDTO> list) throws Exception {
+        return orderMapper.orderListOrderState(list);
+    }
 }

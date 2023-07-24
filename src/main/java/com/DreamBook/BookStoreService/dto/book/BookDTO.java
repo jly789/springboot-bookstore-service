@@ -22,14 +22,18 @@ public class BookDTO {
     private String fileName;
     private String filePath;
     private int price;
-    private int salesQuantity;
     private int bookLoan;
     private int views;
+    private int wishQuantity;
+    private int cartId;
+    private int bookPrice;
+    private int bookTotal;
+    private int bookRealTotal;
+    private int amount;
     @NotNull(message = "필수 정보입니다.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationYear;
 
-    private int wishQuantity; //수량
 
 
 }

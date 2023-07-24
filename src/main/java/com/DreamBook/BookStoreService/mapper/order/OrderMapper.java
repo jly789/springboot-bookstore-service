@@ -21,5 +21,7 @@ public interface OrderMapper {
     public List<OrderDTO> orderFindList(int memberId) throws Exception;
     public List<OrderDTO> orderIdList(List<OrderDTO> list) throws Exception;
 
+    public List<OrderDTO> orderListOrderState(List<OrderDTO> list) throws Exception;
+
 
 }

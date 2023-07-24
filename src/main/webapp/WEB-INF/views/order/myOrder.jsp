@@ -37,7 +37,7 @@
         <div class="slider-area">
           <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center">
             <div class="hero-caption hero-caption2">
-              <h2>Cart</h2>
+              <h2>주문 내역</h2>
             </div>
           </div>
         </div>
@@ -57,87 +57,66 @@
             <table class="table">
               <thead>
               <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
+                <th scope="col">도서명</th>
+                <th scope="col">가격</th>
+                <th scope="col">수량</th>
+                  <th scope="col">구매금액</th>
+                <th scope="col">주문상태</th>
               </tr>
               </thead>
               <tbody>
 
 
+
+
                 <c:forEach var="bookList" items="${bookList}">
-                   책번호 ${bookList.bookId}<br/>
-                    책이름:${bookList.bookName}<br/>
-                </c:forEach>
 
 
-
-                <%--           <button type="hi" value="" id="subCategory" name="subCategory"/>--%>
-                <%--            <input type="text" name="bookName" id="bookName" value=""/>--%>
 
               <tr>
                 <td>
                   <div class="media">
                     <div class="d-flex">
-<%--                      <img src="files/${bookCartList.fileName}" alt="" />--%>
+                      <img src="files/${bookList.fileName}" alt="" />
                     </div>
                     <div class="media-body">
-<%--                      <p id="bookNames">${bookCartList.bookName}</p>--%>
+                      <p id="bookNames">${bookList.bookName}</p>
                     </div>
                   </div>
                 </td>
                 <td>
-<%--                  <h5 id="price">${bookCartList.price}</h5>--%>
-<%--                  <input type="hidden" id="priceId" value="${bookCartList.price}">--%>
-<%--                </td>--%>
-
-                <td>
-                  <div class="product_count">
-                      <%--                  <span class="input-number-decrement"> <i class="ti-minus" id="minus" ></i></span>--%>
-                      <%--                  <input class="input-number" type="text" id =quantity[${bookCartList.price}] name="quantity"  value="1" min="0" max="10"/>--%>
-                    <table>
-                      <tr>
-                        <td><input type="text" class="qty" id="qty" name="wishQuantity" value="1" /></td>
-<%--                        <td><input type="hidden" class="price" value="${bookCartList.price}" /></td>--%>
-                        <td id="totals"></td>
-
-                      </tr>
-
-                    </table>
-                      <%--                  <span class="input-number-increment"> <i class="ti-plus" id="plus"></i></span>--%>
-                  </div>
+                  <h5 id="price">${bookList.price}</h5>
+                  <input type="hidden" id="priceId" value="${bookList.price}">
                 </td>
 
-                <td>
-<%--                  <h5 id="total">${bookCartList.price}</h5>--%>
-                </td>
+                  <td>
+                      <h5 >1</h5>
+                      <input type="hidden" id="qty1" value="1">
+                  </td>
+
+                  <td>
+                      <h5 >${bookList.price}</h5>
+                      <input type="hidden" id="qty13" value="1">
+                  </td>
 
 
+                  <td style="color: red">
+
+                      <c:forEach var="orderStateList" items="${orderStateList}">
+                          ${orderStateList.orderState}
+                      </c:forEach>
+                  </td>
+
+
+
+
+
+                </c:forEach>
               </tr>
-
-
-              </tr>
-
-
-
-
-              <tr>
-                <td></td>
-                <td></td>
-                <td>
-
-
-                  <h5>Subtotal</h5>
-                </td>
-                <td>
-
-                </td>
-              </tr>
-
               </tbody>
 
             </table>
+
             <div class="checkout_btn_inner float-right">
               <a class="btn" href="/bookMain">계속쇼핑하기</a>
               <button type="submit" class="btn checkout_btn" id="payment">결제하기</button>
@@ -151,6 +130,12 @@
   <!--================End Cart Area =================-->
 </main>
 
+<script>
+
+
+
+
+</script>
 
 
 

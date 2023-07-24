@@ -28,8 +28,8 @@
 
     <insert id="bookCartInsertData" parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO">
 
-    insert into cart(cartId,memberId,bookId)
-    values (#{cartId},#{memberId},#{bookId})
+    insert into cart(cartId,memberId,bookId,amount)
+    values (#{cartId},#{memberId},#{bookId},#{amount})
 
     </insert>
 
@@ -64,7 +64,7 @@
 
     <select id="bookCartList"  resultType="com.DreamBook.BookStoreService.dto.book.BookDTO"
             parameterType="int">
-        select * from  book a
+        select  * from  book a
                            LEFT JOIN cart b ON
             a.bookId = b.bookId
                            LEFT JOIN member c ON
@@ -75,6 +75,47 @@
 
 
     </select>
+
+
+    <update id="update" parameterType="com.DreamBook.BookStoreService.dto.book.BookDTO">
+
+
+
+            UPDATE 	cart
+            SET		wishQuantity = #{bookDTO.wishQuantity}
+        WHERE	bookId in
+        <foreach item="bookCartList" collection="bookCartList" open="(" close=")" separator=",">
+            #{bookCartList.bookId}
+        </foreach>
+
+    </update>
+
+    <update id="updateWishQuantity" parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO">
+
+        update cart
+        set    wishQuantity = wishQuantity+1
+        WHERE	cartId = #{cartId} or bookId = #{bookId}
+
+    </update>
+
+    <update id="updateAmount" parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO">
+
+        update cart
+        set    amount = wishQuantity * #{price}
+        WHERE	cartId = #{cartId}  or bookId = #{bookId}
+
+    </update>
+<!--    <select id="orderIdList" resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
+<!--        SELECT distinct orderNum, bookId from orders-->
+
+<!--        WHERE orderNum IN-->
+<!--        <foreach item="list" collection="list" open="(" close=")" separator=",">-->
+<!--            #{list.orderNum}-->
+<!--        </foreach>-->
+<!--        order by orderNum-->
+
+<!--    </select>-->
+
 
 
 <!--    <select id="loginData" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->

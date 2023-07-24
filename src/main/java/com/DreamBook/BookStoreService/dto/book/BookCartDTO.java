@@ -10,12 +10,10 @@ public class BookCartDTO {
     private int cartId;
     private int memberId;
     private int bookId;
+    private int wishQuantity;
+    private int amount;
+    private int price;
 
-    private String bookName;
-    private int bookPrice;
-    private int wishQuantity; //수량
-    private int bookTotal;
-    private int bookRealTotal;
 
 
 }
