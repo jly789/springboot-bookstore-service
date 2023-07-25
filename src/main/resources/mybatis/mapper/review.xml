@@ -6,6 +6,21 @@
 <mapper namespace="com.DreamBook.BookStoreService.mapper.review.ReviewMapper">
 
 
+
+    <select id="maxNum" resultType="int">
+        select nvl(max(reviewId),0) from review
+    </select>
+
+
+    <insert id="insertReviewData" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewAddDTO">
+
+        insert into review(reviewId,memberId,bookId,reviewSubject,reviewContent,reviewFileName,reviewFilePath,
+                         grade,views,reviewDate)
+        values (#{reviewId},#{memberId},#{bookId},#{reviewSubject},#{reviewContent},#{reviewFileName},
+                #{reviewFilePath},4,0,SYSDATE)
+
+    </insert>
+
 <!--    <select id="maxNum" resultType="int">-->
 <!--        select nvl(max(orderId),0) from orders-->
 <!--    </select>-->
