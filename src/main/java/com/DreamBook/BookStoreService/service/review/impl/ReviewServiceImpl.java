@@ -1,7 +1,9 @@
 package com.DreamBook.BookStoreService.service.review.impl;
 
 import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
+import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.mapper.review.ReviewMapper;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,36 +88,58 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
 
+    @Override
+    public void insertReviewNotImage(ReviewAddDTO ReviewAddDTO) throws Exception {
 
+
+            reviewMapper.insertReviewDataNotImg(ReviewAddDTO);
+
+
+    }
 
 
     @Override
     public void insertReviewData(ReviewAddDTO ReviewAddDTO, MultipartFile file) throws Exception {
 
 
-
-            String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\reviewImg";
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\reviewImg";
 
 //        UUID uuid =  UUID.randomUUID();
 
-            String fileName = file.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
 
 
-            System.out.println(fileName);
-            File saveFile = new File(projectPath, fileName);
+        System.out.println(fileName);
+        File saveFile = new File(projectPath, fileName);
 
-            file.transferTo(saveFile);
+        file.transferTo(saveFile);
 
-            ReviewAddDTO.setReviewFileName(fileName);
+        ReviewAddDTO.setReviewFileName(fileName);
 
-            ReviewAddDTO.setReviewFilePath("/reviewImg/" + fileName);
+        ReviewAddDTO.setReviewFilePath("/reviewImg/" + fileName);
 
 
-            reviewMapper.insertReviewData(ReviewAddDTO);
+        reviewMapper.insertReviewData(ReviewAddDTO);
+    }
+
+
+    @Override
+    public int ReviewOrderIdFind(int orderId) throws Exception {
+
+        if (reviewMapper.ReviewOrderIdFind(orderId) ==1) {
+            return 1;
+        }
+
+        if (reviewMapper.ReviewOrderIdFind(orderId) ==0) {
+            return 0;
         }
 
 
+        return 1;
+    }
 
-
-
+    @Override
+    public List<ReviewFindDTO> reviewAllList() throws Exception {
+        return reviewMapper.reviewAllList();
+    }
 }

@@ -50,7 +50,7 @@
     </select>
 
     <select id="bookIdList2" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.* from book a
+        SELECT a.* ,b.orderId from book a
         left join orders b on a.bookId = b.bookId
 
 

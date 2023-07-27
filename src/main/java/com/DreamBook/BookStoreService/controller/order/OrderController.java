@@ -42,7 +42,7 @@ public class OrderController {
 
         List<OrderDTO> list = orderService.orderFindList((int)session.getAttribute("memberId"));
 
-
+        model.addAttribute("list",list);
 
         List<OrderDTO> orderIdList = orderService.orderIdList(list);
         model.addAttribute("orderIdList",orderIdList);

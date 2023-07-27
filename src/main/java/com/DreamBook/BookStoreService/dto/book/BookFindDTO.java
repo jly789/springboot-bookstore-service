@@ -27,6 +27,7 @@ public class BookFindDTO {
     private int bookLoan;
     private int views;
     private int orderNum;
+    private int orderId;
 
     private String orderState;
     @NotNull(message = "필수 정보입니다.")

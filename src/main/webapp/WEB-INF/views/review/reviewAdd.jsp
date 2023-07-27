@@ -95,8 +95,10 @@
 
                                         <div class="col-sm-6">
                                             <div class="form-group">
+
                                                 <input type="hidden" name="memberId" value="${memberId}"/>
                                                 <input type="hidden" name="bookId" value="${bookId}"/>
+                                                <input type="hidden" name="orderId" value="${orderId}"/>
 
                                                 <input class="form-control" name="reviewSubject"  type="text" placeholder="제목"
                                                 style="width : 500px; height : 40px; margin-left: 539px;" >

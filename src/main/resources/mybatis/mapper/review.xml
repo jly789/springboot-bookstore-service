@@ -17,9 +17,36 @@
         insert into review(reviewId,memberId,bookId,reviewSubject,reviewContent,reviewFileName,reviewFilePath,
                          grade,views,reviewDate)
         values (#{reviewId},#{memberId},#{bookId},#{reviewSubject},#{reviewContent},#{reviewFileName},
-                #{reviewFilePath},4,0,SYSDATE)
+                #{reviewFilePath},#{grade},0,SYSDATE)
 
     </insert>
+
+    <insert id="insertReviewDataNotImg" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewAddDTO">
+
+        insert into review(reviewId,memberId,bookId,reviewSubject,reviewContent,reviewFileName,reviewFilePath,
+                           grade,views,reviewDate)
+        values (#{reviewId},#{memberId},#{bookId},#{reviewSubject},#{reviewContent},'',
+               '' ,#{grade},0,SYSDATE)
+
+    </insert>
+
+
+
+    <select id="ReviewOrderIdFind"  resultType="Integer"
+            parameterType="int">
+
+        select distinct nvl(max(b.orderId),0) from review a
+                                     LEFT join orders b ON
+            a.bookId = b.bookId
+            where b.orderId = #{orderId}
+
+    </select>
+
+
+    <select id="reviewAllList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+        select * from review
+    </select>
+
 
 <!--    <select id="maxNum" resultType="int">-->
 <!--        select nvl(max(orderId),0) from orders-->
