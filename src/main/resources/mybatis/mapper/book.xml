@@ -17,6 +17,7 @@
 
 
 
+
         <insert id="insertData" parameterType="com.DreamBook.BookStoreService.dto.book.BookAddDTO">
 
         insert into book(bookId,memberId,bookName,bookContent,author,publisher,genre,
@@ -75,6 +76,28 @@
 
     </select>
 
+
+    <select id="bookListManyOrders"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+        select  * from (
+
+        select a.bookId as bookId, count(b.orderId)as orderId from book a
+        LEFT JOIN orders b on
+        a.bookId = b.bookId
+
+        where b.bookId IN
+
+        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
+            ${bookAndReview.bookId}
+        </foreach>
+
+        GROUP by a.bookId
+        )
+--         order BY maxNum DESC
+        ORDER BY orderId desc
+
+    </select>
+
     <select id="bookIdList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO"
     parameterType="int">
         select * from book
@@ -84,8 +107,20 @@
 
     </select>
 
+    <select id="manyBookOrders" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        SELECT * from book
+
+        WHERE bookId IN
+        <foreach item="bookId" collection="bookId" open="(" close=")" separator=",">
+            #{bookId}
+        </foreach>
+
+
+    </select>
+
+
     <select id="bookIdList2" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.* ,b.orderId from book a
+        SELECT distinct a.* ,b.orderId from book a
         left join orders b on a.bookId = b.bookId
 
 
@@ -93,6 +128,8 @@
         <foreach item="orderIdList" collection="orderIdList" open="(" close=")" separator=",">
             #{orderIdList.bookId}
         </foreach>
+
+        order by b.orderId asc
 
 
     </select>
@@ -104,7 +141,7 @@
             a.bookId = b.bookId
                            LEFT JOIN member c ON
             b.memberId =c.memberId
-        where b.memberId =1
+        where b.memberId = #{memberId}
         ORDER BY b.bookId
 
 
@@ -112,16 +149,25 @@
     </select>
 
 
-    <update id="update" parameterType="com.DreamBook.BookStoreService.dto.book.BookDTO">
+<!--    <update id="update" parameterType="com.DreamBook.BookStoreService.dto.book.BookDTO">-->
 
 
 
-            UPDATE 	cart
-            SET		wishQuantity = #{bookDTO.wishQuantity}
-        WHERE	bookId in
-        <foreach item="bookCartList" collection="bookCartList" open="(" close=")" separator=",">
-            #{bookCartList.bookId}
-        </foreach>
+<!--            UPDATE 	cart-->
+<!--            SET		wishQuantity = #{bookDTO.wishQuantity}-->
+<!--        WHERE	bookId in-->
+<!--        <foreach item="bookCartList" collection="bookCartList" open="(" close=")" separator=",">-->
+<!--            #{bookCartList.bookId}-->
+<!--        </foreach>-->
+
+<!--    </update>-->
+
+    <update id="updateViews" parameterType="int">
+
+        update book
+        set    views = views+1
+        where bookId =#{bookId}
+
 
     </update>
 

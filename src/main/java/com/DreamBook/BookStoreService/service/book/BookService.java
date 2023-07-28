@@ -16,6 +16,8 @@ public interface BookService {
     public int maxNum() throws Exception;
     public int maxNumCart() throws Exception;
 
+    public void  updateViews (int id) throws Exception;
+
     public void insertData(BookAddDTO bookAddDTO, MultipartFile file) throws Exception;
 
     public void bookCartInsertData(BookCartDTO bookCartDTO) throws Exception;
@@ -26,7 +28,11 @@ public interface BookService {
 
     public List<BookFindDTO> bookListLowPrice(List<BookFindDTO>bookAndReview) throws Exception;
 
+    public List<BookFindDTO> bookListManyOrders(List<BookFindDTO>bookAndReview) throws Exception;
+
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
+
+    public List<BookFindDTO> manyBookOrders(List bookId) throws Exception;
 
     public List<BookFindDTO> bookIdList2(List<OrderDTO> orderIdList) throws Exception;
 
@@ -35,7 +41,7 @@ public interface BookService {
 
     public List<BookDTO> bookCartList(int memberId) throws Exception;
 
-    public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception;
+//    public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception;
 
     public void   updateWishQuantity(BookCartDTO bookCartDTO) throws Exception;
 

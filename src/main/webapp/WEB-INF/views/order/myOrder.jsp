@@ -71,7 +71,7 @@
 
                 <c:forEach var="bookList" items="${bookList}">
 
-
+              ${bookList.orderId}
 
               <tr>
                 <td>

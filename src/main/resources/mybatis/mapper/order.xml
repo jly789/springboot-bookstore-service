@@ -51,7 +51,8 @@
 
     <select id="orderFindList"  resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO"
             parameterType="int">
-        select distinct orderNum,orderState from orders
+--         select distinct orderNum,orderState from orders
+select distinct orderNum,orderState from orders
         where memberId = #{memberId}
 
 

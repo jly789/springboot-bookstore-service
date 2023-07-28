@@ -188,7 +188,7 @@
                                         <option value='all'>전체</option>
                                         <option value='highPrice' id="highPrice">가격높은순</option>
                                         <option value='lowPrice' id="lowPrice" label='LM'>가격낮은순</option>
-                                        <option value='order' id="order" label='LM'>주문많은순</option>
+                                        <option value='manyOrders' id="manyOrders" label='LM'>주문많은순</option>
                                         <option value='review' id="review" label='LM'>리뷰많은순</option>
                                     </select>
                                 </div>
@@ -394,6 +394,72 @@
                             </c:if>
 
 
+
+                            <c:if test="${list !=null}">
+                                <c:forEach var="bookList" items="${list}">
+                                    <input type="hidden" name="bookId" id="bookId" value="${bookList.bookId}">
+                                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
+                                        <div class="properties pb-30">
+                                            <div class="properties-card">
+                                                <div class="properties-img">
+                                                    <a href="/${bookList.bookId}"><img src="files/${bookList.fileName}" alt=""
+                                                                                       style="    height: 180px; object-fit: cover;"></a>
+                                                </div>
+                                                <div class="properties-caption properties-caption2">
+                                                    <h3><a href="/${bookList.bookId}">${bookList.bookName}</a></h3>
+                                                    <p>${bookList.author}</p>
+                                                    <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                        <div class="review">
+                                                            <div class="rating">
+                                                                <c:if test="${bookList.grade==1}">
+                                                                    <i class="fas fa-star"></i>
+                                                                </c:if>
+
+                                                                <c:if test="${bookList.grade==2}">
+
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                </c:if>
+
+                                                                <c:if test="${bookList.grade==3}">
+
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                </c:if>
+
+                                                                <c:if test="${bookList.grade==4}">
+
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                </c:if>
+
+                                                                <c:if test="${bookList.grade==5}">
+
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star"></i>
+                                                                </c:if>
+                                                            </div>
+                                                            <p>(<span>120</span> Review)</p>
+                                                        </div>
+                                                        <div class="price">
+                                                            <span id="price">${bookList.price}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+
+
+                            </c:if>
+
+
                     <!-- button -->
                     <div class="row">
                         <div class="col-xl-12">
@@ -471,6 +537,11 @@
                 if(choice =='lowPrice'){
 
                     location.href='/sort?abc=' + 2;
+                }
+
+                if(choice =='manyOrders'){
+
+                    location.href='/sort?abc=' + 3;
                 }
 
 

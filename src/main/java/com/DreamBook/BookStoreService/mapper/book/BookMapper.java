@@ -21,6 +21,8 @@ public interface BookMapper {
 
     public void insertData(BookAddDTO bookAddDTO) throws Exception;
 
+    public void  updateViews (int id) throws Exception;
+
     public void bookCartInsertData(BookCartDTO bookCartDTO) throws Exception;
 
     public List<BookFindDTO> bookList() throws Exception;
@@ -29,10 +31,13 @@ public interface BookMapper {
 
     public List<BookFindDTO> bookListLowPrice(List<BookFindDTO>bookAndReview) throws Exception;
 
+    public List<BookFindDTO> bookListManyOrders(List<BookFindDTO>bookAndReview) throws Exception;
+
     public List<BookDTO> bookAndReview(List<BookFindDTO>bookAndReview)throws Exception;
 
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
 
+    public List<BookFindDTO> manyBookOrders(List bookId) throws Exception;
 
     public List<BookFindDTO> bookIdList2(List<OrderDTO>orderIdList) throws Exception;
 

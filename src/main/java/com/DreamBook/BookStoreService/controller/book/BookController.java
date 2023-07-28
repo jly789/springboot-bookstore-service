@@ -31,8 +31,6 @@ public class BookController {
     public String bookMain( Model model)throws Exception{
 
         List<BookFindDTO> bookList = bookService.bookList();
-        model.addAttribute("bookList",bookList);
-
         List<BookDTO> bookAndReview = bookService.bookAndReview(bookList);
         model.addAttribute("bookAndReview",bookAndReview);
 
@@ -46,9 +44,10 @@ public class BookController {
         if(state ==0){
 
             List<BookFindDTO> bookList = bookService.bookList();
-//            model.addAttribute("bookList",bookList);
             List<BookDTO> bookAndReview = bookService.bookAndReview(bookList);
-            model.addAttribute("bookAndReviewAll",bookAndReview);
+            model.addAttribute("bookAndReview",bookAndReview);
+
+
             return "book/main";
 
         }
@@ -67,6 +66,26 @@ public class BookController {
             List<BookFindDTO> bookList = bookService.bookList();
             List<BookFindDTO> bookAndReviewLowPrice =bookService.bookListLowPrice(bookList);
             model.addAttribute("bookAndReviewLowPrice",bookAndReviewLowPrice);
+            return "book/main";
+        }
+
+        if(state == 3) {
+            List<BookFindDTO> bookList = bookService.bookList();
+            List<BookFindDTO> bookManyOrders =bookService.bookListManyOrders(bookList);
+
+            List manyOrderBook = new ArrayList<>();
+            List<BookFindDTO> list = new ArrayList<>();
+
+            for(int i =0; i<bookManyOrders.size(); i++) {
+
+                manyOrderBook.add(0, bookManyOrders.get(i).getBookId());
+
+            }
+
+           list=  bookService.manyBookOrders(manyOrderBook);
+
+            model.addAttribute("list",list);
+
             return "book/main";
         }
 
@@ -94,6 +113,7 @@ public class BookController {
     public String bookAddOk(BookAddDTO bookAddDTO, MultipartFile file, HttpSession session)throws Exception{
 
         int memberId =(Integer) session.getAttribute("memberId");
+
         int maxNum = bookService.maxNum();
 
         bookAddDTO.setBookId(maxNum+1);
@@ -106,6 +126,7 @@ public class BookController {
     @GetMapping("/{id}")
     public String bookDetail(@PathVariable("id") int id, Model model)throws Exception{
 
+        bookService.updateViews(id);
 
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         model.addAttribute("bookList",bookList);
@@ -118,12 +139,14 @@ public class BookController {
         int memberId = (Integer) session.getAttribute("memberId");
         int totalPrice=0;
 
+
+
         model.addAttribute("memberId",memberId);
 
         List<BookDTO> bookCartList = bookService.bookCartList(memberId);
 
         model.addAttribute("bookCartList", bookCartList);
-        model.addAttribute("bookCartList");
+
 
       for(int i=0; i<bookCartList.size(); i++) {
 

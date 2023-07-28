@@ -38,6 +38,7 @@ public class MemberController {
             session.setAttribute("userId", memberFindDTO.getUserId());
             session.setAttribute("memberId",memberId);
 
+
             return "main/main";
         } else
             return "member/login";
@@ -49,6 +50,7 @@ public class MemberController {
 
         session.getAttribute("userId");
         session.removeAttribute("userId");
+        session.removeAttribute("memberId");
 
         return "main/main";
 
