@@ -5,7 +5,10 @@ import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
+import com.DreamBook.BookStoreService.dto.order.OrderDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
+import com.DreamBook.BookStoreService.service.review.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +24,65 @@ public class BookController {
     @Resource
     private BookService bookService;
 
+    @Resource
+    private ReviewService reviewService;
+
     @GetMapping("/bookMain")
-    public String bookMain(Model model)throws Exception{
+    public String bookMain( Model model)throws Exception{
 
         List<BookFindDTO> bookList = bookService.bookList();
         model.addAttribute("bookList",bookList);
+
+        List<BookDTO> bookAndReview = bookService.bookAndReview(bookList);
+        model.addAttribute("bookAndReview",bookAndReview);
+
         return "book/main";
     }
+
+    @GetMapping("/sort{abc}")
+    public String bookMainSort( Model model,@PathVariable("abc") String bb,
+                                @RequestParam("abc")int state)throws Exception{
+
+        if(state ==0){
+
+            List<BookFindDTO> bookList = bookService.bookList();
+//            model.addAttribute("bookList",bookList);
+            List<BookDTO> bookAndReview = bookService.bookAndReview(bookList);
+            model.addAttribute("bookAndReviewAll",bookAndReview);
+            return "book/main";
+
+        }
+
+        if(state ==1){
+
+            List<BookFindDTO> bookList = bookService.bookList();
+            List<BookFindDTO> bookAndReviewHighPrice =bookService.bookListHighPrice(bookList);
+            model.addAttribute("bookAndReviewHighPrice",bookAndReviewHighPrice);
+            return "book/main";
+
+        }
+
+
+        if(state == 2) {
+            List<BookFindDTO> bookList = bookService.bookList();
+            List<BookFindDTO> bookAndReviewLowPrice =bookService.bookListLowPrice(bookList);
+            model.addAttribute("bookAndReviewLowPrice",bookAndReviewLowPrice);
+            return "book/main";
+        }
+
+        return "book/main";
+        }
+
+
+
+    @ResponseBody
+    @PostMapping("/choiceResult")
+    public String choiceResult ( @RequestParam("choice")String choice)throws Exception {
+
+        return choice;
+
+    }
+
 
     @GetMapping("/bookAdd")
     public String bookAdd(){
@@ -50,6 +105,7 @@ public class BookController {
     }
     @GetMapping("/{id}")
     public String bookDetail(@PathVariable("id") int id, Model model)throws Exception{
+
 
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         model.addAttribute("bookList",bookList);

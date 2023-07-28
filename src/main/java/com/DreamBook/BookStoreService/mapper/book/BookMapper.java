@@ -25,6 +25,12 @@ public interface BookMapper {
 
     public List<BookFindDTO> bookList() throws Exception;
 
+    public List<BookFindDTO> bookListHighPrice(List<BookFindDTO>bookAndReview) throws Exception;
+
+    public List<BookFindDTO> bookListLowPrice(List<BookFindDTO>bookAndReview) throws Exception;
+
+    public List<BookDTO> bookAndReview(List<BookFindDTO>bookAndReview)throws Exception;
+
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
 
 

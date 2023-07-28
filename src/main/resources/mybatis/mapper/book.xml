@@ -40,6 +40,41 @@
 
     </select>
 
+    <select id="bookListHighPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+        SELECT a.*,b.grade from book a
+        left join review b on a.bookId = b.bookId
+
+
+        WHERE a.bookId IN
+
+        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
+            #{bookAndReview.bookId}
+        </foreach>
+
+
+        order by price desc
+
+    </select>
+
+    <select id="bookListLowPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        SELECT a.*,b.grade from book a
+        left join review b on a.bookId = b.bookId
+
+
+        WHERE a.bookId IN
+
+        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
+            #{bookAndReview.bookId}
+        </foreach>
+
+
+        order by price asc
+
+
+
+    </select>
+
     <select id="bookIdList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO"
     parameterType="int">
         select * from book
@@ -105,6 +140,24 @@
         WHERE	cartId = #{cartId}  or bookId = #{bookId}
 
     </update>
+
+    <select id="bookAndReview" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        SELECT a.*,b.grade from book a
+        left join review b on a.bookId = b.bookId
+
+
+        WHERE a.bookId IN
+
+        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
+            #{bookAndReview.bookId}
+        </foreach>
+
+
+
+
+    </select>
+
+
 <!--    <select id="orderIdList" resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
 <!--        SELECT distinct orderNum, bookId from orders-->
 

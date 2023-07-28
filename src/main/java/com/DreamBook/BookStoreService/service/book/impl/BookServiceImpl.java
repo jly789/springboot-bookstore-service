@@ -63,6 +63,21 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookFindDTO> bookListHighPrice(List<BookFindDTO>bookAndReview) throws Exception {
+        return  bookMapper.bookListHighPrice(bookAndReview);
+    }
+
+    @Override
+    public List<BookFindDTO> bookListLowPrice(List<BookFindDTO>bookAndReview) throws Exception {
+        return bookMapper.bookListLowPrice(bookAndReview);
+    }
+
+    @Override
+    public List<BookDTO> bookAndReview(List<BookFindDTO> bookAndReview) throws Exception {
+        return bookMapper.bookAndReview(bookAndReview);
+    }
+
+    @Override
     public List<BookFindDTO> bookIdList(int bookId) throws Exception {
         return bookMapper.bookIdList(bookId);
     }
@@ -76,6 +91,8 @@ public class BookServiceImpl implements BookService {
     public List<BookDTO> bookCartList(int memberId) throws Exception {
         return bookMapper.bookCartList(memberId);
     }
+
+
 
     @Override
     public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception {

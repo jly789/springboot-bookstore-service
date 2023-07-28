@@ -22,9 +22,16 @@ public interface BookService {
 
     public List<BookFindDTO> bookList() throws Exception;
 
+    public List<BookFindDTO> bookListHighPrice(List<BookFindDTO>bookAndReview) throws Exception;
+
+    public List<BookFindDTO> bookListLowPrice(List<BookFindDTO>bookAndReview) throws Exception;
+
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
 
     public List<BookFindDTO> bookIdList2(List<OrderDTO> orderIdList) throws Exception;
+
+    public List<BookDTO> bookAndReview(List<BookFindDTO>bookAndReview)throws Exception;
+
 
     public List<BookDTO> bookCartList(int memberId) throws Exception;
 

@@ -185,7 +185,7 @@
                             <div class="product_page_tittle">
                                 <div class="short_by">
                                     <select name='choice' id="choice">
-                                        <option value='all'>전체</option>
+                                        <option value='' selected>-- 선택 --</option>
                                         <option value='highPrice' id="highPrice">가격높은순</option>
                                         <option value='lowPrice' id="lowPrice" label='LM'>가격낮은순</option>
                                         <option value='order' id="order" label='LM'>주문많은순</option>
@@ -197,57 +197,26 @@
                     </div>
                     <div class="best-selling p-0">
                         <div class="row">
-                            <c:if test="${bookAndReview !=null}">
 
-                            <c:forEach var="bookList" items="${bookAndReview}">
+                            <c:forEach var="bookList" items="${bookList}">
                                 <input type="hidden" name="bookId" id="bookId" value="${bookList.bookId}">
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
                                 <div class="properties pb-30">
                                     <div class="properties-card">
                                         <div class="properties-img">
-                                            <a href="/${bookList.bookId}"><img src="files/${bookList.fileName}" alt=""
-                                                                               style="    height: 180px; object-fit: cover;"></a>
+                                            <a href="/${bookList.bookId}"><img src="files/${bookList.fileName}" alt=""></a>
                                         </div>
                                         <div class="properties-caption properties-caption2">
-                                            <h6><a href="/${bookList.bookId}">${bookList.bookName}</a></h6>
+                                            <h3><a href="/${bookList.bookId}">${bookList.bookName}</a></h3>
                                             <p>${bookList.author}</p>
                                             <div class="properties-footer d-flex justify-content-between align-items-center">
                                                 <div class="review">
                                                     <div class="rating">
-
-                                                        <c:if test="${bookList.grade==1}">
-                                                            <i class="fas fa-star"></i>
-                                                        </c:if>
-
-                                                        <c:if test="${bookList.grade==2}">
-
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </c:if>
-
-                                                        <c:if test="${bookList.grade==3}">
-
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </c:if>
-
-                                                        <c:if test="${bookList.grade==4}">
-
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </c:if>
-
-                                                        <c:if test="${bookList.grade==5}">
-
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </c:if>
-
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
                                                     </div>
                                                     <p>(<span>120</span> Review)</p>
                                                 </div>
@@ -262,136 +231,7 @@
                             </c:forEach>
 
 
-                            </c:if>
 
-                            <c:if test="${bookAndReviewHighPrice !=null}">
-                                <c:forEach var="bookList" items="${bookAndReviewHighPrice}">
-                                    <input type="hidden" name="bookId" id="bookId" value="${bookList.bookId}">
-                                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
-                                        <div class="properties pb-30">
-                                            <div class="properties-card">
-                                                <div class="properties-img">
-                                                    <a href="/${bookList.bookId}"><img src="files/${bookList.fileName}" alt=""
-                                                                                       style="    height: 180px; object-fit: cover;"></a>
-                                                </div>
-                                                <div class="properties-caption properties-caption2">
-                                                    <h3><a href="/${bookList.bookId}">${bookList.bookName}</a></h3>
-                                                    <p>${bookList.author}</p>
-                                                    <div class="properties-footer d-flex justify-content-between align-items-center">
-                                                        <div class="review">
-                                                            <div class="rating">
-                                                                <c:if test="${bookList.grade==1}">
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-
-                                                                <c:if test="${bookList.grade==2}">
-
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-
-                                                                <c:if test="${bookList.grade==3}">
-
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-
-                                                                <c:if test="${bookList.grade==4}">
-
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-
-                                                                <c:if test="${bookList.grade==5}">
-
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-                                                            </div>
-                                                            <p>(<span>120</span> Review)</p>
-                                                        </div>
-                                                        <div class="price">
-                                                            <span id="price">${bookList.price}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-
-
-                            </c:if>
-
-
-                            <c:if test="${bookAndReviewLowPrice !=null}">
-                                <c:forEach var="bookList" items="${bookAndReviewLowPrice}">
-                                    <input type="hidden" name="bookId" id="bookId" value="${bookList.bookId}">
-                                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
-                                        <div class="properties pb-30">
-                                            <div class="properties-card">
-                                                <div class="properties-img">
-                                                    <a href="/${bookList.bookId}"><img src="files/${bookList.fileName}" alt=""
-                                                                                       style="    height: 180px; object-fit: cover;"></a>
-                                                </div>
-                                                <div class="properties-caption properties-caption2">
-                                                    <h3><a href="/${bookList.bookId}">${bookList.bookName}</a></h3>
-                                                    <p>${bookList.author}</p>
-                                                    <div class="properties-footer d-flex justify-content-between align-items-center">
-                                                        <div class="review">
-                                                            <div class="rating">
-                                                                <c:if test="${bookList.grade==1}">
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-
-                                                                <c:if test="${bookList.grade==2}">
-
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-
-                                                                <c:if test="${bookList.grade==3}">
-
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-
-                                                                <c:if test="${bookList.grade==4}">
-
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-
-                                                                <c:if test="${bookList.grade==5}">
-
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                </c:if>
-                                                            </div>
-                                                            <p>(<span>120</span> Review)</p>
-                                                        </div>
-                                                        <div class="price">
-                                                            <span id="price">${bookList.price}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-
-
-                            </c:if>
 
 
                     <!-- button -->
@@ -438,7 +278,7 @@
 
     $('#choice').change(function () {
         let price = 0;
-        let url = "";
+
         $.ajax({
 
             type: 'POST',
@@ -450,28 +290,35 @@
 
             success: function(choice) {
 
-                if(choice =='all'){
 
-
-                    location.href='/sort?abc=' + 0;
-
-
-
-                }
 
 
                 if(choice =='highPrice'){
 
+                    var url ="/bookMain/sort?abc="+choice;
 
-                    location.href='/sort?abc=' + 1;
-
-
-
+                    // history.pushState(null, null, '/sort?sort=1')
+                      location.replace(url);
                 }
                 if(choice =='lowPrice'){
 
-                    location.href='/sort?abc=' + 2;
+                    var url ="/bookMain/sort?abc="+choice;
+                    location.replace(url);
                 }
+
+
+                // for(let i=0; i<choiceResultList.length; i++) {
+                //
+                //     price =(choiceResultList[i].price);
+                //     $("#price").text(price);
+                // }
+
+
+
+                // $("#result").text('아이디:'+' '+result+''+'입니다');
+                //
+                // document.getElementById('result').style.color ="red"
+
 
 
             },
@@ -486,6 +333,46 @@
 
     });
 
+
+    // $('#choice').change(function () {
+    //
+    //
+    //
+    //
+    //     // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+    //     $.ajax({
+    //
+    //         type: 'POST',
+    //         url: '/choiceResult',
+    //         data: {"bookId": $('#bookId').val(),
+    //             "choice":$('#choice').val(),
+    //
+    //         },
+    //         dataType: 'JSON',
+    //
+    //         success: function(aa) {
+    //
+    //             alert("성공");
+    //
+    //             // $("#choice").val(choice);
+    //
+    //             // $("#result").text('아이디:'+' '+result+''+'입니다');
+    //             //
+    //             // document.getElementById('result').style.color ="red"
+    //
+    //
+    //
+    //         },
+    //         error: function(a, b, c) {
+    //             alert('실패');
+    //
+    //         }
+    //
+    //     });
+    //
+    //
+    //
+    // });
 
 </script>
 
