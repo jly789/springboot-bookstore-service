@@ -42,6 +42,8 @@ public class ReviewController {
     @GetMapping("/review")
     public String review(Model model)throws Exception {
 
+
+
         List<ReviewFindDTO> reviewAllList = reviewService.reviewAllList();
 
         model.addAttribute("reviewAllList",reviewAllList);
@@ -87,7 +89,8 @@ public class ReviewController {
 
                 reviewService.insertReviewData(reviewAddDTO, file);
 
-                return "review/review";
+
+                return "redirect:/review";
 
             }
 

@@ -14,33 +14,49 @@
 
     <insert id="insertReviewData" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewAddDTO">
 
-        insert into review(reviewId,memberId,bookId,reviewSubject,reviewContent,reviewFileName,reviewFilePath,
-                         grade,views,reviewDate)
-        values (#{reviewId},#{memberId},#{bookId},#{reviewSubject},#{reviewContent},#{reviewFileName},
+        insert into review(reviewId,memberId,bookId,orderId,reviewSubject,reviewContent,reviewFileName,reviewFilePath,
+                           grade,views,reviewDate)
+        values (#{reviewId},#{memberId},#{bookId},#{orderId},#{reviewSubject},#{reviewContent},#{reviewFileName},
                 #{reviewFilePath},#{grade},0,SYSDATE)
 
     </insert>
 
     <insert id="insertReviewDataNotImg" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewAddDTO">
 
-        insert into review(reviewId,memberId,bookId,reviewSubject,reviewContent,reviewFileName,reviewFilePath,
+        insert into review(reviewId,memberId,bookId,orderId,reviewSubject,reviewContent,reviewFileName,reviewFilePath,
                            grade,views,reviewDate)
-        values (#{reviewId},#{memberId},#{bookId},#{reviewSubject},#{reviewContent},'',
-               '' ,#{grade},0,SYSDATE)
+        values (#{reviewId},#{memberId},#{bookId},#{orderId},#{reviewSubject},#{reviewContent},'',
+                '' ,#{grade},0,SYSDATE)
 
     </insert>
-
-
 
     <select id="ReviewOrderIdFind"  resultType="Integer"
             parameterType="int">
 
         select distinct nvl(max(b.orderId),0) from review a
-                                     LEFT join orders b ON
+                                                       LEFT join orders b ON
             a.bookId = b.bookId
-            where b.orderId = #{orderId}
+        where b.orderId = #{orderId}
 
     </select>
+
+
+    <select id="ReviewCheck"  resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO"
+          >
+
+        SELECT reviewId from review
+
+        WHERE orderId IN
+        <foreach item="orderId" collection="orderId" open="(" close=")" separator=",">
+            #{orderId.orderId}
+        </foreach>
+
+
+    </select>
+
+
+
+
 
 
     <select id="reviewAllList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">

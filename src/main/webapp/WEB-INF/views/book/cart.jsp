@@ -76,6 +76,7 @@
                   </div>
                   <div class="media-body">
                     <p id="bookNames">${bookCartList.bookName}</p>
+                    <a href="/cartDelete?cartId=${bookCartList.cartId}" style="color: red">삭제</a>
                   </div>
                 </div>
               </td>
@@ -118,11 +119,17 @@
                     <br/>
                 </td>
 
-                <td>
-                <a href="/delete?cartId=${bookCartList.cartId}" style="color: black"><input type='hidden' class="bb" id="gg" name="bb"
-                                                                                            onclick='count("plus")'
-                                                                                            value='${bookCartList.cartId}'>-</a>
-                </td>
+              <td>
+                <a href="/cartMinus?cartId=${bookCartList.cartId}&price=${bookCartList.price}&
+wishQuantity=${bookCartList.wishQuantity}" style="color: black">
+                  <input type='hidden' class="minus" id="minus" name="minus"
+                         onclick='count("minus")'
+                         value='${bookCartList.cartId}'>-
+
+                </a>
+
+                <br/>
+              </td>
 
               </c:forEach>
             <tr>

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.*;
 
 @Controller
@@ -195,6 +197,67 @@ public class BookController {
         return "book/cart";
     }
 
+    @GetMapping("/cartMinus")
+    public String cartMinus(HttpSession session , Model model, BookCartDTO bookCartDTO
+    , HttpServletResponse response)throws Exception{
+
+        if(bookCartDTO.getWishQuantity() ==1){
+
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('수량은 최소 1개이상입니다!'); </script>");
+            out.flush();
+
+            int memberId = (Integer) session.getAttribute("memberId");
+            int totalPrice=0;
+
+
+
+            model.addAttribute("memberId",memberId);
+
+            List<BookDTO> bookCartList = bookService.bookCartList(memberId);
+
+            model.addAttribute("bookCartList", bookCartList);
+
+
+            for(int i=0; i<bookCartList.size(); i++) {
+
+                totalPrice = totalPrice + bookCartList.get(i).getAmount();
+            }
+            model.addAttribute("totalPrice",totalPrice);
+
+            return "book/cart";
+        }
+
+        else
+
+         bookService.updateWishQuantityMinus(bookCartDTO);
+
+
+
+
+        bookService.updateAmount(bookCartDTO);
+
+        int totalPrice = 0;
+
+
+        int memberId = (Integer) session.getAttribute("memberId");
+
+        model.addAttribute("memberId",memberId);
+
+        List<BookDTO> bookCartList = bookService.bookCartList(memberId);
+        for(int i=0; i<bookCartList.size(); i++) {
+
+            totalPrice = totalPrice + bookCartList.get(i).getAmount();
+
+        }
+
+        model.addAttribute("totalPrice",totalPrice);
+        model.addAttribute("bookCartList", bookCartList);
+
+        return "book/cart";
+    }
+
     @ResponseBody
     @PostMapping("/cartPlus")
     public List<BookDTO> bookCartListAjaxPlus(HttpSession session, String price,BookDTO bookDTO,@RequestParam("cartId")int cartId)throws Exception{
@@ -270,11 +333,27 @@ public class BookController {
         }
         return "book/cart";
     }
-    @GetMapping("/delete")
-    public String bookCartDelete(BookCartDTO bookCartDTO)throws Exception{
+    @GetMapping("/cartDelete")
+    public String bookCartDelete(BookCartDTO bookCartDTO,HttpSession session,Model model)throws Exception{
+
+        bookService.deleteCart(bookCartDTO);
+        int memberId = (Integer) session.getAttribute("memberId");
+        int totalPrice=0;
 
 
-        System.out.println(bookCartDTO.getCartId());
+
+        model.addAttribute("memberId",memberId);
+
+        List<BookDTO> bookCartList = bookService.bookCartList(memberId);
+
+        model.addAttribute("bookCartList", bookCartList);
+
+
+        for(int i=0; i<bookCartList.size(); i++) {
+
+            totalPrice = totalPrice + bookCartList.get(i).getAmount();
+        }
+        model.addAttribute("totalPrice",totalPrice);
 
         return "book/cart";
     }

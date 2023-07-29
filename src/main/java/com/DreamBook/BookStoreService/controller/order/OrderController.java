@@ -7,9 +7,12 @@ import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.order.DeliveryDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import com.DreamBook.BookStoreService.service.order.OrderService;
+import com.DreamBook.BookStoreService.service.review.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,44 +37,40 @@ public class OrderController {
     private BookService bookService;
 
     @Resource
+    private ReviewService reviewService;
+    @Resource
     private OrderService orderService;
+
+
 
 
     @GetMapping("/myOrder")
     public String  myOrder(Model model, HttpSession session,OrderDTO orderDTO)throws Exception{
 
-        List<OrderDTO> list = orderService.orderFindList((int)session.getAttribute("memberId"));
 
+
+        List<OrderDTO> list = orderService.orderFindList((int)session.getAttribute("memberId"));
         model.addAttribute("list",list);
+
+//        List<ReviewFindDTO> reviewDTOList = reviewService.reviewOrderIdCheck(list);
+//          List<ReviewFindDTO> reviewFindDTOS= reviewService.ReviewCheck(list);
+
 
         List<OrderDTO> orderIdList = orderService.orderIdList(list);
         model.addAttribute("orderIdList",orderIdList);
 
 
-
         List<OrderDTO> orderStateList = orderService.orderListOrderState(list);
         model.addAttribute("orderStateList",orderStateList);
 
-
-
-
-
-
         List<BookFindDTO> bookList = new ArrayList<>();
-
-//      List<BookDTO> bookDTOList=  bookService.bookCartList((int)session.getAttribute("memberId"));
-//        model.addAttribute("bookDTOList",bookDTOList);
-
-
 
         bookList = bookService.bookIdList2(orderIdList);
                 model.addAttribute("bookList",bookList);
 
 
-
         return  "order/myOrder";
     }
-
 
     @PostMapping("/order")
     public String  order(Model model, HttpSession session,@RequestParam("totalPrice")int totalPrice)throws Exception{

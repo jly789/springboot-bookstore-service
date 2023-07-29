@@ -2,6 +2,7 @@ package com.DreamBook.BookStoreService.controller.member;
 
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,8 @@ public class MemberController {
 
     @GetMapping("/register")
     public String register(MemberJoinDTO memberJoinDTO) {
+
+
 
 
         return "member/register";
@@ -134,6 +137,8 @@ public class MemberController {
 
         return result;
     }
+
+
 
 }
 

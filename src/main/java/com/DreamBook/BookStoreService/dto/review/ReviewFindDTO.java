@@ -12,6 +12,7 @@ public class ReviewFindDTO {
     private int reviewId;
     private int memberId;
     private int bookId;
+    private int orderId;
     private String reviewSubject;
     private String reviewContent;
     private String reviewFileName;

@@ -49,5 +49,11 @@ public interface BookMapper {
     public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception;
 
     public void   updateWishQuantity(BookCartDTO bookCartDTO) throws Exception;
+
+    public void wishQuantityCheck(BookCartDTO bookCartDTO)throws Exception;
+
+    public void   updateWishQuantityMinus(BookCartDTO bookCartDTO) throws Exception;
     public void   updateAmount(BookCartDTO bookCartDTO) throws Exception;
+
+    public void   deleteCart(BookCartDTO bookCartDTO) throws Exception;
 }

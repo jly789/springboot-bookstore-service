@@ -45,6 +45,14 @@ public interface BookService {
 
     public void   updateWishQuantity(BookCartDTO bookCartDTO) throws Exception;
 
+    public void   updateWishQuantityMinus(BookCartDTO bookCartDTO) throws Exception;
+
+    public void wishQuantityCheck(BookCartDTO bookCartDTO)throws Exception;
+
     public void   updateAmount(BookCartDTO bookCartDTO) throws Exception;
+
+    public void   deleteCart(BookCartDTO bookCartDTO) throws Exception;
+
+
 
 }

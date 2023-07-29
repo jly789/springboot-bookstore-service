@@ -3,6 +3,7 @@ package com.DreamBook.BookStoreService.service.review.impl;
 import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.mapper.review.ReviewMapper;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
@@ -141,5 +142,11 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<ReviewFindDTO> reviewAllList() throws Exception {
         return reviewMapper.reviewAllList();
+    }
+
+
+    @Override
+    public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception {
+        return reviewMapper.ReviewCheck(orderId);
     }
 }

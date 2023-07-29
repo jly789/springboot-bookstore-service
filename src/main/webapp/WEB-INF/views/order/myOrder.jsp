@@ -69,9 +69,10 @@
 
 
 
+
                 <c:forEach var="bookList" items="${bookList}">
 
-              ${bookList.orderId}
+
 
               <tr>
                 <td>
@@ -81,7 +82,19 @@
                     </div>
                     <div class="media-body">
                       <p id="bookNames">${bookList.bookName}</p>
-                      <a href="/reviewAdd?bookId=${bookList.bookId}&orderId=${bookList.orderId}"><p  id="review" style="color: red" >리뷰쓰기</p></a>
+
+
+
+                      <a href="/reviewAdd?bookId=${bookList.bookId}&orderId=${bookList.orderId}"><p  id="review" style="color: red" >
+                        리뷰쓰기</p></a>
+
+
+
+
+
+
+
+
                     </div>
                   </div>
                 </td>

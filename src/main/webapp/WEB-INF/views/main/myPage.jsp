@@ -15,7 +15,15 @@
 
 </head>
 
+<style>
 
+  input{
+
+   ;
+
+  }
+
+</style>
 
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
@@ -44,18 +52,19 @@
     <div class="container">
       <div class="returning_customer">
 
-
+      <form action="/myPageUpdate" method="post">
 
       <c:forEach var="memberDTOList" items="${memberDTOList}">
 
 
+
       <div class="billing_details">
         <div class="row">
-          <div class="col-lg-8">
-            <h3>배송지 주소</h3>
+          <div class="col-lg-8" >
+            <h3>배송지 주소  <button type="submit" value="" style="margin-left: 525px; color: black;"/>수정하기</h3>
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
               <div class="col-md-6 form-group p_star">
-            <h6 style="color: red"> 아이디 </h6>  <input type="text" class="form-control" id="first" name="name" value="${memberDTOList.userId}" />
+            <h6 style="color: red"> 아이디 </h6>  <input type="text" class="form-control" id="first" name="userId" value="${memberDTOList.userId}" />
                 <h6 style="color: red">  이름</h6>  <input type="text" class="form-control" id="first" name="name" value="${memberDTOList.name}" />
 <%--                <span class="placeholder" data-placeholder="이름입력!" ></span>--%>
 
@@ -97,75 +106,23 @@
 
               <div class="col-md-12 form-group">
                 <div class="creat_account">
-                  <h3>Shipping Details</h3>
-                  <div class="checkout-cap">
-                    <input type="checkbox" id="f-option3" name="selector" />
-                    <label for="f-option3">Ship to a different address?</label>
-                  </div>
+                  <h3>참고사항</h3>
+
                 </div>
                 <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
               </div>
             </form>
           </div>
-          <div class="col-lg-4">
-            <div class="order_box">
-              <h2>Your Order</h2>
-              <ul class="list">
-                <li>
-                  <a href="#">Product<span>Total</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Fresh Blackberry
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
 
-              </ul>
-              <ul class="list list_2">
-                <li>
-                  <a href="#">Subtotal <span>$2160.00</span></a>
-                </li>
-                <li>
-                  <a href="#">배송비
-                    <span>$5000</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Total<span>$2210.00</span>
-                  </a>
-                </li>
-              </ul>
-              <div class="payment_item">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5">Check payments</label>
-                  <div class="check"></div>
-                </div>
-                <p> Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode. </p>
-              </div>
-              <div class="payment_item active">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option6" name="selector" />
-                  <label for="f-option6">Paypal </label>
-                  <img src="assets/img/gallery/card.jpg" alt="" />
-                  <div class="check"></div>
-                </div>
-                <p> Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode. </p>
-              </div>
-              <div class="creat_account checkout-cap">
-                <input type="checkbox" id="f-option8" name="selector" />
-                <label for="f-option8">I’ve read and accept the  <a href="#">terms & conditions*</a> </label>
-              </div>
-              <a class="btn w-100" href="#">Proceed to Paypal</a>
-            </div>
           </div>
         </div>
+      </form>
       </div>
     </div>
   </section>
   <!--End Checkout Area -->
+
+
 
 </main>
 

@@ -171,6 +171,8 @@
 
     </update>
 
+
+
     <update id="updateWishQuantity" parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO">
 
         update cart
@@ -178,6 +180,29 @@
         WHERE	cartId = #{cartId} or bookId = #{bookId}
 
     </update>
+
+    <update id="updateWishQuantityMinus"  parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO" >
+
+        update cart
+        set    wishQuantity = wishQuantity-1
+        WHERE	cartId = #{cartId} or bookId = #{bookId}
+
+    </update>
+
+
+
+    <select id="wishQuantityCheck">
+
+    select wishQuantity from cart
+        WHERE cartId  IN
+
+        <foreach item="bookCartDTO" collection="bookCartDTO" open="(" close=")" separator=",">
+            #{bookCartDTO.cartId}
+        </foreach>
+
+    </select>
+
+
 
     <update id="updateAmount" parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO">
 
@@ -203,56 +228,13 @@
 
     </select>
 
+    <delete id="deleteCart"  parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO" >
 
-<!--    <select id="orderIdList" resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
-<!--        SELECT distinct orderNum, bookId from orders-->
+        delete  cart
+        WHERE	cartId = #{cartId}
 
-<!--        WHERE orderNum IN-->
-<!--        <foreach item="list" collection="list" open="(" close=")" separator=",">-->
-<!--            #{list.orderNum}-->
-<!--        </foreach>-->
-<!--        order by orderNum-->
+    </delete>
 
-<!--    </select>-->
-
-
-
-<!--    <select id="loginData" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->
-<!--    resultType="Integer">-->
-<!--        select nvl(count(*),0) from member-->
-<!--        where userId =#{userId} and pwd = #{pwd}-->
-
-<!--    </select>-->
-
-<!--    <select id="findId" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->
-<!--            resultType="Integer">-->
-<!--        select nvl(count(*),0) from member-->
-<!--        where name =#{name} and email = #{email}-->
-
-<!--    </select>-->
-
-<!--    <select id="findUserId" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->
-<!--           resultType="String" >-->
-<!--        select userId from member-->
-<!--        where name =#{name} and email = #{email}-->
-
-<!--    </select>-->
-
-
-
-<!--    <select id="findPwd" parameterType="com.DreamBook.BookStoreService.dto.member.MemberFindDTO"-->
-<!--            resultType="String" >-->
-<!--        select pwd from member-->
-<!--        where userId =#{userId} and email = #{email}-->
-
-<!--    </select>-->
-
-<!--    <select id="IdCheck" parameterType="String"-->
-<!--            resultType="Integer">-->
-<!--        select nvl(count(*),0) from member-->
-<!--        where userId =#{id}-->
-
-<!--    </select>-->
 
 
 

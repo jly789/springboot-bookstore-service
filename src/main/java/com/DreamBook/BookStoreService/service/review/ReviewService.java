@@ -3,6 +3,7 @@ package com.DreamBook.BookStoreService.service.review;
 import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,8 @@ public interface ReviewService {
     public int ReviewOrderIdFind(int orderId) throws Exception;
 
     public List<ReviewFindDTO> reviewAllList() throws Exception;
+
+    public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception;
 
 
 

@@ -123,9 +123,24 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void updateWishQuantityMinus(BookCartDTO bookCartDTO) throws Exception { //장바구니 해당도서의 수량증가
+       bookMapper.updateWishQuantityMinus(bookCartDTO);
+    }
+
+    @Override
+    public void wishQuantityCheck(BookCartDTO bookCartDTO) throws Exception {
+        bookMapper.wishQuantityCheck(bookCartDTO);
+    }
+
+    @Override
     public void updateAmount(BookCartDTO bookCartDTO) throws Exception { //장바구니 해당도서의 수량증가로인한 총가격상승
 
         bookMapper.updateAmount(bookCartDTO);
 
+    }
+
+    @Override
+    public void deleteCart(BookCartDTO bookCartDTO) throws Exception {
+        bookMapper.deleteCart(bookCartDTO);
     }
 }

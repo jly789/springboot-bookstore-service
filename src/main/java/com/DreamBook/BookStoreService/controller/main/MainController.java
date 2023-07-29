@@ -2,10 +2,12 @@ package com.DreamBook.BookStoreService.controller.main;
 
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -45,6 +47,19 @@ public class MainController {
 
         return "main/myPage";
     }
+
+    @PostMapping("/myPageUpdate")
+    public String myPageUpdate(MemberUpdateDTO MemberUpdateDTO,Model model)throws Exception {
+
+        System.out.println(MemberUpdateDTO.getUserId());
+
+      List<MemberDTO> memberDtoList=  memberService.memberDtoList(MemberUpdateDTO.getUserId());
+
+        model.addAttribute("memberDtoList",memberDtoList);
+
+        return "main/myPageUpdate";
+    }
+
 
     @GetMapping("/index")
     public String index(Model model){
