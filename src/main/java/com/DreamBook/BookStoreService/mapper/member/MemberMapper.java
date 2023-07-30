@@ -4,6 +4,7 @@ package com.DreamBook.BookStoreService.mapper.member;
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -30,5 +31,6 @@ public interface MemberMapper {
     public List<MemberDTO> memberDtoList(String userId) throws  Exception;
 //    public List<MemberDTO> memberIdList(int memberId) throws  Exception;
 
+    public void updateMember(MemberUpdateDTO memberUpdateDTO) throws  Exception;
 
 }

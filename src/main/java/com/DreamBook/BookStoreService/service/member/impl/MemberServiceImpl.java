@@ -5,6 +5,7 @@ package com.DreamBook.BookStoreService.service.member.impl;
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
 import com.DreamBook.BookStoreService.mapper.member.MemberMapper;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,7 +94,12 @@ public class MemberServiceImpl implements MemberService {
         return memberMapper.memberDtoList(userId);
     }
 
-//    @Override
+    @Override
+    public void updateMember(MemberUpdateDTO memberUpdateDTO) throws Exception {
+        memberMapper.updateMember(memberUpdateDTO);
+    }
+
+    //    @Override
 //    public List<MemberDTO> memberIdList(int memberId) throws Exception {
 //        return memberMapper.memberIdList(memberId);
 //    }

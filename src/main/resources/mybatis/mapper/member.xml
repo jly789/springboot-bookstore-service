@@ -73,6 +73,20 @@
     </select>
 
 
+
+
+    <update id="updateMember" parameterType="com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO">
+
+        update member
+        set    userId = #{userId}, pwd = #{pwd},name = #{name},gender = #{gender},nikname = #{nikname},tel = #{tel},
+               postcode = #{postcode},address = #{address},detailAddress = #{detailAddress},extraAddress = #{extraAddress},email = #{email},favoriteGenre = #{favoriteGenre}
+
+
+        where memberId = #{memberId}
+
+    </update>
+
+
 <!--    <select id="memberIdList" parameterType="int"-->
 <!--            resultType="com.DreamBook.BookStoreService.dto.member.MemberDTO" >-->
 <!--        select * from member-->
