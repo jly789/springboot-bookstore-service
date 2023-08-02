@@ -74,6 +74,7 @@ public class ReviewController {
 
 
             if (reviewService.ReviewOrderIdFind(orderDTO.getOrderId()) == 1) {
+                System.out.println("a");
                 AlertMessage.warningMessage(response, "/myOrder", "이미 등록된 리뷰입니다!.");
                 return "redirect:/myOrder";
 
@@ -82,6 +83,7 @@ public class ReviewController {
 
 
             if (reviewService.ReviewOrderIdFind(orderDTO.getOrderId()) == 0) {
+
                 int maxNum = reviewService.maxNum();
 
                 reviewAddDTO.setReviewId(maxNum + 1);
@@ -96,6 +98,7 @@ public class ReviewController {
 
 
             if (reviewService.ReviewOrderIdFind(orderDTO.getOrderId()) == 1) {
+
                 AlertMessage.warningMessage(response, "/myOrder", "이미 등록된 리뷰입니다!.");
                 return "redirect:/myOrder";
 

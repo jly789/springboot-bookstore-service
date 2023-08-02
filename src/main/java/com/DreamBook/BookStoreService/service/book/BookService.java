@@ -30,13 +30,17 @@ public interface BookService {
 
     public List<BookFindDTO> bookListManyOrders(List<BookFindDTO>bookAndReview) throws Exception;
 
+    public List<BookFindDTO> bookListManyReview(List<BookFindDTO>bookAndReview) throws Exception;
+
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
 
     public List<BookFindDTO> manyBookOrders(List bookId) throws Exception;
 
-    public List<BookFindDTO> bookIdList2(List<OrderDTO> orderIdList) throws Exception;
+    public List<BookFindDTO> bookIdList2(List<OrderDTO> orderIdList,int memberId) throws Exception;
 
-    public List<BookDTO> bookAndReview(List<BookFindDTO>bookAndReview)throws Exception;
+    public List<BookFindDTO> bookAndReview(List<BookFindDTO>bookAndReview)throws Exception;
+
+    public List<BookFindDTO> bookAndReviewGrade(List<BookFindDTO>bookAndReview)throws Exception;
 
 
     public List<BookDTO> bookCartList(int memberId) throws Exception;

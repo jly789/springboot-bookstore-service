@@ -52,7 +52,7 @@
     <select id="orderFindList"  resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO"
             parameterType="int">
 --         select distinct orderNum,orderState from orders
-select distinct orderNum,orderState,orderId from orders
+select distinct orderNum,orderState,orderId,memberId from orders
         where memberId = #{memberId}
 
 
@@ -67,7 +67,13 @@ select distinct orderNum,orderState,orderId from orders
         <foreach item="list" collection="list" open="(" close=")" separator=",">
             #{list.orderNum}
         </foreach>
-        order by orderNum
+
+        and
+
+        memberId IN
+        <foreach item="list" collection="list" open="(" close=")" separator=",">
+            #{list.memberId}
+        </foreach>
 
     </select>
 

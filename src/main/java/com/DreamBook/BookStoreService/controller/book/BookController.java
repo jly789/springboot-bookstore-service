@@ -32,9 +32,9 @@ public class BookController {
     @GetMapping("/bookMain")
     public String bookMain( Model model)throws Exception{
 
-        List<BookFindDTO> bookList = bookService.bookList();
-        List<BookDTO> bookAndReview = bookService.bookAndReview(bookList);
-        model.addAttribute("bookAndReview",bookAndReview);
+       List<BookFindDTO> bookList = bookService.bookList();
+        List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
+        model.addAttribute("bookAndReview",bookListGrade);
 
         return "book/main";
     }
@@ -46,8 +46,8 @@ public class BookController {
         if(state ==0){
 
             List<BookFindDTO> bookList = bookService.bookList();
-            List<BookDTO> bookAndReview = bookService.bookAndReview(bookList);
-            model.addAttribute("bookAndReview",bookAndReview);
+            List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
+            model.addAttribute("bookAndReview",bookListGrade);
 
 
             return "book/main";
@@ -73,23 +73,19 @@ public class BookController {
 
         if(state == 3) {
             List<BookFindDTO> bookList = bookService.bookList();
-            List<BookFindDTO> bookManyOrders =bookService.bookListManyOrders(bookList);
-
-            List manyOrderBook = new ArrayList<>();
-            List<BookFindDTO> list = new ArrayList<>();
-
-            for(int i =0; i<bookManyOrders.size(); i++) {
-
-                manyOrderBook.add(0, bookManyOrders.get(i).getBookId());
-
-            }
-
-           list=  bookService.manyBookOrders(manyOrderBook);
-
-            model.addAttribute("list",list);
-
+            List<BookFindDTO> bookManyOrder =bookService.bookListManyOrders(bookList);
+            model.addAttribute("bookManyOrder",bookManyOrder);
             return "book/main";
         }
+
+        if(state == 4) {
+            List<BookFindDTO> bookList = bookService.bookList();
+            List<BookFindDTO> bookManyReview =bookService.bookListManyReview(bookList);
+            model.addAttribute("bookManyReview",bookManyReview);
+            return "book/main";
+        }
+
+
 
         return "book/main";
         }

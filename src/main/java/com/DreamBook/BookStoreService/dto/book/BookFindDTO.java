@@ -32,7 +32,12 @@ public class BookFindDTO {
     private String orderState;
 
     private int reviewId;
-    private String grade;
+    private int grade;
+
+
+
+
+
     @NotNull(message = "필수 정보입니다.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationYear;

@@ -18,33 +18,30 @@
 </head>
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
-<form:form action="/register" method="post">
+<form:form action="/myPageUpdate" method="post"  modelAttribute="memberUpdateDTO">
 <!-- header end -->
 <main class="login-bg">
-
+  <c:forEach var="memberDTOList" items="${memberDTOList}">
   <!-- Register Area Start -->
   <div class="register-form-area">
     <div class="register-form text-center">
       <!-- Login Heading -->
       <div class="register-heading">
-        <span>회원정보 수정</span>
-        <p>Create your account to get full access</p>
+        <span>회원 정보 수정</span>
+        <p>회원 정보를 수정하세요!</p>
       </div>
 
       <!-- Single Input Fields -->
 
-      <for class="input-box">
+      <div class="input-box">
 
-        <div class="single-input-fields">
 
-          <input type="hidden" name="memberId" value="0" placeholder="Enter full name">
-        </div>
 
         <div class="single-input-fields">
           <label>아이디</label>
-          <c:forEach var="memberDtoList" items="${memberDtoList}">
-          <input type="text" name="userId" value="${memberDtoList.userId}" id="userId" placeholder="아이디 입력"/>
+    <input type="hidden" name="memberId" value="${memberDTOList.memberId}"/>
 
+          <input type="text" name="userId" value="${memberDTOList.userId}" id="userId" placeholder="아이디 입력"/>
           <form:errors path="userId" cssStyle="font-weight: bold; color: #e95050"/>
           <input type="button" id="btnCheck"  class="btn btn-default" value="중복검사"/>
           <span id="result"></span>
@@ -57,16 +54,15 @@
             <%--          <form:input type="text" path="userId" placeholder="제목을 입력해주세요" cssStyle="height: 42px"/>--%>
         </div>
 
-
         <div class="single-input-fields">
           <label>비밀번호</label>
-          <input type="text" name="pwd" value="${memberDtoList.pwd}"  placeholder="Confirm Password"/>
+          <input type="text" name="pwd" value="${memberDTOList.pwd}"  placeholder="Confirm Password"/>
           <form:errors path="pwd" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
 
         <div class="single-input-fields">
           <label>이름</label>
-          <input type="text" name="name" value="${memberDtoList.name}">
+          <input type="text" name="name" value="${memberDTOList.name}" placeholder="이름 입력">
           <form:errors path="name" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
 
@@ -76,49 +72,66 @@
 
           <%--          <input type="text" name="gender" placeholder="Enter email address">--%>
 
+        <div class="single-input-fields">
+          <label>닉네임</label>
+          <input type="text"name="nikname" value="${memberDTOList.name}" placeholder="닉네임 입력">
+          <form:errors path="nikname" cssStyle="font-weight: bold; color: #e95050"/>
+            <%--        </div>--%>
 
 
 
           <div class="single-input-fields">
             <label>전화번호</label>
-            <input type="tel" name="tel"value="${memberDtoList.tel}" placeholder="전화번호 입력">
+            <input type="tel" name="tel"value="${memberDTOList.tel}" placeholder="전화번호 입력">
             <form:errors path="tel" cssStyle="font-weight: bold; color: #e95050"/>
           </div>
 
-          <input type="text" name="postcode" value="${memberDtoList.postcode}" id="sample6_postcode" placeholder="우편번호">
+          <input type="text" name="postcode" value="${memberDTOList.postcode}" id="sample6_postcode" placeholder="우편번호">
           <form:errors path="postcode" cssStyle="font-weight: bold; color: #e95050"/>
           <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-          <input type="text" name="address" value="${memberDtoList.address}" id="sample6_address" placeholder="주소"><br>
+          <input type="text" name="address" value="${memberDTOList.address}" id="sample6_address" placeholder="주소"><br>
           <form:errors path="address" cssStyle="font-weight: bold; color: #e95050"/>
-          <input type="text"name="detailAddress" value="${memberDtoList.detailAddress}" id="sample6_detailAddress" placeholder="상세주소">
+          <input type="text"name="detailAddress" value="${memberDTOList.detailAddress}" id="sample6_detailAddress" placeholder="상세주소">
           <form:errors path="detailAddress" cssStyle="font-weight: bold; color: #e95050"/>
-          <input type="text"name="extraAddress" value="${memberDtoList.extraAddress}" id="sample6_extraAddress" placeholder="참고항목">
+          <input type="text"name="extraAddress" value="${memberDTOList.extraAddress}" id="sample6_extraAddress" placeholder="참고항목">
 
 
           <div class="single-input-fields">
             <label>이메일</label>
-            <input type="email" name="email" value="${memberDtoList.email}" placeholder="이메일을 입력하시오">
+            <input type="email" name="email" value="${memberDTOList.email}" placeholder="이메일을 입력하시오">
             <form:errors path="email" cssStyle="font-weight: bold; color: #e95050"/>
           </div>
 
+          <div class="single-input-fields">
+            <label>좋아하는 장르</label>
+            <input type="text" name="favoriteGenre" value="${memberDTOList.favoriteGenre}" placeholder="좋아하는 장르 입력">
+            <form:errors path="favoriteGenre" cssStyle="font-weight: bold; color: #e95050"/>
+          </div>
+          <div class="single-input-fields">
+            <label>성별</label>
+            <select name="gender" value="${memberDTOList.gender}" style="margin-right: 550px;">
 
+
+              <option value="남자">남자</option>
+              <option value="여자">여자</option>
+
+            </select>
+          </div>
+        </div>
 
         </c:forEach>
-
         <!-- form Footer -->
         <div class="register-footer">
           <p> Already have an account? <a href="/login"> Login</a> here</p>
 
-          <button class="submit-btn3" type="submit" id="check">Sign Up</button>
+          <button class="submit-btn3" type="submit" id="check">수정하기</button>
 
         </div>
 
       </div>
 
     </div>
-  </div>
-  </div>
-</main>
+    </form:form>
     <!-- Register Area End -->
 
 
@@ -152,7 +165,7 @@
           $.ajax({
 
             type: 'POST',
-            url: '/idCheck',
+            url: '/UpdateIdCheck',
             data: 'id=' + $('#userId').val(),
             dataType: 'json',
             success: function(result) {
@@ -166,7 +179,21 @@
                 // $("#result").attr('color','green');
 
 
-              } else {
+              }
+
+              else if (result == '2') {
+                $("#result").text('기존아이디로 사용하겠습니까?');
+
+                $('#checkId').val(1);
+
+
+                document.getElementById('result').style.color ="blue";
+                // $("#result").attr('color','green');
+
+
+              }
+
+              else {
                 $('#result').text('이미 사용중인 아이디입니다.');
                 $('#checkId').val(1);
                 document.getElementById('result').style.color ="red";
@@ -175,6 +202,7 @@
             },
             error: function(a, b, c) {
               console.log(a, b, c);
+
             }
 
           });
@@ -245,4 +273,3 @@
 
 </body>
 </html>
-</form:form>

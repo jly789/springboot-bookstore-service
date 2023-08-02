@@ -33,10 +33,9 @@
     <select id="ReviewOrderIdFind"  resultType="Integer"
             parameterType="int">
 
-        select distinct nvl(max(b.orderId),0) from review a
-                                                       LEFT join orders b ON
-            a.bookId = b.bookId
-        where b.orderId = #{orderId}
+        select  nvl(max(orderId),0) from review
+
+        where orderId = #{orderId}
 
     </select>
 

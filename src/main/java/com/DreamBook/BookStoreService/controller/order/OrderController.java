@@ -47,17 +47,17 @@ public class OrderController {
     @GetMapping("/myOrder")
     public String  myOrder(Model model, HttpSession session,OrderDTO orderDTO)throws Exception{
 
+        int memberId = (int)session.getAttribute("memberId");
 
-
-        List<OrderDTO> list = orderService.orderFindList((int)session.getAttribute("memberId"));
-        model.addAttribute("list",list);
+        List<OrderDTO> list = orderService.orderFindList(memberId);
+//        model.addAttribute("list",list);
 
 //        List<ReviewFindDTO> reviewDTOList = reviewService.reviewOrderIdCheck(list);
 //          List<ReviewFindDTO> reviewFindDTOS= reviewService.ReviewCheck(list);
 
 
         List<OrderDTO> orderIdList = orderService.orderIdList(list);
-        model.addAttribute("orderIdList",orderIdList);
+//        model.addAttribute("orderIdList",orderIdList);
 
 
         List<OrderDTO> orderStateList = orderService.orderListOrderState(list);
@@ -65,7 +65,7 @@ public class OrderController {
 
         List<BookFindDTO> bookList = new ArrayList<>();
 
-        bookList = bookService.bookIdList2(orderIdList);
+        bookList = bookService.bookIdList2(orderIdList,memberId);
                 model.addAttribute("bookList",bookList);
 
 

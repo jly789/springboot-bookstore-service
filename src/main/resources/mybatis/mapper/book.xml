@@ -35,15 +35,30 @@
     </insert>
 
     <select id="bookList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        select * from book
+        select distinct * from book
 
 
+
+    </select>
+
+    <select id="bookAndReviewGrade" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        left join review b on a.bookId = b.bookId
+
+
+        WHERE a.bookId IN
+
+        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
+            #{bookAndReview.bookId}
+        </foreach>
+
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
 
     </select>
 
     <select id="bookListHighPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-        SELECT a.*,b.grade from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -53,13 +68,14 @@
             #{bookAndReview.bookId}
         </foreach>
 
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
 
-        order by price desc
+        order by a.price desc
 
     </select>
 
     <select id="bookListLowPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.*,b.grade from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -69,6 +85,7 @@
             #{bookAndReview.bookId}
         </foreach>
 
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
 
         order by price asc
 
@@ -79,24 +96,51 @@
 
     <select id="bookListManyOrders"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-        select  * from (
 
-        select a.bookId as bookId, count(b.orderId)as orderId from book a
-        LEFT JOIN orders b on
-        a.bookId = b.bookId
 
-        where b.bookId IN
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,avg(b.grade)as grade,count(b.reviewId) as reviewId, count(c.orderId)as orderId from book a
+        left join review b on a.bookId = b.bookId
+        left join orders c on b.bookId = c.bookId
+
+
+        WHERE a.bookId IN
 
         <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
-            ${bookAndReview.bookId}
+            #{bookAndReview.bookId}
         </foreach>
 
-        GROUP by a.bookId
-        )
---         order BY maxNum DESC
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
         ORDER BY orderId desc
 
+
+
+
+
+
     </select>
+
+
+    <select id="bookListManyReview"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,avg(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        left join review b on a.bookId = b.bookId
+
+
+        WHERE a.bookId IN
+
+        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
+            #{bookAndReview.bookId}
+        </foreach>
+
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
+
+        ORDER BY reviewId desc
+
+    </select>
+
+
+
+
 
     <select id="bookIdList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO"
     parameterType="int">
@@ -119,8 +163,8 @@
     </select>
 
 
-    <select id="bookIdList2" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT distinct a.* ,b.orderId from book a
+    <select id="bookIdList2" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO" parameterType="int">
+        SELECT  a.* ,b.orderId from book a
         left join orders b on a.bookId = b.bookId
 
 
@@ -128,6 +172,12 @@
         <foreach item="orderIdList" collection="orderIdList" open="(" close=")" separator=",">
             #{orderIdList.bookId}
         </foreach>
+
+        and
+
+        b.memberId = #{memberId}
+
+
 
         order by b.orderId asc
 
@@ -213,7 +263,7 @@
     </update>
 
     <select id="bookAndReview" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.*,b.grade from book a
+        SELECT a.bookId, avg(b.grade) from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -223,10 +273,18 @@
             #{bookAndReview.bookId}
         </foreach>
 
-
+        group by a.bookId
 
 
     </select>
+
+
+
+
+
+
+
+
 
     <delete id="deleteCart"  parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO" >
 

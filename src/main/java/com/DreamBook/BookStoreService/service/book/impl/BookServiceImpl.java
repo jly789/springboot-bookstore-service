@@ -84,8 +84,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDTO> bookAndReview(List<BookFindDTO> bookAndReview) throws Exception {  //기본 정렬
+    public List<BookFindDTO> bookListManyReview(List<BookFindDTO> bookAndReview) throws Exception {
+        return bookMapper.bookListManyReview(bookAndReview);
+    }
+
+    @Override
+    public List<BookFindDTO> bookAndReview(List<BookFindDTO> bookAndReview) throws Exception {  //기본 정렬
         return bookMapper.bookAndReview(bookAndReview);
+    }
+
+    @Override
+    public List<BookFindDTO> bookAndReviewGrade(List<BookFindDTO> bookAndReview) throws Exception {
+        return bookMapper.bookAndReviewGrade(bookAndReview);
     }
 
     @Override
@@ -98,11 +108,13 @@ public class BookServiceImpl implements BookService {
         return bookMapper.manyBookOrders(bookId);
     }
 
+
+
     @Override
-    public List<BookFindDTO> bookIdList2(List<OrderDTO> orderIdList) throws Exception {
+    public List<BookFindDTO> bookIdList2(List<OrderDTO> orderIdList,int memberId) throws Exception {
         //orderId리스트를 이용하여 book리스트찾기
 
-        return bookMapper.bookIdList2(orderIdList);
+        return bookMapper.bookIdList2(orderIdList,memberId);
     }
 
     @Override
