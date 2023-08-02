@@ -42,7 +42,7 @@
     </select>
 
     <select id="bookAndReviewGrade" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -52,13 +52,14 @@
             #{bookAndReview.bookId}
         </foreach>
 
-        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
+
 
     </select>
 
     <select id="bookListHighPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -68,14 +69,14 @@
             #{bookAndReview.bookId}
         </foreach>
 
-        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
 
         order by a.price desc
 
     </select>
 
     <select id="bookListLowPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -85,7 +86,7 @@
             #{bookAndReview.bookId}
         </foreach>
 
-        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
 
         order by price asc
 
@@ -98,7 +99,7 @@
 
 
 
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,avg(b.grade)as grade,count(b.reviewId) as reviewId, count(c.orderId)as orderId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,avg(b.grade)as grade,count(b.reviewId) as reviewId, count(c.orderId)as orderId from book a
         left join review b on a.bookId = b.bookId
         left join orders c on b.bookId = c.bookId
 
@@ -109,7 +110,7 @@
             #{bookAndReview.bookId}
         </foreach>
 
-        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
         ORDER BY orderId desc
 
 
@@ -122,7 +123,7 @@
 
     <select id="bookListManyReview"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,avg(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,avg(b.grade)as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -132,11 +133,35 @@
             #{bookAndReview.bookId}
         </foreach>
 
-        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
 
         ORDER BY reviewId desc
 
     </select>
+
+
+    <select id="genreSearch" parameterType="string"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId
+        from book a    left join review b on a.bookId = b.bookId
+        where genre = #{genre}
+
+        GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
+
+
+    </select>
+
+
+    <select id="genreSearchAll"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+
+        select * from book
+
+
+
+    </select>
+
 
 
 

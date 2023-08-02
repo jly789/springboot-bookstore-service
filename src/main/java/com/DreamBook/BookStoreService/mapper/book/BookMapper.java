@@ -39,6 +39,9 @@ public interface BookMapper {
 
     public List<BookFindDTO> bookAndReviewGrade(List<BookFindDTO>bookAndReview)throws Exception;
 
+    public List<BookFindDTO> genreSearch(String genre)throws Exception;
+    public List<BookFindDTO> genreSearchAll()throws Exception;
+
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
 
     public List<BookFindDTO> manyBookOrders(List bookId) throws Exception;

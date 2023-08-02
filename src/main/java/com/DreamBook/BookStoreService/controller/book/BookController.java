@@ -32,9 +32,12 @@ public class BookController {
     @GetMapping("/bookMain")
     public String bookMain( Model model)throws Exception{
 
+        String genreName = "전체";
+
        List<BookFindDTO> bookList = bookService.bookList();
         List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
         model.addAttribute("bookAndReview",bookListGrade);
+        model.addAttribute("genreName",genreName);
 
         return "book/main";
     }
@@ -42,13 +45,14 @@ public class BookController {
     @GetMapping("/sort{abc}")
     public String bookMainSort( Model model,@PathVariable("abc") String bb,
                                 @RequestParam("abc")int state)throws Exception{
+        String choice = "정렬";
 
         if(state ==0){
 
             List<BookFindDTO> bookList = bookService.bookList();
             List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
             model.addAttribute("bookAndReview",bookListGrade);
-
+            model.addAttribute("genreName",choice);
 
             return "book/main";
 
@@ -59,6 +63,7 @@ public class BookController {
             List<BookFindDTO> bookList = bookService.bookList();
             List<BookFindDTO> bookAndReviewHighPrice =bookService.bookListHighPrice(bookList);
             model.addAttribute("bookAndReviewHighPrice",bookAndReviewHighPrice);
+            model.addAttribute("genreName",choice);
             return "book/main";
 
         }
@@ -68,6 +73,7 @@ public class BookController {
             List<BookFindDTO> bookList = bookService.bookList();
             List<BookFindDTO> bookAndReviewLowPrice =bookService.bookListLowPrice(bookList);
             model.addAttribute("bookAndReviewLowPrice",bookAndReviewLowPrice);
+            model.addAttribute("genreName",choice);
             return "book/main";
         }
 
@@ -75,6 +81,7 @@ public class BookController {
             List<BookFindDTO> bookList = bookService.bookList();
             List<BookFindDTO> bookManyOrder =bookService.bookListManyOrders(bookList);
             model.addAttribute("bookManyOrder",bookManyOrder);
+            model.addAttribute("genreName",choice);
             return "book/main";
         }
 
@@ -82,6 +89,7 @@ public class BookController {
             List<BookFindDTO> bookList = bookService.bookList();
             List<BookFindDTO> bookManyReview =bookService.bookListManyReview(bookList);
             model.addAttribute("bookManyReview",bookManyReview);
+            model.addAttribute("genreName",choice);
             return "book/main";
         }
 
@@ -99,6 +107,109 @@ public class BookController {
         return choice;
 
     }
+    @ResponseBody
+    @PostMapping("/genreChoice")
+    public String genreChoice ( @RequestParam("choice")String choice)throws Exception {
+
+
+
+
+        return choice;
+
+    }
+
+    @GetMapping("/genre{choice}")
+    public String genreSearch( Model model,@PathVariable("choice") String bb,
+                                @RequestParam("choice")String choice)throws Exception {
+
+
+
+        if (choice.equals("전체")) {
+
+
+            List<BookFindDTO> genreSearch=  bookService.genreSearchAll();
+
+
+            model.addAttribute("genreSearch", genreSearch);
+            model.addAttribute("genreName",choice);
+
+            return "book/main";
+
+        }
+
+        if (choice.equals("수필")) {
+
+
+            List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
+
+
+            model.addAttribute("genreSearch", genreSearch);
+            model.addAttribute("genreName",choice);
+
+            return "book/main";
+
+        }
+        if (choice.equals("공포")) {
+
+
+            List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
+
+
+            model.addAttribute("genreSearch", genreSearch);
+            model.addAttribute("genreName",choice);
+
+            return "book/main";
+
+        }
+        if (choice.equals("코미디")) {
+
+
+
+
+            List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
+
+
+            model.addAttribute("genreSearch", genreSearch);
+            model.addAttribute("genreName",choice);
+
+            return "book/main";
+
+        }
+
+        if (choice.equals("소설")) {
+
+
+
+            List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
+
+
+            model.addAttribute("genreSearch", genreSearch);
+            model.addAttribute("genreName",choice);
+
+            return "book/main";
+
+        }
+
+        if (choice.equals("연애")) {
+
+
+
+
+            List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
+
+
+            model.addAttribute("genreSearch", genreSearch);
+            model.addAttribute("genreName",choice);
+
+            return "book/main";
+
+        }
+        return "book/main";
+    }
+
+
+
+
 
 
     @GetMapping("/bookAdd")

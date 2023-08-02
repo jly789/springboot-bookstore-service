@@ -99,6 +99,16 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookFindDTO> genreSearch(String genre) throws Exception {
+        return bookMapper.genreSearch(genre);
+    }
+
+    @Override
+    public List<BookFindDTO> genreSearchAll() throws Exception {
+        return bookMapper.genreSearchAll();
+    }
+
+    @Override
     public List<BookFindDTO> bookIdList(int bookId) throws Exception { //bookId로 통해 book리스트 출력
         return bookMapper.bookIdList(bookId);
     }
