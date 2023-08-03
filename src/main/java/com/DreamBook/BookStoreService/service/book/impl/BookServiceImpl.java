@@ -69,6 +69,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookFindDTO> bookListPrice(int price) throws Exception {
+        return bookMapper.bookListPrice(price);
+    }
+
+    @Override
     public List<BookFindDTO> bookListHighPrice(List<BookFindDTO>bookAndReview) throws Exception { //높은가격순에 의한 정렬
         return  bookMapper.bookListHighPrice(bookAndReview);
     }
@@ -106,6 +111,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookFindDTO> genreSearchAll() throws Exception {
         return bookMapper.genreSearchAll();
+    }
+
+    @Override
+    public List<BookFindDTO> bookPriceRange(int price) throws Exception {
+        return bookMapper.bookPriceRange(price);
     }
 
     @Override

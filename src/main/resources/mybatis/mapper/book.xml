@@ -6,6 +6,7 @@
 <mapper namespace="com.DreamBook.BookStoreService.mapper.book.BookMapper">
 
 
+
     <select id="maxNum" resultType="int">
         select nvl(max(bookId),0) from book
     </select>
@@ -41,16 +42,37 @@
 
     </select>
 
+    <select id="bookListPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        select distinct * from book
+        where price >= #{price}
+
+
+
+    </select>
+
     <select id="bookAndReviewGrade" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
         SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
-        WHERE a.bookId IN
+        WHERE   a.bookId IN
+
+        <if test='bookAndReview.size ==0'>
+            null
+        </if>
+
 
         <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
-            #{bookAndReview.bookId}
+
+
+                #{bookAndReview.bookId}
+
+
+
         </foreach>
+
+
 
         GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
 
@@ -157,6 +179,18 @@
 
 
         select * from book
+
+
+
+    </select>
+
+
+    <select id="bookPriceRange" parameterType="int"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+
+        select * from book
+
+        where price >= #{price}
 
 
 

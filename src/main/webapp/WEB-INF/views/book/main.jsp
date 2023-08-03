@@ -27,7 +27,42 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+<style>
+.slidecontainer {
+width: 300px;
+margin-top: 100px;
+}
 
+.slider {
+-webkit-appearance: none; /* 기본 CSS 스타일을 적용하지 않기 위해서 */
+width: 170px; /* 슬라이더 길이 */
+height: 8px; /* 슬라이더 두께 */
+border-radius: 1px; /* 슬라이더 모서리를 약간 둥글게 */
+background: #ccc; /* 슬라이더 색상 */
+outline: none; /* 슬라이더 테두리 없이 */
+}
+
+/* 슬라이더 핸들(클릭해서 드래그하는 부분) 커스텀
+(Chrome, Opera, Safari, Edge 브라우저를 위해서는 -webkit-을,
+Firefox 브라우저를 위해서는 -moz- 를 사용하세요 */
+.slider::-webkit-slider-thumb {
+-webkit-appearance: none; /* 기본 CSS 스타일을 적용하지 않기 위해서 */
+appearance: none; /* 기본 CSS 스타일을 적용하지 않기 위해서 */
+width: 25px; /* 슬라이더 핸들 길이 */
+height: 25px; /* 슬라이더 핸들 높이 */
+border-radius: 50%; /* 핸들 모양을 원모양으로 만들기 위함 */
+background: gray; /* 슬라이더 핸들 색상 */
+cursor: pointer; /* 슬라이더 핸들에 마우스를 갖다대면 포인터로 변경 */
+}
+
+.slider::-moz-range-thumb {
+width: 100px; /* 슬라이더 핸들 길이 */
+height: 25px; /* 슬라이더 핸들 높이 */
+border-radius: 50%; /* 핸들 모양을 원모양으로 만들기 위함 */
+background: #00f; /* 슬라이더 핸들 색상 */
+cursor: pointer; /* 슬라이더 핸들에 마우스를 갖다대면 포인터로 변경 */
+}
+</style>
 
 <body>
 
@@ -175,19 +210,25 @@
                             <!-- Range Slider Start -->
                             <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow mb-40">
                                 <div class="small-tittle">
-                                    <h4>Filter by Price</h4>
+
                                 </div>
                                 <div class="widgets_inner">
-                                    <div class="range_item">
-                                        <input type="text" class="js-range-slider" value="" />
-                                        <div class="d-flex align-items-center">
 
-                                            <div class="price_value d-flex justify-content-center">
-                                                <input type="text" class="js-input-from" id="amount" readonly />
-                                                <span>to</span>
-                                                <input type="text" class="js-input-to" id="amount" readonly />
-                                            </div>
-                                        </div>
+                                    <div class="range_item">
+
+
+
+
+                                                <div class="slidecontainer">
+                                                    <h4 style="text-align: left;">가격 범위 설정</h4>
+                                                    <input type="range" step="10000" min="0" max="100000"  value="${priceRange}" class="slider" id="myRange"
+                                                    style="text-align: left;">
+                                                         <p>가격: <span id="value"></span>원 이상인 도서    <a href="/bookMain" style="color: red;">검색
+                                                         </a></p>
+
+
+                                                </div>
+
                                     </div>
                                 </div>
                             </aside>
@@ -197,58 +238,10 @@
                             <!--  Select City items End-->
 
                             <!-- select-Categories start -->
-                            <div class="select-Categories pt-100 pb-60">
-                                <div class="small-tittle mb-20">
-                                    <h4>Filter by Publisher</h4>
-                                </div>
-                                <label class="container">Green Publications
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Anondo Publications
-                                    <input type="checkbox" checked="checked active">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Rinku Publications
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Sheba Publications
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Red Publications
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
+
                             <!-- select-Categories End -->
                             <!-- select-Categories start -->
-                            <div class="select-Categories">
-                                <div class="small-tittle mb-20">
-                                    <h4>Filter by Author Name</h4>
-                                </div>
-                                <label class="container">Buster Hyman
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Phil Harmonic
-                                    <input type="checkbox" checked="checked active">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Cam L. Toe
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Otto Matic
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container">Juan Annatoo
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
+
                             <!-- select-Categories End -->
                         </div>
                     </div>
@@ -273,6 +266,7 @@
                     </div>
                     <div class="best-selling p-0">
                         <div class="row">
+
                             <c:if test="${bookAndReview !=null}">
 
                             <c:forEach var="bookList" items="${bookAndReview}">
@@ -729,6 +723,47 @@
 </div>
 
 <script>
+
+
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("value");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
+
+    $('#myRange').change(function () {
+
+        $.ajax({
+
+            type: 'POST',
+            url: '/priceRange',
+            data: {"price": $('#myRange').val(),
+
+
+            },
+            dataType: 'text',
+
+            success: function(price) {
+
+
+
+
+
+
+
+            },
+            error: function(a, b, c) {
+                alert('실패');
+                console.log(a, b, c);
+            }
+
+        });
+
+
+    });
 
 
     $('#genre').change(function () {

@@ -26,6 +26,7 @@ public interface BookMapper {
     public void bookCartInsertData(BookCartDTO bookCartDTO) throws Exception;
 
     public List<BookFindDTO> bookList() throws Exception;
+    public List<BookFindDTO> bookListPrice(int price) throws Exception;
 
     public List<BookFindDTO> bookListHighPrice(List<BookFindDTO>bookAndReview) throws Exception;
 
@@ -41,6 +42,9 @@ public interface BookMapper {
 
     public List<BookFindDTO> genreSearch(String genre)throws Exception;
     public List<BookFindDTO> genreSearchAll()throws Exception;
+
+    public List<BookFindDTO> bookPriceRange(int price)throws Exception;
+
 
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
 
