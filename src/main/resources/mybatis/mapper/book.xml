@@ -197,10 +197,6 @@
     </select>
 
 
-
-
-
-
     <select id="bookIdList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO"
     parameterType="int">
         select * from book
@@ -256,6 +252,22 @@
 
 
     </select>
+
+
+    <select id="orderBookCartList"  resultType="com.DreamBook.BookStoreService.dto.book.BookCartDTO"
+            parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO">
+        select  * from  book a
+                            LEFT JOIN cart b ON
+            a.bookId = b.bookId
+                            LEFT JOIN member c ON
+            b.memberId =c.memberId
+        where b.memberId = #{memberId}
+        ORDER BY b.bookId
+
+
+
+    </select>
+
 
 
 <!--    <update id="update" parameterType="com.DreamBook.BookStoreService.dto.book.BookDTO">-->
@@ -346,6 +358,13 @@
 
 
     <delete id="deleteCart"  parameterType="com.DreamBook.BookStoreService.dto.book.BookCartDTO" >
+
+        delete  cart
+        WHERE	cartId = #{cartId}
+
+    </delete>
+
+    <delete id="OrderDeleteCart"  parameterType="int" >
 
         delete  cart
         WHERE	cartId = #{cartId}

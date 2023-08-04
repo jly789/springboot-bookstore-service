@@ -10,9 +10,12 @@ public class BookCartDTO {
     private int cartId;
     private int memberId;
     private int bookId;
+    private String bookName;
     private int wishQuantity;
     private int amount;
     private int price;
+
+
 
 
 

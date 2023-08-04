@@ -39,6 +39,8 @@ public interface BookService {
 
     public List<BookFindDTO> bookIdList2(List<OrderDTO> orderIdList,int memberId) throws Exception;
 
+    public List<BookCartDTO> orderBookCartList(BookCartDTO bookCartDTO) throws Exception;
+
     public List<BookFindDTO> bookAndReview(List<BookFindDTO>bookAndReview)throws Exception;
 
     public List<BookFindDTO> bookAndReviewGrade(List<BookFindDTO>bookAndReview)throws Exception;
@@ -61,6 +63,8 @@ public interface BookService {
     public void   updateAmount(BookCartDTO bookCartDTO) throws Exception;
 
     public void   deleteCart(BookCartDTO bookCartDTO) throws Exception;
+
+    public void   OrderDeleteCart(int cartId) throws Exception;
 
 
 

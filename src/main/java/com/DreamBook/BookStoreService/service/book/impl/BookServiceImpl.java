@@ -142,7 +142,10 @@ public class BookServiceImpl implements BookService {
         return bookMapper.bookCartList(memberId);
     }
 
-
+    @Override
+    public List<BookCartDTO> orderBookCartList(BookCartDTO bookCartDTO) throws Exception {
+        return bookMapper.orderBookCartList(bookCartDTO);
+    }
 
 //    @Override
 //    public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception { //
@@ -174,5 +177,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteCart(BookCartDTO bookCartDTO) throws Exception {
         bookMapper.deleteCart(bookCartDTO);
+    }
+
+    @Override
+    public void OrderDeleteCart(int cartId) throws Exception {
+        bookMapper.OrderDeleteCart(cartId);
     }
 }

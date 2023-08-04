@@ -324,6 +324,9 @@ public class BookController {
     public String bookCart(BookCartDTO bookCartDTO, Model model,HttpSession session,Model mode
     ,@RequestParam("bookId")int bookId,@RequestParam("amount")int amount)throws Exception {
 
+
+
+
         bookCartDTO.setBookId(bookId);
         bookCartDTO.setPrice(amount);
         int totalPrice = 0;

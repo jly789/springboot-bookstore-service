@@ -56,6 +56,7 @@ public interface BookMapper {
 
     public List<BookDTO> bookCartList(int memberId) throws Exception;
 
+    public List<BookCartDTO> orderBookCartList(BookCartDTO bookCartDTO) throws Exception;
 
     public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception;
 
@@ -67,4 +68,6 @@ public interface BookMapper {
     public void   updateAmount(BookCartDTO bookCartDTO) throws Exception;
 
     public void   deleteCart(BookCartDTO bookCartDTO) throws Exception;
+    public void   OrderDeleteCart(int cartId) throws Exception;
+
 }

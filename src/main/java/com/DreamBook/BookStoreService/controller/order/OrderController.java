@@ -49,32 +49,25 @@ public class OrderController {
 
         int memberId = (int)session.getAttribute("memberId");
 
-        List<OrderDTO> list = orderService.orderFindList(memberId);
-//        model.addAttribute("list",list);
 
-//        List<ReviewFindDTO> reviewDTOList = reviewService.reviewOrderIdCheck(list);
-//          List<ReviewFindDTO> reviewFindDTOS= reviewService.ReviewCheck(list);
+     List<OrderDTO> orderList =   orderService.orderFindList(memberId);
 
-
-        List<OrderDTO> orderIdList = orderService.orderIdList(list);
-//        model.addAttribute("orderIdList",orderIdList);
-
-
-        List<OrderDTO> orderStateList = orderService.orderListOrderState(list);
-        model.addAttribute("orderStateList",orderStateList);
-
-        List<BookFindDTO> bookList = new ArrayList<>();
-
-        bookList = bookService.bookIdList2(orderIdList,memberId);
-                model.addAttribute("bookList",bookList);
+        model.addAttribute("bookList",orderList);
 
 
         return  "order/myOrder";
     }
 
     @PostMapping("/order")
-    public String  order(Model model, HttpSession session,@RequestParam("totalPrice")int totalPrice)throws Exception{
+    public String  order(BookCartDTO cartDTO,Model model, HttpSession session,@RequestParam("cartId")int cartId,@RequestParam("totalPrice")int totalPrice)throws Exception{
         int memberId = (Integer) session.getAttribute("memberId");
+
+
+        List<BookCartDTO> orderBookCartList = bookService.orderBookCartList(cartDTO);
+
+        model.addAttribute("orderBookCartList",orderBookCartList);
+
+
 
         model.addAttribute("memberId",memberId);
 
@@ -114,27 +107,42 @@ public class OrderController {
 
     @ResponseBody
     @PostMapping("/payment")
-    public String  payment(Model model, HttpSession session, OrderDTO orderDTO, DeliveryDTO deliveryDTO)
+    public String  payment(Model model, HttpSession session, OrderDTO orderDTO, DeliveryDTO deliveryDTO
+                           ,@RequestParam("bookId") int[] bookId,@RequestParam("wishQuantity") int[] wishQuantity
+                          , @RequestParam("cartId") int[] cartId
+                        )
     throws Exception{
 
 
-        List<BookDTO> bookCartList = bookService.bookCartList(orderDTO.getMemberId());
+//
+        for (int i = 0; i < bookId.length; i++) {
+            System.out.println("도서번호:"+bookId[i]);
+            System.out.println("개수"+wishQuantity[i]);
+        }
 
-        for(int i =0; i<bookCartList.size(); i++) {
+
+//        List<BookDTO> bookCartList = bookService.bookCartList(orderDTO.getMemberId());
+
+        for (int i= 0; i < bookId.length; i++) {
             int maxNum = orderService.maxNum();
             orderDTO.setOrderId(maxNum+1);
             String orderNum = orderDTO.getOrderNum();
             session.setAttribute("orderNum",orderNum);
             deliveryDTO.setOrderId(maxNum+1);
-            orderDTO.setBookId(bookCartList.get(i).getBookId());
+                orderDTO.setBookId(bookId[i]);
+               orderDTO.setWishQuantity(wishQuantity[i]);
+
             orderService.orderInsertData(orderDTO);
+            bookService.OrderDeleteCart(cartId[i]);
         }
 
         orderService.deliveryInsertData(deliveryDTO);
 
 
 
-        return "book/main";
+
+
+        return "bookMain";
     }
 
 

@@ -62,11 +62,13 @@
               <th scope="col">Total</th>
                 <th scope="col">수량</th>
 
+
             </tr>
             </thead>
             <tbody>
 
             <c:forEach var="bookCartList" items="${bookCartList}">
+
             <input type="hidden" name="memberId" id="memberId" value="${memberId}"/>
             <tr>
               <td>
@@ -130,7 +132,9 @@ wishQuantity=${bookCartList.wishQuantity}" style="color: black">
 
                 <br/>
               </td>
-
+            <td>
+              <input type="hidden" name="cartId" id="" value="${bookCartList.cartId}"/>
+            </td>
               </c:forEach>
             <tr>
               <td></td>
