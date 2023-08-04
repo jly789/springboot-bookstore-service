@@ -184,12 +184,18 @@
               <ul class="list">
                 <li>
                   <a href="#" style="color: red;">
-                    <c:forEach var="bookCartList" items="${bookCartList}">
-                      <input type="hidden" id="test" value="${bookCartList.bookId}">
-                     <input type="hidden" id="purchaseBook"  value=" ${bookCartList.bookName}"/> 구매도서:  ${bookCartList.bookName}<br/></c:forEach>
+                    <c:forEach var="orderBookCartList" items="${orderBookCartList}" varStatus="status">
+                      <input type="hidden" id="test"  name="name=currentbook${status.index}" value="${orderBookCartList.cartId}">
+
+                      <input type="hidden" id="purchaseBook"  value=" ${orderBookCartList.bookName}"/>
+                      구매도서: ${orderBookCartList.bookName} X ${orderBookCartList.wishQuantity}권<br/>
+                      <input type="hidden" id="wishQuantity"  value=" ${orderBookCartList.wishQuantity}"/>
+                    </c:forEach>
                     <span>Total</span>
                   </a>
                 </li>
+
+
 
               </ul>
               <ul class="list list_2">
@@ -246,10 +252,27 @@
 </main>
 
 <script>
+
+
+
+
+
   var IMP = window.IMP;
   IMP.init("imp88246600");
 
   $('#payment').click(function () {
+
+
+    var bookId = [];
+    var wishQuantity = [];
+    var cartId = [];
+
+    <c:forEach items="${orderBookCartList}" var="item">
+    bookId.push(${item.bookId});
+    wishQuantity.push(${item.wishQuantity});
+    cartId.push(${item.cartId});
+    </c:forEach>
+
 
     //pg: "html5_inicis"
     // pg : 'kakaopay.TC0ONETIME',
@@ -282,7 +305,10 @@
           type: 'post',
           url: '/payment',
           data: {
-
+            bookId:   bookId,
+            wishQuantity:wishQuantity,
+            cartId: cartId,
+            bookName: $('#purchaseBook').val(),
 
             impUid: data.imp_uid, // 결제번호
             orderNum: data.merchant_uid, //주문번호
@@ -311,6 +337,7 @@
             // request: $('#request').val(), // 요구사항
 
           },
+          traditional: true,
           dataType: 'JSON',
 
         });
@@ -321,7 +348,7 @@
 
       alert("결제성공!");
 
-      window.location.href = "/myOrder";
+      // window.location.href = "/myOrder";
     });
 
 

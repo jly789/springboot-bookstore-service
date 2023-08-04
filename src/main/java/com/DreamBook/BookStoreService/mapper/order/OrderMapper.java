@@ -24,4 +24,7 @@ public interface OrderMapper {
     public List<OrderDTO> orderListOrderState(List<OrderDTO> list) throws Exception;
 
 
+    public List<OrderDTO> dd(OrderDTO orderDTO) throws Exception;
+
+
 }

@@ -24,9 +24,9 @@
 
     <insert id="orderInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.OrderDTO">
 
-        insert into orders(orderId,memberId,bookId,orderNum,impUid,amount,orderState,orderDate,usePoint)
+        insert into orders(orderId,memberId,bookId,orderNum,impUid,amount,wishQuantity,orderState,orderDate,usePoint)
             VALUES (#{orderId},#{memberId},#{bookId},#{orderNum},
-            #{impUid},#{amount},'ORDER',SYSDATE ,#{usePoint})
+            #{impUid},#{amount},#{wishQuantity},'ORDER',SYSDATE ,#{usePoint})
 
 
     </insert>
@@ -49,15 +49,7 @@
 
     </select>
 
-    <select id="orderFindList"  resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO"
-            parameterType="int">
---         select distinct orderNum,orderState from orders
-select distinct orderNum,orderState,orderId,memberId from orders
-        where memberId = #{memberId}
 
-
-
-    </select>
 
 
     <select id="orderIdList" resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO">
@@ -94,5 +86,24 @@ select distinct orderNum,orderState,orderId,memberId from orders
     </select>
 
 
+    <select id="dd" resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO"
+    parameterType="int">
+
+        select * from cart
+        where cartId = #{cartId}
+
+    </select>
+
+    <select id="orderFindList"  resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO"
+            parameterType="int">
+
+        select *
+        from orders a
+                 left join book b on a.bookId = b.bookId
+        where a.memberId = #{memberId}
+
+
+
+    </select>
 
 </mapper>

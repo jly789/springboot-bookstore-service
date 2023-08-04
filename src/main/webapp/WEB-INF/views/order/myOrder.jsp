@@ -104,21 +104,22 @@
                 </td>
 
                   <td>
-                      <h5 >1</h5>
+                      <h5 >${bookList.wishQuantity}</h5>
                       <input type="hidden" id="qty1" value="1">
                   </td>
 
                   <td>
-                      <h5 >${bookList.price}</h5>
-                      <input type="hidden" id="qty13" value="1">
+                      <h5 >(${bookList.price * bookList.wishQuantity}원)</h5>
+                      <input type="hidden" id="qty13" value="${bookList.wishQuantity}">
                   </td>
 
 
                   <td style="color: red">
 
-                      <c:forEach var="orderStateList" items="${orderStateList}">
-                          ${orderStateList.orderState}
-                      </c:forEach>
+
+                          ${bookList.orderState}<br/>
+                    ${bookList.orderDate}(주문완료)
+
                   </td>
 
 
@@ -133,7 +134,7 @@
 
             <div class="checkout_btn_inner float-right">
               <a class="btn" href="/bookMain">계속쇼핑하기</a>
-              <button type="submit" class="btn checkout_btn" id="payment">결제하기</button>
+
 
             </div>
           </div>
