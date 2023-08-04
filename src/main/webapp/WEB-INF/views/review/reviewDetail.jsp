@@ -87,7 +87,13 @@
        <c:forEach var="reviewDetail" items="${reviewDetail}">
                     <div style="text-align: center">
                     <div class="comment-form">
-                        <h4>Review</h4>
+                        <c:if test="${loginId!=null}">
+                        <h4>My Review</h4>
+                        </c:if>
+
+                        <c:if test="${loginId==null}">
+                            <h4>Review</h4>
+                        </c:if>
 <%--                        <form class="form-contact comment_form" action="/review" method="post" id="commentForm">--%>
                             <div class="row">
                                 <div class="col-12">
@@ -111,35 +117,46 @@
                                                             <span class="text-bold"></span>
 
                                                             <c:if test="${reviewDetail.grade==1}">
-                                                                <i class="fas fa-star"></i>
+                                                                <h6 > <strong>(기존 평점)</strong></h6>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+
                                                             </c:if>
 
                                                             <c:if test="${reviewDetail.grade==2}">
 
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
+                                                                <h6 > <strong>(기존 평점)</strong></h6>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+
                                                             </c:if>
 
                                                             <c:if test="${reviewDetail.grade==3}">
 
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
+                                                                <h6 > <strong>(기존 평점)</strong></h6>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+
                                                             </c:if>
 
                                                             <c:if test="${reviewDetail.grade==4}">
 
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
+                                                                <h6 > <strong>(기존 평점)</strong></h6>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+
                                                             </c:if>
 
                                                             <c:if test="${reviewDetail.grade==5}">
 
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
-                                                                <i class="fas fa-star"></i>
+                                                                <h6 > <strong>(기존 평점)</strong></h6>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
                                                             </c:if>
                                                         </fieldset>
                                                     구매도서   <a href="/${reviewDetail.bookId}"><img src="files/${reviewDetail.fileName}" alt=""
@@ -190,12 +207,24 @@
 
 
 
-
+                            <c:if test="${loginId!=null}">
                             <div class="form-group">
-
+                                <a href="/reviewUpdate?reviewId=${reviewDetail.reviewId}&userId=${loginId}">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">리뷰수정</button></a>
+                                <a href="/reviewDelete?reviewId=${reviewDetail.reviewId}">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">리뷰삭제</button></a>
                                 <a href="/review">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">뒤로가기</button></a>
+
                             </div>
+                            </c:if>
+
+
+
+                                <c:if test="${loginId==null}">
+                                <div class="form-group">
+
+                                    <a href="/review">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">뒤로가기</button></a>
+                                </div>
                             </div>
+                        </c:if>
 <%--                        </form>--%>
                     </div>
                 </div>
@@ -210,9 +239,24 @@
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
+<script>
+$('#delete').click(function (){
 
 
 
+    if (!confirm("리뷰를 삭제 하시겠습니까?")) {
+
+        return false;
+    } else {
+        alert("삭제완료");
+        return true;
+    }
+
+
+
+
+});
+</script>
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
 <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>

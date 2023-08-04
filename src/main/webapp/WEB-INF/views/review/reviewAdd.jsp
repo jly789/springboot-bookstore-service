@@ -100,7 +100,7 @@
                                                 <input type="hidden" name="bookId" value="${bookId}"/>
                                                 <input type="hidden" name="orderId" value="${orderId}"/>
 
-                                                <input class="form-control" name="reviewSubject"  type="text" placeholder="제목"
+                                                <input class="form-control" name="reviewSubject" id="reviewSubject"  type="text" placeholder="제목"
                                                 style="width : 500px; height : 40px; margin-left: 539px;" >
 
                                         </div>
@@ -112,19 +112,20 @@
 
 
 
-                                            <fieldset>
-                                                <span class="text-bold"></span>
-                                                <input type="radio" name="grade" value="5" id="rate1"><label
-                                                    for="rate1">★</label>
-                                                <input type="radio" name="grade" value="4" id="rate2"><label
-                                                    for="rate2">★</label>
-                                                <input type="radio" name="grade" value="3" id="rate3"><label
-                                                    for="rate3">★</label>
-                                                <input type="radio" name="grade" value="2" id="rate4"><label
-                                                    for="rate4">★</label>
-                                                <input type="radio" name="grade" value="1" id="rate5"><label
-                                                    for="rate5">★</label>
-                                            </fieldset>
+                                                <fieldset id="grade" >
+                                                    <span class="text-bold" ></span>
+                                                    <input type="radio" name="grade" value="5" id="rate1"><label
+                                                        for="rate1">★</label>
+                                                    <input type="radio" name="grade" value="4" id="rate2"><label
+                                                        for="rate2">★</label>
+                                                    <input type="radio" name="grade" value="3" id="rate3"><label
+                                                        for="rate3">★</label>
+                                                    <input type="radio" name="grade" value="2" id="rate4"><label
+                                                        for="rate4">★</label>
+                                                    <input type="radio" name="grade" value="1" id="rate5"><label
+                                                        for="rate5">★</label>
+                                                </fieldset>
+
 
                                             </div>
                                         </div>
@@ -159,7 +160,7 @@
 
 
                             <div class="form-group">
-                                <button type="submit" class="button button-contactForm btn_1 boxed-btn">작성하기</button>
+                                <button type="submit" id="insert" class="button button-contactForm btn_1 boxed-btn">작성하기</button>
                             </div>
                             </div>
 <%--                        </form>--%>
@@ -176,6 +177,22 @@
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
 
+<script>
+
+    $('#insert').click(function (){
+
+        if($('#reviewSubject').val() ==''){
+            alert("제목을 입력해주세요!");
+            return false;
+        }
+
+
+
+
+    });
+
+
+</script>
 
 
 <!-- JS here -->

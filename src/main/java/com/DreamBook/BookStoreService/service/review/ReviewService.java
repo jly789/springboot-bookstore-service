@@ -3,9 +3,7 @@ package com.DreamBook.BookStoreService.service.review;
 import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
+import com.DreamBook.BookStoreService.dto.review.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -16,7 +14,12 @@ public interface ReviewService {
 
     public void insertReviewData(ReviewAddDTO ReviewAddDTO, MultipartFile file) throws Exception;
 
-    public void insertReviewNotImage(ReviewAddDTO ReviewAddDTO) throws Exception;
+    public void insertReviewNotImage(ReviewAddDTO ReviewAddDTO,MultipartFile file) throws Exception;
+
+    public void updateReviewData(ReviewUpdateDTO reviewUpdateDTO, MultipartFile file) throws Exception;
+    public void updateReviewDataNotImage(ReviewUpdateDTO reviewUpdateDTO) throws Exception;
+
+    public void deleteReview(int reviewId) throws Exception;
 
     public int ReviewOrderIdFind(int orderId) throws Exception;
 

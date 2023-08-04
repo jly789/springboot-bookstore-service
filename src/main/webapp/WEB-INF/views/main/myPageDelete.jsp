@@ -50,7 +50,7 @@
       <!-- form Footer -->
       <div class="login-footer">
 
-        <p>생각이 바뀌셨으면<a href="/">뒤로가기</a>  here</p>
+        <p>생각이 바뀌셨으면 <a href="/">Click</a>  here</p>
         <button class="submit-btn3" id="remove">탈퇴하기</button>
       </div>
     </form>

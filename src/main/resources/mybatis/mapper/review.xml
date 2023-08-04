@@ -82,6 +82,37 @@
 --
     </select>
 
+
+    <update id="updateReviewData" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO">
+
+    update review
+    set reviewSubject= #{reviewSubject},reviewContent=#{reviewContent},reviewFileName =#{reviewFileName},
+        reviewFilePath= #{reviewFilePath},grade=#{grade}
+
+    where reviewId = #{reviewId}
+
+    </update>
+
+    <update id="updateReviewDataNotImage" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO">
+
+        update review
+        set reviewSubject= #{reviewSubject},reviewContent=#{reviewContent},grade=#{grade}
+
+        where reviewId = #{reviewId}
+
+    </update>
+
+    <delete id="deleteReview" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewDeleteDTO">
+
+       delete from review
+
+       where reviewId = #{reviewId}
+
+    </delete>
+
+
+
+
 <!--    where b.memberId in #{memberId}-->
 
 <!--    <select id="bookReviewList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">-->

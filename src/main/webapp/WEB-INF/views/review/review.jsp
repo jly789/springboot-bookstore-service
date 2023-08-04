@@ -42,15 +42,15 @@
             <div class="col-xl-7 col-lg-7 col-md-12">
                 <div class="nav-button mb-40">
                     <!--Nav Button  -->
-                    <nav>
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">All</a>
-                            <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" href="#nav-two" role="tab" aria-controls="nav-two" aria-selected="false">Horror</a>
-                            <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">Thriller</a>
-                            <a class="nav-link" id="nav-four-tab" data-bs-toggle="tab" href="#nav-four" role="tab" aria-controls="nav-four" aria-selected="false">Science Fiction</a>
-                            <a class="nav-link" id="nav-five-tab" data-bs-toggle="tab" href="#nav-five" role="tab" aria-controls="nav-five" aria-selected="false">History</a>
-                        </div>
-                    </nav>
+<%--                    <nav>--%>
+<%--                        <div class="nav nav-tabs" id="nav-tab" role="tablist">--%>
+<%--                            <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">All</a>--%>
+<%--                            <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" href="#nav-two" role="tab" aria-controls="nav-two" aria-selected="false">Horror</a>--%>
+<%--                            <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">Thriller</a>--%>
+<%--                            <a class="nav-link" id="nav-four-tab" data-bs-toggle="tab" href="#nav-four" role="tab" aria-controls="nav-four" aria-selected="false">Science Fiction</a>--%>
+<%--                            <a class="nav-link" id="nav-five-tab" data-bs-toggle="tab" href="#nav-five" role="tab" aria-controls="nav-five" aria-selected="false">History</a>--%>
+<%--                        </div>--%>
+<%--                    </nav>--%>
                     <!--End Nav Button  -->
                 </div>
             </div>
@@ -83,36 +83,36 @@
                                         <div class="review">
                                             <div class="rating">
                                                 <c:if test="${reviewAllList.grade==1}">
-                                                <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
                                                 </c:if>
 
                                                 <c:if test="${reviewAllList.grade==2}">
 
-                                                    <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
                                                 </c:if>
 
                                                 <c:if test="${reviewAllList.grade==3}">
 
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
                                                 </c:if>
 
                                                 <c:if test="${reviewAllList.grade==4}">
-
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
                                                 </c:if>
 
                                                 <c:if test="${reviewAllList.grade==5}">
 
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
                                                 </c:if>
 
 

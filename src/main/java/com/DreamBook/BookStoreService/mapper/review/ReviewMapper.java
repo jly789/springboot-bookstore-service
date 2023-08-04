@@ -1,9 +1,7 @@
 package com.DreamBook.BookStoreService.mapper.review;
 
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
+import com.DreamBook.BookStoreService.dto.review.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,8 +12,14 @@ public interface ReviewMapper {
 
     public int maxNum() throws Exception;
     public void insertReviewData(ReviewAddDTO ReviewAddDTO) throws Exception;
-
     public void insertReviewDataNotImg(ReviewAddDTO ReviewAddDTO) throws Exception;
+    public void updateReviewData(ReviewUpdateDTO reviewUpdateDTO) throws Exception;
+
+    public void updateReviewDataNotImage(ReviewUpdateDTO reviewUpdateDTO) throws Exception;
+
+    public void deleteReview(int reviewId) throws Exception;
+
+
 
     public List<ReviewFindDTO> reviewAllList() throws Exception;
 

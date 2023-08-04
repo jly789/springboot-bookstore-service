@@ -2,9 +2,7 @@ package com.DreamBook.BookStoreService.service.review.impl;
 
 import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewDTO;
-import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
+import com.DreamBook.BookStoreService.dto.review.*;
 import com.DreamBook.BookStoreService.mapper.review.ReviewMapper;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,10 +88,25 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public void insertReviewNotImage(ReviewAddDTO ReviewAddDTO) throws Exception {
+    public void insertReviewNotImage(ReviewAddDTO ReviewAddDTO,MultipartFile file) throws Exception {
 
 
-            reviewMapper.insertReviewDataNotImg(ReviewAddDTO);
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\reviewImg\\noImage.jpg";
+
+//        UUID uuid =  UUID.randomUUID();
+
+        String fileName = "noImage.jpg";
+
+
+        System.out.println(fileName);
+
+
+        ReviewAddDTO.setReviewFileName(fileName);
+
+        ReviewAddDTO.setReviewFilePath("/reviewImg/" + fileName);
+
+
+        reviewMapper.insertReviewData(ReviewAddDTO);
 
 
     }
@@ -123,6 +136,37 @@ public class ReviewServiceImpl implements ReviewService {
         reviewMapper.insertReviewData(ReviewAddDTO);
     }
 
+    @Override
+    public void updateReviewData(ReviewUpdateDTO reviewUpdateDTO, MultipartFile file) throws Exception {
+
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\reviewImg";
+
+//        UUID uuid =  UUID.randomUUID();
+
+        String fileName = file.getOriginalFilename();
+
+
+
+        File saveFile = new File(projectPath, fileName);
+
+        file.transferTo(saveFile);
+
+        reviewUpdateDTO.setReviewFileName(fileName);
+
+        reviewUpdateDTO.setReviewFilePath("/reviewImg/" + fileName);
+        reviewMapper.updateReviewData(reviewUpdateDTO);
+    }
+
+    @Override
+    public void updateReviewDataNotImage(ReviewUpdateDTO reviewUpdateDTO) throws Exception {
+
+        reviewMapper.updateReviewDataNotImage(reviewUpdateDTO);
+    }
+
+    @Override
+    public void deleteReview(int reviewId) throws Exception {
+    reviewMapper.deleteReview(reviewId);
+    }
 
     @Override
     public int ReviewOrderIdFind(int orderId) throws Exception {
