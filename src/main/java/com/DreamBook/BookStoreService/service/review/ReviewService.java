@@ -1,6 +1,7 @@
 package com.DreamBook.BookStoreService.service.review;
 
 import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewDTO;
@@ -21,7 +22,13 @@ public interface ReviewService {
 
     public List<ReviewFindDTO> reviewAllList() throws Exception;
 
+    public List<ReviewFindDTO> reviewDetailList(int reviewId) throws Exception;
+
+    public List<ReviewFindDTO> reviewWriter() throws Exception;
+
     public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception;
+
+
 
 
 

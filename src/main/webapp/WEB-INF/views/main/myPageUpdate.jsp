@@ -122,9 +122,10 @@
         </c:forEach>
         <!-- form Footer -->
         <div class="register-footer">
-          <p> Already have an account? <a href="/login"> Login</a> here</p>
 
+          <a class="" href="/myPageDelete" id="alert" style="color: red;"><strong>회원탈퇴</strong> 필요하면 클릭!</a>
           <button class="submit-btn3" type="submit" id="check">수정하기</button>
+
 
         </div>
 
@@ -139,6 +140,9 @@
 
     <script>
 
+      $('#alert').click(function (){
+      alert("정말 탈퇴하시겠습니까?");
+      });
 
 
       $('#check').click(function (){

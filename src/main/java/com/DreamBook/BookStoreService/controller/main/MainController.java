@@ -1,6 +1,7 @@
 package com.DreamBook.BookStoreService.controller.main;
 
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -135,6 +137,37 @@ public class MainController {
         return "redirect:/";
     }
 
+
+    @GetMapping("/myPageDelete")
+    public String myPageDelete(MemberUpdateDTO MemberUpdateDTO,Model model,HttpSession session)throws Exception {
+
+
+
+
+        String userId = (String) session.getAttribute("userId");
+
+        List<MemberDTO> memberDTOList =  memberService.memberDtoList(userId);
+        model.addAttribute("memberDTOList",memberDTOList);
+
+        return "main/myPageDelete";
+    }
+
+
+    @PostMapping("/")
+    public String myPageDeleteOk(MemberDeleteDTO memberDeleteDTO, HttpServletResponse response, HttpSession session)throws Exception {
+
+
+        if (memberService.deleteMember(memberDeleteDTO,response) == 1) {
+
+            session.removeAttribute("userId");
+
+            return "main/main";
+        }
+        else
+            return "main/myPageDelete";
+
+
+    }
     @GetMapping("/index")
     public String index(Model model){
 

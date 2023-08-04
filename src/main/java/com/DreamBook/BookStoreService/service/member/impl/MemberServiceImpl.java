@@ -2,10 +2,7 @@ package com.DreamBook.BookStoreService.service.member.impl;
 
 
 
-import com.DreamBook.BookStoreService.dto.member.MemberDTO;
-import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
-import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
-import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
+import com.DreamBook.BookStoreService.dto.member.*;
 import com.DreamBook.BookStoreService.mapper.member.MemberMapper;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,8 +96,25 @@ public class MemberServiceImpl implements MemberService {
         memberMapper.updateMember(memberUpdateDTO);
     }
 
-    //    @Override
-//    public List<MemberDTO> memberIdList(int memberId) throws Exception {
-//        return memberMapper.memberIdList(memberId);
-//    }
+
+    @Override
+    public Integer deleteMember(MemberDeleteDTO MemberDeleteDTO,HttpServletResponse response) throws Exception {
+
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+
+
+        if (  memberMapper.deleteMember(MemberDeleteDTO) == 1) {
+            out.println("<script>alert('회원탈퇴 성공!'); </script>");
+            out.flush();
+            return 1;
+        }
+
+        if (memberMapper.deleteMember(MemberDeleteDTO) == 0) {
+            out.println("<script>alert('아이디/비밀번호 오류 다시입력하세요'); </script>");
+            out.flush();
+            return 0;
+        }
+        return 3;
+    }
 }

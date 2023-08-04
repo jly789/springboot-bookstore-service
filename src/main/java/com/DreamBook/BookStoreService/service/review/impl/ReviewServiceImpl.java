@@ -144,6 +144,15 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewMapper.reviewAllList();
     }
 
+    @Override
+    public List<ReviewFindDTO> reviewDetailList(int reviewId) throws Exception {
+        return reviewMapper.reviewDetailList(reviewId);
+    }
+
+    @Override
+    public List<ReviewFindDTO> reviewWriter() throws Exception {
+        return reviewMapper.reviewWriter();
+    }
 
     @Override
     public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception {

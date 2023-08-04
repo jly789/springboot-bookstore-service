@@ -16,8 +16,12 @@ public class ReviewFindDTO {
     private String reviewSubject;
     private String reviewContent;
     private String reviewFileName;
+    private String fileName;
     private String reviewFilePath;
     private String grade;
     private int views;
+    private String userId; //리뷰작성자 아이디
+    private String name; //리뷰작성자 이름
+    private String bookName; //구매도서
     private LocalDateTime reviewDate;
 }

@@ -39,7 +39,7 @@ public class BookController {
             model.addAttribute("bookAndReview",bookListGrade);
             model.addAttribute("genreName",genreName);
             model.addAttribute("priceRange",priceRange);
-
+            session.removeAttribute("priceRange");
             return "book/main";
         }
 
@@ -49,19 +49,22 @@ public class BookController {
         model.addAttribute("genreName",genreName);
         model.addAttribute("priceRange",firstPriceRange);
 
+
         return "book/main";
     }
 
     @GetMapping("/sort{abc}")
     public String bookMainSort( Model model,@PathVariable("abc") String bb,
-                                @RequestParam("abc")int state)throws Exception{
+                                @RequestParam("abc")int state,HttpSession session)throws Exception{
         String choice = "정렬";
+        int firstPriceRange = 0; //처음 가격범위 0원이상
 
         if(state ==0){
             List<BookFindDTO> bookList = bookService.bookList();
             List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
             model.addAttribute("bookAndReview",bookListGrade);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
 
             return "book/main";
         }
@@ -71,6 +74,7 @@ public class BookController {
             List<BookFindDTO> bookAndReviewHighPrice =bookService.bookListHighPrice(bookList);
             model.addAttribute("bookAndReviewHighPrice",bookAndReviewHighPrice);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
             return "book/main";
         }
         if(state == 2) {
@@ -78,6 +82,7 @@ public class BookController {
             List<BookFindDTO> bookAndReviewLowPrice =bookService.bookListLowPrice(bookList);
             model.addAttribute("bookAndReviewLowPrice",bookAndReviewLowPrice);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
             return "book/main";
         }
 
@@ -86,6 +91,7 @@ public class BookController {
             List<BookFindDTO> bookManyOrder =bookService.bookListManyOrders(bookList);
             model.addAttribute("bookManyOrder",bookManyOrder);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
             return "book/main";
         }
         if(state == 4) {
@@ -93,6 +99,7 @@ public class BookController {
             List<BookFindDTO> bookManyReview =bookService.bookListManyReview(bookList);
             model.addAttribute("bookManyReview",bookManyReview);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
             return "book/main";
         }
 
@@ -114,10 +121,12 @@ public class BookController {
     @GetMapping("/genre{choice}")
     public String genreSearch( Model model,@PathVariable("choice") String bb,
                                 @RequestParam("choice")String choice)throws Exception {
+        int firstPriceRange = 0; //처음 가격범위 0원이상
         if (choice.equals("전체")) {
             List<BookFindDTO> genreSearch=  bookService.genreSearchAll();
             model.addAttribute("genreSearch", genreSearch);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
 
             return "book/main";
         }
@@ -127,6 +136,7 @@ public class BookController {
             List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
             model.addAttribute("genreSearch", genreSearch);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
 
             return "book/main";
         }
@@ -134,6 +144,7 @@ public class BookController {
             List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
             model.addAttribute("genreSearch", genreSearch);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
             return "book/main";
 
         }
@@ -141,6 +152,7 @@ public class BookController {
             List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
             model.addAttribute("genreSearch", genreSearch);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
 
             return "book/main";
 
@@ -150,6 +162,7 @@ public class BookController {
             List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
             model.addAttribute("genreSearch", genreSearch);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
 
             return "book/main";
         }
@@ -159,6 +172,7 @@ public class BookController {
             List<BookFindDTO> genreSearch=  bookService.genreSearch(choice);
             model.addAttribute("genreSearch", genreSearch);
             model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
 
             return "book/main";
 

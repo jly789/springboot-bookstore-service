@@ -70,12 +70,15 @@
                         <div class="properties pb-30">
                             <div class="properties-card">
                                 <div class="properties-img">
-                                    <a href="book-details.html"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
+                                    <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
                                     style="   height: 300px; object-fit: cover;"></a>
                                 </div>
                                 <div class="properties-caption properties-caption2">
-                                    <h3><a href="book-details.html">${reviewAllList.reviewSubject}</a></h3>
-                                    <p>${reviewAllList.reviewContent}</p>
+                                    <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
+
+
+                                    <p>${reviewAllList.reviewContent} </p>
+                                    <h6 style="color: red; text-align: right;">  (${reviewAllList.userId})</h6>
                                     <div class="properties-footer d-flex justify-content-between align-items-center">
                                         <div class="review">
                                             <div class="rating">

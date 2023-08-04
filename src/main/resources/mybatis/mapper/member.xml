@@ -87,6 +87,12 @@
     </update>
 
 
+    <delete id="deleteMember" parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO">
+        delete member
+        where userId =#{userId} and pwd = #{pwd}
+
+    </delete>
+
 <!--    <select id="memberIdList" parameterType="int"-->
 <!--            resultType="com.DreamBook.BookStoreService.dto.member.MemberDTO" >-->
 <!--        select * from member-->

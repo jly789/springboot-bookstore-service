@@ -60,7 +60,29 @@
 
     <select id="reviewAllList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
         select * from review
+
+
+
     </select>
+
+
+    <select id="reviewDetailList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+        select * from review a
+                          left join  book b
+                                     on a.bookId = b.bookId
+        where reviewId in #{reviewId}
+    </select>
+
+    <select id="reviewWriter" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+        select * from review a
+                 left join  member b
+                 on a.memberId = b.memberId
+
+
+--
+    </select>
+
+<!--    where b.memberId in #{memberId}-->
 
 <!--    <select id="bookReviewList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">-->
 <!--        select AVG(b.grade),a.* from book a-->

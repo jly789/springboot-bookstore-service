@@ -3,6 +3,7 @@ package com.DreamBook.BookStoreService.controller.review;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
 import com.DreamBook.BookStoreService.util.AlertMessage;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -44,7 +46,10 @@ public class ReviewController {
 
 
 
-        List<ReviewFindDTO> reviewAllList = reviewService.reviewAllList();
+//        List<ReviewFindDTO> reviewAllList = reviewService.reviewAllList();
+
+
+        List<ReviewFindDTO> reviewAllList = reviewService.reviewWriter();
 
         model.addAttribute("reviewAllList",reviewAllList);
 
@@ -106,6 +111,20 @@ public class ReviewController {
 
             return "review/review";
         }
+
+    @GetMapping("/reviewDetail{reviewId}")
+    public String reviewDetail(Model model, @RequestParam("reviewId") int reviewId,@RequestParam("userId")String reviewWriter)throws Exception {
+
+
+        List<ReviewFindDTO> reviewDetail = reviewService.reviewDetailList(reviewId);
+
+        model.addAttribute("reviewDetail",reviewDetail);
+        model.addAttribute("reviewWriter",reviewWriter);
+
+
+        return "review/reviewDetail";
+    }
+
 
 
 

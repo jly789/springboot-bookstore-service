@@ -62,6 +62,7 @@
             <div class="row">
               <div class="col-lg-8" >
                 <h3>배송지 주소  <button type="submit" value="" style="margin-left: 525px; color: black; border-color: ghostwhite; background-color: white"/>수정하기</h3>
+
                 <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                   <div class="col-md-6 form-group p_star">
                     <h6 style="color: red"> 아이디 </h6>  <input type="text" class="form-control" id="first" name="userId" value="${memberDTOList.userId}" />
@@ -126,6 +127,23 @@
 
 </main>
 
+<script>
+
+
+  // $('#alert').click(function () {
+  //
+  //   if (confirm("정말 탈퇴하시겠습니까?")) {
+  //
+  //
+  //     location.href='/myPage';
+  //   } else {
+  //
+  //   }
+  //
+  //
+  //
+  // });
+</script>
 
 <jsp:include page="../main/footer.jsp"></jsp:include>
 </body>

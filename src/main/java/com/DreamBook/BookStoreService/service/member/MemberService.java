@@ -1,10 +1,7 @@
 package com.DreamBook.BookStoreService.service.member;
 
 
-import com.DreamBook.BookStoreService.dto.member.MemberDTO;
-import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
-import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
-import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
+import com.DreamBook.BookStoreService.dto.member.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -30,5 +27,7 @@ public interface MemberService {
 //    public List<MemberDTO> memberIdList(int memberId) throws  Exception;
 
     public void updateMember(MemberUpdateDTO memberUpdateDTO) throws  Exception;
+
+    public Integer deleteMember(MemberDeleteDTO MemberDeleteDTO,HttpServletResponse response) throws  Exception;
 
 }
