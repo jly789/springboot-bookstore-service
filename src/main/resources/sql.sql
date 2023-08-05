@@ -81,6 +81,7 @@ CREATE TABLE ORDERS
     orderNum     VARCHAR2(200)     NOT NULL,
     impUid       VARCHAR2(200) NULL,
     amount NUMBER       NOT NULL,
+    wishQuantity NUMBER NOT NULL,
     orderState   VARCHAR2(50) DEFAULT 'ORDER',
     orderDate    DATE         DEFAULT SYSDATE,
     usePoint Number null,
@@ -133,8 +134,15 @@ INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BI
 values(1,'MEMBER','asd','asd','윤재일','남자',29,'비운의소나기','1995-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
        '402호',null,'jly456@naver.com','코미디','King',0,0);
 
+INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT)
+values(3,'MEMBER','abc','abc','윤재일','남자',29,'비운의소나기','1995-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
+       '402호',null,'jly456@naver.com','코미디','King',0,0);
+
 
 commit;
+
+delete MEMBER
+where userId = 'abc' and pwd = 'abc';
 
 select * from member;
 select * from book;
@@ -143,7 +151,25 @@ select * from cart;
 select * from orders;
 select * from DELIVERY;
 
+delete  orders
+where memberId = 2;
+
+delete DELIVERY
+where orderId = 2;
+
+select * from review a
+                  left join  member b
+                             on a.memberId = b.memberId;
+
 select * from review;
+
+select * from BOOK;
+
+delete review
+where reviewId = 2;
+
+
+
 
 SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,  AVG(b.grade)as grade from book a
                                                                                          left join review b on a.bookId = b.bookId
@@ -286,8 +312,8 @@ ORDER BY reviewId desc;
 --
 ----    update member set PURCHASEAMOUNT = 0, POINT =0;
 ----
--- update book set bookName = '킹더랜드'
--- where bookId = 4;
+--update member set pwd = 'admin'
+-- where memberId = 0;
 --
 -- select * from book;
 --
