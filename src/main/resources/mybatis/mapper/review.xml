@@ -82,6 +82,17 @@
 --
     </select>
 
+    <select id="myOrderReviewCheck" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+        select * from review a
+                          left join  orders b
+                                     on a.orderId = b.orderId
+
+        where a.orderId = #{orderId} and a.bookId = #{bookId}
+
+
+--
+    </select>
+
 
     <update id="updateReviewData" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO">
 
@@ -109,6 +120,8 @@
        where reviewId = #{reviewId}
 
     </delete>
+
+
 
 
 

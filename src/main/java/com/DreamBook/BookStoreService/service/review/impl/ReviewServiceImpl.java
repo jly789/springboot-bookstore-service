@@ -202,4 +202,9 @@ public class ReviewServiceImpl implements ReviewService {
     public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception {
         return reviewMapper.ReviewCheck(orderId);
     }
+
+    @Override
+    public List<ReviewFindDTO> myOrderReviewCheck(ReviewFindDTO reviewFindDTO) throws Exception {
+        return reviewMapper.myOrderReviewCheck(reviewFindDTO);
+    }
 }

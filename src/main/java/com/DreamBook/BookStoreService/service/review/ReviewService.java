@@ -31,6 +31,7 @@ public interface ReviewService {
 
     public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception;
 
+    public List<ReviewFindDTO> myOrderReviewCheck(ReviewFindDTO reviewFindDTO) throws Exception;
 
 
 

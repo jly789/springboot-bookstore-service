@@ -20,7 +20,6 @@ public interface ReviewMapper {
     public void deleteReview(int reviewId) throws Exception;
 
 
-
     public List<ReviewFindDTO> reviewAllList() throws Exception;
 
     public List<ReviewFindDTO> reviewDetailList(int reviewId) throws Exception;
@@ -30,5 +29,7 @@ public interface ReviewMapper {
     public int ReviewOrderIdFind(int orderId) throws Exception;
 
     public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception;
+
+    public List<ReviewFindDTO> myOrderReviewCheck(ReviewFindDTO reviewFindDTO) throws Exception;
 
 }

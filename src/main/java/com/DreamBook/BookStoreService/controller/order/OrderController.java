@@ -42,18 +42,27 @@ public class OrderController {
     private OrderService orderService;
 
 
-
-
     @GetMapping("/myOrder")
-    public String  myOrder(Model model, HttpSession session,OrderDTO orderDTO)throws Exception{
+    public String  myOrder(Model model, HttpSession session,OrderDTO orderDTO,ReviewFindDTO reviewFindDTO)throws Exception{
+
+
 
         int memberId = (int)session.getAttribute("memberId");
 
+        List<ReviewFindDTO> reviewFindDTOS = reviewService.myOrderReviewCheck(reviewFindDTO);
+
+//        if(reviewFindDTOS !=null){
+//            model.addAttribute("reviewFindDTOS",reviewFindDTOS);
+//            System.out.println("11");
+//        }
+//
+//
+//        System.out.println("22");
 
      List<OrderDTO> orderList =   orderService.orderFindList(memberId);
 
-        model.addAttribute("bookList",orderList);
 
+        model.addAttribute("bookList",orderList);
 
         return  "order/myOrder";
     }
@@ -66,8 +75,6 @@ public class OrderController {
         List<BookCartDTO> orderBookCartList = bookService.orderBookCartList(cartDTO);
 
         model.addAttribute("orderBookCartList",orderBookCartList);
-
-
 
         model.addAttribute("memberId",memberId);
 
@@ -88,7 +95,6 @@ public class OrderController {
 
         List<MemberDTO> list = memberService.memberDtoList(userId);
 
-
         return list;
     }
 
@@ -100,10 +106,8 @@ public class OrderController {
 
         List<MemberDTO> point = memberService.memberDtoList(userId);
 
-
         return point;
     }
-
 
     @ResponseBody
     @PostMapping("/payment")
@@ -112,16 +116,6 @@ public class OrderController {
                           , @RequestParam("cartId") int[] cartId
                         )
     throws Exception{
-
-
-//
-        for (int i = 0; i < bookId.length; i++) {
-            System.out.println("도서번호:"+bookId[i]);
-            System.out.println("개수"+wishQuantity[i]);
-        }
-
-
-//        List<BookDTO> bookCartList = bookService.bookCartList(orderDTO.getMemberId());
 
         for (int i= 0; i < bookId.length; i++) {
             int maxNum = orderService.maxNum();
@@ -137,9 +131,6 @@ public class OrderController {
         }
 
         orderService.deliveryInsertData(deliveryDTO);
-
-
-
 
 
         return "bookMain";
