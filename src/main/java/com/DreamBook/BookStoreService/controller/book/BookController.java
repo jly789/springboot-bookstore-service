@@ -5,6 +5,7 @@ import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
+import com.DreamBook.BookStoreService.service.comment.CommentService;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,9 @@ public class BookController {
 
     @Resource
     private ReviewService reviewService;
+
+    @Resource
+    private CommentService commentService;
 
     @GetMapping("/bookMain")
     public String bookMain( Model model,HttpSession session,BookFindDTO bookFindDTO)throws Exception{

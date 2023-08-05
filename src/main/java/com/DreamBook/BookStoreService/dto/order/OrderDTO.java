@@ -27,5 +27,6 @@ public class OrderDTO {
     private String fileName;
     private String filePath;
     private int price;
+    private String reviewState; //리뷰상태 리뷰완료or 리뷰쓰기
 
 }

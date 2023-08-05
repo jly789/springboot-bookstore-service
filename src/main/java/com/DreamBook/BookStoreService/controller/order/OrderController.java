@@ -45,21 +45,8 @@ public class OrderController {
     @GetMapping("/myOrder")
     public String  myOrder(Model model, HttpSession session,OrderDTO orderDTO,ReviewFindDTO reviewFindDTO)throws Exception{
 
-
-
         int memberId = (int)session.getAttribute("memberId");
-
-        List<ReviewFindDTO> reviewFindDTOS = reviewService.myOrderReviewCheck(reviewFindDTO);
-
-//        if(reviewFindDTOS !=null){
-//            model.addAttribute("reviewFindDTOS",reviewFindDTOS);
-//            System.out.println("11");
-//        }
-//
-//
-//        System.out.println("22");
-
-     List<OrderDTO> orderList =   orderService.orderFindList(memberId);
+        List<OrderDTO> orderList =   orderService.orderFindList(memberId);
 
 
         model.addAttribute("bookList",orderList);

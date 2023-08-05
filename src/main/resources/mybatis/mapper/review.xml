@@ -82,12 +82,26 @@
 --
     </select>
 
-    <select id="myOrderReviewCheck" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
-        select * from review a
-                          left join  orders b
-                                     on a.orderId = b.orderId
+    <select id="myOrderReviewCheck" resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO">
 
-        where a.orderId = #{orderId} and a.bookId = #{bookId}
+        SELECT * from review a
+
+        left join  orders b
+        on a.orderId = b.orderId
+
+        WHERE a.orderId IN
+        <foreach item="orderDTO" collection="orderDTO" open="(" close=")" separator=",">
+            #{orderDTO.orderId}
+        </foreach>
+
+        and a.bookId in
+
+        <foreach item="orderDTO" collection="orderDTO" open="(" close=")" separator=",">
+            #{orderDTO.bookId}
+        </foreach>
+
+
+
 
 
 --

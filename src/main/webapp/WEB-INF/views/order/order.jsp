@@ -348,7 +348,7 @@
 
       alert("결제성공!");
 
-      // window.location.href = "/myOrder";
+      window.location.href = "/myOrder";
     });
 
 

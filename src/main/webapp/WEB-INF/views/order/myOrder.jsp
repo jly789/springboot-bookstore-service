@@ -83,16 +83,15 @@
                     <div class="media-body">
                       <p id="bookNames">${bookList.bookName}</p>
 
+                      <a href="/reviewAdd?bookId=${bookList.bookId}&orderId=${bookList.orderId}"><p  id="review" style="color: red" >
+                        ${bookList.reviewState}</p></a>
 
+                    <c:if test="${bookList.reviewState!='리뷰완료'}">
 
                       <a href="/reviewAdd?bookId=${bookList.bookId}&orderId=${bookList.orderId}"><p  id="review" style="color: red" >
-                        리뷰쓰기</p></a>
+                        리뷰작성</p></a>
 
-
-
-
-
-
+                    </c:if>
 
 
                     </div>
