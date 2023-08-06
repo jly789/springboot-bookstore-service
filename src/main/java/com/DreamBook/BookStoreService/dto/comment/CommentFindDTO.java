@@ -12,6 +12,7 @@ public class CommentFindDTO {
     private int commentId;
     private int memberId;
     private int bookId;
-    private int commentContent;
+    private String commentContent;
     private LocalDateTime commentDate;
+    private String name;
 }

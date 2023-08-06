@@ -6,7 +6,25 @@
 <mapper namespace="com.DreamBook.BookStoreService.mapper.comment.CommentMapper">
 
 
+    <select id="maxNum" resultType="int">
+        select nvl(max(commentId),0) from comments
+    </select>
 
+    <insert id="insertDataComment" parameterType="com.DreamBook.BookStoreService.dto.comment.CommentAddDTO">
+
+        insert into comments(commentId,memberId,bookId,commentContent,commentDate)
+        values (#{commentId},#{memberId},#{bookId},#{commentContent},sysdate)
+
+    </insert>
+
+
+    <select id="commentList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.comment.CommentFindDTO">
+        select * from comments a
+                 left join member b
+                 on
+                     a.memberId = b.memberId
+        where a.bookId = #{bookId}
+    </select>
 
 
 

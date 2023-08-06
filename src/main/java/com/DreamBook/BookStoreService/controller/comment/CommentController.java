@@ -31,9 +31,11 @@ public class CommentController {
 
         int id = commentAddDTO.getBookId();
 
-        String memberId = (String) session.getAttribute("userId");
-        System.out.println(commentAddDTO.getBookId());
-        System.out.println(commentAddDTO.getCommentContent());
+        int memberId = (int) session.getAttribute("memberId");
+        int maxNum = commentService.maxNum();
+        commentAddDTO.setCommentId(maxNum+1);
+        commentAddDTO.setMemberId(memberId);
+        commentService.insertDataComment(commentAddDTO);
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         model.addAttribute("bookList",bookList);
 

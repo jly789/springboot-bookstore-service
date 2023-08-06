@@ -114,11 +114,12 @@
           </div>
         </div>
 
+        <c:forEach var="commentFindDTOList" items="${commentFindDTOList}">
         <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
           <!-- Tab 3 -->
           <div class="row">
             <div class="offset-xl-1 col-lg-9">
-              <h4>05 Comments</h4>
+              <h4>${commentFindDTOList.commentId}</h4>
               <div class="comment-list">
                 <div class="single-comment justify-content-between d-flex">
                   <div class="user justify-content-between d-flex">
@@ -127,18 +128,23 @@
                     </div>
                     <div class="desc">
                       <p class="comment">
-                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
+
+
+                          ${commentFindDTOList.commentContent}
+
                       </p>
                       <div class="d-flex justify-content-between">
                         <div class="d-flex align-items-center">
                           <h5>
-                            <a href="#">Emilly Blunt</a>
+                            <a href="#">${commentFindDTOList.name}</a>
                           </h5>
-                          <p class="date">December 4, 2017 at 3:12 pm </p>
+                          <p class="date">  ${commentFindDTOList.commentDate}</p>
+
                         </div>
+
                         <div class="reply-btn">
                           <a href="#" class="btn-reply text-uppercase">reply</a>
+
                         </div>
                       </div>
                     </div>
@@ -148,7 +154,7 @@
             </div>
           </div>
         </div>
-
+        </c:forEach>
 
         <div class="tab-pane fade" id="nav-four" role="tabpanel" aria-labelledby="nav-four-tab">
           <!-- Tab 4 -->
