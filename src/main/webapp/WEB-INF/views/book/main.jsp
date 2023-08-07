@@ -287,20 +287,32 @@ cursor: pointer; /* 슬라이더 핸들에 마우스를 갖다대면 포인터�
                                                 <div class="review">
                                                     <div class="rating">
 
+
+                                                        <c:if test="${bookList.grade==0}">
+
+
+
+                                                        </c:if>
+
                                                         <c:if test="${bookList.grade==1}">
+
                                                             <i class="fas fa-star"></i>
+
                                                         </c:if>
 
                                                         <c:if test="${bookList.grade==2}">
 
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
+
                                                         </c:if>
 
                                                         <c:if test="${bookList.grade==3}">
 
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+
                                                         </c:if>
 
                                                         <c:if test="${bookList.grade==4}">
@@ -309,16 +321,19 @@ cursor: pointer; /* 슬라이더 핸들에 마우스를 갖다대면 포인터�
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
+
                                                         </c:if>
 
+
+<%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
                                                         <c:if test="${bookList.grade==5}">
-
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
                                                             <i class="fas fa-star"></i>
                                                         </c:if>
+
 
                                                     </div>
                                                     <p>(<span>${bookList.reviewId}</span> Review)</p>

@@ -118,10 +118,10 @@
 
 
                                             </div>
-                                            <p>(<span>120</span> Review)</p>
+                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>
                                         </div>
                                         <div class="price">
-                                            <span>$50</span>
+                                            <span>${reviewAllList.price}</span>
                                         </div>
                                     </div>
                                 </div>

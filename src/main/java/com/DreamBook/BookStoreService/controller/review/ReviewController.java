@@ -1,8 +1,10 @@
 package com.DreamBook.BookStoreService.controller.review;
 
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
+import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.*;
+import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
 import com.DreamBook.BookStoreService.util.AlertMessage;
 import org.apache.logging.log4j.message.Message;
@@ -24,6 +26,9 @@ public class ReviewController {
 
     @Resource
     private ReviewService reviewService;
+    @Resource
+    private BookService bookService;
+
 
 
     @GetMapping("/reviewAdd")
@@ -45,10 +50,13 @@ public class ReviewController {
 
 
 
-        List<ReviewFindDTO> reviewAllList = reviewService.reviewWriter();
+        List<ReviewFindDTO> reviewAllList = reviewService.reviewAllList();
+
+//        List<BookFindDTO> bookList = bookService.bookList();
+//        List<ReviewFindDTO> bookListGrade = bookService.bookAndReviewList(reviewAllList);
+//        model.addAttribute("bookAndReview",bookListGrade);
 
         model.addAttribute("reviewAllList",reviewAllList);
-
 
 
         return "review/review";
@@ -116,6 +124,7 @@ public class ReviewController {
 
     @GetMapping("/reviewDetail{reviewId}")
     public String reviewDetail(Model model, @RequestParam("reviewId") int reviewId,@RequestParam("userId")String reviewWriter,HttpSession session)throws Exception {
+
 
 
         if(session.getAttribute("userId")==null){

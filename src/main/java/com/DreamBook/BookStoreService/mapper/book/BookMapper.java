@@ -6,6 +6,7 @@ import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,6 +40,12 @@ public interface BookMapper {
     public List<BookFindDTO> bookAndReview(List<BookFindDTO>bookAndReview)throws Exception;
 
     public List<BookFindDTO> bookAndReviewGrade(List<BookFindDTO>bookAndReview)throws Exception;
+
+    public List<BookFindDTO>  reviewGrade(List<BookFindDTO>bookAndReview)throws Exception;
+
+    public List<BookFindDTO>  realReviewGrade(List<BookFindDTO>bookAndReview)throws Exception;
+
+    public List<ReviewFindDTO> bookAndReviewList(List<ReviewFindDTO>bookAndReview)throws Exception;
 
     public List<BookFindDTO> genreSearch(String genre)throws Exception;
     public List<BookFindDTO> genreSearchAll()throws Exception;

@@ -44,7 +44,7 @@
 
     <select id="bookListPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
         select distinct * from book
-        where price >= #{price}
+        where price = #{price}
 
 
 
@@ -52,7 +52,7 @@
 
     <select id="bookAndReviewGrade" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -79,9 +79,40 @@
 
     </select>
 
-    <select id="bookListHighPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
+    <select id="bookAndReviewList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+
+        SELECT a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,b.price,AVG(a.grade)as grade,count(a.reviewId) as reviewId from review a
+        left join book b on a.bookId = b.bookId
+
+
+        WHERE   a.bookId IN
+
+        <if test='bookAndReview.size ==0'>
+            null
+        </if>
+
+
+        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
+
+
+            #{bookAndReview.bookId}
+
+
+
+        </foreach>
+
+
+
+        GROUP BY a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,b.price,b.genre,b.PUBLISHER,b.author
+
+
+    </select>
+
+
+    <select id="bookListHighPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId from book a
+
         left join review b on a.bookId = b.bookId
 
 
@@ -98,7 +129,7 @@
     </select>
 
     <select id="bookListLowPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,AVG(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 
@@ -121,7 +152,7 @@
 
 
 
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,avg(b.grade)as grade,count(b.reviewId) as reviewId, count(c.orderId)as orderId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price, round(avg(b.grade))as grade,count(b.reviewId) as reviewId, count(c.orderId)as orderId from book a
         left join review b on a.bookId = b.bookId
         left join orders c on b.bookId = c.bookId
 
@@ -145,7 +176,7 @@
 
     <select id="bookListManyReview"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,avg(b.grade)as grade,count(b.reviewId) as reviewId from book a
+        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(avg(b.grade))as grade,count(b.reviewId) as reviewId from book a
         left join review b on a.bookId = b.bookId
 
 

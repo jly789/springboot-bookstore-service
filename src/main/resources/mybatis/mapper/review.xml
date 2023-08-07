@@ -59,19 +59,30 @@
 
 
     <select id="reviewAllList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
-        select * from review
+        SELECT a.reviewId, c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,b.price,AVG(a.grade)as grade,count(a.reviewId) as reviewIdCount
+        from review a
+
+            left join book b on a.bookId = b.bookId
+
+                          left join  member c
+                                     on a.memberId = c.memberId
 
 
+
+
+
+        GROUP BY a.reviewId,c.userId, a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,b.price,b.genre,b.PUBLISHER,b.author
 
     </select>
 
 
-    <select id="reviewDetailList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+    <select id="reviewDetailList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
         select * from review a
                           left join  book b
                                      on a.bookId = b.bookId
-        where reviewId in #{reviewId}
+        where a.reviewId = #{reviewId}
     </select>
+
 
     <select id="reviewWriter" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
         select * from review a
@@ -110,10 +121,20 @@
 
     <select id="reviewBookList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
 
-        select * from review a
-                          left join  member b
-                                     on a.memberId = b.memberId
+        SELECT a.reviewId,c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,b.price,a.grade,count(a.reviewId) as reviewIdCount
+        from review a
+
+                 left join book b on a.bookId = b.bookId
+
+                 left join  member c
+                            on a.memberId = c.memberId
+
+
+
         where a.bookId = #{bookId}
+
+        GROUP BY a.reviewId,c.userId, a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,a.grade,b.price,b.genre,b.PUBLISHER,b.author
+
 
 
 

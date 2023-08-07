@@ -148,71 +148,93 @@
 
         <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-twi-tab">
 
-          <c:forEach var="reviewFindDTOList" items="${reviewFindDTOList}">
-            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-              <div class="properties pb-30">
-                <div class="properties-card">
-                  <div class="properties-img">
-                    <a href="/reviewDetail?reviewId=${reviewFindDTOList.reviewId}&userId=${reviewFindDTOList.userId}"><img src="reviewImg/${reviewFindDTOList.reviewFileName}" alt=""
-                                                                                                                   style="   height: 300px; object-fit: cover;"></a>
-                  </div>
-                  <div class="properties-caption properties-caption2">
-                    <h3><a href="/reviewDetail?reviewId=${reviewFindDTOList.reviewId}&userId=${reviewFindDTOList.userId}">${reviewFindDTOList.reviewSubject}  </a></h3>
+          <div class="container">
+            <!-- Nav Card -->
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
+                <!-- Tab 1 -->
+                <div class="row">
+
+                  <c:forEach var="reviewAllList" items="${reviewFindDTOList}">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                      <div class="properties pb-30">
+                        <div class="properties-card">
+                          <div class="properties-img">
+                            <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
+                                                                                                                           style="   height: 300px; object-fit: cover;"></a>
+                          </div>
+                          <div class="properties-caption properties-caption2">
+                            <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
 
 
-                    <p>${reviewFindDTOList.reviewContent} </p>
-                    <h6 style="color: red; text-align: right;">  (${reviewFindDTOList.userId})</h6>
-                    <div class="properties-footer d-flex justify-content-between align-items-center">
-                      <div class="review">
-                        <div class="rating">
-                          <c:if test="${reviewFindDTOList.grade==1}">
-                            <i class="fas fa-star" style="color: gold;"></i>
-                          </c:if>
+                            <p>${reviewAllList.reviewContent} </p>
+                            <h6 style="color: red; text-align: right;">  (${reviewAllList.userId})</h6>
+                            <div class="properties-footer d-flex justify-content-between align-items-center">
+                              <div class="review">
+                                <div class="rating">
+                                  <c:if test="${reviewAllList.grade==1}">
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                  </c:if>
 
-                          <c:if test="${reviewFindDTOList.grade==2}">
+                                  <c:if test="${reviewAllList.grade==2}">
 
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                          </c:if>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                  </c:if>
 
-                          <c:if test="${reviewFindDTOList.grade==3}">
+                                  <c:if test="${reviewAllList.grade==3}">
 
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                          </c:if>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                  </c:if>
 
-                          <c:if test="${reviewFindDTOList.grade==4}">
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                          </c:if>
+                                  <c:if test="${reviewAllList.grade==4}">
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                  </c:if>
 
-                          <c:if test="${reviewFindDTOList.grade==5}">
+                                  <c:if test="${reviewAllList.grade==5}">
 
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                            <i class="fas fa-star" style="color: gold;"></i>
-                          </c:if>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                    <i class="fas fa-star" style="color: gold;"></i>
+                                  </c:if>
 
 
 
+                                </div>
+                                <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>
+                              </div>
+                              <div class="price">
+                                <span>${reviewAllList.price}</span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <p>(<span>120</span> Review)</p>
-                      </div>
-                      <div class="price">
-                        <span>$50</span>
                       </div>
                     </div>
-                  </div>
+
+                  </c:forEach>
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
               </div>
             </div>
-
-          </c:forEach>
 
 
 

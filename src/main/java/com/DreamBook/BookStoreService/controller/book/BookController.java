@@ -41,6 +41,8 @@ public class BookController {
             int priceRange = (int) session.getAttribute("priceRange");
 
             List<BookFindDTO> bookList = bookService.bookListPrice(priceRange);
+
+
             List<BookFindDTO>  bookListGrade  = bookService.bookAndReviewGrade(bookList);
             model.addAttribute("bookAndReview",bookListGrade);
             model.addAttribute("genreName",genreName);
@@ -51,9 +53,14 @@ public class BookController {
 
        List<BookFindDTO> bookList = bookService.bookList();
         List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
+
+
         model.addAttribute("bookAndReview",bookListGrade);
         model.addAttribute("genreName",genreName);
         model.addAttribute("priceRange",firstPriceRange);
+
+
+
 
 
         return "book/main";

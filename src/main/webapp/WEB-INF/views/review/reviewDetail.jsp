@@ -181,6 +181,7 @@
                                                        value="제목:${reviewDetail.reviewSubject}"
                                                 style="width : 500px; height : 40px; margin-left: 539px;" >
 
+
                                         </div>
                                         </div>
                                         <div class="col-sm-6" style="text-align: right;">
@@ -225,6 +226,10 @@
                                 </div>
                             </div>
                         </c:if>
+
+
+
+
 <%--                        </form>--%>
                     </div>
                 </div>
