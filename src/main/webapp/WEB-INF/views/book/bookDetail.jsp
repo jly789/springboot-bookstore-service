@@ -91,8 +91,8 @@
             <nav>
               <div class="nav nav-tabs " id="nav-tab" role="tablist">
                 <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">Description</a>
-                <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">Comments</a>
-                <a class="nav-link" id="nav-four-tab" data-bs-toggle="tab" href="#nav-four" role="tab" aria-controls="nav-four" aria-selected="false">Review</a>
+                <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-two" role="tab" aria-controls="nav-two" aria-selected="false">Comments</a>
+                <a class="nav-link" id="nav-four-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">Review</a>
               </div>
             </nav>
             <!--End Nav Button  -->
@@ -114,80 +114,114 @@
           </div>
         </div>
 
-        <c:forEach var="commentFindDTOList" items="${commentFindDTOList}">
-        <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
+        <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-twi-tab">
+
           <!-- Tab 3 -->
-          <div class="row">
-            <div class="offset-xl-1 col-lg-9">
-              <h4>${commentFindDTOList.commentId}</h4>
-              <div class="comment-list">
-                <div class="single-comment justify-content-between d-flex">
-                  <div class="user justify-content-between d-flex">
-                    <div class="thumb">
+
+
+          <c:forEach var="commentFindDTOList" items="${commentFindDTOList}">
+
+                        <h4>${commentFindDTOList.commentId}</h4>
                       <img src="assets/img/blog/comment_1.png" alt="">
-                    </div>
-                    <div class="desc">
-                      <p class="comment">
+
 
 
                           ${commentFindDTOList.commentContent}
 
-                      </p>
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex align-items-center">
-                          <h5>
+
                             <a href="#">${commentFindDTOList.name}</a>
-                          </h5>
+
+
                           <p class="date">  ${commentFindDTOList.commentDate}</p>
 
-                        </div>
+
 
                         <div class="reply-btn">
                           <a href="#" class="btn-reply text-uppercase">reply</a>
 
                         </div>
+          </c:forEach>
+
+        </div>
+
+
+
+        <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-twi-tab">
+
+          <c:forEach var="reviewFindDTOList" items="${reviewFindDTOList}">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+              <div class="properties pb-30">
+                <div class="properties-card">
+                  <div class="properties-img">
+                    <a href="/reviewDetail?reviewId=${reviewFindDTOList.reviewId}&userId=${reviewFindDTOList.userId}"><img src="reviewImg/${reviewFindDTOList.reviewFileName}" alt=""
+                                                                                                                   style="   height: 300px; object-fit: cover;"></a>
+                  </div>
+                  <div class="properties-caption properties-caption2">
+                    <h3><a href="/reviewDetail?reviewId=${reviewFindDTOList.reviewId}&userId=${reviewFindDTOList.userId}">${reviewFindDTOList.reviewSubject}  </a></h3>
+
+
+                    <p>${reviewFindDTOList.reviewContent} </p>
+                    <h6 style="color: red; text-align: right;">  (${reviewFindDTOList.userId})</h6>
+                    <div class="properties-footer d-flex justify-content-between align-items-center">
+                      <div class="review">
+                        <div class="rating">
+                          <c:if test="${reviewFindDTOList.grade==1}">
+                            <i class="fas fa-star" style="color: gold;"></i>
+                          </c:if>
+
+                          <c:if test="${reviewFindDTOList.grade==2}">
+
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                          </c:if>
+
+                          <c:if test="${reviewFindDTOList.grade==3}">
+
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                          </c:if>
+
+                          <c:if test="${reviewFindDTOList.grade==4}">
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                          </c:if>
+
+                          <c:if test="${reviewFindDTOList.grade==5}">
+
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                            <i class="fas fa-star" style="color: gold;"></i>
+                          </c:if>
+
+
+
+                        </div>
+                        <p>(<span>120</span> Review)</p>
+                      </div>
+                      <div class="price">
+                        <span>$50</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        </c:forEach>
 
-        <div class="tab-pane fade" id="nav-four" role="tabpanel" aria-labelledby="nav-four-tab">
-          <!-- Tab 4 -->
-          <div class="row">
-            <div class="offset-xl-1 col-lg-9">
-              <h4>05 Comments</h4>
-              <div class="comment-list">
-                <div class="single-comment justify-content-between d-flex">
-                  <div class="user justify-content-between d-flex">
-                    <div class="thumb">
-                      <img src="assets/img/blog/comment_1.png" alt="">
-                    </div>
-                    <div class="desc">
-                      <p class="comment">
-                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                      </p>
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex align-items-center">
-                          <h5>
-                            <a href="#">Emilly Blunt</a>
-                          </h5>
-                          <p class="date">December 4, 2017 at 3:12 pm </p>
-                        </div>
-                        <div class="reply-btn">
-                          <a href="#" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
+          </c:forEach>
+
+
+
+
+      </div>
+    </div>
+
+
+
         </div>
 
 

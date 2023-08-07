@@ -5,6 +5,7 @@ import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.comment.CommentService;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
@@ -218,10 +219,14 @@ public class BookController {
 
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         List<CommentFindDTO> commentFindDTOList = commentService.commentList(id);
+        List<ReviewFindDTO> reviewFindDTOList = reviewService.reviewBookList(id);
 
 
         model.addAttribute("bookList",bookList);
         model.addAttribute("commentFindDTOList",commentFindDTOList);
+        model.addAttribute("reviewFindDTOList",reviewFindDTOList);
+
+
         return "book/bookDetail";
     }
 

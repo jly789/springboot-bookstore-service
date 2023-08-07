@@ -13,6 +13,7 @@ public class OrderDTO {
 
 
     private int orderId;//주문번호 PK
+    private int reviewId;
     private int memberId;//회원번호 FK
     private int bookId;//상품번호 FK
     private int cartId;//

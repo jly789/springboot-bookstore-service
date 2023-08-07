@@ -108,6 +108,47 @@
     </select>
 
 
+    <select id="reviewBookList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+
+        select * from review a
+                          left join  member b
+                                     on a.memberId = b.memberId
+        where a.bookId = #{bookId}
+
+
+
+--
+    </select>
+
+<!--    <select id="reviewMemberList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">-->
+
+<!--      select  *  from orders a-->
+<!--        left join book b on a.bookId = b.bookId-->
+<!--        left join review c on b.bookId = c.bookId-->
+
+
+
+
+<!--                 where a.bookId in-->
+
+<!--        <foreach item="orderDTOList" collection="orderDTOList" open="(" close=")" separator=",">-->
+<!--            #{orderDTOList.bookId}-->
+<!--        </foreach>-->
+
+<!--      and a.memberId in <foreach item="orderDTOList" collection="orderDTOList" open="(" close=")" separator=",">-->
+<!--        #{orderDTOList.memberId}-->
+<!--    </foreach>-->
+
+
+
+
+
+<!--        &#45;&#45;-->
+<!--    </select>-->
+
+
+
+
     <update id="updateReviewData" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO">
 
     update review

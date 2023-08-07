@@ -45,12 +45,14 @@ public class OrderController {
     @GetMapping("/myOrder")
     public String  myOrder(Model model, HttpSession session,OrderDTO orderDTO,ReviewFindDTO reviewFindDTO)throws Exception{
 
+
+
         int memberId = (int)session.getAttribute("memberId");
+        String userId = (String) session.getAttribute("userId");
         List<OrderDTO> orderList =   orderService.orderFindList(memberId);
 
-
+        model.addAttribute("userId",userId);
         model.addAttribute("bookList",orderList);
-
         return  "order/myOrder";
     }
 

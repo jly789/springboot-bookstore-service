@@ -4,6 +4,7 @@ import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.comment.CommentAddDTO;
+import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.comment.CommentService;
 import lombok.Getter;
@@ -36,9 +37,11 @@ public class CommentController {
         commentAddDTO.setCommentId(maxNum+1);
         commentAddDTO.setMemberId(memberId);
         commentService.insertDataComment(commentAddDTO);
+
+        List<CommentFindDTO> commentFindDTOList = commentService.commentList(id);
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         model.addAttribute("bookList",bookList);
-
+        model.addAttribute("commentFindDTOList",commentFindDTOList);
         return "book/bookDetail";
     }
 

@@ -84,14 +84,23 @@
                       <p id="bookNames">${bookList.bookName}</p>
 
                       <a href="/reviewAdd?bookId=${bookList.bookId}&orderId=${bookList.orderId}"><p  id="review" style="color: red" >
-                        ${bookList.reviewState}</p></a>
-
-                    <c:if test="${bookList.reviewState!='리뷰완료'}">
-
-                      <a href="/reviewAdd?bookId=${bookList.bookId}&orderId=${bookList.orderId}"><p  id="review" style="color: red" >
                         리뷰작성</p></a>
+<%--                        <c:if test="${bookList.reviewState!='리뷰완료'}">--%>
+<%--                          <a href="reviewDetail?reviewId=${bookList.reviewId}&userId=${bookList.userId}"><p  id="review" style="color: red" >--%>
+<%--                              ${bookList.reviewState}</p></a>--%>
 
-                    </c:if>
+<%--                        </c:if>--%>
+
+
+
+
+<%--                      <c:if test="${bookList.reviewState =='리뷰완료'}">--%>
+<%--                          <a href="/reviewAdd?bookId=${bookList.bookId}&orderId=${bookList.orderId}"><p  id="review" style="color: red" >--%>
+<%--                            리뷰작성</p></a>--%>
+<%--                      </c:if>--%>
+
+
+
 
 
                     </div>
@@ -126,6 +135,23 @@
 
 
                 </c:forEach>
+
+                <%--                      <c:forEach var="reviewMemberList" items="${reviewMemberList}">--%>
+                <%--                        <c:if test="${reviewMemberList.reviewState=='리뷰완료'}">--%>
+                <%--                          <a href="reviewDetail?reviewId=${reviewMemberList.reviewId}&userId=${reviewMemberList.userId}"><p  id="review" style="color: red" >--%>
+                <%--                              ${reviewMemberList.reviewState}</p></a>--%>
+
+                <%--                        </c:if>--%>
+
+
+
+
+
+
+
+
+
+
               </tr>
               </tbody>
 

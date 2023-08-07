@@ -22,14 +22,23 @@ public interface ReviewMapper {
 
     public List<ReviewFindDTO> reviewAllList() throws Exception;
 
+
     public List<ReviewFindDTO> reviewDetailList(int reviewId) throws Exception;
 
     public List<ReviewFindDTO> reviewWriter() throws Exception;
+
+    public List<ReviewFindDTO>  reviewBookList(int bookId) throws Exception; //해당도서의 리뷰작성리스트
+
+//    public List<ReviewFindDTO> reviewMemberList(List<OrderDTO>orderDTOList) throws Exception; //해당회원이 작성한 리뷰리스트
+
 
     public int ReviewOrderIdFind(int orderId) throws Exception;
 
     public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception;
 
     public List<OrderDTO> myOrderReviewCheck(List<OrderDTO> orderDTO) throws Exception;
+
+
+
 
 }

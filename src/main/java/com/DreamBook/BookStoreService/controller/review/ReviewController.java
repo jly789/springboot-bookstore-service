@@ -135,6 +135,7 @@ public class ReviewController {
             model.addAttribute("reviewDetail",reviewDetail);
             model.addAttribute("reviewWriter",reviewWriter);
             model.addAttribute("loginId",loginId);
+            return "review/reviewDetail";
         }
 
         List<ReviewFindDTO> reviewDetail = reviewService.reviewDetailList(reviewId);

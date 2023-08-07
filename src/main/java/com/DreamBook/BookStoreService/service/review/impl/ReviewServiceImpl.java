@@ -199,6 +199,16 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public List<ReviewFindDTO> reviewBookList(int bookId) throws Exception {
+        return reviewMapper.reviewBookList(bookId);
+    }
+
+//    @Override
+//    public List<ReviewFindDTO> reviewMemberList(List<OrderDTO>orderDTOList) throws Exception {
+//        return reviewMapper.reviewMemberList(orderDTOList);
+//    }
+
+    @Override
     public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception {
         return reviewMapper.ReviewCheck(orderId);
     }
