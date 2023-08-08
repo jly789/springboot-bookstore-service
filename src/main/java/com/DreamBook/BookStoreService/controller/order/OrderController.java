@@ -69,6 +69,8 @@ public class OrderController {
 
         List<BookDTO> bookCartList = bookService.bookCartList(memberId);
 
+
+
         model.addAttribute("bookCartList", bookCartList);
         model.addAttribute("totalPrice",totalPrice);
 
@@ -124,6 +126,17 @@ public class OrderController {
 
         return "bookMain";
     }
+
+    @ResponseBody
+    @PostMapping("/deferredPayment")
+    public  int  deferredPaymentCheck(@RequestParam("deferredPayment")int deferredPayment,Model model)throws Exception {
+
+
+
+
+        return deferredPayment;
+    }
+
 
 
 }

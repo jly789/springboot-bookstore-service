@@ -1,6 +1,7 @@
 package com.DreamBook.BookStoreService.service.comment.impl;
 
 import com.DreamBook.BookStoreService.dto.comment.CommentAddDTO;
+import com.DreamBook.BookStoreService.dto.comment.CommentDeleteDTO;
 import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
 import com.DreamBook.BookStoreService.mapper.comment.CommentMapper;
 import com.DreamBook.BookStoreService.service.comment.CommentService;
@@ -29,5 +30,15 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentFindDTO> commentList(int bookId) throws Exception {
         return commentMapper.commentList(bookId);
+    }
+
+    @Override
+    public List<CommentFindDTO> commentFindList(int bookId, int memberId) throws Exception {
+        return commentMapper.commentFindList(bookId,memberId);
+    }
+
+    @Override
+    public void commentDelete(CommentDeleteDTO commentDeleteDTO) throws Exception {
+        commentMapper.commentDelete(commentDeleteDTO);
     }
 }

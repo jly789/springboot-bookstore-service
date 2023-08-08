@@ -121,26 +121,39 @@
 
           <c:forEach var="commentFindDTOList" items="${commentFindDTOList}">
 
+
                         <h4>${commentFindDTOList.commentId}</h4>
-                      <img src="assets/img/blog/comment_1.png" alt="">
+
+                          <c:if test="${userId == commentFindDTOList.userId}">
+                            <img src="assets/img/blog/comment_1.png" alt="">
+                            <a style="color: red;" href="/deleteComment?bookId=${commentFindDTOList.bookId}&commentId=${commentFindDTOList.commentId}">삭제</a><br/>
+                          <strong style="color: red;">작성자:${userId}</strong>
+
+                            <br/>    제목: ${commentFindDTOList.commentContent}
+                          </c:if>
+
+            <c:if test="${userId != commentFindDTOList.userId}">
+              <img src="assets/img/blog/comment_1.png" alt=""><br/>
+              <strong style="color: black;">작성자:${commentFindDTOList.userId}</strong><br/>
+              제목: ${commentFindDTOList.commentContent}<br/>
+
+
+            </c:if>
 
 
 
-                          ${commentFindDTOList.commentContent}
 
-
-                            <a href="#">${commentFindDTOList.name}</a>
-
-
-                          <p class="date">  ${commentFindDTOList.commentDate}</p>
+                  <p class="date">   작성일자:       ${commentFindDTOList.commentDate}</p>
 
 
 
+
+          </c:forEach>
                         <div class="reply-btn">
                           <a href="#" class="btn-reply text-uppercase">reply</a>
 
                         </div>
-          </c:forEach>
+
 
         </div>
 

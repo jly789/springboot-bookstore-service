@@ -22,6 +22,7 @@ public class CommentFindDTO {
     private String reviewFilePath;
     private int grade;
     private LocalDateTime reviewDate;
+    private String userId;
 
 
 

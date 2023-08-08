@@ -28,4 +28,19 @@
 
 
 
+    <select id="commentFindList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.comment.CommentFindDTO">
+        select a.commentId from comments a
+                          left join member b
+                                    on a.memberId = b.memberId
+
+        where a.bookId = #{bookId} and a.memberId = #{memberId}
+    </select>
+
+
+    <delete id="commentDelete" parameterType="com.DreamBook.BookStoreService.dto.comment.CommentDeleteDTO">
+        delete  from comments
+
+        where commentId = #{commentId}
+    </delete>
+
 </mapper>

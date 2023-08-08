@@ -220,18 +220,24 @@ public class BookController {
         return "book/bookAdd";
     }
     @GetMapping("/{id}")
-    public String bookDetail(@PathVariable("id") int id, Model model)throws Exception{
+    public String bookDetail(@PathVariable("id") int id, Model model,HttpSession session)throws Exception{
 
         bookService.updateViews(id);
+        int memberId = (Integer) session.getAttribute("memberId");
+        String userId =(String) session.getAttribute("userId");
 
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         List<CommentFindDTO> commentFindDTOList = commentService.commentList(id);
         List<ReviewFindDTO> reviewFindDTOList = reviewService.reviewBookList(id);
 
 
+
+
+
         model.addAttribute("bookList",bookList);
         model.addAttribute("commentFindDTOList",commentFindDTOList);
         model.addAttribute("reviewFindDTOList",reviewFindDTOList);
+        model.addAttribute("userId",userId);
 
 
         return "book/bookDetail";

@@ -24,6 +24,7 @@ public class BookDTO {
     private String fileName;
     private String filePath;
     private int price;
+    private int point;
     private int bookLoan;
     private int views;
     private int wishQuantity;

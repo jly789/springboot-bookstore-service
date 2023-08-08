@@ -141,7 +141,7 @@
                 <span id="detailAddresss"  class="placeholder" data-placeholder="상세주소"></span>
               </div>
 
-            <input type="hidden" id="deliveryCost" name="deliveryCost" value="5000"/>
+
 
 
 
@@ -152,12 +152,14 @@
             <br/>
               <div class="cupon_area">
                 <div class="check_title">
-                  <h2 id="have"> Have a point?
-                    <a id="pointCheck" style="height: 20px; width: 40px;"  href="#">포인트 확인</a>
+                  <h2 id="have">you Have a point
+<%--                    <a id="pointCheck" style="height: 20px; width: 40px;"  href="#">포인트 확인</a>--%>
                   </h2>
                 </div>
-                <input id="point" name="point" type="text" placeholder="" value="0" ; />
-
+                <c:forEach var="bookCartList" items="${bookCartList}">
+                <input id="point" name="point" type="text" placeholder="" readonly
+                       value="${bookCartList.point}"  />
+              </c:forEach>
                 <%--        <a id="delivery" class="btn">기본 배송지적용</a>--%>
                 <a  id="pointApply" class="btn">포인트적용</a>
 
@@ -210,24 +212,34 @@
                 </li>
                 <li>
                   <input type="hidden" id="finaltotalPrice" value="${totalPrice+5000}"/>
-                  <a href="#" id="totalPrice">총 금액:
-                    ${totalPrice+5000}원
+                  <input type="hidden" id="finaltotalPrice2" value="${totalPrice+5000}"/>
+
+                  후불<input type="text" id="gnqnf" value="${totalPrice}"/>
+                  <p>총 금액<a href="#" id="totalPrice">${totalPrice+5000}</a></p>
+
+
+
+
+                  배달비: <input type="hidden" id="deliveryCost" value="5000"/>
+
+
+
                     <span></span>
-                  </a>
+                  </input>
                 </li>
               </ul>
               <div class="payment_item">
                 <div class="radion_btn">
-                  <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5" id="prepayment">배송비 선불</label>
+                  <input type="radio" id="prepayment" name="selector"  value="5000" />
+                  <label for="prepayment">배송비 선불</label>
                   <div class="check"></div>
                 </div>
                 <p> 선불 결제 </p>
               </div>
               <div class="payment_item active">
                 <div class="radion_btn">
-                  <input type="radio" id="f-option6" name="selector" />
-                  <label for="f-option6" id="deferredPayment">배송비 후불 </label>
+                  <input type="radio" id="deferredPayment" name="selector" value="0" />
+                  <label for="deferredPayment" >배송비 후불 </label>
                   <img src="assets/img/gallery/card.jpg" alt="" />
                   <div class="check"></div>
                 </div>
@@ -237,6 +249,7 @@
                 <input type="checkbox" id="f-option8" name="selector" />
                 <label for="f-option8">I’ve read and accept the  <a href="#">terms & conditions*</a> </label>
               </div>
+
 <%--              <form class="row contact_form" action="/payment" method="post" novalidate="novalidate">--%>
               <button class="btn w-100" id="payment">결제하기</button>
 <%--              </form>--%>
@@ -252,6 +265,270 @@
 </main>
 
 <script>
+
+
+
+  $('#pointCheck').click(function () {
+
+    let point = 0;
+    // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+    $.ajax({
+
+      type: 'POST',
+      url: '/pointCheck',
+      data: {"memberId": $('#memberId').val(),
+
+      },
+      dataType: 'JSON',
+
+      success: function(point) {
+
+        for(let i=0; i<point.length; i++) {
+
+          point =(point[i].point);
+
+        }
+
+        $("#point").val(point);
+
+        // $("#result").text('아이디:'+' '+result+''+'입니다');
+        //
+        // document.getElementById('result').style.color ="red"
+
+
+
+      },
+      error: function(a, b, c) {
+        alert('ㅇㅇㄴ');
+        console.log(a, b, c);
+      }
+
+    });
+
+
+
+  });
+
+  $('#prepayment').click(function () {
+
+    $("#finaltotalPrice").val($("#finaltotalPrice2").val());
+
+    $("#totalPrice").text(parseInt($("#finaltotalPrice").val()));
+    $("#deliveryCost").val(5000);
+    $("#deferredPayment").attr("disabled", false);
+
+  let  totalPrice = 0;
+
+  totalPrice =parseInt( $("#totalPrice").text());
+
+
+
+
+
+
+
+
+
+      $('#pointApply').click(function () {
+
+        if($("#pointApply").text()=='포인트적용' ){
+          // if($("#point").val()==''){
+          //   alert("포인트 확인을 누르세요!");
+          //   return false;
+          // }
+
+
+
+          // $("#have").hide();
+
+          $("#pointCheck").hide();
+
+          let message = "포인트 적용취소";
+          // let delivaryAccount = $("#delivaryAccount").val(); //배송비 5000원
+          // let pointapply =$("#totalPriceEx2").val(); //최종금액
+          let pointapply =   parseInt($("#totalPrice").text());
+          let pointapplys =$("#point").val(); //포인틐금액
+
+          let finaltotalPrice =totalPrice-pointapplys ; //최종금액= 최종금액-포인트금액
+
+
+
+          $("#totalPrice").html(finaltotalPrice+"원");
+
+          $("#pointApply").html(message);
+          document.getElementById('pointApply').style.backgroundColor = "green";
+
+          return true;
+
+          document.getElementById('point').readOnly = true;
+
+        }
+
+
+        if ($("#pointApply").text() =='포인트 적용취소') {
+
+          // $("#have").show();
+
+          $("#pointCheck").show();
+          $("#point").show();
+          // $("#point").val("");
+          let message = "포인트적용";
+
+          let pointapply =   parseInt($("#totalPrice").text());
+          let pointapplys =$("#point").val(); //포인틐금액
+
+
+          let finaltotalPrice = $("#finaltotalPrice2").val();
+           //최종금액= 최종금액-포인트금액
+
+
+
+          $("#pointApply").html(message);
+          document.getElementById('pointApply').style.backgroundColor = "red";
+          $("#totalPrice").html(parseInt(finaltotalPrice));
+
+          return false;
+        }
+
+
+    });
+
+
+
+
+
+
+
+  });
+
+
+
+  $('#deferredPayment').click(function () {
+
+    // if( $("#deferredPayment").val(1)== true){
+    // $("realPrice").remove;
+    // return false;
+    // }
+    let delibery = 0;
+    let deferredPayment = -5000;
+    // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+    $.ajax({
+
+      type: 'POST',
+      url: '/deferredPayment',
+      data: {"deferredPayment": deferredPayment,
+
+      },
+      dataType: 'JSON',
+
+      success: function(deferredPayment) {
+        $("#deliveryCost").val(delibery);
+
+    let price = 0;
+    let totalPrice =0;
+        let point=0;
+
+
+
+
+       totalPrice = parseInt($("#totalPrice").text());
+        // alert(totalPrice); //24000
+
+        point = $("#point").val();
+
+      price = totalPrice-5000;
+      // alert(price); //19000
+
+
+       $("#totalPrice").text( $("#totalPrice").text()+"-5000-" +"="+parseInt(price));
+
+        // $("#finaltotalPrice").val(price-point);
+
+       let gnqnf = $("#gnqnf").val();
+
+
+        $("#deferredPayment").attr("disabled",true);
+
+
+
+        $('#pointApply').click(function () {
+
+          if($("#pointApply").text()=='포인트적용' ){
+            // if($("#point").val()==''){
+            //   alert("포인트 확인을 누르세요!");
+            //   return false;
+            // }
+
+
+
+            $("#have").hide();
+
+            $("#pointCheck").hide();
+
+            let message = "포인트 적용취소";
+            // let delivaryAccount = $("#delivaryAccount").val(); //배송비 5000원
+            // let pointapply =$("#totalPriceEx2").val(); //최종금액
+            let pointapply =   parseInt($("#totalPrice").text());
+            let pointapplys =$("#point").val(); //포인틐금액
+
+            let finaltotalPrice =$("#gnqnf").val()-$("#point").val() ; //최종금액= 최종금액-포인트금액
+
+
+
+            $("#totalPrice").html(finaltotalPrice+"원");
+
+            $("#pointApply").html(message);
+            document.getElementById('pointApply').style.backgroundColor = "green";
+
+            return true;
+
+            // document.getElementById('point').readOnly = true;
+
+          }
+
+
+
+          if ($("#pointApply").text() =='포인트 적용취소') {
+
+            $("#have").show();
+
+            $("#pointCheck").show();
+            $("#point").show();
+            // $("#point").val("");
+            let message = "포인트적용";
+
+            let pointapply =   parseInt($("#totalPrice").text());
+            let pointapplys =$("#point").val(); //포인틐금액
+
+            let finaltotalPrice = $("#gnqnf").val(); //최종금액= 최종금액-포인트금액
+
+            $("#pointApply").html(message);
+            document.getElementById('pointApply').style.backgroundColor = "red";
+            $("#totalPrice").html(parseInt(finaltotalPrice));
+
+            return false;
+          }
+
+
+
+        });
+
+
+
+
+
+
+      },
+      error: function(a, b, c) {
+        alert('실패');
+        console.log(a, b, c);
+      }
+
+    });
+
+
+
+  });
 
 
 
@@ -366,104 +643,65 @@
 
 
 
-  $('#pointApply').click(function () {
-
-    if($("#pointApply").text()=='포인트적용' ){
-      if($("#point").val()==''){
-        alert("포인트 확인을 누르세요!");
-        return false;
-      }
-
-
-
-      $("#have").hide();
-
-      $("#pointCheck").hide();
-
-      let message = "포인트 적용취소";
-      let delivaryAccount = $("#delivaryAccount").val(); //배송비 5000원
-      let pointapply =$("#totalPriceEx2").val(); //최종금액
-      let pointapplys =$("#point").val(); //포인틐금액
-
-      let finaltotalPrice =pointapply-pointapplys; //최종금액= 최종금액-포인트금액
-
-      $("#finaltotalPrice").val(finaltotalPrice);
-
-      $("#totalPrice").html("총 금액: "+ $("#totalPriceEx2").val()+"-"+pointapplys +"=" +finaltotalPrice+"원");
-
-      $("#pointApply").html(message);
-      document.getElementById('pointApply').style.backgroundColor = "green";
-
-      return true;
-
-      document.getElementById('point').readOnly = true;
-
-    }
-
-
-
-    if ($("#pointApply").text() =='포인트 적용취소') {
-
-      $("#have").show();
-
-      $("#pointCheck").show();
-      $("#point").show();
-      $("#point").val(0);
-      let message = "포인트적용";
-
-      $("#pointApply").html(message);
-      document.getElementById('pointApply').style.backgroundColor = "red";
-      $("#totalPrice").html("총 금액: "+ $("#totalPriceEx2").val() +"원");
-      $("#finaltotalPrice").val($("#totalPriceEx2").val());
-      return false;
-    }
-
-
-
-  });
-
-
-
-  $('#pointCheck').click(function () {
-
-      let point = 0;
-      // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
-      $.ajax({
-
-        type: 'POST',
-        url: '/pointCheck',
-        data: {"memberId": $('#memberId').val(),
-
-        },
-        dataType: 'JSON',
-
-        success: function(point) {
-
-          for(let i=0; i<point.length; i++) {
-
-            point =(point[i].point);
-
-            }
-
-          $("#point").val(point);
-
-          // $("#result").text('아이디:'+' '+result+''+'입니다');
-          //
-          // document.getElementById('result').style.color ="red"
+  // $('#pointApply').click(function () {
+  //
+  //   if($("#pointApply").text()=='포인트적용' ){
+  //     if($("#point").val()==''){
+  //       alert("포인트 확인을 누르세요!");
+  //       return false;
+  //     }
+  //
+  //
+  //
+  //     $("#have").hide();
+  //
+  //     $("#pointCheck").hide();
+  //
+  //     let message = "포인트 적용취소";
+  //     // let delivaryAccount = $("#delivaryAccount").val(); //배송비 5000원
+  //     // let pointapply =$("#totalPriceEx2").val(); //최종금액
+  //     let pointapply =   parseInt($("#totalPrice").text());
+  //     let pointapplys =$("#point").val(); //포인틐금액
+  //
+  //     let finaltotalPrice =pointapply-pointapplys; //최종금액= 최종금액-포인트금액
+  //
+  //     $("#finaltotalPrice").val(finaltotalPrice);
+  //
+  //     $("#totalPrice").html( $("#totalPriceEx2").val()+"-"+pointapplys +"=" + parseInt(finaltotalPrice)+"원");
+  //
+  //     $("#pointApply").html(message);
+  //     document.getElementById('pointApply').style.backgroundColor = "green";
+  //
+  //     return true;
+  //
+  //     document.getElementById('point').readOnly = true;
+  //
+  //   }
+  //
+  //
+  //
+  //   if ($("#pointApply").text() =='포인트 적용취소') {
+  //
+  //     $("#have").show();
+  //
+  //     $("#pointCheck").show();
+  //     $("#point").show();
+  //     $("#point").val(0);
+  //     let message = "포인트적용";
+  //
+  //
+  //     $("#pointApply").html(message);
+  //     document.getElementById('pointApply').style.backgroundColor = "red";
+  //     $("#totalPrice").html( parseInt($("#totalPriceEx2").val()) +"원");
+  //     $("#finaltotalPrice").val($("#totalPriceEx2").val());
+  //     return false;
+  //   }
+  //
+  //
+  //
+  // });
 
 
-
-        },
-        error: function(a, b, c) {
-          alert('ㅇㅇㄴ');
-          console.log(a, b, c);
-        }
-
-      });
-
-
-
-  });
 
 
 

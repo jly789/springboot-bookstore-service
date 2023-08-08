@@ -4,15 +4,19 @@ import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.comment.CommentAddDTO;
+import com.DreamBook.BookStoreService.dto.comment.CommentDeleteDTO;
 import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.comment.CommentService;
+import com.DreamBook.BookStoreService.service.review.ReviewService;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -25,6 +29,9 @@ public class CommentController {
     private BookService bookService;
     @Resource
     private CommentService commentService;
+
+    @Resource
+    private ReviewService reviewService;
 
 
     @GetMapping("/commentAdd{bookId}")
@@ -46,7 +53,23 @@ public class CommentController {
     }
 
 
+    @GetMapping("/deleteComment{bookId}")
+    public String commentDelete(
+            CommentDeleteDTO commentDeleteDTO, HttpSession session, Model model)throws Exception {
 
+        int id = commentDeleteDTO.getBookId();
+
+        commentService.commentDelete(commentDeleteDTO);
+
+
+        List<CommentFindDTO> commentFindDTOList = commentService.commentList(id);
+        List<BookFindDTO> bookList = bookService.bookIdList(id);
+        List<ReviewFindDTO> reviewFindDTOList = reviewService.reviewBookList(id);
+        model.addAttribute("bookList",bookList);
+        model.addAttribute("commentFindDTOList",commentFindDTOList);
+        model.addAttribute("reviewFindDTOList",reviewFindDTOList);
+        return "book/bookDetail";
+    }
 
 
 
