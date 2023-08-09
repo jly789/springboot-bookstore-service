@@ -1,9 +1,6 @@
 package com.DreamBook.BookStoreService.controller.book;
 
-import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
-import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
-import com.DreamBook.BookStoreService.dto.book.BookDTO;
-import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
+import com.DreamBook.BookStoreService.dto.book.*;
 import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
@@ -32,7 +29,12 @@ public class BookController {
     private CommentService commentService;
 
     @GetMapping("/bookMain")
-    public String bookMain( Model model,HttpSession session,BookFindDTO bookFindDTO)throws Exception{
+    public String bookMain( Model model,HttpSession session,BookFindDTO bookFindDTO,
+                            @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+                            @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") int cntPerPage,
+                            @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize
+
+                            )throws Exception{
 
         String genreName = "전체";
         int firstPriceRange = 0; //처음 가격범위 0원이상
@@ -51,19 +53,30 @@ public class BookController {
             return "book/main";
         }
 
-       List<BookFindDTO> bookList = bookService.bookList();
-        List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
-
-
-        model.addAttribute("bookAndReview",bookListGrade);
-        model.addAttribute("genreName",genreName);
-        model.addAttribute("priceRange",firstPriceRange);
 
 
 
+//       List<BookFindDTO> bookList = bookService.bookList();
+//        List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
+//
+//
+//        model.addAttribute("bookAndReview",bookListGrade);
+//        model.addAttribute("genreName",genreName);
+//        model.addAttribute("priceRange",firstPriceRange);
 
 
-        return "book/main";
+        int listCnt = bookService.testTableCount();
+        Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+        pagination.setTotalRecordCount(listCnt);
+
+        model.addAttribute("pagination",pagination);
+        model.addAttribute("Alllist",bookService.SelectAllList(pagination));
+
+
+
+
+
+        return "book/mainBook";
     }
 
     @GetMapping("/sort{abc}")

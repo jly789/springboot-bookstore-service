@@ -1,9 +1,6 @@
 package com.DreamBook.BookStoreService.service.book.impl;
 
-import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
-import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
-import com.DreamBook.BookStoreService.dto.book.BookDTO;
-import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
+import com.DreamBook.BookStoreService.dto.book.*;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.mapper.book.BookMapper;
@@ -19,8 +16,25 @@ import java.util.UUID;
 @Service
 public class BookServiceImpl implements BookService {
 
+
     @Autowired
     private BookMapper bookMapper;
+
+
+    @Override
+    public List<BookFindDTO> SelectAllList() throws Exception {
+        return bookMapper.SelectAllList();
+    }
+
+    @Override
+    public List<BookFindDTO> SelectAllList(Pagination pagination) throws Exception {
+        return bookMapper.SelectAllList(pagination);
+    }
+
+    @Override
+    public int testTableCount() throws Exception {
+        return bookMapper.testTableCount();
+    }
 
     @Override
     public int maxNum() throws Exception {

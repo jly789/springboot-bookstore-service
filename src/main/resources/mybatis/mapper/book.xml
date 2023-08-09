@@ -6,6 +6,30 @@
 <mapper namespace="com.DreamBook.BookStoreService.mapper.book.BookMapper">
 
 
+    <select id="SelectAllList" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        SELECT *
+        FROM (
+        SELECT ROW_NUMBER() OVER(ORDER by bookId asc) AS
+        row_num
+        ,bookId
+        ,bookName
+        FROM book
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num
+        </if>
+    </select>
+
+    <select id="testTableCount" resultType="int">
+        SELECT count(*) FROM
+            book
+    </select>
+
+
+
+
+
 
     <select id="maxNum" resultType="int">
         select nvl(max(bookId),0) from book
