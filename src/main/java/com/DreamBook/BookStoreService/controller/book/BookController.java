@@ -31,11 +31,11 @@ public class BookController {
     @GetMapping("/bookMain")
     public String bookMain( Model model,HttpSession session,BookFindDTO bookFindDTO,
                             @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
-                            @RequestParam(value = "cntPerPage", required = false, defaultValue = "10") int cntPerPage,
+                            @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
                             @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize
 
                             )throws Exception{
-
+        String choice = "정렬";
         String genreName = "전체";
         int firstPriceRange = 0; //처음 가격범위 0원이상
 
@@ -54,15 +54,8 @@ public class BookController {
         }
 
 
-
-
-//       List<BookFindDTO> bookList = bookService.bookList();
-//        List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
-//
-//
-//        model.addAttribute("bookAndReview",bookListGrade);
-//        model.addAttribute("genreName",genreName);
-//        model.addAttribute("priceRange",firstPriceRange);
+        model.addAttribute("genreName",genreName);
+        model.addAttribute("priceRange",firstPriceRange);
 
 
         int listCnt = bookService.testTableCount();
@@ -70,61 +63,121 @@ public class BookController {
         pagination.setTotalRecordCount(listCnt);
 
         model.addAttribute("pagination",pagination);
-        model.addAttribute("Alllist",bookService.SelectAllList(pagination));
+        model.addAttribute("bookAndReview",bookService.SelectAllList(pagination));
 
 
 
-
-
-        return "book/mainBook";
+        return "book/main";
     }
+
+
+
+//    @GetMapping("/HighPrice")
+//    public String bookMain2( Model model,HttpSession session,BookFindDTO bookFindDTO,
+//                            @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+//                            @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
+//                            @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize
+//
+//    )throws Exception{
+//        String choice = "정렬";
+//        String genreName = "전체";
+//        int firstPriceRange = 0; //처음 가격범위 0원이상
+//
+//
+//
+//        model.addAttribute("genreName",genreName);
+//        model.addAttribute("priceRange",firstPriceRange);
+//
+//
+//        int listCnt = bookService.testTableCount();
+//        Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+//        pagination.setTotalRecordCount(listCnt);
+//
+//        model.addAttribute("pagination",pagination);
+//        model.addAttribute("bookAndReviewHighPrice",bookService.SelectHighPriceList(pagination));
+//
+//
+//
+//        return "book/mainBook";
+//    }
 
     @GetMapping("/sort{abc}")
     public String bookMainSort( Model model,@PathVariable("abc") String bb,
-                                @RequestParam("abc")int state,HttpSession session)throws Exception{
+                                @RequestParam("abc")int state,HttpSession session,
+                                @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+                                @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
+                                @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception{
         String choice = "정렬";
         int firstPriceRange = 0; //처음 가격범위 0원이상
+        String genreName = "전체";
+
 
         if(state ==0){
-            List<BookFindDTO> bookList = bookService.bookList();
-            List<BookFindDTO> bookListGrade = bookService.bookAndReviewGrade(bookList);
-            model.addAttribute("bookAndReview",bookListGrade);
-            model.addAttribute("genreName",choice);
+
+            int listCnt = bookService.testTableCount();
+            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
+
+            model.addAttribute("pagination",pagination);
+            model.addAttribute("bookAndReview",bookService.SelectAllList(pagination));
+            model.addAttribute("genreName",genreName);
             model.addAttribute("priceRange",firstPriceRange);
 
             return "book/main";
         }
 
         if(state ==1){
-            List<BookFindDTO> bookList = bookService.bookList();
-            List<BookFindDTO> bookAndReviewHighPrice =bookService.bookListHighPrice(bookList);
-            model.addAttribute("bookAndReviewHighPrice",bookAndReviewHighPrice);
-            model.addAttribute("genreName",choice);
+
+
+            int listCnt = bookService.testTableCount();
+            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
+
+            model.addAttribute("pagination",pagination);
+            model.addAttribute("bookAndReviewHighPrice",bookService.SelectHighPriceList(pagination));
+            model.addAttribute("genreName",genreName);
             model.addAttribute("priceRange",firstPriceRange);
+
+
+
             return "book/main";
+
+
         }
         if(state == 2) {
-            List<BookFindDTO> bookList = bookService.bookList();
-            List<BookFindDTO> bookAndReviewLowPrice =bookService.bookListLowPrice(bookList);
-            model.addAttribute("bookAndReviewLowPrice",bookAndReviewLowPrice);
-            model.addAttribute("genreName",choice);
+
+
+
+            int listCnt = bookService.testTableCount();
+            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
+
+            model.addAttribute("pagination",pagination);
+            model.addAttribute("bookAndReviewLowPrice",bookService.SelectLowPriceList(pagination));
+            model.addAttribute("genreName",genreName);
             model.addAttribute("priceRange",firstPriceRange);
             return "book/main";
         }
 
         if(state == 3) {
-            List<BookFindDTO> bookList = bookService.bookList();
-            List<BookFindDTO> bookManyOrder =bookService.bookListManyOrders(bookList);
-            model.addAttribute("bookManyOrder",bookManyOrder);
-            model.addAttribute("genreName",choice);
+            int listCnt = bookService.testTableCount();
+            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
+
+            model.addAttribute("pagination",pagination);
+            model.addAttribute("bookAndReviewManyOrders",bookService.SelectManyOrders(pagination));
+            model.addAttribute("genreName",genreName);
             model.addAttribute("priceRange",firstPriceRange);
             return "book/main";
         }
         if(state == 4) {
-            List<BookFindDTO> bookList = bookService.bookList();
-            List<BookFindDTO> bookManyReview =bookService.bookListManyReview(bookList);
-            model.addAttribute("bookManyReview",bookManyReview);
-            model.addAttribute("genreName",choice);
+            int listCnt = bookService.testTableCount();
+            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
+
+            model.addAttribute("pagination",pagination);
+            model.addAttribute("bookAndReviewManyReview",bookService.SelectManyReview(pagination));
+            model.addAttribute("genreName",genreName);
             model.addAttribute("priceRange",firstPriceRange);
             return "book/main";
         }

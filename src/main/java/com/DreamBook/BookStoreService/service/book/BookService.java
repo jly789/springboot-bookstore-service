@@ -13,6 +13,10 @@ public interface BookService {
 
     //Paging
     public List<BookFindDTO> SelectAllList(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectHighPriceList(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectLowPriceList(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectManyOrders(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectManyReview(Pagination pagination) throws Exception;
 
     //count
     public int testTableCount() throws Exception;

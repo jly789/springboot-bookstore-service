@@ -6,31 +6,6 @@
 <mapper namespace="com.DreamBook.BookStoreService.mapper.book.BookMapper">
 
 
-    <select id="SelectAllList" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT *
-        FROM (
-        SELECT ROW_NUMBER() OVER(ORDER by bookId asc) AS
-        row_num
-        ,bookId
-        ,bookName
-        FROM book
-        )
-        <if test="firstRecordIndex !=null and lastRecordIndex != null">
-            WHERE row_num > #{firstRecordIndex} AND
-            #{lastRecordIndex} >=row_num
-        </if>
-    </select>
-
-    <select id="testTableCount" resultType="int">
-        SELECT count(*) FROM
-            book
-    </select>
-
-
-
-
-
-
     <select id="maxNum" resultType="int">
         select nvl(max(bookId),0) from book
     </select>
@@ -39,7 +14,6 @@
     <select id="maxNumCart" resultType="int">
         select nvl(max(cartId),0) from cart
     </select>
-
 
 
 
@@ -109,23 +83,18 @@
         SELECT a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,b.price,AVG(a.grade)as grade,count(a.reviewId) as reviewId from review a
         left join book b on a.bookId = b.bookId
 
-
         WHERE   a.bookId IN
 
         <if test='bookAndReview.size ==0'>
             null
         </if>
 
-
         <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
-
 
             #{bookAndReview.bookId}
 
 
-
         </foreach>
-
 
 
         GROUP BY a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,b.price,b.genre,b.PUBLISHER,b.author
@@ -133,69 +102,110 @@
 
     </select>
 
+    <select id="SelectAllList" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-    <select id="bookListHighPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId from book a
-
-        left join review b on a.bookId = b.bookId
-
-
-        WHERE a.bookId IN
-
-        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
-            #{bookAndReview.bookId}
-        </foreach>
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.bookId asc) AS
+        row_num,
+        a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId
+        FROM book a  left join review b on a.bookId = b.bookId
 
         GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
 
-        order by a.price desc
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num
+        </if>
 
     </select>
 
-    <select id="bookListLowPrice"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId from book a
-        left join review b on a.bookId = b.bookId
+    <select id="testTableCount" resultType="int">
+        SELECT count(*) FROM
+            book
+    </select>
 
 
-        WHERE a.bookId IN
+    <select id="SelectHighPriceList" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
-            #{bookAndReview.bookId}
-        </foreach>
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.price desc) AS
+        row_num,
+        a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId
+        FROM book a  left join review b on a.bookId = b.bookId
 
         GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
 
-        order by price asc
-
-
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num
+        </if>
 
     </select>
 
 
-    <select id="bookListManyOrders"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+    <select id="SelectLowPriceList" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
-
-
-        SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price, round(avg(b.grade))as grade,count(b.reviewId) as reviewId, count(c.orderId)as orderId from book a
-        left join review b on a.bookId = b.bookId
-        left join orders c on b.bookId = c.bookId
-
-
-        WHERE a.bookId IN
-
-        <foreach item="bookAndReview" collection="bookAndReview" open="(" close=")" separator=",">
-            #{bookAndReview.bookId}
-        </foreach>
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.price asc) AS
+        row_num,
+        a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId
+        FROM book a  left join review b on a.bookId = b.bookId
 
         GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
-        ORDER BY orderId desc
 
-
-
-
-
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num
+        </if>
 
     </select>
+
+
+    <select id="SelectManyOrders" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by  count(c.orderId) desc) AS
+        row_num,
+     a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price, round(avg(b.grade))as grade,count(b.reviewId) as reviewId, count(c.orderId)
+        FROM book a  left join review b on a.bookId = b.bookId left join orders c on b.bookId =c.bookId
+
+        GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price
+
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num
+        </if>
+
+    </select>
+
+    <select id="SelectManyReview" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by  count(b.reviewId) desc) AS
+        row_num,
+        a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price, round(avg(b.grade))as grade , count(b.reviewId)as reviewId
+        FROM book a  left join review b on a.bookId = b.bookId
+
+        GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price
+
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num
+        </if>
+
+    </select>
+
+
 
 
     <select id="bookListManyReview"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">

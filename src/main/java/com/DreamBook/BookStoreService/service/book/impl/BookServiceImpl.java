@@ -32,6 +32,28 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookFindDTO> SelectHighPriceList(Pagination pagination) throws Exception {
+        return bookMapper.SelectHighPriceList(pagination);
+    }
+
+
+    @Override
+    public List<BookFindDTO> SelectLowPriceList(Pagination pagination) throws Exception {
+        return bookMapper.SelectLowPriceList(pagination);
+
+    }
+
+    @Override
+    public List<BookFindDTO> SelectManyOrders(Pagination pagination) throws Exception {
+        return bookMapper.SelectManyOrders(pagination);
+    }
+
+    @Override
+    public List<BookFindDTO> SelectManyReview(Pagination pagination) throws Exception {
+        return bookMapper.SelectManyReview(pagination);
+    }
+
+    @Override
     public int testTableCount() throws Exception {
         return bookMapper.testTableCount();
     }
