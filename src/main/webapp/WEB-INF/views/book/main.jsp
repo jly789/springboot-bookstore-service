@@ -1133,18 +1133,20 @@
                                                             </div>
                                                             <!-- /paginate -->
 
-                                                            </c:if>    <c:if test="${bookAndReviewManyReview !=null}">
+                                                            </c:if>
+
+                                                            <c:if test="${genreSearch !=null}">
                                                     <div class="best-selling p-0">
                                                         <div class="row">
 
                                                             <c:choose>
 
 
-                                                                <c:when test="${fn:length(bookAndReviewManyReview) > 0}">
+                                                                <c:when test="${fn:length(genreSearch) > 0}">
 
 
                                                                     <c:forEach var="bookList"
-                                                                               items="${bookAndReviewManyReview}">
+                                                                               items="${genreSearch}">
                                                                         <input type="hidden" name="bookId" id="bookId"
                                                                                value="${bookList.bookId}">
                                                                         <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
@@ -1251,12 +1253,12 @@
                                                                 <div class="paging">
                                                                     <a class="direction prev" href="javascript:void(0);"
                                                                        style="color: black;"
-                                                                       onclick="movePageManyReview()"
+                                                                       onclick="movePageFear()"
                                                                        (1,${pagination.cntPerPage},${pagination.pageSize});">
                                                                     &lt;&lt; </a> <a class="direction prev"
                                                                                      href="javascript:void(0);"
                                                                                      style="color: black;"
-                                                                                     onclick="movePageManyReview(${pagination.currentPage}
+                                                                                     onclick="movePageFear(${pagination.currentPage}
                                                                                      <c:if test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
                                                                     &lt; </a>
 
@@ -1266,18 +1268,18 @@
                                                                                 style="color: black;
                                                                                     <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
                                                                                 href="javascript:void(0);"
-                                                                                onclick="movePageManyReview(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
+                                                                                onclick="movePageFear(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
                                                                                 value="${idx}"/></a>
                                                                     </c:forEach>
                                                                     <a class="direction next" href="javascript:void(0);"
                                                                        style="color: black;"
-                                                                       onclick="movePageManyReview(${pagination.currentPage}
+                                                                       onclick="movePageFear(${pagination.currentPage}
                                                                        <c:if
                                                                                test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
                                                                         &gt; </a> <a class="direction next"
                                                                                      href="javascript:void(0);"
                                                                                      style="color: black;"
-                                                                                     onclick="movePageManyReview(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                     onclick="movePageFear(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
                                                                     &gt;&gt; </a>
                                                                 </div>
                                                             </div>
@@ -1397,6 +1399,17 @@
     function movePageManyReview(currentPage, cntPerPage, pageSize) {
 
         var url = "${pageContext.request.contextPath}/sort?abc=" + 4;
+        url = url + "&currentPage=" + currentPage;
+        url = url + "&cntPerPage=" + cntPerPage;
+        url = url + "&pageSize=" + pageSize;
+
+        location.href = url;
+    }
+
+    //페이지 이동
+    function movePageFear(currentPage, cntPerPage, pageSize) {
+
+        var url = "${pageContext.request.contextPath}/genre?choice=공포";
         url = url + "&currentPage=" + currentPage;
         url = url + "&cntPerPage=" + cntPerPage;
         url = url + "&pageSize=" + pageSize;

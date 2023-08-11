@@ -31,6 +31,10 @@ public class Pagination {
         // 다음 페이지 존재 여부
         private boolean hasNextPage;
 
+        private String genre;
+        private int bookId;
+
+
         public Pagination(int currentPage, int cntPerPage, int pageSize) {
             //강제입력방지
             if (currentPage < 1) {
@@ -38,7 +42,7 @@ public class Pagination {
             }
             //10,20,30개 단위 이외 처리 방지
             if (cntPerPage != 10 && cntPerPage != 20 && cntPerPage != 30) {
-                cntPerPage = 9;
+                cntPerPage = 6;
             }
             // 하단 페이지 갯수 10개로 제한
             if (pageSize != 100) {
@@ -75,8 +79,11 @@ public class Pagination {
                 lastPage = totalPageCount;
             }
 
+
+
             // SQL의 조건절에 사용되는 첫 RNUM
             firstRecordIndex = (this.getCurrentPage() - 1) * this.getCntPerPage();
+
 
             // SQL의 조건절에 사용되는 마지막 RNUM
             lastRecordIndex = this.getCurrentPage() * this.getCntPerPage();

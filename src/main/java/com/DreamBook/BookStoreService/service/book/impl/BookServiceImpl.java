@@ -1,6 +1,7 @@
 package com.DreamBook.BookStoreService.service.book.impl;
 
 import com.DreamBook.BookStoreService.dto.book.*;
+import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.mapper.book.BookMapper;
@@ -54,8 +55,23 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookFindDTO> SelectGenreSearch(Pagination pagination) throws Exception {
+        return bookMapper.SelectGenreSearch(pagination);
+    }
+
+    @Override
+    public List<CommentFindDTO> SelectCommentFindDTOList(Pagination pagination) throws Exception {
+        return bookMapper.SelectCommentFindDTOList(pagination);
+    }
+
+    @Override
     public int testTableCount() throws Exception {
         return bookMapper.testTableCount();
+    }
+
+    @Override
+    public int CommentTableCount() throws Exception {
+        return bookMapper.CommentTableCount();
     }
 
     @Override

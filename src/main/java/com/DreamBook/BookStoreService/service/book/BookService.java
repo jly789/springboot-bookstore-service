@@ -1,6 +1,7 @@
 package com.DreamBook.BookStoreService.service.book;
 
 import com.DreamBook.BookStoreService.dto.book.*;
+import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,10 +18,12 @@ public interface BookService {
     public List<BookFindDTO> SelectLowPriceList(Pagination pagination) throws Exception;
     public List<BookFindDTO> SelectManyOrders(Pagination pagination) throws Exception;
     public List<BookFindDTO> SelectManyReview(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectGenreSearch(Pagination pagination) throws Exception;
 
+    public List<CommentFindDTO> SelectCommentFindDTOList(Pagination pagination) throws Exception;
     //count
     public int testTableCount() throws Exception;
-
+    public int CommentTableCount() throws Exception;
 
     public int maxNum() throws Exception;
     public int maxNumCart() throws Exception;

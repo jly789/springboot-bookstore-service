@@ -126,6 +126,11 @@
             book
     </select>
 
+    <select id="CommentTableCount" resultType="int">
+        SELECT count(*) FROM
+            comments
+    </select>
+
 
     <select id="SelectHighPriceList" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
@@ -204,6 +209,48 @@
         </if>
 
     </select>
+    <select id="SelectGenreSearch"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.bookId asc) AS
+        row_num,
+        a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price, round(avg(b.grade))as grade , count(b.reviewId)as reviewId
+        FROM book a  left join review b on a.bookId = b.bookId
+
+
+        GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price
+
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num and genre = #{genre}
+        </if>
+
+    </select>
+
+
+    <select id="SelectCommentFindDTOList"  resultType="com.DreamBook.BookStoreService.dto.comment.CommentFindDTO">
+
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.commentId asc) AS
+        row_num,a.commentId,a.bookId,a.commentContent,a.commentDate,b.userId
+
+        FROM comments a  left join member b
+        on
+        a.memberId = b.memberId
+
+
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num and bookId = #{bookId}
+        </if>
+
+
+
+    </select>
 
 
 
@@ -240,6 +287,8 @@
     </select>
 
 
+
+
     <select id="genreSearchAll"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
 
@@ -262,14 +311,7 @@
     </select>
 
 
-    <select id="bookIdList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO"
-    parameterType="int">
-        select * from book
-        where bookId = #{bookId}
 
-
-
-    </select>
 
     <select id="manyBookOrders" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
         SELECT * from book
@@ -278,6 +320,15 @@
         <foreach item="bookId" collection="bookId" open="(" close=")" separator=",">
             #{bookId}
         </foreach>
+
+
+    </select>
+
+    <select id="bookIdList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO"
+            parameterType="int">
+        select * from book
+        where bookId = #{bookId}
+
 
 
     </select>

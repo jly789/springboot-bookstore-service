@@ -1,10 +1,13 @@
 package com.DreamBook.BookStoreService.mapper.book;
 
 import com.DreamBook.BookStoreService.dto.book.*;
+import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -25,8 +28,15 @@ public interface BookMapper {
     public List<BookFindDTO> SelectManyOrders(Pagination pagination) throws Exception;
     public List<BookFindDTO> SelectManyReview(Pagination pagination) throws Exception;
 
+
+    public List<BookFindDTO> SelectGenreSearch(Pagination pagination) throws Exception;
+
+    public List<CommentFindDTO> SelectCommentFindDTOList(Pagination pagination) throws Exception;
+
     //count
     public int testTableCount() throws Exception;
+    public int CommentTableCount() throws Exception;
+
 
     public int maxNum() throws Exception;
 
@@ -50,6 +60,8 @@ public interface BookMapper {
 
     public List<BookFindDTO> bookListManyReview(List<BookFindDTO>bookAndReview) throws Exception;
 
+
+
     public List<BookFindDTO> bookAndReview(List<BookFindDTO>bookAndReview)throws Exception;
 
     public List<BookFindDTO> bookAndReviewGrade(List<BookFindDTO>bookAndReview)throws Exception;
@@ -69,6 +81,7 @@ public interface BookMapper {
     public List<BookFindDTO> bookIdList(int bookId) throws Exception;
 
     public List<BookFindDTO> manyBookOrders(List bookId) throws Exception;
+
 
     public List<BookFindDTO> bookIdList2(List<OrderDTO>orderIdList,int memberId) throws Exception;
 
