@@ -304,9 +304,9 @@ public class BookController {
         if(session.getAttribute("memberId")==null &&session.getAttribute("userId")==null){
 
             List<BookFindDTO> bookList = bookService.bookIdList(id);
-            List<ReviewFindDTO> reviewFindDTOList = reviewService.reviewBookList(id);
-            model.addAttribute("bookList",bookList);
 
+
+            model.addAttribute("bookList",bookList);
 
 
             int listCnt = bookService.CommentTableCount();
@@ -314,14 +314,103 @@ public class BookController {
             pagination.setTotalRecordCount(listCnt);
             pagination.setBookId(id);
 
+            PaginationReview PaginationReview = new PaginationReview(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
+            pagination.setBookId(id);
+
+
             model.addAttribute("pagination",pagination);
             model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
 
-            model.addAttribute("reviewFindDTOList",reviewFindDTOList);
+            model.addAttribute("reviewFindDTOList",reviewService.reviewAllList(PaginationReview));
+            model.addAttribute("id",id);
 
 
 
-            return "book/bookDetail";
+            return "book/bookDetailNologin";
+
+
+        }
+
+
+        int memberId = (Integer) session.getAttribute("memberId");
+
+        String userId =(String) session.getAttribute("userId");
+
+        List<BookFindDTO> bookList = bookService.bookIdList(id);
+
+        model.addAttribute("bookList",bookList);
+
+
+
+        int listCnt = bookService.CommentTableCount();
+        Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+        pagination.setTotalRecordCount(listCnt);
+        pagination.setBookId(id);
+
+        int listCntReview = bookService.ReviewTableCount();
+        PaginationReview PaginationReview = new PaginationReview(currentPage, cntPerPage, pageSize);
+        PaginationReview.setTotalRecordCount(listCnt);
+        PaginationReview.setBookId(id);
+
+
+
+        model.addAttribute("pagination",pagination);
+        model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
+        model.addAttribute("reviewFindDTOList",reviewService.reviewAllList(PaginationReview));
+        model.addAttribute("id",id);
+        model.addAttribute("userId",userId);
+
+
+        return "book/bookDetail";
+    }
+
+
+
+
+
+
+
+
+
+    @GetMapping("/reviewBookList{id}")
+    public String reviewBookList(Model model,HttpSession session,@RequestParam("id")int id,
+                             @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+                             @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
+                             @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception{
+
+
+
+        System.out.println(id);
+        bookService.updateViews(id);
+
+        if(session.getAttribute("memberId")==null &&session.getAttribute("userId")==null){
+
+            List<BookFindDTO> bookList = bookService.bookIdList(id);
+
+
+            model.addAttribute("bookList",bookList);
+
+
+            int listCnt = bookService.CommentTableCount();
+            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
+            pagination.setBookId(id);
+
+            PaginationReview PaginationReview = new PaginationReview(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
+            pagination.setBookId(id);
+
+
+            model.addAttribute("pagination",pagination);
+            model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
+            model.addAttribute("id",id);
+            model.addAttribute("reviewFindDTOList",reviewService.reviewAllList(PaginationReview));
+
+
+
+
+            return "book/bookDetailReview";
 
 
         }
@@ -333,7 +422,7 @@ public class BookController {
         String userId =(String) session.getAttribute("userId");
 
         List<BookFindDTO> bookList = bookService.bookIdList(id);
-        List<ReviewFindDTO> reviewFindDTOList = reviewService.reviewBookList(id);
+
         model.addAttribute("bookList",bookList);
 
 
@@ -343,15 +432,21 @@ public class BookController {
         pagination.setTotalRecordCount(listCnt);
         pagination.setBookId(id);
 
-        model.addAttribute("pagination",pagination);
-        model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
+        PaginationReview PaginationReview = new PaginationReview(currentPage, cntPerPage, pageSize);
+        PaginationReview.setTotalRecordCount(listCnt);
+        PaginationReview.setBookId(id);
 
-        model.addAttribute("reviewFindDTOList",reviewFindDTOList);
+
+        model.addAttribute("pagination",PaginationReview);
+        model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
+        model.addAttribute("reviewFindDTOList",reviewService.reviewAllList(PaginationReview));
+        model.addAttribute("id",id);
         model.addAttribute("userId",userId);
 
 
-        return "book/bookDetail";
+        return "book/bookDetailReview";
     }
+
 
     @GetMapping("/cart")
     public String bookCartList(BookDTO bookDTO,BookCartDTO bookCartDTO, HttpSession session,Model model)throws Exception {

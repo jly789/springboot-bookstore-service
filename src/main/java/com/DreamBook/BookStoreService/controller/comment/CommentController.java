@@ -49,7 +49,7 @@ public class CommentController {
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         model.addAttribute("bookList",bookList);
         model.addAttribute("commentFindDTOList",commentFindDTOList);
-        return "book/bookDetail";
+        return "redirect:/{bookId}";
     }
 
 
@@ -64,10 +64,10 @@ public class CommentController {
 
         List<CommentFindDTO> commentFindDTOList = commentService.commentList(id);
         List<BookFindDTO> bookList = bookService.bookIdList(id);
-        List<ReviewFindDTO> reviewFindDTOList = reviewService.reviewBookList(id);
+
         model.addAttribute("bookList",bookList);
         model.addAttribute("commentFindDTOList",commentFindDTOList);
-        model.addAttribute("reviewFindDTOList",reviewFindDTOList);
+
         return "book/bookDetail";
     }
 

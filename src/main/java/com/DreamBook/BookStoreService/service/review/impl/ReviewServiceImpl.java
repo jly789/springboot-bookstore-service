@@ -1,6 +1,8 @@
 package com.DreamBook.BookStoreService.service.review.impl;
 
 import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
+import com.DreamBook.BookStoreService.dto.book.Pagination;
+import com.DreamBook.BookStoreService.dto.book.PaginationReview;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.*;
 import com.DreamBook.BookStoreService.mapper.review.ReviewMapper;
@@ -184,8 +186,13 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewFindDTO> reviewAllList() throws Exception {
-        return reviewMapper.reviewAllList();
+    public List<ReviewFindDTO> reviewAllList(PaginationReview pagination) throws Exception {
+        return reviewMapper.reviewAllList(pagination);
+    }
+
+    @Override
+    public List<ReviewFindDTO> reviewBookList(Pagination pagination) throws Exception {
+        return reviewMapper.reviewBookList(pagination);
     }
 
     @Override
@@ -193,20 +200,14 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewMapper.reviewDetailList(reviewId);
     }
 
+
     @Override
     public List<ReviewFindDTO> reviewWriter() throws Exception {
         return reviewMapper.reviewWriter();
     }
 
-    @Override
-    public List<ReviewFindDTO> reviewBookList(int bookId) throws Exception {
-        return reviewMapper.reviewBookList(bookId);
-    }
 
-//    @Override
-//    public List<ReviewFindDTO> reviewMemberList(List<OrderDTO>orderDTOList) throws Exception {
-//        return reviewMapper.reviewMemberList(orderDTOList);
-//    }
+
 
     @Override
     public List<ReviewFindDTO> ReviewCheck(List<OrderDTO> orderId) throws Exception {

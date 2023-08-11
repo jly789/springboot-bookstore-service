@@ -1,5 +1,7 @@
 package com.DreamBook.BookStoreService.mapper.review;
 
+import com.DreamBook.BookStoreService.dto.book.Pagination;
+import com.DreamBook.BookStoreService.dto.book.PaginationReview;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.*;
 import org.apache.ibatis.annotations.Mapper;
@@ -20,14 +22,16 @@ public interface ReviewMapper {
     public void deleteReview(int reviewId) throws Exception;
 
 
-    public List<ReviewFindDTO> reviewAllList() throws Exception;
+    public List<ReviewFindDTO> reviewAllList(PaginationReview pagination) throws Exception;
+
+    public List<ReviewFindDTO>  reviewBookList(Pagination pagination) throws Exception; //해당도서의 리뷰작성리스트
 
 
     public List<ReviewFindDTO> reviewDetailList(int reviewId) throws Exception;
 
     public List<ReviewFindDTO> reviewWriter() throws Exception;
 
-    public List<ReviewFindDTO>  reviewBookList(int bookId) throws Exception; //해당도서의 리뷰작성리스트
+
 
 //    public List<ReviewFindDTO> reviewMemberList(List<OrderDTO>orderDTOList) throws Exception; //해당회원이 작성한 리뷰리스트
 

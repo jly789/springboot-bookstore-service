@@ -131,6 +131,11 @@
             comments
     </select>
 
+    <select id="ReviewTableCount" resultType="int">
+        SELECT count(*) FROM
+            review
+    </select>
+
 
     <select id="SelectHighPriceList" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 

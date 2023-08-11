@@ -25,6 +25,8 @@ public interface BookService {
     public int testTableCount() throws Exception;
     public int CommentTableCount() throws Exception;
 
+    public int ReviewTableCount() throws Exception;
+
     public int maxNum() throws Exception;
     public int maxNumCart() throws Exception;
 

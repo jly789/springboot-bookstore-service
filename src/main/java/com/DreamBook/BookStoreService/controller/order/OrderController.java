@@ -60,6 +60,7 @@ public class OrderController {
     public String  order(BookCartDTO cartDTO,Model model, HttpSession session,@RequestParam("cartId")int cartId,@RequestParam("totalPrice")int totalPrice)throws Exception{
         int memberId = (Integer) session.getAttribute("memberId");
 
+    System.out.println("aa");
 
         List<BookCartDTO> orderBookCartList = bookService.orderBookCartList(cartDTO);
 
@@ -104,24 +105,43 @@ public class OrderController {
     @PostMapping("/payment")
     public String  payment(Model model, HttpSession session, OrderDTO orderDTO, DeliveryDTO deliveryDTO
                            ,@RequestParam("bookId") int[] bookId,@RequestParam("wishQuantity") int[] wishQuantity
-                          , @RequestParam("cartId") int[] cartId
-                        )
+                          , @RequestParam("cartId") int[] cartId,@RequestParam("usePoint") int point,Math math,
+                           @RequestParam("plusPoint")int plusPoint, @RequestParam("memberId") int memberId)
+
     throws Exception{
+
+        int plusPoint2 = 0;
+
+        plusPoint2 =  plusPoint /20; //계산금액의 5프로 포인트 추가적립
+
 
         for (int i= 0; i < bookId.length; i++) {
             int maxNum = orderService.maxNum();
+            int orderMaxNum = orderService.maxNumDelivery();
             orderDTO.setOrderId(maxNum+1);
+
+
             String orderNum = orderDTO.getOrderNum();
             session.setAttribute("orderNum",orderNum);
-            deliveryDTO.setOrderId(maxNum+1);
+
+
                 orderDTO.setBookId(bookId[i]);
                orderDTO.setWishQuantity(wishQuantity[i]);
 
             orderService.orderInsertData(orderDTO);
             bookService.OrderDeleteCart(cartId[i]);
+
+            deliveryDTO.setDeliveryId(orderMaxNum+1);
+
+
+            deliveryDTO.setOrderId(maxNum+1);
+
+            orderService.deliveryInsertData(deliveryDTO);
         }
 
-        orderService.deliveryInsertData(deliveryDTO);
+        memberService.updatePoint(point,plusPoint,plusPoint2,memberId);
+
+
 
 
         return "bookMain";

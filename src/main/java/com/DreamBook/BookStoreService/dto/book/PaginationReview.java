@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Pagination {
+public class PaginationReview {
 
 
         // 현재페이지
@@ -35,14 +35,14 @@ public class Pagination {
         private int bookId;
 
 
-        public Pagination(int currentPage, int cntPerPage, int pageSize) {
+        public PaginationReview(int currentPage, int cntPerPage, int pageSize) {
             //강제입력방지
             if (currentPage < 1) {
                 currentPage = 1;
             }
             //10,20,30개 단위 이외 처리 방지
             if (cntPerPage != 10 && cntPerPage != 20 && cntPerPage != 30) {
-                cntPerPage = 8;
+                cntPerPage = 12;
             }
             // 하단 페이지 갯수 10개로 제한
             if (pageSize != 100) {

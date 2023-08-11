@@ -28,6 +28,7 @@ public interface MemberService {
 
     public void updateMember(MemberUpdateDTO memberUpdateDTO) throws  Exception;
 
+    public void updatePoint(int point,int plusPoint,int plusPoint2,int memberId)throws Exception;
     public Integer deleteMember(MemberDeleteDTO MemberDeleteDTO,HttpServletResponse response) throws  Exception;
 
 }

@@ -249,23 +249,8 @@
                 <div class="offset-xl-1 col-xl-10">
                     <div class="nav-button f-left">
 
-                        <!--Nav Button  -->
-                        <c:if test="${userId!=null}">
-                            <nav>
-                                <div class="nav nav-tabs " id="nav-tab" role="tablist">
 
-                                    <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one"
-                                       role="tab" aria-controls="nav-one" aria-selected="true">책소개</a>
 
-                                    <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" href="#nav-two"
-                                       role="tab" aria-controls="nav-two" aria-selected="false">댓글작성</a>
-
-                                    <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">리뷰</a>
-
-                                </div>
-                            </nav>
-                        </c:if>
-                        <c:if test="${userId==null}">
                             <nav>
                                 <div class="nav nav-tabs " id="nav-tab" role="tablist">
 
@@ -280,7 +265,7 @@
 
 
 
-                        </c:if>
+
                         <!--End Nav Button  -->
                     </div>
                 </div>
@@ -385,53 +370,7 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
-                        <!-- Tab 1 -->
-                        <div class="row">
-                            <div class="offset-xl-1 col-lg-9">
 
-
-                                <c:if test="${userId!=null}">
-                                <div class="comment-form">
-                                    <h4>Comment
-                                        <h4>
-
-                                            <form class="form-contact comment_form" action="/commentAdd" method="get"
-                                                  id="commentForm">
-                                                <c:forEach var="bookList" items="${bookList}">
-                                                <input type="hidden" name="bookId" value="${bookList.bookId}"/>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-
-                                                            <div class="col-sm-6">
-                                                                <div class="form-group">
-                                                                    <input class="form-control" name="commentContent"
-                                                                           type="text" value="" placeholder="Comment">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <button type="submit"
-                                                                        class="button button-contactForm btn_1 boxed-btn">
-                                                                    작성하기
-                                                                </button>
-                                                            </div>
-                                                            </c:forEach>
-                                            </form>
-                                </div>
-                            </div>
-
-                            </c:if>
-
-                        </div>
-
-                        </div>
-
-</div>
-                    </div>
-                </div>
 
 
         <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
@@ -586,11 +525,7 @@
         url = url + "&cntPerPage=" + cntPerPage;
         url = url + "&pageSize=" + pageSize;
 
-        // $('#nav-three-tab');
-
         location.href = url;
-
-
     }
 </script>
 

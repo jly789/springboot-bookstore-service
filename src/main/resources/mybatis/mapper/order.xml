@@ -10,6 +10,10 @@
         select nvl(max(orderId),0) from orders
     </select>
 
+    <select id="maxNumDelivery" resultType="int">
+        select nvl(max(deliveryId),0) from delivery
+    </select>
+
 
 
 
@@ -33,9 +37,9 @@
 
     <insert id="deliveryInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.DeliveryDTO">
 
-        insert into DELIVERY(deliveryId,orderId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost)
+        insert into DELIVERY(deliveryId,orderId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost,orderDate)
         VALUES (#{deliveryId},#{orderId},#{recipient},#{deliveryTel},
-                #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost})
+                #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost},SYSDATE)
 
 
     </insert>

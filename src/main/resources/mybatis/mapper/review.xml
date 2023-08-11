@@ -12,6 +12,8 @@
     </select>
 
 
+
+
     <insert id="insertReviewData" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewAddDTO">
 
         insert into review(reviewId,memberId,bookId,orderId,reviewSubject,reviewContent,reviewFileName,reviewFilePath,
@@ -54,26 +56,59 @@
     </select>
 
 
+    <select id="reviewAllList"  resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
 
-
-
-
-    <select id="reviewAllList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
-        SELECT a.reviewId, c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,b.price,AVG(a.grade)as grade,count(a.reviewId) as reviewIdCount
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.reviewDate desc) AS
+        row_num,
+        a.reviewId, c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,a.reviewDate,b.price,round(AVG(a.grade))as grade,count(a.reviewId) as reviewIdCount
         from review a
 
-            left join book b on a.bookId = b.bookId
+        left join book b on a.bookId = b.bookId
 
-                          left join  member c
-                                     on a.memberId = c.memberId
-
-
+        left join  member c
+        on a.memberId = c.memberId
 
 
+        GROUP BY a.reviewId,c.userId, a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,b.price,b.genre,b.PUBLISHER,b.author,a.reviewDate
 
-        GROUP BY a.reviewId,c.userId, a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,b.price,b.genre,b.PUBLISHER,b.author
+
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num
+        </if>
 
     </select>
+
+    <select id="reviewBookList"  resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.reviewDate desc) AS
+        row_num,
+        a.reviewId, c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,a.reviewDate,b.price,round(AVG(a.grade))as grade,count(a.reviewId) as reviewIdCount
+        from review a
+
+        left join book b on a.bookId = b.bookId
+
+        left join  member c
+        on a.memberId = c.memberId
+
+
+        GROUP BY a.reviewId,c.userId, a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,b.price,b.genre,b.PUBLISHER,b.author,a.reviewDate
+
+
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num
+        </if>
+
+    </select>
+
+
 
 
     <select id="reviewDetailList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
@@ -119,27 +154,27 @@
     </select>
 
 
-    <select id="reviewBookList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+<!--    <select id="reviewBookList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">-->
 
-        SELECT a.reviewId,c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,b.price,a.grade,count(a.reviewId) as reviewIdCount
-        from review a
+<!--        SELECT a.reviewId,c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,b.price,a.grade,count(a.reviewId) as reviewIdCount-->
+<!--        from review a-->
 
-                 left join book b on a.bookId = b.bookId
+<!--                 left join book b on a.bookId = b.bookId-->
 
-                 left join  member c
-                            on a.memberId = c.memberId
-
-
-
-        where a.bookId = #{bookId}
-
-        GROUP BY a.reviewId,c.userId, a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,a.grade,b.price,b.genre,b.PUBLISHER,b.author
+<!--                 left join  member c-->
+<!--                            on a.memberId = c.memberId-->
 
 
 
+<!--        where a.bookId = #{bookId}-->
 
---
-    </select>
+<!--        GROUP BY a.reviewId,c.userId, a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,a.grade,b.price,b.genre,b.PUBLISHER,b.author-->
+
+
+
+
+<!--&#45;&#45;-->
+<!--    </select>-->
 
 <!--    <select id="reviewMemberList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">-->
 

@@ -86,6 +86,17 @@
 
     </update>
 
+    <update id="updatePoint" parameterType="int">
+
+        update member
+        set  point = point - #{point} + #{plusPoint2} ,purchaseAmount = purchaseAmount + #{plusPoint}
+
+        where memberId = #{memberId}
+
+    </update>
+
+
+
 
     <delete id="deleteMember" parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO">
         delete member

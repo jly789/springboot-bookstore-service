@@ -153,13 +153,13 @@
               <div class="cupon_area">
                 <div class="check_title">
                   <h2 id="have">you Have a point
-<%--                    <a id="pointCheck" style="height: 20px; width: 40px;"  href="#">포인트 확인</a>--%>
+                    <a id="pointCheck" style="height: 20px; width: 40px;"  href="#">포인트 확인</a>
                   </h2>
                 </div>
-                <c:forEach var="bookCartList" items="${bookCartList}">
+
                 <input id="point" name="point" type="text" placeholder="" readonly
-                       value="${bookCartList.point}"  />
-              </c:forEach>
+                       value=""/>
+
                 <%--        <a id="delivery" class="btn">기본 배송지적용</a>--%>
                 <a  id="pointApply" class="btn">포인트적용</a>
 
@@ -202,25 +202,30 @@
               </ul>
               <ul class="list list_2">
                 <li>
-                  <span></span>    <a href="#"> Total ${totalPrice}원</a>
+                  <span></span>    <a href="#"> Total:${totalPrice}원</a>
                 </li>
                 <li>
                   <a href="#">배송비
                     <span>5000원</span>
                     <input type="hidden" id="delivaryAccount" value="5000">
+                    <input type="hidden" id="basePrice" value="${totalPrice}">
                   </a>
+
+
                 </li>
+
+                <li>
+                  <a href="#">총 금액
+                    <span style="color: red;"  id="totalPrice">${totalPrice+5000}</span>
+
+                  </a>
+
+
+                </li>
+
                 <li>
                   <input type="hidden" id="finaltotalPrice" value="${totalPrice+5000}"/>
-                  <input type="hidden" id="finaltotalPrice2" value="${totalPrice+5000}"/>
 
-                  후불<input type="text" id="gnqnf" value="${totalPrice}"/>
-                  <p>총 금액<a href="#" id="totalPrice">${totalPrice+5000}</a></p>
-
-
-
-
-                  배달비: <input type="hidden" id="deliveryCost" value="5000"/>
 
 
 
@@ -228,23 +233,15 @@
                   </input>
                 </li>
               </ul>
-              <div class="payment_item">
-                <div class="radion_btn">
-                  <input type="radio" id="prepayment" name="selector"  value="5000" />
-                  <label for="prepayment">배송비 선불</label>
-                  <div class="check"></div>
-                </div>
-                <p> 선불 결제 </p>
-              </div>
-              <div class="payment_item active">
-                <div class="radion_btn">
-                  <input type="radio" id="deferredPayment" name="selector" value="0" />
-                  <label for="deferredPayment" >배송비 후불 </label>
-                  <img src="assets/img/gallery/card.jpg" alt="" />
-                  <div class="check"></div>
-                </div>
-                <p> 후불결제 </p>
-              </div>
+<%--              <div class="payment_item">--%>
+<%--                <div class="radion_btn">--%>
+<%--                  <input type="radio" id="prepayment" name="selector"  value="5000" />--%>
+<%--                  <label for="prepayment" checked;>배송비 선불</label>--%>
+<%--                  <div class="check"></div>--%>
+<%--                </div>--%>
+<%--              --%>
+<%--              </div>--%>
+
               <div class="creat_account checkout-cap">
                 <input type="checkbox" id="f-option8" name="selector" />
                 <label for="f-option8">I’ve read and accept the  <a href="#">terms & conditions*</a> </label>
@@ -291,11 +288,6 @@
 
         $("#point").val(point);
 
-        // $("#result").text('아이디:'+' '+result+''+'입니다');
-        //
-        // document.getElementById('result').style.color ="red"
-
-
 
       },
       error: function(a, b, c) {
@@ -309,226 +301,73 @@
 
   });
 
-  $('#prepayment').click(function () {
 
-    $("#finaltotalPrice").val($("#finaltotalPrice2").val());
+  $('#pointApply').click(function () {
 
-    $("#totalPrice").text(parseInt($("#finaltotalPrice").val()));
-    $("#deliveryCost").val(5000);
-    $("#deferredPayment").attr("disabled", false);
-
-  let  totalPrice = 0;
-
-  totalPrice =parseInt( $("#totalPrice").text());
-
-
-
-
-
-
-
-
-
-      $('#pointApply').click(function () {
-
-        if($("#pointApply").text()=='포인트적용' ){
-          // if($("#point").val()==''){
-          //   alert("포인트 확인을 누르세요!");
-          //   return false;
-          // }
-
-
-
-          // $("#have").hide();
-
-          $("#pointCheck").hide();
-
-          let message = "포인트 적용취소";
-          // let delivaryAccount = $("#delivaryAccount").val(); //배송비 5000원
-          // let pointapply =$("#totalPriceEx2").val(); //최종금액
-          let pointapply =   parseInt($("#totalPrice").text());
-          let pointapplys =$("#point").val(); //포인틐금액
-
-          let finaltotalPrice =totalPrice-pointapplys ; //최종금액= 최종금액-포인트금액
-
-
-
-          $("#totalPrice").html(finaltotalPrice+"원");
-
-          $("#pointApply").html(message);
-          document.getElementById('pointApply').style.backgroundColor = "green";
-
-          return true;
-
-          document.getElementById('point').readOnly = true;
-
-        }
-
-
-        if ($("#pointApply").text() =='포인트 적용취소') {
-
-          // $("#have").show();
-
-          $("#pointCheck").show();
-          $("#point").show();
-          // $("#point").val("");
-          let message = "포인트적용";
-
-          let pointapply =   parseInt($("#totalPrice").text());
-          let pointapplys =$("#point").val(); //포인틐금액
-
-
-          let finaltotalPrice = $("#finaltotalPrice2").val();
-           //최종금액= 최종금액-포인트금액
-
-
-
-          $("#pointApply").html(message);
-          document.getElementById('pointApply').style.backgroundColor = "red";
-          $("#totalPrice").html(parseInt(finaltotalPrice));
-
-          return false;
-        }
-
-
-    });
-
-
-
-
-
-
-
-  });
-
-
-
-  $('#deferredPayment').click(function () {
-
-    // if( $("#deferredPayment").val(1)== true){
-    // $("realPrice").remove;
-    // return false;
-    // }
-    let delibery = 0;
-    let deferredPayment = -5000;
-    // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
-    $.ajax({
-
-      type: 'POST',
-      url: '/deferredPayment',
-      data: {"deferredPayment": deferredPayment,
-
-      },
-      dataType: 'JSON',
-
-      success: function(deferredPayment) {
-        $("#deliveryCost").val(delibery);
-
-    let price = 0;
-    let totalPrice =0;
-        let point=0;
-
-
-
-
-       totalPrice = parseInt($("#totalPrice").text());
-        // alert(totalPrice); //24000
-
-        point = $("#point").val();
-
-      price = totalPrice-5000;
-      // alert(price); //19000
-
-
-       $("#totalPrice").text( $("#totalPrice").text()+"-5000-" +"="+parseInt(price));
-
-        // $("#finaltotalPrice").val(price-point);
-
-       let gnqnf = $("#gnqnf").val();
-
-
-        $("#deferredPayment").attr("disabled",true);
-
-
-
-        $('#pointApply').click(function () {
-
-          if($("#pointApply").text()=='포인트적용' ){
-            // if($("#point").val()==''){
-            //   alert("포인트 확인을 누르세요!");
-            //   return false;
-            // }
-
-
-
-            $("#have").hide();
-
-            $("#pointCheck").hide();
-
-            let message = "포인트 적용취소";
-            // let delivaryAccount = $("#delivaryAccount").val(); //배송비 5000원
-            // let pointapply =$("#totalPriceEx2").val(); //최종금액
-            let pointapply =   parseInt($("#totalPrice").text());
-            let pointapplys =$("#point").val(); //포인틐금액
-
-            let finaltotalPrice =$("#gnqnf").val()-$("#point").val() ; //최종금액= 최종금액-포인트금액
-
-
-
-            $("#totalPrice").html(finaltotalPrice+"원");
-
-            $("#pointApply").html(message);
-            document.getElementById('pointApply').style.backgroundColor = "green";
-
-            return true;
-
-            // document.getElementById('point').readOnly = true;
-
-          }
-
-
-
-          if ($("#pointApply").text() =='포인트 적용취소') {
-
-            $("#have").show();
-
-            $("#pointCheck").show();
-            $("#point").show();
-            // $("#point").val("");
-            let message = "포인트적용";
-
-            let pointapply =   parseInt($("#totalPrice").text());
-            let pointapplys =$("#point").val(); //포인틐금액
-
-            let finaltotalPrice = $("#gnqnf").val(); //최종금액= 최종금액-포인트금액
-
-            $("#pointApply").html(message);
-            document.getElementById('pointApply').style.backgroundColor = "red";
-            $("#totalPrice").html(parseInt(finaltotalPrice));
-
-            return false;
-          }
-
-
-
-        });
-
-
-
-
-
-
-      },
-      error: function(a, b, c) {
-        alert('실패');
-        console.log(a, b, c);
+    if($("#pointApply").text()=='포인트적용' ){
+      if($("#point").val()==''){
+        alert("포인트 확인을 누르세요!");
+        return false;
       }
 
-    });
 
+
+      $("#have").hide();
+
+      $("#pointCheck").hide();
+
+      let message = "포인트 적용취소";
+
+      let pointapplys =$("#point").val(); //포인틐금액
+
+      let finaltotalPrice =parseInt($("#totalPrice").text())-parseInt($("#point").val()) ; //최종금액= 최종금액-포인트금액
+
+      let totalPrice = parseInt($("#totalPrice").html());
+
+
+      $("#totalPrice").html(totalPrice + "-" + pointapplys + "=" +  finaltotalPrice+"원");
+
+      $("#finaltotalPrice").val(finaltotalPrice);
+
+      $("#pointApply").html(message);
+      document.getElementById('pointApply').style.backgroundColor = "green";
+
+      return true;
+
+      document.getElementById('point').readOnly = true;
+
+    }
+
+
+    if ($("#pointApply").text() =='포인트 적용취소') {
+
+      $("#have").show();
+
+      $("#pointCheck").show();
+      $("#point").val(0);
+      $("#point").show();
+
+
+      let message = "포인트적용";
+
+
+      let pointapplys =$("#point").val(); //포인틐금액
+
+
+      let totalPrice = parseInt($("#totalPrice").html());
+
+      $("#finaltotalPrice").val(totalPrice);
+
+      $("#pointApply").html(message);
+      document.getElementById('pointApply').style.backgroundColor = "red";
+      $("#totalPrice").html(parseInt(totalPrice));
+
+      return false;
+    }
 
 
   });
+
 
 
 
@@ -561,9 +400,9 @@
       pay_method: "card", // 결제방식
       merchant_uid : 'merchant_' + new Date().getTime(), // 주문번호
       name: $('#purchaseBook').val(), // 상품명
-      // amount: parseInt($('#totalPrice').html()), // 결제 금액
+
       amount: $("#finaltotalPrice").val(),
-      // usePoint: $("#point").val(),
+      usePoint: $("#point").val(),
       buyer_name: $('#name').val(), // 주문자명
       buyer_tel: $('#tel').val(), // 주문자 연락처
       buyer_email: $('#email').val(), // 주문자 이메일                    //우편번호
@@ -586,7 +425,6 @@
             wishQuantity:wishQuantity,
             cartId: cartId,
             bookName: $('#purchaseBook').val(),
-
             impUid: data.imp_uid, // 결제번호
             orderNum: data.merchant_uid, //주문번호
             // orderNum: rsp.merchant_uid, // 주문번호
@@ -599,8 +437,10 @@
             address: $("#address").val(),
             detailAddress: $("#detailAddress").val(),
             extraAddress: $("#extraAddress").val(),
-            deliveryCost: $("#deliveryCost").val(),
+            deliveryCost: $("#delivaryAccount").val(),
             recipient: $("#recipient").val(),
+            plusPoint: parseInt($("#basePrice").val()),
+
 
             // userPoint: parseInt($('#usePoint').val()), // 사용포인트
             // delivery: $('#delivery').val(), // 배송여부

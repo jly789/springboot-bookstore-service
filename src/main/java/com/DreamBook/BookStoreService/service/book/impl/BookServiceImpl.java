@@ -75,6 +75,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public int ReviewTableCount() throws Exception {
+        return bookMapper.ReviewTableCount();
+    }
+
+    @Override
     public int maxNum() throws Exception {
         return bookMapper.maxNum();
     }

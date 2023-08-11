@@ -96,6 +96,10 @@ public class MemberServiceImpl implements MemberService {
         memberMapper.updateMember(memberUpdateDTO);
     }
 
+    @Override
+    public void updatePoint(int point,int plusPoint,int plusPoint2,int memberId) throws Exception {
+        memberMapper.updatePoint(point,plusPoint,plusPoint2,memberId);
+    }
 
     @Override
     public Integer deleteMember(MemberDeleteDTO MemberDeleteDTO,HttpServletResponse response) throws Exception {

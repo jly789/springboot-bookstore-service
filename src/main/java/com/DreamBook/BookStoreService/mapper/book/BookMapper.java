@@ -37,6 +37,8 @@ public interface BookMapper {
     public int testTableCount() throws Exception;
     public int CommentTableCount() throws Exception;
 
+    public int ReviewTableCount() throws Exception;
+
 
     public int maxNum() throws Exception;
 

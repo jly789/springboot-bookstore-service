@@ -2,6 +2,8 @@ package com.DreamBook.BookStoreService.controller.review;
 
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
+import com.DreamBook.BookStoreService.dto.book.Pagination;
+import com.DreamBook.BookStoreService.dto.book.PaginationReview;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.*;
 import com.DreamBook.BookStoreService.service.book.BookService;
@@ -45,18 +47,25 @@ public class ReviewController {
     }
 
     @GetMapping("/review")
-    public String review(Model model)throws Exception {
+    public String review(Model model,  @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+                         @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
+                         @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception {
+
+        int listCnt = bookService.testTableCount();
+        PaginationReview pagination = new PaginationReview(currentPage, cntPerPage, pageSize);
+        pagination.setTotalRecordCount(listCnt);
+
+        model.addAttribute("pagination",pagination);
+        model.addAttribute("reviewAllList",reviewService.reviewAllList(pagination));
 
 
-
-
-        List<ReviewFindDTO> reviewAllList = reviewService.reviewAllList();
+//        List<ReviewFindDTO> reviewAllList = reviewService.reviewAllList();
 
 //        List<BookFindDTO> bookList = bookService.bookList();
 //        List<ReviewFindDTO> bookListGrade = bookService.bookAndReviewList(reviewAllList);
 //        model.addAttribute("bookAndReview",bookListGrade);
 
-        model.addAttribute("reviewAllList",reviewAllList);
+//        model.addAttribute("reviewAllList",reviewAllList);
 
 
         return "review/review";

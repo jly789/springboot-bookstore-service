@@ -12,6 +12,8 @@ public interface OrderMapper {
 
     public int maxNum() throws Exception;
 
+    public int maxNumDelivery() throws Exception;
+
     public void orderInsertData(OrderDTO orderDTO) throws Exception;
 
     public void deliveryInsertData(DeliveryDTO deliveryDTO) throws Exception;

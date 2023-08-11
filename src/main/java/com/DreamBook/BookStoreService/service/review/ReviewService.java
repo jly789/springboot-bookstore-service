@@ -1,6 +1,8 @@
 package com.DreamBook.BookStoreService.service.review;
 
 import com.DreamBook.BookStoreService.dto.book.BookAddDTO;
+import com.DreamBook.BookStoreService.dto.book.Pagination;
+import com.DreamBook.BookStoreService.dto.book.PaginationReview;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.*;
@@ -23,14 +25,15 @@ public interface ReviewService {
 
     public int ReviewOrderIdFind(int orderId) throws Exception;
 
-    public List<ReviewFindDTO> reviewAllList() throws Exception;
+    public List<ReviewFindDTO> reviewAllList(PaginationReview pagination) throws Exception;
 
+    public List<ReviewFindDTO>  reviewBookList(Pagination pagination) throws Exception; //해당도서의 리뷰작성리스트
     public List<ReviewFindDTO> reviewDetailList(int reviewId) throws Exception;
 
 
     public List<ReviewFindDTO> reviewWriter() throws Exception;
 
-    public List<ReviewFindDTO>  reviewBookList(int bookId) throws Exception; //해당도서의 리뷰작성리스트
+
 
 //    public List<ReviewFindDTO> reviewMemberList(List<OrderDTO>orderDTOList) throws Exception;
 

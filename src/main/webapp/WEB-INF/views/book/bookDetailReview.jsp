@@ -254,13 +254,12 @@
                             <nav>
                                 <div class="nav nav-tabs " id="nav-tab" role="tablist">
 
-                                    <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one"
-                                       role="tab" aria-controls="nav-one" aria-selected="true">책소개</a>
+                                    <a class="nav-link" id="nav-one-tab"  href="/${bookId}">책소개</a>
 
                                     <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" href="#nav-two"
                                        role="tab" aria-controls="nav-two" aria-selected="false">댓글작성</a>
 
-                                    <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">리뷰</a>
+                                    <a class="nav-link active" id="nav-three-tab"  href="/reviewBookList?id=${bookId}" >리뷰</a>
 
                                 </div>
                             </nav>
@@ -290,155 +289,13 @@
         <div class="container">
             <!-- Nav Card -->
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
-                    <!-- Tab 1 -->
-                    <div class="row">
-                        <div class="offset-xl-1 col-lg-9">
-                            <c:forEach var="bookList" items="${bookList}">
-                                <p>${bookList.bookContent}</p>
-                            </c:forEach>
-
-
-                            <c:if test="${commentFindDTOList !=null}">
-
-                                <c:choose>
-
-
-                                    <c:when test="${fn:length(commentFindDTOList) > 0}">
-
-
-                                        <c:forEach var="commentFindDTOList" items="${commentFindDTOList}">
-
-
-
-                                            <c:if test="${userId == commentFindDTOList.userId}">
-                                                <img src="assets/img/blog/comment_1.png" alt="">
-                                                <a style="color: red;"
-                                                   href="/deleteComment?bookId=${commentFindDTOList.bookId}&commentId=${commentFindDTOList.commentId}">삭제</a><br/>
-                                                <strong style="color: red;">작성자:${userId}</strong>
-
-                                                <br/> 제목: ${commentFindDTOList.commentContent}
-                                            </c:if>
-
-                                            <c:if test="${userId != commentFindDTOList.userId}">
-                                                <img src="assets/img/blog/comment_1.png" alt=""><br/>
-                                                <strong style="color: black;">작성자:${commentFindDTOList.userId}</strong><br/>
-                                                제목: ${commentFindDTOList.commentContent}<br/>
-
-
-                                            </c:if>
-
-
-                                            <p class="date"> 작성일자: ${commentFindDTOList.commentDate}</p>
-
-
-                                        </c:forEach>
-
-                                        <!--paginate -->
-                                        <div class="paginate">
-                                            <div class="paging">
-                                                <a class="direction prev" href="javascript:void(0);"
-                                                   style="color: black;"
-                                                   onclick="movePage(1,${pagination.cntPerPage},${pagination.pageSize});">
-                                                    &lt;&lt; </a> <a class="direction prev" href="javascript:void(0);"
-                                                                     style="color: black;"
-                                                                     onclick="movePage(${pagination.currentPage}<c:if
-                                                                             test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
-                                                &lt; </a>
-
-                                                <c:forEach begin="${pagination.firstPage}"
-                                                           end="${pagination.lastPage}" var="idx">
-                                                    <a
-                                                            style="color: black;
-                                                                <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
-                                                            href="javascript:void(0);"
-                                                            onclick="movePage(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
-                                                            value="${idx}"/></a>
-                                                </c:forEach>
-                                                <a class="direction next" href="javascript:void(0);"
-                                                   style="color: black;"
-                                                   onclick="movePage(${pagination.currentPage}<c:if
-                                                           test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
-                                                    &gt; </a> <a class="direction next" href="javascript:void(0);"
-                                                                 style="color: black;"
-                                                                 onclick="movePage(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
-                                                &gt;&gt; </a>
-                                            </div>
-                                        </div>
-                                        <!-- /paginate -->
-                                    </c:when>
-
-
-                                    <c:otherwise>
-                                        <%--                  <tr>--%>
-                                        <%--                    <td colspan="4">조회된 결과가 없습니다.</td>--%>
-                                        <%--                  </tr>--%>
-                                    </c:otherwise>
-
-
-                                </c:choose>
-
-
-                            </c:if>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
-                        <!-- Tab 1 -->
-                        <div class="row">
-                            <div class="offset-xl-1 col-lg-9">
-
-
-                                <c:if test="${userId!=null}">
-                                <div class="comment-form">
-                                    <h4>Comment
-                                        <h4>
-
-                                            <form class="form-contact comment_form" action="/commentAdd" method="get"
-                                                  id="commentForm">
-                                                <c:forEach var="bookList" items="${bookList}">
-                                                <input type="hidden" name="bookId" value="${bookList.bookId}"/>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-
-                                                            <div class="col-sm-6">
-                                                                <div class="form-group">
-                                                                    <input class="form-control" name="commentContent"
-                                                                           type="text" value="" placeholder="Comment">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <button type="submit"
-                                                                        class="button button-contactForm btn_1 boxed-btn">
-                                                                    작성하기
-                                                                </button>
-                                                            </div>
-                                                            </c:forEach>
-                                            </form>
-                                </div>
-                            </div>
-
-                            </c:if>
-
-                        </div>
-
-                        </div>
-
-</div>
-                    </div>
-                </div>
 
 
         <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
             <!-- Tab 1 -->
             <div class="row">
 
-                <c:if test="${reviewFindDTOList !=null}">
+
                 <div class="best-selling p-0">
                     <div class="row">
 
@@ -553,7 +410,7 @@
                         </div>
                         <!-- /paginate -->
 
-                        </c:if>
+
 
 
 
@@ -586,11 +443,7 @@
         url = url + "&cntPerPage=" + cntPerPage;
         url = url + "&pageSize=" + pageSize;
 
-        // $('#nav-three-tab');
-
         location.href = url;
-
-
     }
 </script>
 

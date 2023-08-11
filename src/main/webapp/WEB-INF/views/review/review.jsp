@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="cp" value="<%=request.getContextPath()%>"/>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -26,6 +27,163 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+<style>
+    a:link {
+        color: red;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: black;
+        text-decoration: none;
+    }
+
+    /* paginate */
+    .paginate {
+        padding: 0;
+        line-height: normal;
+        text-align: center;
+        position: relative;
+        margin: 20px 0 20px 0;
+        z-index: 1;
+    }
+
+    .paginate .paging {
+        text-align: center;
+    }
+
+    .paginate .paging a, .paginate .paging strong {
+        margin: 0;
+        padding: 0;
+        width: 20px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        color: #848484;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .paginate .paging a:hover, .paginate .paging strong {
+        color: #DAA520;
+        font-weight: 600;
+        font-weight: normal;
+    }
+
+    .paginate .paging .direction {
+        z-index: 3;
+        vertical-align: middle;
+        background-color: none;
+        margin: 0 2px;
+        border: 1px solid #777;
+        border-radius: 2px;
+        width: 28px;
+    }
+
+    .paginate .paging .direction:hover {
+        border: 1px solid #C40639;
+    }
+
+    .paginate .paging .direction.prev {
+        margin-right: 4px;
+    }
+
+    .paginate .paging .direction.next {
+        margin-left: 4px;
+        cursor: pointer;
+    }
+
+    .paginate .paging img {
+        vertical-align: middle;
+    }
+
+    .paginate .right {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .bottom-left, .bottom-right {
+        position: relative;
+        z-index: 5;
+    }
+
+    .paginate ~ .bottom {
+        margin-top: -50px;
+    }
+
+
+    .bottom select {
+        background: transparent;
+        color: #aaa;
+        cursor: pointer;
+    }
+
+
+    /* paginate */
+    .paginate {
+        padding: 0;
+        line-height: normal;
+        text-align: center;
+        position: relative;
+        margin: 20px 0 20px 0;
+    }
+
+    .paginate .paging {
+        text-align: center;
+    }
+
+    .paginate .paging a, .paginate .paging strong {
+        margin: 0;
+        padding: 0;
+        width: 20px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        color: #999;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .paginate .paging a:hover, .paginate .paging strong {
+        color: #C40639;
+        font-weight: 600;
+        font-weight: normal;
+    }
+
+    .paginate .paging .direction {
+        z-index: 3;
+        vertical-align: middle;
+        background-color: none;
+        margin: 0 2px;
+    }
+
+    .paginate .paging .direction:hover {
+        background-color: transparent;
+    }
+
+    .paginate .paging .direction.prev {
+        margin-right: 4px;
+    }
+
+    .paginate .paging .direction.next {
+        margin-left: 4px;
+    }
+
+    .paginate .paging img {
+        vertical-align: middle;
+    }
+
+    .paginate .right {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+</style>
 
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
@@ -42,15 +200,15 @@
             <div class="col-xl-7 col-lg-7 col-md-12">
                 <div class="nav-button mb-40">
                     <!--Nav Button  -->
-<%--                    <nav>--%>
-<%--                        <div class="nav nav-tabs" id="nav-tab" role="tablist">--%>
-<%--                            <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">All</a>--%>
-<%--                            <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" href="#nav-two" role="tab" aria-controls="nav-two" aria-selected="false">Horror</a>--%>
-<%--                            <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">Thriller</a>--%>
-<%--                            <a class="nav-link" id="nav-four-tab" data-bs-toggle="tab" href="#nav-four" role="tab" aria-controls="nav-four" aria-selected="false">Science Fiction</a>--%>
-<%--                            <a class="nav-link" id="nav-five-tab" data-bs-toggle="tab" href="#nav-five" role="tab" aria-controls="nav-five" aria-selected="false">History</a>--%>
-<%--                        </div>--%>
-<%--                    </nav>--%>
+                    <%--                    <nav>--%>
+                    <%--                        <div class="nav nav-tabs" id="nav-tab" role="tablist">--%>
+                    <%--                            <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">All</a>--%>
+                    <%--                            <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" href="#nav-two" role="tab" aria-controls="nav-two" aria-selected="false">Horror</a>--%>
+                    <%--                            <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">Thriller</a>--%>
+                    <%--                            <a class="nav-link" id="nav-four-tab" data-bs-toggle="tab" href="#nav-four" role="tab" aria-controls="nav-four" aria-selected="false">Science Fiction</a>--%>
+                    <%--                            <a class="nav-link" id="nav-five-tab" data-bs-toggle="tab" href="#nav-five" role="tab" aria-controls="nav-five" aria-selected="false">History</a>--%>
+                    <%--                        </div>--%>
+                    <%--                    </nav>--%>
                     <!--End Nav Button  -->
                 </div>
             </div>
@@ -65,104 +223,172 @@
                 <!-- Tab 1 -->
                 <div class="row">
 
-                    <c:forEach var="reviewAllList" items="${reviewAllList}">
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                        <div class="properties pb-30">
-                            <div class="properties-card">
-                                <div class="properties-img">
-                                    <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
-                                    style="   height: 300px; object-fit: cover;"></a>
-                                </div>
-                                <div class="properties-caption properties-caption2">
-                                    <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
+                    <c:if test="${reviewAllList !=null}">
+                    <div class="best-selling p-0">
+                        <div class="row">
+
+                            <c:choose>
 
 
-                                    <p>${reviewAllList.reviewContent} </p>
-                                    <h6 style="color: red; text-align: right;">  (${reviewAllList.userId})</h6>
-                                    <div class="properties-footer d-flex justify-content-between align-items-center">
-                                        <div class="review">
-                                            <div class="rating">
-                                                <c:if test="${reviewAllList.grade==1}">
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                </c:if>
+                                <c:when test="${fn:length(reviewAllList) > 0}">
 
-                                                <c:if test="${reviewAllList.grade==2}">
-
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                </c:if>
-
-                                                <c:if test="${reviewAllList.grade==3}">
-
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                </c:if>
-
-                                                <c:if test="${reviewAllList.grade==4}">
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                </c:if>
-
-                                                <c:if test="${reviewAllList.grade==5}">
-
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                </c:if>
+                                  <c:forEach var="reviewAllList" items="${reviewAllList}">
+                                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                                            <div class="properties pb-30">
+                                                                <div class="properties-card">
+                                                                    <div class="properties-img">
+                                                                        <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
+                                                                        style="   height: 300px; object-fit: cover;"></a>
+                                                                    </div>
+                                                                    <div class="properties-caption properties-caption2">
+                                                                        <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
 
 
+                                                                        <p>${reviewAllList.reviewContent} </p>
+                                                                        <h6 style="color: red; text-align: right;">  (${reviewAllList.userId})</h6>
+                                                                        <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                                            <div class="review">
+                                                                                <div class="rating">
+                                                                                    <c:if test="${reviewAllList.grade==1}">
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    </c:if>
 
-                                            </div>
-                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>
-                                        </div>
-                                        <div class="price">
-                                            <span>${reviewAllList.price}</span>
-                                        </div>
-                                    </div>
+                                                                                    <c:if test="${reviewAllList.grade==2}">
+
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    </c:if>
+
+                                                                                    <c:if test="${reviewAllList.grade==3}">
+
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    </c:if>
+
+                                                                                    <c:if test="${reviewAllList.grade==4}">
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    </c:if>
+
+                                                                                    <c:if test="${reviewAllList.grade==5}">
+
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    </c:if>
+
+
+
+                                                                                </div>
+                                                                                <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>
+                                                                            </div>
+                                                                            <div class="price">
+                                                                                <span>${reviewAllList.price}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                  </c:forEach>
+                                </c:when>
+
+
+                                <c:otherwise>
+
+                                </c:otherwise>
+
+
+                            </c:choose>
+
+                            <!--paginate -->
+                            <div class="paginate">
+                                <div class="paging">
+                                    <a class="direction prev" href="javascript:void(0);" style="color: black;"
+                                       onclick="movePage(1,${pagination.cntPerPage},${pagination.pageSize});">
+                                        &lt;&lt; </a> <a class="direction prev" href="javascript:void(0);"
+                                                         style="color: black;"
+                                                         onclick="movePage(${pagination.currentPage}<c:if
+                                                                 test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                    &lt; </a>
+
+                                    <c:forEach begin="${pagination.firstPage}"
+                                               end="${pagination.lastPage}" var="idx">
+                                        <a
+                                                style="color: black;
+                                                    <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
+                                                href="javascript:void(0);"
+                                                onclick="movePage(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
+                                                value="${idx}"/></a>
+                                    </c:forEach>
+                                    <a class="direction next" href="javascript:void(0);" style="color: black;"
+                                       onclick="movePage(${pagination.currentPage}<c:if
+                                               test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                        &gt; </a> <a class="direction next" href="javascript:void(0);"
+                                                     style="color: black;"
+                                                     onclick="movePage(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
+                                    &gt;&gt; </a>
                                 </div>
                             </div>
+                            <!-- /paginate -->
+
+                            </c:if>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
-
-                    </c:forEach>
-
-
-
-
-
-
-
-
-
-
-
-
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="more-btn text-center mt-15">
+                            <a href="#" class="border-btn border-btn2 more-btn2">Browse More</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="more-btn text-center mt-15">
-                    <a href="#" class="border-btn border-btn2 more-btn2">Browse More</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 
-                                <jsp:include page="../main/footer.jsp"></jsp:include>
+<jsp:include page="../main/footer.jsp"></jsp:include>
 
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
 
+
+<script>
+
+    //페이지 이동
+    function movePage(currentPage, cntPerPage, pageSize) {
+
+        var url = "${pageContext.request.contextPath}/review";
+        url = url + "?currentPage=" + currentPage;
+        url = url + "&cntPerPage=" + cntPerPage;
+        url = url + "&pageSize=" + pageSize;
+
+        location.href = url;
+    }
+</script>
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
 <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>

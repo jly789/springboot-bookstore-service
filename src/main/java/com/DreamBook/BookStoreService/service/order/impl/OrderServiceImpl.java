@@ -21,6 +21,10 @@ public class OrderServiceImpl implements OrderService {
         return orderMapper.maxNum();
     }
 
+    @Override
+    public int maxNumDelivery() throws Exception {
+        return orderMapper.maxNumDelivery();
+    }
 
     @Override
     public void orderInsertData(OrderDTO orderDTO ) throws Exception {
