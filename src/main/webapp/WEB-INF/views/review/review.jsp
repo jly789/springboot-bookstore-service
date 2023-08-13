@@ -245,7 +245,16 @@
 
 
                                                                         <p>${reviewAllList.reviewContent} </p>
-                                                                        <h6 style="color: red; text-align: right;">  (${reviewAllList.userId})</h6>
+                                                                     <p  style="color: red;  font-weight: 900;"  >(${reviewAllList.bookName}) </p>
+
+                                                                        <c:if test="${reviewAllList.userId==checkId}">
+                                                                        <h6 style="color: red; text-align: right;">  My Review</h6>
+                                                                        </c:if>
+
+                                                                        <c:if test="${reviewAllList.userId!=checkId}">
+                                                                            <h6 style="color: black; text-align: right;">  (${reviewAllList.userId})</h6>
+                                                                        </c:if>
+
                                                                         <div class="properties-footer d-flex justify-content-between align-items-center">
                                                                             <div class="review">
                                                                                 <div class="rating">
@@ -285,7 +294,7 @@
 
 
                                                                                 </div>
-                                                                                <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>
+<%--                                                                                <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>--%>
                                                                             </div>
                                                                             <div class="price">
                                                                                 <span>${reviewAllList.price}</span>

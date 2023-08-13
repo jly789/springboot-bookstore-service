@@ -285,6 +285,13 @@
                                                 <option value="코미디">코미디</option>
                                                 <option value="소설">소설</option>
                                                 <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
 
                                             </select>
                                         </c:if>
@@ -293,12 +300,19 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all">전체</option>
-                                                <option value="공포" id="fear" selected>공포</option>
+                                                <option value="전체" id="all" selected>전체</option>
+                                                <option value="공포" id="fear">공포</option>
                                                 <option value="수필" id="essay">수필</option>
                                                 <option value="코미디">코미디</option>
                                                 <option value="소설">소설</option>
                                                 <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
 
                                             </select>
                                         </c:if>
@@ -307,12 +321,19 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all">전체</option>
+                                                <option value="전체" id="all" selected>전체</option>
                                                 <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay" selected>수필</option>
+                                                <option value="수필" id="essay">수필</option>
                                                 <option value="코미디">코미디</option>
                                                 <option value="소설">소설</option>
                                                 <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
 
                                             </select>
                                         </c:if>
@@ -321,12 +342,19 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all">전체</option>
+                                                <option value="전체" id="all" selected>전체</option>
                                                 <option value="공포" id="fear">공포</option>
                                                 <option value="수필" id="essay">수필</option>
-                                                <option value="코미디" selected>코미디</option>
+                                                <option value="코미디">코미디</option>
                                                 <option value="소설">소설</option>
                                                 <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
 
                                             </select>
                                         </c:if>
@@ -335,12 +363,19 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all">전체</option>
+                                                <option value="전체" id="all" selected>전체</option>
                                                 <option value="공포" id="fear">공포</option>
                                                 <option value="수필" id="essay">수필</option>
                                                 <option value="코미디">코미디</option>
-                                                <option value="소설" selected>소설</option>
+                                                <option value="소설">소설</option>
                                                 <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
 
                                             </select>
                                         </c:if>
@@ -349,15 +384,171 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all">전체</option>
+                                                <option value="전체" id="all" selected>전체</option>
                                                 <option value="공포" id="fear">공포</option>
                                                 <option value="수필" id="essay">수필</option>
                                                 <option value="코미디">코미디</option>
                                                 <option value="소설">소설</option>
-                                                <option value="연애" selected>연애</option>
+                                                <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
 
                                             </select>
                                         </c:if>
+
+                                        <c:if test="${genreName=='과학'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" id="all" selected>전체</option>
+                                                <option value="공포" id="fear">공포</option>
+                                                <option value="수필" id="essay">수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="소설">소설</option>
+                                                <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='우주과학'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" id="all" selected>전체</option>
+                                                <option value="공포" id="fear">공포</option>
+                                                <option value="수필" id="essay">수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="소설">소설</option>
+                                                <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='인문학'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" id="all" selected>전체</option>
+                                                <option value="공포" id="fear">공포</option>
+                                                <option value="수필" id="essay">수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="소설">소설</option>
+                                                <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='사회과학'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" id="all" selected>전체</option>
+                                                <option value="공포" id="fear">공포</option>
+                                                <option value="수필" id="essay">수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="소설">소설</option>
+                                                <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='어린이'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" id="all" selected>전체</option>
+                                                <option value="공포" id="fear">공포</option>
+                                                <option value="수필" id="essay">수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="소설">소설</option>
+                                                <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='자서전'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" id="all" selected>전체</option>
+                                                <option value="공포" id="fear">공포</option>
+                                                <option value="수필" id="essay">수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="소설">소설</option>
+                                                <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='잡지'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" id="all" selected>전체</option>
+                                                <option value="공포" id="fear">공포</option>
+                                                <option value="수필" id="essay">수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="소설">소설</option>
+                                                <option value="연애">연애</option>
+                                                <option value="과학">과학</option>
+                                                <option value="우주과학">우주과학</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="사회과학">사회과학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+
+                                            </select>
+                                        </c:if>
+
+
                                     </div>
                                 </div>
 
@@ -378,7 +569,7 @@
 
                                         <div class="slidecontainer">
                                             <h4 style="text-align: left;">가격 범위 설정</h4>
-                                            <input type="range" step="10000" min="0" max="100000" value="${priceRange}"
+                                            <input type="range"  step="10000" min="0" max="100000" value="${price}"
                                                    class="slider" id="myRange"
                                                    style="text-align: left;">
                                             <p>가격: <span id="value"></span>원 이상인 도서 <a href="/bookMain"
@@ -803,12 +994,13 @@
                                                 <div class="paging">
                                                     <a class="direction prev" href="javascript:void(0);"
                                                        style="color: black;"
-                                                       onclick="movePageLowPrice"
-                                                       (1,${pagination.cntPerPage},${pagination.pageSize});">
-                                                    &lt;&lt; </a> <a class="direction prev" href="javascript:void(0);"
-                                                                     style="color: black;"
-                                                                     onclick="movePageLowPrice(${pagination.currentPage}
-                                                                     <c:if test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                       onclick="movePageLowPrice(1,${pagination.cntPerPage},${pagination.pageSize});">
+                                                        &lt;&lt; </a> <a class="direction prev"
+                                                                         href="javascript:void(0);"
+                                                                         style="color: black;"
+                                                                         onclick="movePageLowPrice(${pagination.currentPage}
+                                                                             <c:if
+                                                                                     test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
                                                     &lt; </a>
 
                                                     <c:forEach begin="${pagination.firstPage}"
@@ -842,103 +1034,103 @@
                                                     <c:choose>
 
 
-                                                        <c:when test="${fn:length(bookAndReviewManyOrders) > 0}">
+                                                    <c:when test="${fn:length(bookAndReviewManyOrders) > 0}">
 
 
-                                                            <c:forEach var="bookList"
-                                                                       items="${bookAndReviewManyOrders}">
-                                                                <input type="hidden" name="bookId" id="bookId"
-                                                                       value="${bookList.bookId}">
-                                                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
-                                                                    <div class="properties pb-30">
-                                                                        <div class="properties-card">
-                                                                            <div class="properties-img">
-                                                                                <a href="/${bookList.bookId}"><img
-                                                                                        src="files/${bookList.fileName}"
-                                                                                        alt=""
-                                                                                        style="    height: 180px; object-fit: cover;"></a>
+                                                    <c:forEach var="bookList"
+                                                               items="${bookAndReviewManyOrders}">
+                                                    <input type="hidden" name="bookId" id="bookId"
+                                                           value="${bookList.bookId}">
+                                                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
+                                                        <div class="properties pb-30">
+                                                            <div class="properties-card">
+                                                                <div class="properties-img">
+                                                                    <a href="/${bookList.bookId}"><img
+                                                                            src="files/${bookList.fileName}"
+                                                                            alt=""
+                                                                            style="    height: 180px; object-fit: cover;"></a>
+                                                                </div>
+                                                                <div class="properties-caption properties-caption2">
+                                                                    <h6>
+                                                                        <a href="/${bookList.bookId}">${bookList.bookName}</a>
+                                                                    </h6>
+                                                                    <p>${bookList.author}</p>
+                                                                    <span id="price"
+                                                                          style="color: red;">${bookList.price}원</span>
+                                                                    <p style="text-align: right; color: gray;">
+                                                                        (${bookList.genre})</p>
+                                                                    <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                                        <div class="review">
+                                                                            <div class="rating">
+
+
+                                                                                <c:if test="${bookList.grade==0}">
+
+
+                                                                                </c:if>
+
+                                                                                <c:if test="${bookList.grade==1}">
+
+                                                                                    <i class="fas fa-star"></i>
+
+                                                                                </c:if>
+
+                                                                                <c:if test="${bookList.grade==2}">
+
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+
+                                                                                </c:if>
+
+                                                                                <c:if test="${bookList.grade==3}">
+
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+
+                                                                                </c:if>
+
+                                                                                <c:if test="${bookList.grade==4}">
+
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+
+                                                                                </c:if>
+
+
+                                                                                    <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
+                                                                                <c:if test="${bookList.grade==5}">
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star"></i>
+                                                                                </c:if>
+
+
                                                                             </div>
-                                                                            <div class="properties-caption properties-caption2">
-                                                                                <h6>
-                                                                                    <a href="/${bookList.bookId}">${bookList.bookName}</a>
-                                                                                </h6>
-                                                                                <p>${bookList.author}</p>
-                                                                                <span id="price"
-                                                                                      style="color: red;">${bookList.price}원</span>
-                                                                                <p style="text-align: right; color: gray;">
-                                                                                    (${bookList.genre})</p>
-                                                                                <div class="properties-footer d-flex justify-content-between align-items-center">
-                                                                                    <div class="review">
-                                                                                        <div class="rating">
 
 
-                                                                                            <c:if test="${bookList.grade==0}">
-
-
-                                                                                            </c:if>
-
-                                                                                            <c:if test="${bookList.grade==1}">
-
-                                                                                                <i class="fas fa-star"></i>
-
-                                                                                            </c:if>
-
-                                                                                            <c:if test="${bookList.grade==2}">
-
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-
-                                                                                            </c:if>
-
-                                                                                            <c:if test="${bookList.grade==3}">
-
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-
-                                                                                            </c:if>
-
-                                                                                            <c:if test="${bookList.grade==4}">
-
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-
-                                                                                            </c:if>
-
-
-                                                                                                <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
-                                                                                            <c:if test="${bookList.grade==5}">
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-                                                                                                <i class="fas fa-star"></i>
-                                                                                            </c:if>
-
-
-                                                                                        </div>
-
-
-                                                                                    </div>
-
-
-                                                                                </div>
-                                                                            </div>
                                                                         </div>
+
+
                                                                     </div>
                                                                 </div>
-                                                            </c:forEach>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </c:forEach>
 
-                                                        </c:when>
+                                                    </c:when>
 
 
-                                                        <c:otherwise>
-                                                            <tr>
-                                                                <td colspan="4">조회된 결과가 없습니다.</td>
-                                                            </tr>
-                                                        </c:otherwise>
+                                                    <c:otherwise>
+                                                    <tr>
+                                                        <td colspan="4">조회된 결과가 없습니다.</td>
+                                                    </tr>
+                                                    </c:otherwise>
 
 
                                                     </c:choose>
@@ -948,14 +1140,15 @@
                                                         <div class="paging">
                                                             <a class="direction prev" href="javascript:void(0);"
                                                                style="color: black;"
-                                                               onclick="movePageManyOrders()"
-                                                               (1,${pagination.cntPerPage},${pagination.pageSize});">
-                                                            &lt;&lt; </a> <a class="direction prev"
-                                                                             href="javascript:void(0);"
-                                                                             style="color: black;"
-                                                                             onclick="movePageManyOrders(${pagination.currentPage}
-                                                                             <c:if test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                               onclick="movePageManyOrders(1,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                &lt;&lt; </a> <a class="direction prev"
+                                                                                 href="javascript:void(0);"
+                                                                                 style="color: black;"
+                                                                                 onclick="movePageManyOrders(${pagination.currentPage}
+                                                                                     <c:if
+                                                                                             test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
                                                             &lt; </a>
+
 
                                                             <c:forEach begin="${pagination.firstPage}"
                                                                        end="${pagination.lastPage}" var="idx">
@@ -1101,14 +1294,15 @@
                                                                 <div class="paging">
                                                                     <a class="direction prev" href="javascript:void(0);"
                                                                        style="color: black;"
-                                                                       onclick="movePageManyReview()"
-                                                                       (1,${pagination.cntPerPage},${pagination.pageSize});">
-                                                                    &lt;&lt; </a> <a class="direction prev"
-                                                                                     href="javascript:void(0);"
-                                                                                     style="color: black;"
-                                                                                     onclick="movePageManyReview(${pagination.currentPage}
-                                                                                     <c:if test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                       onclick="movePageManyReview(1,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                        &lt;&lt; </a> <a class="direction prev"
+                                                                                         href="javascript:void(0);"
+                                                                                         style="color: black;"
+                                                                                         onclick="movePageManyReview(${pagination.currentPage}
+                                                                                             <c:if
+                                                                                                     test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
                                                                     &lt; </a>
+
 
                                                                     <c:forEach begin="${pagination.firstPage}"
                                                                                end="${pagination.lastPage}" var="idx">
@@ -1136,205 +1330,372 @@
                                                             </c:if>
 
                                                             <c:if test="${genreSearch !=null}">
-                                                    <div class="best-selling p-0">
-                                                        <div class="row">
+                                                            <div class="best-selling p-0">
+                                                                <div class="row">
 
-                                                            <c:choose>
-
-
-                                                                <c:when test="${fn:length(genreSearch) > 0}">
+                                                                    <c:choose>
 
 
-                                                                    <c:forEach var="bookList"
-                                                                               items="${genreSearch}">
-                                                                        <input type="hidden" name="bookId" id="bookId"
-                                                                               value="${bookList.bookId}">
-                                                                        <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
-                                                                            <div class="properties pb-30">
-                                                                                <div class="properties-card">
-                                                                                    <div class="properties-img">
-                                                                                        <a href="/${bookList.bookId}"><img
-                                                                                                src="files/${bookList.fileName}"
-                                                                                                alt=""
-                                                                                                style="    height: 180px; object-fit: cover;"></a>
-                                                                                    </div>
-                                                                                    <div class="properties-caption properties-caption2">
-                                                                                        <h6>
-                                                                                            <a href="/${bookList.bookId}">${bookList.bookName}</a>
-                                                                                        </h6>
-                                                                                        <p>${bookList.author}</p>
-                                                                                        <span id="price"
-                                                                                              style="color: red;">${bookList.price}원</span>
-                                                                                        <p style="text-align: right; color: gray;">
-                                                                                            (${bookList.genre})</p>
-                                                                                        <div class="properties-footer d-flex justify-content-between align-items-center">
-                                                                                            <div class="review">
-                                                                                                <div class="rating">
+                                                                        <c:when test="${fn:length(genreSearch) > 0}">
 
 
-                                                                                                    <c:if test="${bookList.grade==0}">
+                                                                            <c:forEach var="bookList"
+                                                                                       items="${genreSearch}">
+                                                                                <input type="hidden" name="bookId"
+                                                                                       id="bookId"
+                                                                                       value="${bookList.bookId}">
+                                                                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
+                                                                                    <div class="properties pb-30">
+                                                                                        <div class="properties-card">
+                                                                                            <div class="properties-img">
+                                                                                                <a href="/${bookList.bookId}"><img
+                                                                                                        src="files/${bookList.fileName}"
+                                                                                                        alt=""
+                                                                                                        style="    height: 180px; object-fit: cover;"></a>
+                                                                                            </div>
+                                                                                            <div class="properties-caption properties-caption2">
+                                                                                                <h6>
+                                                                                                    <a href="/${bookList.bookId}">${bookList.bookName}</a>
+                                                                                                </h6>
+                                                                                                <p>${bookList.author}</p>
+                                                                                                <span id="price"
+                                                                                                      style="color: red;">${bookList.price}원</span>
+                                                                                                <p style="text-align: right; color: gray;">
+
+                                                                                                    (${bookList.genre})</p>
+                                                                                                <input type="hidden"
+                                                                                                       id="genreName"
+                                                                                                       value="${bookList.genre}">
+                                                                                                <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                                                                    <div class="review">
+                                                                                                        <div class="rating">
 
 
-                                                                                                    </c:if>
-
-                                                                                                    <c:if test="${bookList.grade==1}">
-
-                                                                                                        <i class="fas fa-star"></i>
-
-                                                                                                    </c:if>
-
-                                                                                                    <c:if test="${bookList.grade==2}">
-
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-
-                                                                                                    </c:if>
-
-                                                                                                    <c:if test="${bookList.grade==3}">
-
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-
-                                                                                                    </c:if>
-
-                                                                                                    <c:if test="${bookList.grade==4}">
-
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-
-                                                                                                    </c:if>
+                                                                                                            <c:if test="${bookList.grade==0}">
 
 
-                                                                                                        <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
-                                                                                                    <c:if test="${bookList.grade==5}">
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                        <i class="fas fa-star"></i>
-                                                                                                    </c:if>
+                                                                                                            </c:if>
+
+                                                                                                            <c:if test="${bookList.grade==1}">
+
+                                                                                                                <i class="fas fa-star"></i>
+
+                                                                                                            </c:if>
+
+                                                                                                            <c:if test="${bookList.grade==2}">
+
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+
+                                                                                                            </c:if>
+
+                                                                                                            <c:if test="${bookList.grade==3}">
+
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+
+                                                                                                            </c:if>
+
+                                                                                                            <c:if test="${bookList.grade==4}">
+
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+
+                                                                                                            </c:if>
+
+
+                                                                                                                <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
+                                                                                                            <c:if test="${bookList.grade==5}">
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star"></i>
+                                                                                                            </c:if>
+
+
+                                                                                                        </div>
+
+
+                                                                                                        <p>
+                                                                                                            (<span>${bookList.reviewId}</span>
+                                                                                                            Review)</p>
+
+
+                                                                                                    </div>
 
 
                                                                                                 </div>
-
-
-                                                                                                <p>
-                                                                                                    (<span>${bookList.reviewId}</span>
-                                                                                                    Review)</p>
-
-
                                                                                             </div>
-
-
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
+                                                                            </c:forEach>
+
+                                                                        </c:when>
+
+
+                                                                        <c:otherwise>
+                                                                            <tr>
+                                                                                <td colspan="4">조회된 결과가 없습니다.</td>
+                                                                            </tr>
+                                                                        </c:otherwise>
+
+
+                                                                    </c:choose>
+
+                                                                    <!--paginate -->
+                                                                    <div class="paginate">
+                                                                        <div class="paging">
+                                                                            <a class="direction prev"
+                                                                               href="javascript:void(0);"
+                                                                               style="color: black;"
+                                                                               onclick="genre(1,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                &lt;&lt; </a> <a class="direction prev"
+                                                                                                 href="javascript:void(0);"
+                                                                                                 style="color: black;"
+                                                                                                 onclick="genre(${pagination.currentPage}
+                                                                                                     <c:if
+                                                                                                             test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                            &lt; </a>
+
+                                                                            <c:forEach begin="${pagination.firstPage}"
+                                                                                       end="${pagination.lastPage}"
+                                                                                       var="idx">
+                                                                                <a
+                                                                                        style="color: black;
+                                                                                            <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
+                                                                                        href="javascript:void(0);"
+                                                                                        onclick="genre(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
+                                                                                        value="${idx}"/></a>
+                                                                            </c:forEach>
+                                                                            <a class="direction next"
+                                                                               href="javascript:void(0);"
+                                                                               style="color: black;"
+                                                                               onclick="genre(${pagination.currentPage}
+                                                                               <c:if
+                                                                                       test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                &gt; </a> <a class="direction next"
+                                                                                             href="javascript:void(0);"
+                                                                                             style="color: black;"
+                                                                                             onclick="genre(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
+                                                                            &gt;&gt; </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- /paginate -->
+
+                                                                    </c:if>
+
+
+
+
+                                                                            <c:if test="${searchPrice !=null}">
+                                                                            <div class="best-selling p-0">
+                                                                                <div class="row">
+
+                                                                                    <c:choose>
+
+
+                                                                                        <c:when test="${fn:length(searchPrice) > 0}">
+
+
+                                                                                            <c:forEach var="bookList"
+                                                                                                       items="${searchPrice}">
+                                                                                                <input type="hidden" name="bookId"
+                                                                                                       id="bookId"
+                                                                                                       value="${bookList.bookId}">
+                                                                                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
+                                                                                                    <div class="properties pb-30">
+                                                                                                        <div class="properties-card">
+                                                                                                            <div class="properties-img">
+                                                                                                                <a href="/${bookList.bookId}"><img
+                                                                                                                        src="files/${bookList.fileName}"
+                                                                                                                        alt=""
+                                                                                                                        style="    height: 180px; object-fit: cover;"></a>
+                                                                                                            </div>
+                                                                                                            <div class="properties-caption properties-caption2">
+                                                                                                                <h6>
+                                                                                                                    <a href="/${bookList.bookId}">${bookList.bookName}</a>
+                                                                                                                </h6>
+                                                                                                                <p>${bookList.author}</p>
+                                                                                                                <span id="price"
+                                                                                                                      style="color: red;">${bookList.price}원</span>
+                                                                                                                <p style="text-align: right; color: gray;">
+
+                                                                                                                    (${bookList.genre})</p>
+                                                                                                                <input type="hidden"
+                                                                                                                       id="genreName"
+                                                                                                                       value="${bookList.genre}">
+                                                                                                                <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                                                                                    <div class="review">
+                                                                                                                        <div class="rating">
+
+
+                                                                                                                            <c:if test="${bookList.grade==0}">
+
+
+                                                                                                                            </c:if>
+
+                                                                                                                            <c:if test="${bookList.grade==1}">
+
+                                                                                                                                <i class="fas fa-star"></i>
+
+                                                                                                                            </c:if>
+
+                                                                                                                            <c:if test="${bookList.grade==2}">
+
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+
+                                                                                                                            </c:if>
+
+                                                                                                                            <c:if test="${bookList.grade==3}">
+
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+
+                                                                                                                            </c:if>
+
+                                                                                                                            <c:if test="${bookList.grade==4}">
+
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+
+                                                                                                                            </c:if>
+
+
+                                                                                                                                <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
+                                                                                                                            <c:if test="${bookList.grade==5}">
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                            </c:if>
+
+
+                                                                                                                        </div>
+
+
+                                                                                                                        <p>
+                                                                                                                            (<span>${bookList.reviewId}</span>
+                                                                                                                            Review)</p>
+
+
+                                                                                                                    </div>
+
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </c:forEach>
+
+                                                                                        </c:when>
+
+
+                                                                                        <c:otherwise>
+                                                                                            <tr>
+                                                                                                <td colspan="4">조회된 결과가 없습니다.</td>
+                                                                                            </tr>
+                                                                                        </c:otherwise>
+
+
+                                                                                    </c:choose>
+
+                                                                                    <!--paginate -->
+                                                                                    <div class="paginate">
+                                                                                        <div class="paging">
+                                                                                            <a class="direction prev"
+                                                                                               href="javascript:void(0);"
+                                                                                               style="color: black;"
+                                                                                               onclick="movePage(1,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                                &lt;&lt; </a> <a class="direction prev"
+                                                                                                                 href="javascript:void(0);"
+                                                                                                                 style="color: black;"
+                                                                                                                 onclick="movePage(${pagination.currentPage}
+                                                                                                                 <c:if
+                                                                                                                         test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                            &lt; </a>
+
+                                                                                            <c:forEach begin="${pagination.firstPage}"
+                                                                                                       end="${pagination.lastPage}"
+                                                                                                       var="idx">
+                                                                                                <a
+                                                                                                        style="color: black;
+                                                                                                            <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
+                                                                                                        href="javascript:void(0);"
+                                                                                                        onclick="movePage(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
+                                                                                                        value="${idx}"/></a>
+                                                                                            </c:forEach>
+                                                                                            <a class="direction next"
+                                                                                               href="javascript:void(0);"
+                                                                                               style="color: black;"
+                                                                                               onclick="movePage(${pagination.currentPage}
+                                                                                               <c:if
+                                                                                                       test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                                &gt; </a> <a class="direction next"
+                                                                                                             href="javascript:void(0);"
+                                                                                                             style="color: black;"
+                                                                                                             onclick="movePage(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                            &gt;&gt; </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- /paginate -->
+
+                                                                                    </c:if>
+
+
+                                                                    <!-- button -->
+                                                                    <div class="row">
+                                                                        <div class="col-xl-12">
+                                                                            <div class="more-btn text-center mt-15">
+                                                                                <a href="#"
+                                                                                   class="border-btn border-btn2 more-btn2">Browse
+                                                                                    More</a>
                                                                             </div>
                                                                         </div>
-                                                                    </c:forEach>
-
-                                                                </c:when>
-
-
-                                                                <c:otherwise>
-                                                                    <tr>
-                                                                        <td colspan="4">조회된 결과가 없습니다.</td>
-                                                                    </tr>
-                                                                </c:otherwise>
-
-
-                                                            </c:choose>
-
-                                                            <!--paginate -->
-                                                            <div class="paginate">
-                                                                <div class="paging">
-                                                                    <a class="direction prev" href="javascript:void(0);"
-                                                                       style="color: black;"
-                                                                       onclick="movePageFear()"
-                                                                       (1,${pagination.cntPerPage},${pagination.pageSize});">
-                                                                    &lt;&lt; </a> <a class="direction prev"
-                                                                                     href="javascript:void(0);"
-                                                                                     style="color: black;"
-                                                                                     onclick="movePageFear(${pagination.currentPage}
-                                                                                     <c:if test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
-                                                                    &lt; </a>
-
-                                                                    <c:forEach begin="${pagination.firstPage}"
-                                                                               end="${pagination.lastPage}" var="idx">
-                                                                        <a
-                                                                                style="color: black;
-                                                                                    <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
-                                                                                href="javascript:void(0);"
-                                                                                onclick="movePageFear(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
-                                                                                value="${idx}"/></a>
-                                                                    </c:forEach>
-                                                                    <a class="direction next" href="javascript:void(0);"
-                                                                       style="color: black;"
-                                                                       onclick="movePageFear(${pagination.currentPage}
-                                                                       <c:if
-                                                                               test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
-                                                                        &gt; </a> <a class="direction next"
-                                                                                     href="javascript:void(0);"
-                                                                                     style="color: black;"
-                                                                                     onclick="movePageFear(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
-                                                                    &gt;&gt; </a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- /paginate -->
-
-                                                            </c:if>
-
-
-
-
-
-
-
-
-
-                                                            <!-- button -->
-                                                            <div class="row">
-                                                                <div class="col-xl-12">
-                                                                    <div class="more-btn text-center mt-15">
-                                                                        <a href="#"
-                                                                           class="border-btn border-btn2 more-btn2">Browse
-                                                                            More</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <!-- listing-area Area End -->
+                                                    <!-- listing-area Area End -->
 
-                                            <!-- Subscribe Area Start -->
-                                            <section class="subscribe-area">
-                                                <div class="container">
-                                                    <div class="subscribe-caption text-center  subscribe-padding section-img2-bg"
-                                                         data-background="assets/img/gallery/section-bg1.jpg">
-                                                        <div class="row justify-content-center">
+                                                    <!-- Subscribe Area Start -->
+                                                    <section class="subscribe-area">
+                                                        <div class="container">
+                                                            <div class="subscribe-caption text-center  subscribe-padding section-img2-bg"
+                                                                 data-background="assets/img/gallery/section-bg1.jpg">
+                                                                <div class="row justify-content-center">
 
-                                                            <div class="col-xl-6 col-lg-8 col-md-9">
-                                                                <h3>Join Newsletter</h3>
-                                                                <p>Lorem started its journey with cast iron (CI)
-                                                                    products in
-                                                                    1980. The initial main objective was to ensure pure
-                                                                    water
-                                                                    and affordable irrigation.</p>
-                                                                <form action="#">
-                                                                    <input type="text" placeholder="Enter your email">
-                                                                    <button class="subscribe-btn">Subscribe</button>
-                                                                </form>
+                                                                    <div class="col-xl-6 col-lg-8 col-md-9">
+                                                                        <h3>Join Newsletter</h3>
+                                                                        <p>Lorem started its journey with cast iron (CI)
+                                                                            products in
+                                                                            1980. The initial main objective was to
+                                                                            ensure pure
+                                                                            water
+                                                                            and affordable irrigation.</p>
+                                                                        <form action="#">
+                                                                            <input type="text"
+                                                                                   placeholder="Enter your email">
+                                                                            <button class="subscribe-btn">Subscribe
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                            <!-- Subscribe Area End -->
+                                                    </section>
+                                                    <!-- Subscribe Area End -->
 </main>
 <jsp:include page="../main/footer.jsp"></jsp:include>
 <!-- Scroll Up -->
@@ -1353,6 +1714,23 @@
 
     //페이지 이동
     function movePage(currentPage, cntPerPage, pageSize) {
+
+        var url = "${pageContext.request.contextPath}/bookMain";
+        url = url + "?currentPage=" + currentPage;
+        url = url + "&cntPerPage=" + cntPerPage;
+        url = url + "&pageSize=" + pageSize;
+
+        location.href = url;
+    }
+
+    //페이지 이동
+    function movePageRangePrice(currentPage, cntPerPage, pageSize) {
+
+        var range = $('#genreName').val();
+
+
+        var url = "${pageContext.request.contextPath}/genre?choice=" + genre;
+
 
         var url = "${pageContext.request.contextPath}/bookMain";
         url = url + "?currentPage=" + currentPage;
@@ -1407,9 +1785,12 @@
     }
 
     //페이지 이동
-    function movePageFear(currentPage, cntPerPage, pageSize) {
+    function genre(currentPage, cntPerPage, pageSize) {
 
-        var url = "${pageContext.request.contextPath}/genre?choice=공포";
+        var genre = $('#genreName').val();
+
+
+        var url = "${pageContext.request.contextPath}/genre?choice=" + genre;
         url = url + "&currentPage=" + currentPage;
         url = url + "&cntPerPage=" + cntPerPage;
         url = url + "&pageSize=" + pageSize;
@@ -1477,14 +1858,6 @@
 
 
                 }
-
-
-                if (choice == '수필') {
-
-                    location.href = '/genre?choice=' + '수필';
-
-
-                }
                 if (choice == '공포') {
 
 
@@ -1493,13 +1866,13 @@
 
                 }
 
-                if (choice == '연애') {
+                if (choice == '수필') {
 
-
-                    location.href = '/genre?choice=' + '연애';
+                    location.href = '/genre?choice=' + '수필';
 
 
                 }
+
 
                 if (choice == '코미디') {
 
@@ -1516,6 +1889,71 @@
 
 
                 }
+
+                if (choice == '연애') {
+
+
+                    location.href = '/genre?choice=' + '연애';
+
+
+                }
+
+                if (choice == '과학') {
+
+
+                    location.href = '/genre?choice=' + '과학';
+
+
+                }
+
+                if (choice == '우주과학') {
+
+
+                    location.href = '/genre?choice=' + '우주과학';
+
+
+                }
+
+                if (choice == '인문학') {
+
+
+                    location.href = '/genre?choice=' + '인문학';
+
+
+                }
+
+                if (choice == '사회과학') {
+
+
+                    location.href = '/genre?choice=' + '사회과학';
+
+
+                }
+
+                if (choice == '어린이') {
+
+
+                    location.href = '/genre?choice=' + '어린이';
+
+
+                }
+
+                if (choice == '자서전') {
+
+
+                    location.href = '/genre?choice=' + '자서전';
+
+
+                }
+
+                if (choice == '잡지') {
+
+
+                    location.href = '/genre?choice=' + '잡지';
+
+
+                }
+
 
             },
             error: function (a, b, c) {

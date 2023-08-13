@@ -212,7 +212,7 @@
                             <div class="form-group">
                                 <a href="/reviewUpdate?reviewId=${reviewDetail.reviewId}&userId=${loginId}">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">리뷰수정</button></a>
                                 <a href="/reviewDelete?reviewId=${reviewDetail.reviewId}">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">리뷰삭제</button></a>
-                                <a href="/review">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">뒤로가기</button></a>
+                              <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
 
                             </div>
                             </c:if>
@@ -222,7 +222,7 @@
                                 <c:if test="${loginId==null}">
                                 <div class="form-group">
 
-                                    <a href="/review">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">뒤로가기</button></a>
+                                    <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
                                 </div>
                             </div>
                         </c:if>
@@ -245,6 +245,12 @@
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
 <script>
+
+
+    function history_back() {
+        history.back();
+    }
+
 $('#delete').click(function (){
 
 

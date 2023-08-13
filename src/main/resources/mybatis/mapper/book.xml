@@ -126,10 +126,18 @@
             book
     </select>
 
-    <select id="CommentTableCount" resultType="int">
+    <select id="SearchGenreTableCount" parameterType="string" resultType="int">
         SELECT count(*) FROM
-            comments
+            book
+        where genre = #{genreName}
     </select>
+
+    <select id="SearchPriceRangeTableCount" parameterType="int" resultType="int">
+        SELECT count(*) FROM
+            book
+        where price >=#{price}
+    </select>
+
 
     <select id="ReviewTableCount" resultType="int">
         SELECT count(*) FROM
@@ -235,6 +243,28 @@
     </select>
 
 
+    <select id="SelectPriceSearch"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.bookId asc) AS
+        row_num,
+        a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price, round(avg(b.grade))as grade , count(b.reviewId)as reviewId
+        FROM book a  left join review b on a.bookId = b.bookId
+
+
+        GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price
+
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num and price >= #{price}
+        </if>
+
+    </select>
+
+
+
     <select id="SelectCommentFindDTOList"  resultType="com.DreamBook.BookStoreService.dto.comment.CommentFindDTO">
 
         SELECT  *
@@ -250,7 +280,7 @@
         )
         <if test="firstRecordIndex !=null and lastRecordIndex != null">
             WHERE row_num > #{firstRecordIndex} AND
-            #{lastRecordIndex} >=row_num and bookId = #{bookId}
+            #{lastRecordIndex} >=row_num and bookId =#{bookId}
         </if>
 
 

@@ -18,13 +18,15 @@ public interface BookService {
     public List<BookFindDTO> SelectLowPriceList(Pagination pagination) throws Exception;
     public List<BookFindDTO> SelectManyOrders(Pagination pagination) throws Exception;
     public List<BookFindDTO> SelectManyReview(Pagination pagination) throws Exception;
-    public List<BookFindDTO> SelectGenreSearch(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectGenreSearch(PaginationGenre paginationGenre) throws Exception;
 
-    public List<CommentFindDTO> SelectCommentFindDTOList(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectPriceSearch(PaginationPriceRange paginationPriceRange) throws Exception;
+
+    public List<CommentFindDTO> SelectCommentFindDTOList(PaginationGenre paginationComment) throws Exception;
     //count
     public int testTableCount() throws Exception;
-    public int CommentTableCount() throws Exception;
-
+    public int SearchGenreTableCount(String bookName) throws Exception;
+    public int SearchPriceRangeTableCount(int price) throws Exception;
     public int ReviewTableCount() throws Exception;
 
     public int maxNum() throws Exception;

@@ -42,14 +42,22 @@ public class BookController {
         if(session.getAttribute("priceRange")!=null) {
             int priceRange = (int) session.getAttribute("priceRange");
 
-            List<BookFindDTO> bookList = bookService.bookListPrice(priceRange);
+            int listCnt = bookService.SearchPriceRangeTableCount(priceRange);
+            PaginationPriceRange paginationPriceRange = new PaginationPriceRange(currentPage, cntPerPage, pageSize);
+            paginationPriceRange.setTotalRecordCount(listCnt);
+            paginationPriceRange.setPrice(priceRange);
 
 
-            List<BookFindDTO>  bookListGrade  = bookService.bookAndReviewGrade(bookList);
-            model.addAttribute("bookAndReview",bookListGrade);
-            model.addAttribute("genreName",genreName);
-            model.addAttribute("priceRange",priceRange);
+            model.addAttribute("pagination",paginationPriceRange);
+            model.addAttribute("genreName",choice);
+            model.addAttribute("searchPrice",bookService.SelectPriceSearch(paginationPriceRange));
+            model.addAttribute("price",priceRange);
             session.removeAttribute("priceRange");
+
+
+
+
+
             return "book/main";
         }
 
@@ -183,31 +191,18 @@ public class BookController {
             return "book/main";
         }
 
-        if (choice.equals("수필")) {
-
-            int listCnt = bookService.testTableCount();
-            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setGenre("수필");
-            
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("genreSearch",bookService.SelectGenreSearch(pagination));
-
-            model.addAttribute("genreName",choice);
-            model.addAttribute("priceRange",firstPriceRange);
-
-            return "book/main";
-        }
         if (choice.equals("공포")) {
 
-            int listCnt = bookService.testTableCount();
-            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setGenre("공포");
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("공포");
 
 
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("genreSearch",bookService.SelectGenreSearch(pagination));
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
 
             model.addAttribute("genreName",choice);
             model.addAttribute("priceRange",firstPriceRange);
@@ -215,14 +210,33 @@ public class BookController {
             return "book/main";
 
         }
-        if (choice.equals("코미디")) {
-            int listCnt = bookService.testTableCount();
-            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setGenre("코미디");
 
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("genreSearch",bookService.SelectGenreSearch(pagination));
+        if (choice.equals("수필")) {
+
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("수필");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+        if (choice.equals("코미디")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("코미디");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
 
             model.addAttribute("genreName",choice);
             model.addAttribute("priceRange",firstPriceRange);
@@ -232,13 +246,14 @@ public class BookController {
         }
 
         if (choice.equals("소설")) {
-            int listCnt = bookService.testTableCount();
-            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setGenre("코미디");
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("소설");
 
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("genreSearch",bookService.SelectGenreSearch(pagination));
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
 
             model.addAttribute("genreName",choice);
             model.addAttribute("priceRange",firstPriceRange);
@@ -248,20 +263,139 @@ public class BookController {
 
         if (choice.equals("연애")) {
 
-            int listCnt = bookService.testTableCount();
-            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setGenre("연애");
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("연애");
 
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("genreSearch",bookService.SelectGenreSearch(pagination));
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+            return "book/main";
+
+        }
+
+
+        if (choice.equals("과학")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("과학");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
 
             model.addAttribute("genreName",choice);
             model.addAttribute("priceRange",firstPriceRange);
 
             return "book/main";
-
         }
+
+
+        if (choice.equals("우주과학")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("우주과학");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+        if (choice.equals("인문학")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("인문학");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+        if (choice.equals("사회과학")) {
+            System.out.println(choice);
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("사회과학");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+        if (choice.equals("어린이")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("어린이");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+        if (choice.equals("자서전")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("자서전");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+
+        if (choice.equals("잡지")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("잡지");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+
+
         return "book/main";
     }
     @ResponseBody
@@ -303,35 +437,22 @@ public class BookController {
 
         if(session.getAttribute("memberId")==null &&session.getAttribute("userId")==null){
 
+
+
+
+
+
             List<BookFindDTO> bookList = bookService.bookIdList(id);
 
 
-            model.addAttribute("bookList",bookList);
-
-
-            int listCnt = bookService.CommentTableCount();
-            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setBookId(id);
-
-            PaginationReview PaginationReview = new PaginationReview(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setBookId(id);
-
-
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
-
-            model.addAttribute("reviewFindDTOList",reviewService.reviewAllList(PaginationReview));
             model.addAttribute("id",id);
 
-
+            model.addAttribute("bookList",bookList);
 
             return "book/bookDetailNologin";
 
 
         }
-
 
         int memberId = (Integer) session.getAttribute("memberId");
 
@@ -339,27 +460,14 @@ public class BookController {
 
         List<BookFindDTO> bookList = bookService.bookIdList(id);
 
+
+        model.addAttribute("reviewAllList",reviewService.reviewBookList(id));
+
+
+        model.addAttribute("id",id);
+        model.addAttribute("checkId",userId);
         model.addAttribute("bookList",bookList);
 
-
-
-        int listCnt = bookService.CommentTableCount();
-        Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-        pagination.setTotalRecordCount(listCnt);
-        pagination.setBookId(id);
-
-        int listCntReview = bookService.ReviewTableCount();
-        PaginationReview PaginationReview = new PaginationReview(currentPage, cntPerPage, pageSize);
-        PaginationReview.setTotalRecordCount(listCnt);
-        PaginationReview.setBookId(id);
-
-
-
-        model.addAttribute("pagination",pagination);
-        model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
-        model.addAttribute("reviewFindDTOList",reviewService.reviewAllList(PaginationReview));
-        model.addAttribute("id",id);
-        model.addAttribute("userId",userId);
 
 
         return "book/bookDetail";
@@ -367,85 +475,18 @@ public class BookController {
 
 
 
+    @ResponseBody
+    @PostMapping("/commentCheck")
+    public List<CommentFindDTO> commentCheck(int bookId, HttpSession session,Model model)throws Exception{
 
 
 
+      List<CommentFindDTO> commentFindDTOList = commentService.commentList(bookId);
 
 
-
-    @GetMapping("/reviewBookList{id}")
-    public String reviewBookList(Model model,HttpSession session,@RequestParam("id")int id,
-                             @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
-                             @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
-                             @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception{
-
-
-
-        System.out.println(id);
-        bookService.updateViews(id);
-
-        if(session.getAttribute("memberId")==null &&session.getAttribute("userId")==null){
-
-            List<BookFindDTO> bookList = bookService.bookIdList(id);
-
-
-            model.addAttribute("bookList",bookList);
-
-
-            int listCnt = bookService.CommentTableCount();
-            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setBookId(id);
-
-            PaginationReview PaginationReview = new PaginationReview(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-            pagination.setBookId(id);
-
-
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
-            model.addAttribute("id",id);
-            model.addAttribute("reviewFindDTOList",reviewService.reviewAllList(PaginationReview));
-
-
-
-
-            return "book/bookDetailReview";
-
-
-        }
-
-
-
-        int memberId = (Integer) session.getAttribute("memberId");
-
-        String userId =(String) session.getAttribute("userId");
-
-        List<BookFindDTO> bookList = bookService.bookIdList(id);
-
-        model.addAttribute("bookList",bookList);
-
-
-
-        int listCnt = bookService.CommentTableCount();
-        Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-        pagination.setTotalRecordCount(listCnt);
-        pagination.setBookId(id);
-
-        PaginationReview PaginationReview = new PaginationReview(currentPage, cntPerPage, pageSize);
-        PaginationReview.setTotalRecordCount(listCnt);
-        PaginationReview.setBookId(id);
-
-
-        model.addAttribute("pagination",PaginationReview);
-        model.addAttribute("commentFindDTOList",bookService.SelectCommentFindDTOList(pagination));
-        model.addAttribute("reviewFindDTOList",reviewService.reviewAllList(PaginationReview));
-        model.addAttribute("id",id);
-        model.addAttribute("userId",userId);
-
-
-        return "book/bookDetailReview";
+        return commentFindDTOList;
     }
+
 
 
     @GetMapping("/cart")

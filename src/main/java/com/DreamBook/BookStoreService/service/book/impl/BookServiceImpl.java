@@ -55,13 +55,21 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookFindDTO> SelectGenreSearch(Pagination pagination) throws Exception {
-        return bookMapper.SelectGenreSearch(pagination);
+    public List<BookFindDTO> SelectGenreSearch(PaginationGenre paginationGenre) throws Exception {
+        return bookMapper.SelectGenreSearch(paginationGenre);
     }
 
+
     @Override
-    public List<CommentFindDTO> SelectCommentFindDTOList(Pagination pagination) throws Exception {
-        return bookMapper.SelectCommentFindDTOList(pagination);
+    public List<BookFindDTO> SelectPriceSearch(PaginationPriceRange paginationPriceRange) throws Exception {
+        return bookMapper.SelectPriceSearch(paginationPriceRange);
+    }
+
+
+
+    @Override
+    public List<CommentFindDTO> SelectCommentFindDTOList(PaginationGenre paginationComment) throws Exception {
+        return bookMapper.SelectCommentFindDTOList(paginationComment);
     }
 
     @Override
@@ -70,10 +78,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public int CommentTableCount() throws Exception {
-        return bookMapper.CommentTableCount();
+    public int SearchGenreTableCount(String bookName) throws Exception {
+        return bookMapper.SearchGenreTableCount(bookName);
     }
-
+    @Override
+    public int SearchPriceRangeTableCount(int price) throws Exception {
+        return bookMapper.SearchPriceRangeTableCount(price);
+    }
     @Override
     public int ReviewTableCount() throws Exception {
         return bookMapper.ReviewTableCount();

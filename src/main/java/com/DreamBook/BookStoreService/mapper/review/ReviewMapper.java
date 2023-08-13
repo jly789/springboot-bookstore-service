@@ -24,7 +24,7 @@ public interface ReviewMapper {
 
     public List<ReviewFindDTO> reviewAllList(PaginationReview pagination) throws Exception;
 
-    public List<ReviewFindDTO>  reviewBookList(Pagination pagination) throws Exception; //해당도서의 리뷰작성리스트
+    public List<ReviewFindDTO>  reviewBookList(int bookId) throws Exception; //해당도서의 리뷰작성리스트
 
 
     public List<ReviewFindDTO> reviewDetailList(int reviewId) throws Exception;

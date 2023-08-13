@@ -49,7 +49,7 @@ public class CommentController {
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         model.addAttribute("bookList",bookList);
         model.addAttribute("commentFindDTOList",commentFindDTOList);
-        return "redirect:/{bookId}";
+        return "book/bookDetail";
     }
 
 

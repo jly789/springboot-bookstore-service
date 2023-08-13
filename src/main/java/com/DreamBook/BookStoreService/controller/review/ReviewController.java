@@ -47,9 +47,11 @@ public class ReviewController {
     }
 
     @GetMapping("/review")
-    public String review(Model model,  @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+    public String review(HttpSession session,Model model,  @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
                          @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
                          @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception {
+
+        String userId = (String) session.getAttribute("userId");
 
         int listCnt = bookService.testTableCount();
         PaginationReview pagination = new PaginationReview(currentPage, cntPerPage, pageSize);
@@ -57,15 +59,8 @@ public class ReviewController {
 
         model.addAttribute("pagination",pagination);
         model.addAttribute("reviewAllList",reviewService.reviewAllList(pagination));
+        model.addAttribute("checkId",userId);
 
-
-//        List<ReviewFindDTO> reviewAllList = reviewService.reviewAllList();
-
-//        List<BookFindDTO> bookList = bookService.bookList();
-//        List<ReviewFindDTO> bookListGrade = bookService.bookAndReviewList(reviewAllList);
-//        model.addAttribute("bookAndReview",bookListGrade);
-
-//        model.addAttribute("reviewAllList",reviewAllList);
 
 
         return "review/review";

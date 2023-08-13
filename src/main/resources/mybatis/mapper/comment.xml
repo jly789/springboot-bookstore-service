@@ -24,6 +24,7 @@
                  on
                      a.memberId = b.memberId
         where a.bookId = #{bookId}
+        order by a.commentDate desc
     </select>
 
 

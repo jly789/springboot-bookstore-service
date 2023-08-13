@@ -82,12 +82,10 @@
 
     </select>
 
-    <select id="reviewBookList"  resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
+    <select id="reviewBookList" parameterType="int" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">
 
-        SELECT  *
-        FROM (
-        SELECT  ROW_NUMBER() OVER(ORDER by a.reviewDate desc) AS
-        row_num,
+
+        SELECT
         a.reviewId, c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,a.reviewDate,b.price,round(AVG(a.grade))as grade,count(a.reviewId) as reviewIdCount
         from review a
 
@@ -97,14 +95,13 @@
         on a.memberId = c.memberId
 
 
+        where a.bookId = #{bookId}
+
         GROUP BY a.reviewId,c.userId, a.bookId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,a.memberId,b.price,b.genre,b.PUBLISHER,b.author,a.reviewDate
 
 
-        )
-        <if test="firstRecordIndex !=null and lastRecordIndex != null">
-            WHERE row_num > #{firstRecordIndex} AND
-            #{lastRecordIndex} >=row_num
-        </if>
+
+
 
     </select>
 

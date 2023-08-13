@@ -191,8 +191,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewFindDTO> reviewBookList(Pagination pagination) throws Exception {
-        return reviewMapper.reviewBookList(pagination);
+    public List<ReviewFindDTO> reviewBookList(int bookId) throws Exception {
+        return reviewMapper.reviewBookList(bookId);
     }
 
     @Override

@@ -2,13 +2,9 @@ package com.DreamBook.BookStoreService.mapper.book;
 
 import com.DreamBook.BookStoreService.dto.book.*;
 import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
-import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,13 +25,18 @@ public interface BookMapper {
     public List<BookFindDTO> SelectManyReview(Pagination pagination) throws Exception;
 
 
-    public List<BookFindDTO> SelectGenreSearch(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectGenreSearch(PaginationGenre paginationGenre) throws Exception;
 
-    public List<CommentFindDTO> SelectCommentFindDTOList(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectPriceSearch(PaginationPriceRange paginationPriceRange) throws Exception;
+
+    public List<CommentFindDTO> SelectCommentFindDTOList(PaginationGenre pagination) throws Exception;
 
     //count
     public int testTableCount() throws Exception;
-    public int CommentTableCount() throws Exception;
+
+    public int SearchGenreTableCount(String genreName) throws Exception;
+    public int SearchPriceRangeTableCount(int price) throws Exception;
+
 
     public int ReviewTableCount() throws Exception;
 

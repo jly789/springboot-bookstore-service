@@ -298,88 +298,15 @@
                                 <p>${bookList.bookContent}</p>
                             </c:forEach>
 
-
-                            <c:if test="${commentFindDTOList !=null}">
-
-                                <c:choose>
+                            <br/>
 
 
-                                    <c:when test="${fn:length(commentFindDTOList) > 0}">
+                            <button type="submit" id="comment" class="white-btn mr-10">댓글on</button>
+
+                            <div id="result"></div>
+                            <br/>
 
 
-                                        <c:forEach var="commentFindDTOList" items="${commentFindDTOList}">
-
-
-
-                                            <c:if test="${userId == commentFindDTOList.userId}">
-                                                <img src="assets/img/blog/comment_1.png" alt="">
-                                                <a style="color: red;"
-                                                   href="/deleteComment?bookId=${commentFindDTOList.bookId}&commentId=${commentFindDTOList.commentId}">삭제</a><br/>
-                                                <strong style="color: red;">작성자:${userId}</strong>
-
-                                                <br/> 제목: ${commentFindDTOList.commentContent}
-                                            </c:if>
-
-                                            <c:if test="${userId != commentFindDTOList.userId}">
-                                                <img src="assets/img/blog/comment_1.png" alt=""><br/>
-                                                <strong style="color: black;">작성자:${commentFindDTOList.userId}</strong><br/>
-                                                제목: ${commentFindDTOList.commentContent}<br/>
-
-
-                                            </c:if>
-
-
-                                            <p class="date"> 작성일자: ${commentFindDTOList.commentDate}</p>
-
-
-                                        </c:forEach>
-
-                                        <!--paginate -->
-                                        <div class="paginate">
-                                            <div class="paging">
-                                                <a class="direction prev" href="javascript:void(0);"
-                                                   style="color: black;"
-                                                   onclick="movePage(1,${pagination.cntPerPage},${pagination.pageSize});">
-                                                    &lt;&lt; </a> <a class="direction prev" href="javascript:void(0);"
-                                                                     style="color: black;"
-                                                                     onclick="movePage(${pagination.currentPage}<c:if
-                                                                             test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
-                                                &lt; </a>
-
-                                                <c:forEach begin="${pagination.firstPage}"
-                                                           end="${pagination.lastPage}" var="idx">
-                                                    <a
-                                                            style="color: black;
-                                                                <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
-                                                            href="javascript:void(0);"
-                                                            onclick="movePage(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
-                                                            value="${idx}"/></a>
-                                                </c:forEach>
-                                                <a class="direction next" href="javascript:void(0);"
-                                                   style="color: black;"
-                                                   onclick="movePage(${pagination.currentPage}<c:if
-                                                           test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
-                                                    &gt; </a> <a class="direction next" href="javascript:void(0);"
-                                                                 style="color: black;"
-                                                                 onclick="movePage(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
-                                                &gt;&gt; </a>
-                                            </div>
-                                        </div>
-                                        <!-- /paginate -->
-                                    </c:when>
-
-
-                                    <c:otherwise>
-                                        <%--                  <tr>--%>
-                                        <%--                    <td colspan="4">조회된 결과가 없습니다.</td>--%>
-                                        <%--                  </tr>--%>
-                                    </c:otherwise>
-
-
-                                </c:choose>
-
-
-                            </c:if>
 
                         </div>
                     </div>
@@ -438,16 +365,13 @@
             <!-- Tab 1 -->
             <div class="row">
 
-                <c:if test="${reviewFindDTOList !=null}">
+                <c:if test="${reviewAllList !=null}">
                 <div class="best-selling p-0">
                     <div class="row">
 
-                        <c:choose>
 
 
-                            <c:when test="${fn:length(reviewFindDTOList) > 0}">
-
-                                <c:forEach var="reviewAllList" items="${reviewFindDTOList}">
+                                <c:forEach var="reviewAllList" items="${reviewAllList}">
                                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
                                         <div class="properties pb-30">
                                             <div class="properties-card">
@@ -460,7 +384,13 @@
 
 
                                                     <p>${reviewAllList.reviewContent} </p>
-                                                    <h6 style="color: red; text-align: right;">  (${reviewAllList.userId})</h6>
+                                                    <c:if test="${reviewAllList.userId==checkId}">
+                                                    <h6 style="color: red; text-align: right;">My Review</h6>
+                                                    </c:if>
+
+                                                    <c:if test="${reviewAllList.userId!=checkId}">
+                                                        <h6 style="color: black; text-align: right;">  (${reviewAllList.userId})</h6>
+                                                    </c:if>
                                                     <div class="properties-footer d-flex justify-content-between align-items-center">
                                                         <div class="review">
                                                             <div class="rating">
@@ -500,7 +430,7 @@
 
 
                                                             </div>
-                                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>
+<%--                                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>--%>
                                                         </div>
                                                         <div class="price">
                                                             <span>${reviewAllList.price}</span>
@@ -512,46 +442,7 @@
                                     </div>
 
                                 </c:forEach>
-                            </c:when>
 
-
-                            <c:otherwise>
-
-                            </c:otherwise>
-
-
-                        </c:choose>
-
-                        <!--paginate -->
-                        <div class="paginate">
-                            <div class="paging">
-                                <a class="direction prev" href="javascript:void(0);" style="color: black;"
-                                   onclick="movePage(1,${pagination.cntPerPage},${pagination.pageSize});">
-                                    &lt;&lt; </a> <a class="direction prev" href="javascript:void(0);"
-                                                     style="color: black;"
-                                                     onclick="movePage(${pagination.currentPage}<c:if
-                                                             test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
-                                &lt; </a>
-
-                                <c:forEach begin="${pagination.firstPage}"
-                                           end="${pagination.lastPage}" var="idx">
-                                    <a
-                                            style="color: black;
-                                                <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
-                                            href="javascript:void(0);"
-                                            onclick="movePage(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
-                                            value="${idx}"/></a>
-                                </c:forEach>
-                                <a class="direction next" href="javascript:void(0);" style="color: black;"
-                                   onclick="movePage(${pagination.currentPage}<c:if
-                                           test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
-                                    &gt; </a> <a class="direction next" href="javascript:void(0);"
-                                                 style="color: black;"
-                                                 onclick="movePage(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
-                                &gt;&gt; </a>
-                            </div>
-                        </div>
-                        <!-- /paginate -->
 
                         </c:if>
 
@@ -577,21 +468,79 @@
 
 <script>
 
-    function movePage(currentPage, cntPerPage, pageSize) {
-
-        let bookId = $("#bookId").val();
-
-        var url = "${pageContext.request.contextPath}/" + bookId;
-        url = url + "?currentPage=" + currentPage;
-        url = url + "&cntPerPage=" + cntPerPage;
-        url = url + "&pageSize=" + pageSize;
-
-        // $('#nav-three-tab');
-
-        location.href = url;
-
-
+    function history_back() {
+        history.back();
     }
+
+        $('#comment').click(function () {
+
+
+            if($("#comment").html()=='댓글off') {
+
+
+                $("#result").hide();
+                $("#comment").html('댓글on');
+                return true;
+
+            }
+
+
+            if($("#comment").html()=='댓글on') {
+
+                $("#result").show();
+            // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+            $.ajax({
+
+                type: 'POST',
+                url: '/commentCheck',
+                data: {
+                    "bookId": $('#bookId').val(),
+
+                },
+                dataType: 'JSON',
+
+                success: function (commentFindDTOList) {
+
+                    $('#result').empty();
+                    for (let i = 0; i < commentFindDTOList.length; i++) {
+                        let subCategoryDTO = commentFindDTOList[i]
+
+                        let option = $('<p/>')
+                        let br = +$('<br/>')
+                        let img = $('<img src="' + "assets/img/blog/comment_1.png" + '"/>')
+                        let writer = $('<h6  style="color: black; font-weight: 900;"> ' + '작성자:' + subCategoryDTO.userId + '</h6>')
+                        let content = $('<strong>' + '내용:' + subCategoryDTO.commentContent + '</strong>')
+
+
+
+                        $("#result").append(option)
+                        $("#result").append(br)
+                        $("#result").append(img)
+
+                        $("#result").append(writer)
+                        $("#result").append(content)
+
+                        $("#comment").html('댓글off');
+
+
+
+                    }
+
+
+                },
+                error: function (a, b, c) {
+                    alert('ㅇㅇㄴ');
+                    console.log(a, b, c);
+                }
+
+            });
+            return  true;
+            }
+        return true;
+        });
+
+
+
 </script>
 
 
