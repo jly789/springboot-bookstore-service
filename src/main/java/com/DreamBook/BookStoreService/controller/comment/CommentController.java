@@ -35,27 +35,27 @@ public class CommentController {
 
 
     @GetMapping("/commentAdd{bookId}")
-    public String commentAdd(CommentAddDTO commentAddDTO, HttpSession session,Model model)throws Exception {
+    public String commentAdd(CommentAddDTO commentAddDTO, HttpSession session, Model model) throws Exception {
 
         int id = commentAddDTO.getBookId();
 
         int memberId = (int) session.getAttribute("memberId");
         int maxNum = commentService.maxNum();
-        commentAddDTO.setCommentId(maxNum+1);
+        commentAddDTO.setCommentId(maxNum + 1);
         commentAddDTO.setMemberId(memberId);
         commentService.insertDataComment(commentAddDTO);
 
         List<CommentFindDTO> commentFindDTOList = commentService.commentList(id);
         List<BookFindDTO> bookList = bookService.bookIdList(id);
-        model.addAttribute("bookList",bookList);
-        model.addAttribute("commentFindDTOList",commentFindDTOList);
+        model.addAttribute("bookList", bookList);
+        model.addAttribute("commentFindDTOList", commentFindDTOList);
         return "book/bookDetail";
     }
 
 
     @GetMapping("/deleteComment{bookId}")
     public String commentDelete(
-            CommentDeleteDTO commentDeleteDTO, HttpSession session, Model model)throws Exception {
+            CommentDeleteDTO commentDeleteDTO, HttpSession session, Model model) throws Exception {
 
         int id = commentDeleteDTO.getBookId();
 
@@ -65,13 +65,24 @@ public class CommentController {
         List<CommentFindDTO> commentFindDTOList = commentService.commentList(id);
         List<BookFindDTO> bookList = bookService.bookIdList(id);
 
-        model.addAttribute("bookList",bookList);
-        model.addAttribute("commentFindDTOList",commentFindDTOList);
+        model.addAttribute("bookList", bookList);
+        model.addAttribute("commentFindDTOList", commentFindDTOList);
 
         return "book/bookDetail";
     }
 
+    @GetMapping("/deleteCommentAdmin{commentId}")
+    public String commentDeleteAdmin(HttpSession session, Model model, @RequestParam("commentId") int commentId,
+                                     @RequestParam("bookId") int bookId) throws Exception {
 
+
+        commentService.commentDeleteAdmin(commentId);
+
+
+        return "redirect:/" + bookId;
+
+
+    }
 
 
 }

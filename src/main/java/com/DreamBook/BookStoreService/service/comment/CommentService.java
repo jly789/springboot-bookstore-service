@@ -16,4 +16,5 @@ public interface CommentService {
     public List<CommentFindDTO> commentFindList(int bookId,int memberId) throws  Exception;
 
     public void commentDelete(CommentDeleteDTO commentDeleteDTO) throws  Exception;
+    public void commentDeleteAdmin(int commentId) throws  Exception;
 }

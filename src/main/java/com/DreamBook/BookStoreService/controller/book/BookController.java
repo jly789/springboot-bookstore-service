@@ -39,27 +39,27 @@ public class BookController {
         String genreName = "전체";
         int firstPriceRange = 0; //처음 가격범위 0원이상
 
-        if(session.getAttribute("priceRange")!=null) {
-            int priceRange = (int) session.getAttribute("priceRange");
+        String userId = (String)session.getAttribute("userId");
 
-            int listCnt = bookService.SearchPriceRangeTableCount(priceRange);
-            PaginationPriceRange paginationPriceRange = new PaginationPriceRange(currentPage, cntPerPage, pageSize);
-            paginationPriceRange.setTotalRecordCount(listCnt);
-            paginationPriceRange.setPrice(priceRange);
+        if(userId.equals("admin")){ //관리자모드
+            model.addAttribute("genreName",genreName);
+            model.addAttribute("priceRange",firstPriceRange);
 
 
-            model.addAttribute("pagination",paginationPriceRange);
-            model.addAttribute("genreName",choice);
-            model.addAttribute("searchPrice",bookService.SelectPriceSearch(paginationPriceRange));
-            model.addAttribute("price",priceRange);
-            session.removeAttribute("priceRange");
+            int listCnt = bookService.testTableCount();
+            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+            pagination.setTotalRecordCount(listCnt);
 
-
+            model.addAttribute("pagination",pagination);
+            model.addAttribute("bookAndReview",bookService.SelectAllList(pagination));
+            model.addAttribute("userId",userId);
 
 
 
-            return "book/main";
+            return "book/mainAdmin";
+
         }
+
 
 
         model.addAttribute("genreName",genreName);
@@ -76,7 +76,91 @@ public class BookController {
 
 
         return "book/main";
+
+
     }
+
+    @GetMapping("/bookPrice{price}")
+    public String bookMainPriceGet( Model model,
+                                HttpSession session,
+
+                                @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+                                @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
+                                @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception {
+        String choice = "정렬";
+        int firstPriceRange = 0; //처음 가격범위 0원이상
+        String genreName = "전체";
+
+        if(session.getAttribute("priceRange")!=null) {
+            int priceRange = (int) session.getAttribute("priceRange");
+
+
+
+            int listCnt = bookService.SearchPriceRangeTableCount(priceRange);
+            PaginationPriceRange paginationPriceRange = new PaginationPriceRange(currentPage, cntPerPage, pageSize);
+            paginationPriceRange.setTotalRecordCount(listCnt);
+            paginationPriceRange.setPrice(priceRange);
+
+
+            model.addAttribute("pagination",paginationPriceRange);
+            model.addAttribute("genreName",choice);
+            model.addAttribute("searchPrice",bookService.SelectPriceSearch(paginationPriceRange));
+            model.addAttribute("price",priceRange);
+//            session.removeAttribute("priceRange");
+
+
+
+
+
+            return "book/main";
+        }
+
+
+
+
+        return "book/main";
+    }
+
+    @PostMapping("/bookPrice")
+    public String bookMainPricePost( Model model,
+                               HttpSession session,
+                                @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+                                @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
+                                @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception {
+        String choice = "정렬";
+        int firstPriceRange = 0; //처음 가격범위 0원이상
+        String genreName = "전체";
+
+        if(session.getAttribute("priceRange")!=null) {
+            int priceRange = (int) session.getAttribute("priceRange");
+
+
+
+            int listCnt = bookService.SearchPriceRangeTableCount(priceRange);
+            PaginationPriceRange paginationPriceRange = new PaginationPriceRange(currentPage, cntPerPage, pageSize);
+            paginationPriceRange.setTotalRecordCount(listCnt);
+            paginationPriceRange.setPrice(priceRange);
+
+
+            model.addAttribute("pagination",paginationPriceRange);
+            model.addAttribute("genreName",choice);
+            model.addAttribute("searchPrice",bookService.SelectPriceSearch(paginationPriceRange));
+            model.addAttribute("price",priceRange);
+//            session.removeAttribute("priceRange");
+
+
+
+
+
+            return "book/main";
+        }
+
+
+
+
+        return "book/main";
+    }
+
 
 
     @GetMapping("/sort{abc}")
@@ -89,7 +173,7 @@ public class BookController {
         int firstPriceRange = 0; //처음 가격범위 0원이상
         String genreName = "전체";
 
-
+        session.removeAttribute("priceRange");
         if(state ==0){
 
             int listCnt = bookService.testTableCount();
@@ -176,11 +260,14 @@ public class BookController {
     }
 
     @GetMapping("/genre{choice}")
-    public String genreSearch( Model model,@PathVariable("choice") String bb,
+    public String genreSearch( Model model,@PathVariable("choice") String bb,HttpSession session,
                                 @RequestParam("choice")String choice,
                                @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
                                @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
                                @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception {
+
+        session.removeAttribute("priceRange");
+
         int firstPriceRange = 0; //처음 가격범위 0원이상
         if (choice.equals("전체")) {
             List<BookFindDTO> genreSearch=  bookService.genreSearchAll();
@@ -398,6 +485,8 @@ public class BookController {
 
         return "book/main";
     }
+
+
     @ResponseBody
     @PostMapping("/priceRange")
     public int priceRange ( @RequestParam("price")int price,Model model,HttpSession session)throws Exception {
@@ -431,6 +520,29 @@ public class BookController {
                              @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
                              @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception{
 
+       String adminId =(String) session.getAttribute("userId");
+
+        if(adminId.equals("admin")){
+
+            int memberId = (Integer) session.getAttribute("memberId");
+
+            String userId =(String) session.getAttribute("userId");
+
+            List<BookFindDTO> bookList = bookService.bookIdList(id);
+
+
+            model.addAttribute("reviewAllList",reviewService.reviewBookList(id));
+
+
+            model.addAttribute("id",id);
+            model.addAttribute("checkId",userId);
+            model.addAttribute("bookList",bookList);
+
+
+
+            return "book/bookDetailAdmin";
+
+        }
 
 
         bookService.updateViews(id);

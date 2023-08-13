@@ -235,7 +235,7 @@
                 <div class="slider-area">
                     <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center">
                         <div class="hero-caption hero-caption2">
-                            <h2>환영 합니다</h2>
+                            <h2>관리자 페이지</h2>
                         </div>
                     </div>
                 </div>
@@ -695,6 +695,9 @@
 
                                                     </div>
                                                     <p>(<span>${bookList.reviewId}</span> Review)</p>
+
+                                                        <a  style="color: red; margin-left: 100px;" href="/${bookList.bookId}">Update</a>
+
                                                 </div>
 
 

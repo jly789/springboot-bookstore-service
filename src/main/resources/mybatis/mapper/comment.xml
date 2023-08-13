@@ -44,4 +44,10 @@
         where commentId = #{commentId}
     </delete>
 
+    <delete id="commentDeleteAdmin" parameterType="int">
+        delete  from comments
+
+        where commentId = #{commentId}
+    </delete>
+
 </mapper>

@@ -41,4 +41,9 @@ public class CommentServiceImpl implements CommentService {
     public void commentDelete(CommentDeleteDTO commentDeleteDTO) throws Exception {
         commentMapper.commentDelete(commentDeleteDTO);
     }
+
+    @Override
+    public void commentDeleteAdmin(int commentId) throws Exception {
+        commentMapper.commentDeleteAdmin(commentId);
+    }
 }
