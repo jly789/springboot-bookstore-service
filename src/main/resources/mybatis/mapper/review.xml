@@ -202,7 +202,7 @@
 
 
 
-    <update id="updateReviewData" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO">
+    <update id="updateBook" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO">
 
     update review
     set reviewSubject= #{reviewSubject},reviewContent=#{reviewContent},reviewFileName =#{reviewFileName},

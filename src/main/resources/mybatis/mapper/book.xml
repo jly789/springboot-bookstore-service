@@ -421,18 +421,30 @@
 
 
 
-<!--    <update id="update" parameterType="com.DreamBook.BookStoreService.dto.book.BookDTO">-->
+    <update id="updateBook" parameterType="com.DreamBook.BookStoreService.dto.book.BookUpdateDTO">
+
+        update book
+        set bookName= #{bookName},bookContent=#{bookContent},fileName =#{fileName}, filePath= #{filePath},author=#{author},
+            publisher=#{publisher},genre=#{genre},price=#{price},salesQuantity=#{salesQuantity},publicationYear=#{publicationYear}
 
 
 
-<!--            UPDATE 	cart-->
-<!--            SET		wishQuantity = #{bookDTO.wishQuantity}-->
-<!--        WHERE	bookId in-->
-<!--        <foreach item="bookCartList" collection="bookCartList" open="(" close=")" separator=",">-->
-<!--            #{bookCartList.bookId}-->
-<!--        </foreach>-->
+        where bookId = #{bookId}
 
-<!--    </update>-->
+    </update>
+
+    <update id="updateBookDataNotImage" parameterType="com.DreamBook.BookStoreService.dto.book.BookUpdateDTO">
+
+        update book
+        set bookName= #{bookName},bookContent=#{bookContent},author=#{author},
+            publisher=#{publisher},genre=#{genre},price=#{price},salesQuantity=#{salesQuantity},publicationYear=#{publicationYear}
+
+        where bookId = #{bookId}
+
+    </update>
+
+
+
 
     <update id="updateViews" parameterType="int">
 
@@ -499,10 +511,6 @@
 
 
     </select>
-
-
-
-
 
 
 

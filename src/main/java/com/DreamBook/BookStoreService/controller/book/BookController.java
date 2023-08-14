@@ -39,28 +39,28 @@ public class BookController {
         String genreName = "전체";
         int firstPriceRange = 0; //처음 가격범위 0원이상
 
-        String userId = (String)session.getAttribute("userId");
+        if(session.getAttribute("userId")!=null) {
+            String userId = (String) session.getAttribute("userId");
 
-        if(userId.equals("admin")){ //관리자모드
-            model.addAttribute("genreName",genreName);
-            model.addAttribute("priceRange",firstPriceRange);
-
-
-            int listCnt = bookService.testTableCount();
-            Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
-            pagination.setTotalRecordCount(listCnt);
-
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("bookAndReview",bookService.SelectAllList(pagination));
-            model.addAttribute("userId",userId);
+            if (userId.equals("admin")) { //관리자모드
+                model.addAttribute("genreName", genreName);
+                model.addAttribute("priceRange", firstPriceRange);
 
 
+                int listCnt = bookService.testTableCount();
+                Pagination pagination = new Pagination(currentPage, cntPerPage, pageSize);
+                pagination.setTotalRecordCount(listCnt);
 
-            return "book/mainAdmin";
+                model.addAttribute("pagination", pagination);
+                model.addAttribute("bookAndReview", bookService.SelectAllList(pagination));
+                model.addAttribute("userId", userId);
+
+
+                return "book/mainAdmin";
+
+            }
 
         }
-
-
 
         model.addAttribute("genreName",genreName);
         model.addAttribute("priceRange",firstPriceRange);
@@ -520,28 +520,29 @@ public class BookController {
                              @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
                              @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception{
 
-       String adminId =(String) session.getAttribute("userId");
+        if(session.getAttribute("userId")!=null) {
+            String adminId = (String) session.getAttribute("userId");
 
-        if(adminId.equals("admin")){
+            if (adminId.equals("admin")) {
 
-            int memberId = (Integer) session.getAttribute("memberId");
+                int memberId = (Integer) session.getAttribute("memberId");
 
-            String userId =(String) session.getAttribute("userId");
+                String userId = (String) session.getAttribute("userId");
 
-            List<BookFindDTO> bookList = bookService.bookIdList(id);
-
-
-            model.addAttribute("reviewAllList",reviewService.reviewBookList(id));
+                List<BookFindDTO> bookList = bookService.bookIdList(id);
 
 
-            model.addAttribute("id",id);
-            model.addAttribute("checkId",userId);
-            model.addAttribute("bookList",bookList);
+                model.addAttribute("reviewAllList", reviewService.reviewBookList(id));
 
 
+                model.addAttribute("id", id);
+                model.addAttribute("checkId", userId);
+                model.addAttribute("bookList", bookList);
 
-            return "book/bookDetailAdmin";
 
+                return "book/bookDetailAdmin";
+
+            }
         }
 
 
@@ -585,6 +586,42 @@ public class BookController {
         return "book/bookDetail";
     }
 
+    @GetMapping("/bookUpdate")
+    public String bookUpdate(@RequestParam("bookId")int bookId, HttpSession session,Model model)throws Exception{
+
+
+
+        List<BookFindDTO> bookList = bookService.bookIdList(bookId);
+
+
+        model.addAttribute("bookList", bookList);
+
+
+
+        return "book/bookUpdate";
+    }
+
+    @PostMapping("/bookUpdate")
+    public String bookUpdatePost(BookUpdateDTO bookUpdateDTO,HttpSession session,Model model,MultipartFile file)throws Exception{
+
+
+
+
+        if (file.isEmpty()) {
+
+
+            bookService.updateBookDataNotImage(bookUpdateDTO);
+
+            return "redirect:/bookMain";
+
+        }
+        else
+
+        bookService.updateBookData(bookUpdateDTO,file);
+
+
+        return "redirect:/bookMain";
+    }
 
 
     @ResponseBody

@@ -247,8 +247,13 @@
                                                                         <p>${reviewAllList.reviewContent} </p>
                                                                      <p  style="color: red;  font-weight: 900;"  >(${reviewAllList.bookName}) </p>
 
+
                                                                         <c:if test="${reviewAllList.userId==checkId}">
                                                                         <h6 style="color: red; text-align: right;">  My Review</h6>
+                                                                        </c:if>
+
+                                                                        <c:if test="${checkId=='admin'}">
+                                                                            <a style="color: red;" href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">리뷰수정</a>
                                                                         </c:if>
 
                                                                         <c:if test="${reviewAllList.userId!=checkId}">

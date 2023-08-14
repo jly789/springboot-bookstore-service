@@ -4,6 +4,7 @@ import com.DreamBook.BookStoreService.dto.book.*;
 import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO;
 import com.DreamBook.BookStoreService.mapper.book.BookMapper;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -235,6 +236,37 @@ public class BookServiceImpl implements BookService {
 //    public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception { //
 //      bookMapper.update(bookCartList,bookDTO);
 //    }
+
+
+
+    @Override
+    public void updateBookData(BookUpdateDTO bookUpdateDTO, MultipartFile file) throws Exception {
+
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+
+//        UUID uuid =  UUID.randomUUID();
+
+        String fileName = file.getOriginalFilename();
+
+
+
+        File saveFile = new File(projectPath, fileName);
+
+        file.transferTo(saveFile);
+
+
+        bookUpdateDTO.setFileName(fileName);
+
+        bookUpdateDTO.setFilePath("/files/" + fileName);
+        bookMapper.updateBook(bookUpdateDTO);
+    }
+
+    @Override
+    public void updateBookDataNotImage(BookUpdateDTO bookUpdateDTO) throws Exception {
+
+        bookMapper.updateBookDataNotImage(bookUpdateDTO);
+    }
+
 
     @Override
     public void updateWishQuantity(BookCartDTO bookCartDTO) throws Exception { //장바구니 해당도서의 수량증가

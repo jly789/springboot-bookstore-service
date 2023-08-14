@@ -4,6 +4,7 @@ import com.DreamBook.BookStoreService.dto.book.*;
 import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
 import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -95,6 +96,10 @@ public interface BookMapper {
     public List<BookCartDTO> orderBookCartList(BookCartDTO bookCartDTO) throws Exception;
 
     public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception;
+
+    public void updateBook(BookUpdateDTO bookUpdateDTO) throws Exception; //admin book 정보수정
+
+    public void updateBookDataNotImage(BookUpdateDTO bookUpdateDTO) throws Exception; //admin book이미지없을시
 
     public void   updateWishQuantity(BookCartDTO bookCartDTO) throws Exception;
 

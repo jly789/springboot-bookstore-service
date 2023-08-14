@@ -34,4 +34,26 @@ public interface MemberMapper {
 
     public int deleteMember(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
 
+
+    public int selectCart(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+    public int selectDelivery(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+
+    public int selectOrders(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public int selectReview(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public int selectComments(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+
+
+    public void deleteCart(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+    public void deleteDelivery(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public void deleteOrders(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public void deleteReview(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public void deleteComments(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
 }

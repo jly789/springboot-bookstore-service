@@ -121,4 +121,77 @@ public class MemberServiceImpl implements MemberService {
         }
         return 3;
     }
+
+    @Override
+    public boolean selectCart(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+        if(memberMapper.selectCart(MemberDeleteDTO)==0){
+
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean selectOrders(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+        if(memberMapper.selectOrders(MemberDeleteDTO)==0){
+
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean selectReview(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+        if(memberMapper.selectReview(MemberDeleteDTO)==0){
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean selectComments(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+
+
+        if(memberMapper.selectComments(MemberDeleteDTO)==0){
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean selectDelivery(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+        if(memberMapper.selectDelivery(MemberDeleteDTO)==0){
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public void deleteDelivery(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+        memberMapper.deleteDelivery(MemberDeleteDTO);
+    }
+
+    @Override
+    public void deleteCart(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+       memberMapper.deleteCart(MemberDeleteDTO);
+    }
+
+    @Override
+    public void deleteOrders(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+        memberMapper.deleteOrders(MemberDeleteDTO);
+    }
+
+    @Override
+    public void deleteReview(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+    memberMapper.deleteReview(MemberDeleteDTO);
+    }
+
+    @Override
+    public void deleteComments(MemberDeleteDTO MemberDeleteDTO) throws Exception {
+    memberMapper.deleteComments(MemberDeleteDTO);
+    }
 }

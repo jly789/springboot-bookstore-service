@@ -30,6 +30,11 @@
       <div class="input-box">
         <div class="single-input-fields">
           <label>userId</label>
+
+          <c:forEach var="memberDTOList" items="${memberDTOList}">
+            <input type="hidden" name="memberId" placeholder=""value="${memberDTOList.memberId}">
+          </c:forEach>
+
           <input type="text" name="userId" placeholder="userId">
         </div>
         <div class="single-input-fields">

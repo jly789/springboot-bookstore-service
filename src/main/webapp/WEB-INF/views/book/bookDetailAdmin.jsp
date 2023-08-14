@@ -208,19 +208,12 @@
                                             <img src="files/${bookList.fileName}" alt="">
                                         </div>
                                         <div class="features-caption">
-                                            <div class="col-md-12 form-group p_star">
-                                                <input type="text" placeholder="책 제목"  value="${bookList.bookName}" class="form-control" id="bookName" name="bookName" />
-
-                                            </div>
-                                            <div class="col-md-12 form-group p_star">
-                                                <input type="text" placeholder="책 저자"  value="${bookList.author}" class="form-control" id="author" name="author" />
-
-                                            </div>
+                                            <h3>${bookList.bookName}</h3>
+                                            <p>${bookList.author}</p>
                                             <input type="hidden" id="bookId" name="bookId" value="${bookList.bookId}">
                                             <input type="hidden" name="amount" value="${bookList.price}">
-                                            <div class="col-md-12 form-group p_star">
-                                                <input type="text" placeholder="가격" value="${bookList.price}" class="form-control" id="price" name="price" />
-
+                                            <div class="price">
+                                                <span>$${bookList.price}</span>
                                             </div>
                                             <div class="review">
                                                 <div class="rating">
@@ -233,13 +226,14 @@
                                                 <p>(120 Review)</p>
                                             </div>
 
-                                            <button type="submit" class="white-btn mr-10">수정하기</button>
+                                            <a href="/bookUpdate?bookId=${bookList.bookId}" class="white-btn mr-10">수정하기</a>
 
                                             <a href="#" class="border-btn share-btn"><i
                                                     class="fas fa-share-alt"></i></a>
                                         </div>
                                     </div>
                                 </c:forEach>
+
 
                             </div>
                         </div>
@@ -287,9 +281,7 @@
                             <c:forEach var="bookList" items="${bookList}">
                                 <div class="col-md-12 form-group">
 
-                                    <textarea class="form-control" placeholder="책 내용" name="bookContent" id="bookContent" rows="3" >
-                                            ${bookList.bookContent}
-                                    </textarea>
+                                    <p>${bookList.bookContent}</p>
                                 </div>
 
                             </c:forEach>
@@ -508,7 +500,7 @@
                         let img = $('<img src="' + "assets/img/blog/comment_1.png" + '"/><br/>')
                         let writer = $('<strong  style="color: black; font-weight: 900;"> ' + '작성자:' + subCategoryDTO.userId + '<br/></>')
                         let content = $('<strong>' + '내용:' + subCategoryDTO.commentContent + '<br/><br/></strong>')
-                        let deleteComment =  $('<a style="color: red;" href="/deleteCommentAdmin?commentId='+subCategoryDTO.commentId+'&bookId='+subCategoryDTO.bookId+'"  >삭제:'+subCategoryDTO.commentId+'</a>')
+                        let deleteComment =  $('<a style="color: red;" href="/deleteCommentAdmin?commentId='+subCategoryDTO.commentId+'&bookId='+subCategoryDTO.bookId+'"  >Delete</a>')
                             // <a href="/deleteComment"></a>삭제하기
                         $("#result").append(deleteComment)
                         $("#result").append(option)

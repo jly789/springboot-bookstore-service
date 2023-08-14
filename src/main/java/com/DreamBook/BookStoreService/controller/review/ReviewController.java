@@ -53,6 +53,8 @@ public class ReviewController {
 
         String userId = (String) session.getAttribute("userId");
 
+
+
         int listCnt = bookService.testTableCount();
         PaginationReview pagination = new PaginationReview(currentPage, cntPerPage, pageSize);
         pagination.setTotalRecordCount(listCnt);
@@ -129,6 +131,7 @@ public class ReviewController {
     @GetMapping("/reviewDetail{reviewId}")
     public String reviewDetail(Model model, @RequestParam("reviewId") int reviewId,@RequestParam("userId")String reviewWriter,HttpSession session)throws Exception {
 
+        String loginId = (String) session.getAttribute("userId");
 
 
         if(session.getAttribute("userId")==null){
@@ -140,20 +143,39 @@ public class ReviewController {
             return "review/reviewDetail";
         }
 
-      String loginId = (String) session.getAttribute("userId");
+
+
+
         if(loginId.equals(reviewWriter) ){
+
+            List<ReviewFindDTO> reviewDetail = reviewService.reviewDetailList(reviewId);
+
+
+            model.addAttribute("reviewDetail",reviewDetail);
+            model.addAttribute("reviewWriter",reviewWriter);
+            model.addAttribute("loginId",loginId);
+
+            return "review/reviewDetail";
+        }
+
+
+        String userIdAdmin = (String) session.getAttribute("userId");
+        if(userIdAdmin.equals("admin")) {
 
             List<ReviewFindDTO> reviewDetail = reviewService.reviewDetailList(reviewId);
 
             model.addAttribute("reviewDetail",reviewDetail);
             model.addAttribute("reviewWriter",reviewWriter);
-            model.addAttribute("loginId",loginId);
-            return "review/reviewDetail";
+            model.addAttribute("loginId",userIdAdmin);
+            return "review/reviewDetailAdmin";
         }
+
+
 
         List<ReviewFindDTO> reviewDetail = reviewService.reviewDetailList(reviewId);
 
         model.addAttribute("reviewDetail",reviewDetail);
+
         model.addAttribute("reviewWriter",reviewWriter);
 
 

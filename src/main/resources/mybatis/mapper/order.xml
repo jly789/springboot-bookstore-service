@@ -37,8 +37,8 @@
 
     <insert id="deliveryInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.DeliveryDTO">
 
-        insert into DELIVERY(deliveryId,orderId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost,orderDate)
-        VALUES (#{deliveryId},#{orderId},#{recipient},#{deliveryTel},
+        insert into DELIVERY(deliveryId,orderId,memberId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost,orderDate)
+        VALUES (#{deliveryId},#{orderId},#{memberId},#{recipient},#{deliveryTel},
                 #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost},SYSDATE)
 
 

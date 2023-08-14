@@ -13,6 +13,7 @@ public class DeliveryDTO {
 
     private int deliveryId;
     private int orderId;//주문번호 PK
+    private int memberId;
     private String recipient;
     private String deliveryTel;
     private String postcode;

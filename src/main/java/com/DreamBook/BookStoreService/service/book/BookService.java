@@ -75,6 +75,10 @@ public interface BookService {
     public List<BookDTO> bookCartList(int memberId) throws Exception;
 
 //    public void update(List<BookDTO> bookCartList,BookDTO bookDTO) throws Exception;
+public void updateBookData(BookUpdateDTO bookUpdateDTO,MultipartFile file) throws Exception; //admin book 정보수정
+
+
+    public void updateBookDataNotImage(BookUpdateDTO bookUpdateDTO) throws Exception; //admin book이미지없을시
 
     public void   updateWishQuantity(BookCartDTO bookCartDTO) throws Exception;
 

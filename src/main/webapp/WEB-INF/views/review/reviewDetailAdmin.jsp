@@ -208,14 +208,14 @@
 
 
 
-                            <c:if test="${loginId!=null}">
-                            <div class="form-group">
-                                <a href="/reviewUpdate?reviewId=${reviewDetail.reviewId}&userId=${loginId}">   <button type="submit" class="button button-contactForm btn_1 boxed-btn">리뷰수정</button></a>
-                                <a href="/reviewDelete?reviewId=${reviewDetail.reviewId}">   <button type="submit" id="delete" class="button button-contactForm btn_1 boxed-btn">리뷰삭제</button></a>
-                              <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
+                                <c:if test="${loginId=='admin'}">
+                                    <div class="form-group">
 
-                            </div>
-                            </c:if>
+                                        <a href="/reviewDelete?reviewId=${reviewDetail.reviewId}">   <button type="submit" id="delete" class="button button-contactForm btn_1 boxed-btn">리뷰삭제</button></a>
+                                        <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
+
+                                    </div>
+                                </c:if>
 
 
 

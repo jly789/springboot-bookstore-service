@@ -31,4 +31,23 @@ public interface MemberService {
     public void updatePoint(int point,int plusPoint,int plusPoint2,int memberId)throws Exception;
     public Integer deleteMember(MemberDeleteDTO MemberDeleteDTO,HttpServletResponse response) throws  Exception;
 
+
+    public boolean selectCart(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public boolean selectOrders(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public boolean selectReview(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public boolean selectComments(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public boolean selectDelivery(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+    public void deleteDelivery(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+    public void deleteCart(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public void deleteOrders(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public void deleteReview(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
+    public void deleteComments(MemberDeleteDTO MemberDeleteDTO) throws  Exception;
+
 }

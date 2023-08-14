@@ -97,6 +97,97 @@
 
 
 
+    <select id="selectCart" resultType="int" parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        select nvl(max(memberId),0) from cart
+
+
+        WHERE	memberId = #{memberId}
+
+    </select>
+
+    <select id="selectDelivery" resultType="int"  parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        select nvl(max(memberId),0) from delivery
+
+
+        WHERE	memberId = #{memberId}
+
+    </select>
+
+    <select id="selectOrders" resultType="int"  parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        select nvl(max(memberId),0) from orders
+
+
+        WHERE	memberId = #{memberId}
+
+    </select>
+
+    <select id="selectReview" resultType="int" parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        select nvl(max(memberId),0) from review
+
+
+        WHERE	memberId = #{memberId}
+
+    </select>
+
+    <select id="selectComments"  resultType="int" parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        select nvl(max(memberId),0) from comments
+
+
+        WHERE	memberId = #{memberId}
+    </select>
+
+
+    <delete id="deleteCart"  parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        delete  cart
+
+            WHERE	memberId = #{memberId}
+
+
+
+
+    </delete>
+
+    <delete id="deleteDelivery"  parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        delete  delivery
+
+        WHERE	memberId = #{memberId}
+
+    </delete>
+
+    <delete id="deleteOrders"  parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        delete  orders
+
+        WHERE	memberId = #{memberId}
+
+    </delete>
+
+
+    <delete id="deleteReview"  parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        delete  review
+        WHERE	memberId = #{memberId}
+
+    </delete>
+
+
+    <delete id="deleteComments"  parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO" >
+
+        delete  comments
+        WHERE	memberId = #{memberId}
+
+    </delete>
+
+
+
+
 
     <delete id="deleteMember" parameterType="com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO">
         delete member
