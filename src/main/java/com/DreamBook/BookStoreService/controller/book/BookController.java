@@ -2,9 +2,11 @@ package com.DreamBook.BookStoreService.controller.book;
 
 import com.DreamBook.BookStoreService.dto.book.*;
 import com.DreamBook.BookStoreService.dto.comment.CommentFindDTO;
+import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.comment.CommentService;
+import com.DreamBook.BookStoreService.service.member.MemberService;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class BookController {
 
     @Resource
     private BookService bookService;
+    @Resource
+    private MemberService memberService;
+
 
     @Resource
     private ReviewService reviewService;
@@ -533,8 +538,6 @@ public class BookController {
 
 
                 model.addAttribute("reviewAllList", reviewService.reviewBookList(id));
-
-
                 model.addAttribute("id", id);
                 model.addAttribute("checkId", userId);
                 model.addAttribute("bookList", bookList);
@@ -553,13 +556,10 @@ public class BookController {
 
 
 
-
-
             List<BookFindDTO> bookList = bookService.bookIdList(id);
 
 
             model.addAttribute("id",id);
-
             model.addAttribute("bookList",bookList);
 
             return "book/bookDetailNologin";
@@ -574,9 +574,10 @@ public class BookController {
         List<BookFindDTO> bookList = bookService.bookIdList(id);
 
 
+
+
+
         model.addAttribute("reviewAllList",reviewService.reviewBookList(id));
-
-
         model.addAttribute("id",id);
         model.addAttribute("checkId",userId);
         model.addAttribute("bookList",bookList);

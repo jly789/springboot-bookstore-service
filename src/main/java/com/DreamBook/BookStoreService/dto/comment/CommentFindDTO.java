@@ -23,6 +23,8 @@ public class CommentFindDTO {
     private int grade;
     private LocalDateTime reviewDate;
     private String userId;
+    private String fileName;
+    private String filePath;
 
 
 

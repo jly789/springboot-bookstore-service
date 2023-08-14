@@ -512,7 +512,7 @@
 
                         let option = $('<p/>')
                         let br = +$('<br/>')
-                        let img = $('<img src="' + "assets/img/blog/comment_1.png" + '"/>')
+                        let img = $('<img style="  height: 100px; margin-right: 400px; " src="' + '/profileImg/'+subCategoryDTO.fileName+'" />')
                         let writer = $('<h6  style="color: black; font-weight: 900;"> ' + '작성자:' + subCategoryDTO.userId + '</h6>')
                         let content = $('<strong>' + '내용:' + subCategoryDTO.commentContent + '</strong>')
 

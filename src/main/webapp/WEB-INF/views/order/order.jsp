@@ -233,14 +233,7 @@
                   </input>
                 </li>
               </ul>
-<%--              <div class="payment_item">--%>
-<%--                <div class="radion_btn">--%>
-<%--                  <input type="radio" id="prepayment" name="selector"  value="5000" />--%>
-<%--                  <label for="prepayment" checked;>배송비 선불</label>--%>
-<%--                  <div class="check"></div>--%>
-<%--                </div>--%>
-<%--              --%>
-<%--              </div>--%>
+
 
               <div class="creat_account checkout-cap">
                 <input type="checkbox" id="f-option8" name="selector" />
@@ -441,18 +434,6 @@
             recipient: $("#recipient").val(),
             plusPoint: parseInt($("#basePrice").val()),
 
-
-            // userPoint: parseInt($('#usePoint').val()), // 사용포인트
-            // delivery: $('#delivery').val(), // 배송여부
-            // deliveryCost: parseInt($('#deliveryCost').val()), // 배송비
-            // recipient: $('#recipient').val(), // 받는사람
-            // deliveryTel: $('#deliveryTel').val(), // 연락처
-            // address: $('#address').val(), // 주문자 주소
-            // postcode: $('#postcode').val(), // 주문자 우편번호
-            // detailAddress: $('#detailAddress').val(), // 주문자 상세주소
-            // extraAddress: $('#extraAddress').val(), // 참고사항
-            // request: $('#request').val(), // 요구사항
-
           },
           traditional: true,
           dataType: 'JSON',
@@ -474,72 +455,9 @@
 
 
 
-</script>
-
-
-<script>
 
 
 
-
-
-  // $('#pointApply').click(function () {
-  //
-  //   if($("#pointApply").text()=='포인트적용' ){
-  //     if($("#point").val()==''){
-  //       alert("포인트 확인을 누르세요!");
-  //       return false;
-  //     }
-  //
-  //
-  //
-  //     $("#have").hide();
-  //
-  //     $("#pointCheck").hide();
-  //
-  //     let message = "포인트 적용취소";
-  //     // let delivaryAccount = $("#delivaryAccount").val(); //배송비 5000원
-  //     // let pointapply =$("#totalPriceEx2").val(); //최종금액
-  //     let pointapply =   parseInt($("#totalPrice").text());
-  //     let pointapplys =$("#point").val(); //포인틐금액
-  //
-  //     let finaltotalPrice =pointapply-pointapplys; //최종금액= 최종금액-포인트금액
-  //
-  //     $("#finaltotalPrice").val(finaltotalPrice);
-  //
-  //     $("#totalPrice").html( $("#totalPriceEx2").val()+"-"+pointapplys +"=" + parseInt(finaltotalPrice)+"원");
-  //
-  //     $("#pointApply").html(message);
-  //     document.getElementById('pointApply').style.backgroundColor = "green";
-  //
-  //     return true;
-  //
-  //     document.getElementById('point').readOnly = true;
-  //
-  //   }
-  //
-  //
-  //
-  //   if ($("#pointApply").text() =='포인트 적용취소') {
-  //
-  //     $("#have").show();
-  //
-  //     $("#pointCheck").show();
-  //     $("#point").show();
-  //     $("#point").val(0);
-  //     let message = "포인트적용";
-  //
-  //
-  //     $("#pointApply").html(message);
-  //     document.getElementById('pointApply').style.backgroundColor = "red";
-  //     $("#totalPrice").html( parseInt($("#totalPriceEx2").val()) +"원");
-  //     $("#finaltotalPrice").val($("#totalPriceEx2").val());
-  //     return false;
-  //   }
-  //
-  //
-  //
-  // });
 
 
 

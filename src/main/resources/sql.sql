@@ -148,26 +148,26 @@ CREATE TABLE COMMENTS
 
 INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
 values(0,'ADMIN','admin','admin','관리자','남자',29,'관리자님','1995-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
-       '402호',null,'jly789@naver.com','코미디','King',0,0,'윤재일2.jpg','/profileImg/윤재일2.jpg');
+       '402호',null,'jly789@naver.com','코미디','King',0,100000000,'윤재일2.jpg','/profileImg/윤재일2.jpg');
 
 
 
 INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
 values(1,'MEMBER','user1','a123123','안유진','여자',21,'안유진','2003-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
-       '402호',null,'jly789@naver.com','코미디','King',30000,0,'이지금.jpg','/profileImg/이지금.jpg');
+       '402호',null,'jly789@naver.com','코미디','King',200000,10000,'안유진.jpg','/profileImg/안유진.jpg');
 
 
 INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
 values(2,'MEMBER','user2','a123123','지드래곤','남자',36,'지드래곤','1988-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
-       '402호',null,'jly789@naver.com','코미디','King',30000,0,'지드래곤.jpg','/profileImg/지드래곤.jpg');
+       '402호',null,'jly789@naver.com','코미디','King',200000,10000,'지드래곤.jpg','/profileImg/지드래곤.jpg');
 
 INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
 values(3,'MEMBER','user3','a123123','홍은채','여자',17,'홍은채','2006-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
-       '402호',null,'jly789@naver.com','코미디','King',30000,0,'홍은채.jpg','/profileImg/홍은채.jpg');
+       '402호',null,'jly789@naver.com','코미디','King',200000,10000,'홍은채.jpg','/profileImg/홍은채.jpg');
 
 INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
 values(4,'MEMBER','user4','a123123','이지은','여자',31,'이지은','1993-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
-       '402호',null,'jly789@naver.com','코미디','King',30000,0,'이지금.jpg','/profileImg/이지금.jpg');
+       '402호',null,'jly789@naver.com','코미디','King',200000,10000,'이지금.jpg','/profileImg/이지금.jpg');
 
 INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
 values(1,0,'스티브잡스','스티브잡스','월터 아이작슨','민음사','경영','스티브잡스.jpg','/files/스티브잡스.jpg',22500,10000,1,0,SYSDATE);

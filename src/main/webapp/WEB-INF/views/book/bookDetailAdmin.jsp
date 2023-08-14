@@ -497,7 +497,7 @@
 
                         let option = $('<p/>')
                         let br = +$('<br/>')
-                        let img = $('<img src="' + "assets/img/blog/comment_1.png" + '"/><br/>')
+                        let img = $('<img style="  height: 100px; margin-right: 400px; " src="' + '/profileImg/'+subCategoryDTO.fileName+'"/><br/>')
                         let writer = $('<strong  style="color: black; font-weight: 900;"> ' + '작성자:' + subCategoryDTO.userId + '<br/></>')
                         let content = $('<strong>' + '내용:' + subCategoryDTO.commentContent + '<br/><br/></strong>')
                         let deleteComment =  $('<a style="color: red;" href="/deleteCommentAdmin?commentId='+subCategoryDTO.commentId+'&bookId='+subCategoryDTO.bookId+'"  >Delete</a>')
