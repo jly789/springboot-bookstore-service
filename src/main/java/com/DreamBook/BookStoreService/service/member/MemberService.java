@@ -2,6 +2,8 @@ package com.DreamBook.BookStoreService.service.member;
 
 
 import com.DreamBook.BookStoreService.dto.member.*;
+import com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -20,13 +22,16 @@ public interface MemberService {
 
     public Integer IdCheck(String id) throws  Exception;
 
-    public void insertData(MemberJoinDTO memberJoinDTO) throws Exception;
+    public void insertData(MemberJoinDTO memberJoinDTO,MultipartFile file) throws Exception;
+    public void insertMemberNotImage(MemberJoinDTO memberJoinDTO, MultipartFile file) throws Exception;
 
     public List<MemberDTO> memberDtoList(String userId) throws  Exception;
 
 //    public List<MemberDTO> memberIdList(int memberId) throws  Exception;
 
-    public void updateMember(MemberUpdateDTO memberUpdateDTO) throws  Exception;
+    public void updateMember(MemberUpdateDTO memberUpdateDTO,MultipartFile file) throws  Exception;
+
+    public void updateMemberDataNotImage(MemberUpdateDTO memberUpdateDTO) throws Exception;
 
     public void updatePoint(int point,int plusPoint,int plusPoint2,int memberId)throws Exception;
     public Integer deleteMember(MemberDeleteDTO MemberDeleteDTO,HttpServletResponse response) throws  Exception;

@@ -18,7 +18,8 @@
 </head>
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
-<form:form action="/register" method="post"  modelAttribute="memberJoinDTO">
+<form:form action="/register" method="post"  modelAttribute="memberJoinDTO" novalidate="novalidate"
+           enctype="multipart/form-data">
 <!-- header end -->
 <main class="login-bg">
   <!-- Register Area Start -->
@@ -113,6 +114,10 @@
           <form:errors path="favoriteGenre" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
           <div class="single-input-fields">
+          <input type="file" class="form-control" name="file"
+                 style="width : 280px; height : 30px; "/>
+          </div>
+          <div class="single-input-fields">
           <label>성별</label>
           <select name="gender" value="${memberJoinDTO.gender}" style="margin-right: 550px;">
 
@@ -121,8 +126,11 @@
               <option value="여자">여자</option>
 
           </select>
+
+
           </div>
       </div>
+
       <!-- form Footer -->
       <div class="register-footer">
         <p> Already have an account? <a href="/login"> Login</a> here</p>

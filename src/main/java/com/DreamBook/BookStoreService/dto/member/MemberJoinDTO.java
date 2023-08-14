@@ -76,6 +76,9 @@ public class MemberJoinDTO {
 
        private int wishQuantity;
 
+        private String fileName;
+        private String filePath;
+
 
 
 

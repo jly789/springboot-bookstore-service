@@ -1,5 +1,6 @@
 DROP TABLE review PURGE;
 DROP TABLE DELIVERY PURGE;
+DROP TABLE comments PURGE;
 DROP TABLE orders PURGE;
 DROP TABLE cart PURGE;
 DROP TABLE book PURGE;
@@ -30,6 +31,8 @@ CREATE TABLE MEMBER
     purchaseAmount NUMBER  DEFAULT 0,
     point    NUMBER  DEFAULT 0,
     wishQuantity NUMBER DEFAULT 0,
+    fileName  VARCHAR2(300) NOT NULL, --파일이미지이름
+    filePath VARCHAR2(300) NOT NULL, --파일이미지경로
 
 
     CONSTRAINT MEMBER PRIMARY KEY (memberId)
@@ -94,6 +97,7 @@ CREATE TABLE DELIVERY
 (
     deliveryId    NUMBER   NOT NULL,   --배달번호
     orderId       NUMBER        NOT NULL, --주문번호
+    memberId       NUMBER        NOT NULL, --주문번호
     recipient      VARCHAR2(30)  NOT NULL,  --받는사람
     deliveryTel   CHAR(11)      NOT NULL,  --연락처
     postcode       CHAR(5)       NOT NULL,  --우편번호
@@ -101,8 +105,11 @@ CREATE TABLE DELIVERY
     detailAddress VARCHAR2(255) NOT NULL, --상세주소
     extraAddress  VARCHAR2(255) NULL, --참고사항
     deliveryCost  NUMBER        NOT NULL, --배송비
+    orderDate     DATE         DEFAULT SYSDATE,
     CONSTRAINT PK_DELIVERY PRIMARY KEY (orderId),
+    CONSTRAINT FK_DELIVERY_MEMBER_ID FOREIGN KEY (memberId) REFERENCES member (memberId),
     CONSTRAINT FK_DELIVERY_ORDER_ID FOREIGN KEY (orderId) REFERENCES orders (orderId)
+
 );
 
 CREATE TABLE review
@@ -117,6 +124,7 @@ CREATE TABLE review
     reviewFilePath VARCHAR2(255)  NULL, --상세주소
     grade  VARCHAR2(255) not NULL, --참고사항
     views  NUMBER  DEFAULT 0      NOT NULL, --배송비
+    reviewState VARCHAR2(50) DEFAULT '리뷰완료' not null,
     reviewDate DATE  DEFAULT SYSDATE not null,
     CONSTRAINT PK_REVIEW PRIMARY KEY (reviewId),
     CONSTRAINT FK_MEMBER_MEMBER_ID FOREIGN KEY (memberId) REFERENCES member (memberId),
@@ -125,68 +133,55 @@ CREATE TABLE review
 );
 
 
-INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT)
+CREATE TABLE COMMENTS
+(
+    commentId    NUMBER   NOT NULL,   --코멘트번호
+    memberId       NUMBER        NOT NULL, --주문번호
+    bookId      NUMBER  NOT NULL,  --받는사람
+    commentContent   VARCHAR2(255)     NOT NULL,
+    commentDate DATE  DEFAULT SYSDATE not null,
+    CONSTRAINT PK_COMMENT PRIMARY KEY (commentId),
+    CONSTRAINT FK_MEMBER_MEMBERS_ID FOREIGN KEY (memberId) REFERENCES member (memberId),
+    CONSTRAINT FK_BOOK_BOOKS_ID FOREIGN KEY (bookId) REFERENCES book (bookId)
+);
+
+
+INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
 values(0,'ADMIN','admin','admin','관리자','남자',29,'관리자님','1995-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
-       '402호',null,'jly789@naver.com','코미디','King',0,0);
+       '402호',null,'jly789@naver.com','코미디','King',0,0,'윤재일2.jpg','/profileImg/윤재일2.jpg');
 
 
-INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT)
-values(1,'MEMBER','asd','asd','윤재일','남자',29,'비운의소나기','1995-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
-       '402호',null,'jly456@naver.com','코미디','King',0,0);
 
-INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT)
-values(3,'MEMBER','abc','abc','윤재일','남자',29,'비운의소나기','1995-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
-       '402호',null,'jly456@naver.com','코미디','King',0,0);
+INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
+values(1,'MEMBER','user1','a123123','안유진','여자',21,'안유진','2003-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
+       '402호',null,'jly789@naver.com','코미디','King',30000,0,'이지금.jpg','/profileImg/이지금.jpg');
+
+
+INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
+values(2,'MEMBER','user2','a123123','지드래곤','남자',36,'지드래곤','1988-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
+       '402호',null,'jly789@naver.com','코미디','King',30000,0,'지드래곤.jpg','/profileImg/지드래곤.jpg');
+
+INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
+values(3,'MEMBER','user3','a123123','홍은채','여자',17,'홍은채','2006-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
+       '402호',null,'jly789@naver.com','코미디','King',30000,0,'홍은채.jpg','/profileImg/홍은채.jpg');
+
+INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
+values(4,'MEMBER','user4','a123123','이지은','여자',31,'이지은','1993-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
+       '402호',null,'jly789@naver.com','코미디','King',30000,0,'이지금.jpg','/profileImg/이지금.jpg');
+
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(1,0,'스티브잡스','스티브잡스','월터 아이작슨','민음사','경영','스티브잡스.jpg','/files/스티브잡스.jpg',22500,10000,1,0,SYSDATE);
 
 
 commit;
-
-delete MEMBER
-where userId = 'abc' and pwd = 'abc';
-
 select * from member;
 select * from book;
-
-select * from cart;
 select * from orders;
-select * from DELIVERY;
-
-delete  orders
-where memberId = 2;
-
-delete DELIVERY
-where orderId = 2;
-
-select * from review a
-                  left join  member b
-                             on a.memberId = b.memberId;
-
+select * from delivery;
 select * from review;
-
-select * from BOOK;
-
-delete review
-where reviewId = 2;
+select * from comments;
 
 
-
-
-SELECT a.bookId,a.memberId,a.fileName,a.bookName,a.price,  AVG(b.grade)as grade from book a
-                                                                                         left join review b on a.bookId = b.bookId
-
-
-WHERE  a.bookId = 6
-GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price;
-
-
-select  a.bookId,a.memberId,a.fileName,a.bookName,a.price,count(b.reviewId)as reviewId from book a
-                                                                                                LEFT JOIN review b on
-        a.bookId = b.bookId
-
-where a.bookId = 6
-
-GROUP BY a.bookId,a.fileName,a.bookName,a.memberId,a.price
-ORDER BY reviewId desc;
 
 
 

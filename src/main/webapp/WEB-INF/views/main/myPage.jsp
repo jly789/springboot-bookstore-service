@@ -61,8 +61,14 @@
           <div class="billing_details">
             <div class="row">
               <div class="col-lg-8" >
-                <h3>배송지 주소  <button type="submit" value="" style="margin-left: 525px; color: black; border-color: ghostwhite; background-color: white"/>수정하기</h3>
+                <h3>배송지 주소
 
+                  <button type="submit" value="" style="margin-left: 525px; color: black; border-color: ghostwhite; background-color: white"/>수정하기</h3>
+                <br/>
+
+                <a  style="color: red;" href="/myPageUpdate">프로필변경</a> <br/>
+               <img src="profileImg/${memberDTOList.fileName}" alt=""
+                     style="   height: 100px; margin-right: 400px; object-fit: cover;"/><br/><br/>
                 <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                   <div class="col-md-6 form-group p_star">
                     <h6 style="color: red"> 아이디 </h6>  <input type="text" class="form-control" id="first" name="userId" value="${memberDTOList.userId}" />

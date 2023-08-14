@@ -18,7 +18,8 @@
 </head>
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
-<form:form action="/myPageUpdate" method="post"  modelAttribute="memberUpdateDTO">
+<form:form action="/myPageUpdate" method="post"  modelAttribute="memberUpdateDTO" novalidate="novalidate"
+           enctype="multipart/form-data">
 <!-- header end -->
 <main class="login-bg">
   <c:forEach var="memberDTOList" items="${memberDTOList}">
@@ -106,6 +107,11 @@
             <label>좋아하는 장르</label>
             <input type="text" name="favoriteGenre" value="${memberDTOList.favoriteGenre}" placeholder="좋아하는 장르 입력">
             <form:errors path="favoriteGenre" cssStyle="font-weight: bold; color: #e95050"/>
+          </div>
+          <div class="single-input-fields">
+            <label>프로필 사진</label>
+            <input type="file" class="form-control" name="file"
+                   style="width : 280px; height : 30px; "/>
           </div>
           <div class="single-input-fields">
             <label>성별</label>

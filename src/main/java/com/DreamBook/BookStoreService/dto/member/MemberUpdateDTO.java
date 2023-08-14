@@ -73,4 +73,7 @@ public class MemberUpdateDTO {
 
 
     private int wishQuantity;
+
+    private String fileName;
+    private String filePath;
 }

@@ -59,9 +59,9 @@
 
     insert into member(memberId,role,userId,pwd,name,gender,age,nikname,birth,
                        tel,postcode,address,detailAddress,extraAddress,email,favoriteGenre,
-                       userGrade,purchaseAmount,point,wishQuantity)
+                       userGrade,purchaseAmount,point,wishQuantity,fileName,filePath)
     values (#{memberId},'MEMBER',#{userId},#{pwd},#{name},#{gender},#{age},#{nikname},#{birth},
-            #{tel},#{postcode},#{address},#{detailAddress},#{extraAddress},#{email},#{favoriteGenre},'bronze',0,0,0)
+            #{tel},#{postcode},#{address},#{detailAddress},#{extraAddress},#{email},#{favoriteGenre},'bronze',0,0,0,#{fileName},#{filePath})
 
     </insert>
 
@@ -80,11 +80,28 @@
         update member
         set    userId = #{userId}, pwd = #{pwd},name = #{name},gender = #{gender},nikname = #{nikname},tel = #{tel},
                postcode = #{postcode},address = #{address},detailAddress = #{detailAddress},extraAddress = #{extraAddress},email = #{email},favoriteGenre = #{favoriteGenre}
+              ,fileName= #{fileName}, filePath = #{filePath}
 
 
         where memberId = #{memberId}
 
     </update>
+
+    <update id="updateMemberDataNotImage" parameterType="com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO">
+
+        update member
+        set    userId = #{userId}, pwd = #{pwd},name = #{name},gender = #{gender},nikname = #{nikname},tel = #{tel},
+               postcode = #{postcode},address = #{address},detailAddress = #{detailAddress},extraAddress = #{extraAddress},email = #{email},favoriteGenre = #{favoriteGenre}
+
+
+
+        where memberId = #{memberId}
+
+    </update>
+
+
+
+
 
     <update id="updatePoint" parameterType="int">
 

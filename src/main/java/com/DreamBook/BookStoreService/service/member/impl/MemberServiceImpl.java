@@ -7,8 +7,10 @@ import com.DreamBook.BookStoreService.mapper.member.MemberMapper;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -26,7 +28,46 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void insertData(MemberJoinDTO memberJoinDTO) throws Exception {
+    public void insertData(MemberJoinDTO memberJoinDTO,MultipartFile file) throws Exception {
+
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profileImg";
+
+//        UUID uuid =  UUID.randomUUID();
+
+        String fileName = file.getOriginalFilename();
+
+
+        System.out.println(fileName);
+        File saveFile = new File(projectPath, fileName);
+
+        file.transferTo(saveFile);
+
+        memberJoinDTO.setFileName(fileName);
+
+        memberJoinDTO.setFilePath("/profileImg/" + fileName);
+        memberMapper.insertData(memberJoinDTO);
+    }
+
+    @Override
+    public void insertMemberNotImage(MemberJoinDTO memberJoinDTO, MultipartFile file) throws Exception {
+
+
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profileImg\\noImage.jpg";
+
+//        UUID uuid =  UUID.randomUUID();
+
+        String fileName = "noImage.jpg";
+
+
+        System.out.println(fileName);
+
+
+        memberJoinDTO.setFileName(fileName);
+
+        memberJoinDTO.setFilePath("/profileImg/" + fileName);
+
+
+
         memberMapper.insertData(memberJoinDTO);
     }
 
@@ -92,8 +133,31 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void updateMember(MemberUpdateDTO memberUpdateDTO) throws Exception {
+    public void updateMember(MemberUpdateDTO memberUpdateDTO,MultipartFile file) throws Exception {
+
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profileImg";
+
+//        UUID uuid =  UUID.randomUUID();
+
+        String fileName = file.getOriginalFilename();
+
+
+
+        File saveFile = new File(projectPath, fileName);
+
+        file.transferTo(saveFile);
+
+        memberUpdateDTO.setFileName(fileName);
+
+        memberUpdateDTO.setFilePath("/profileImg/" + fileName);
+
+
         memberMapper.updateMember(memberUpdateDTO);
+    }
+
+    @Override
+    public void updateMemberDataNotImage(MemberUpdateDTO memberUpdateDTO) throws Exception {
+        memberMapper.updateMemberDataNotImage(memberUpdateDTO);
     }
 
     @Override

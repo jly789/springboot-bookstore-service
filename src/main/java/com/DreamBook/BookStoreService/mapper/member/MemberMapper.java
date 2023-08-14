@@ -2,6 +2,7 @@ package com.DreamBook.BookStoreService.mapper.member;
 
 
 import com.DreamBook.BookStoreService.dto.member.*;
+import com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -25,10 +26,15 @@ public interface MemberMapper {
 
     public void insertData(MemberJoinDTO memberJoinDTO) throws Exception;
 
+
+
     public List<MemberDTO> memberDtoList(String userId) throws  Exception;
 //    public List<MemberDTO> memberIdList(int memberId) throws  Exception;
 
     public void updateMember(MemberUpdateDTO memberUpdateDTO) throws  Exception;
+
+
+    public void updateMemberDataNotImage(MemberUpdateDTO memberUpdateDTO) throws Exception;
 
     public void updatePoint(int point,int plusPoint,int plusPoint2,int memberId)throws Exception;
 

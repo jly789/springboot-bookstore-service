@@ -30,6 +30,9 @@ public class MemberDTO {
     private int point;
     private String extraAddress;
 
+    private String fileName;
+    private String filePath;
+
 
 
 

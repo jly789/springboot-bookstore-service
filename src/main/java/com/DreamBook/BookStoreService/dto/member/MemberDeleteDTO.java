@@ -74,4 +74,7 @@ public class MemberDeleteDTO {
 
 
     private int wishQuantity;
+
+    private String fileName;
+    private String filePath;
 }

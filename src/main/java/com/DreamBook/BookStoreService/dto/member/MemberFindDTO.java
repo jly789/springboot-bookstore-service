@@ -18,6 +18,10 @@ public class MemberFindDTO {
         private String email;
 
 
+        private String fileName;
+        private String filePath;
+
+
 
 
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -76,32 +77,63 @@ public class MemberController {
     @PostMapping("/register")
 
     public String registerOk(@Valid @ModelAttribute("memberJoinDTO") MemberJoinDTO memberJoinDTO,
-                             BindingResult bindingResult, Model model) throws Exception {
+                             BindingResult bindingResult, Model model, MultipartFile file) throws Exception {
+
+        if (file.isEmpty()) {
+            if (memberService.IdCheck(memberJoinDTO.getUserId()) == 1) {
+
+                if (bindingResult.hasFieldErrors()) {
 
 
-        if (memberService.IdCheck(memberJoinDTO.getUserId()) == 1) {
-
-            if (bindingResult.hasFieldErrors()) {
+                    model.addAttribute("memberJoinDTO", memberJoinDTO);
 
 
-                model.addAttribute("memberJoinDTO", memberJoinDTO);
+                    return "member/register";
+                }
 
+                int maxNum = memberService.maxNum();
+                memberJoinDTO.setMemberId(maxNum + 1);
 
-                return "member/register";
+                int now = LocalDate.now().getYear();
+                int birth = memberJoinDTO.getBirth().getYear();
+                int age = now - birth;
+                memberJoinDTO.setAge(age);
+
+                memberService.insertMemberNotImage(memberJoinDTO,file);
+
+                //memberService.insertData(memberJoinDTO);
+
+                return "member/login";
             }
-
-            int maxNum = memberService.maxNum();
-            memberJoinDTO.setMemberId(maxNum + 1);
-
-            int now = LocalDate.now().getYear();
-            int birth = memberJoinDTO.getBirth().getYear();
-            int age = now - birth;
-            memberJoinDTO.setAge(age);
+        }
 
 
-            memberService.insertData(memberJoinDTO);
+        else {
 
-            return "member/login";
+            if (memberService.IdCheck(memberJoinDTO.getUserId()) == 1) {
+
+                if (bindingResult.hasFieldErrors()) {
+
+
+                    model.addAttribute("memberJoinDTO", memberJoinDTO);
+
+
+                    return "member/register";
+                }
+
+                int maxNum = memberService.maxNum();
+                memberJoinDTO.setMemberId(maxNum + 1);
+
+                int now = LocalDate.now().getYear();
+                int birth = memberJoinDTO.getBirth().getYear();
+                int age = now - birth;
+                memberJoinDTO.setAge(age);
+
+
+                memberService.insertData(memberJoinDTO, file);
+
+                return "member/login";
+            }
         }
 
         return "member/login";

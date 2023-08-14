@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -60,16 +61,6 @@ public class MainController {
         return "main/main";
     }
 
-//    @GetMapping("/myPage")
-//    public String myPage(Model model,HttpSession session)throws  Exception{
-//
-//        String userId = (String) session.getAttribute("userId");
-//
-//       List<MemberDTO> memberDTOList =  memberService.memberDtoList(userId);
-//        model.addAttribute("memberDTOList",memberDTOList);
-//
-//        return "main/myPage";
-//    }
 
 
     @GetMapping("/myPage")
@@ -120,33 +111,56 @@ public class MainController {
 
     @PostMapping("/myPageUpdate")
     public String myPageUpdate(@Valid @ModelAttribute("memberUpdateDTO") MemberUpdateDTO memberUpdateDTO,
-                             BindingResult bindingResult, Model model,HttpSession session) throws Exception {
+                               BindingResult bindingResult, Model model, HttpSession session, MultipartFile file) throws Exception {
 
         String userId = (String) session.getAttribute("userId");
         String updateId = memberUpdateDTO.getUserId();
 
+        if (file.isEmpty()) {
+
+            if (memberService.IdCheck(memberUpdateDTO.getUserId()) == 1 || userId.equals(updateId)) {
+
+                if (bindingResult.hasFieldErrors()) {
+
+
+                    List<MemberDTO> memberDTOList = memberService.memberDtoList(userId);
+                    model.addAttribute("memberDTOList", memberDTOList);
+
+
+                    return "main/myPageUpdate";
+                }
+
+
+
+                memberService.updateMemberDataNotImage(memberUpdateDTO);
+
+                session.setAttribute("memberId", memberUpdateDTO.getMemberId());
+                session.setAttribute("userId", memberUpdateDTO.getUserId());
+
+
+                return "redirect:/";
+            }
+
+        }
 
         if (memberService.IdCheck(memberUpdateDTO.getUserId()) == 1 || userId.equals(updateId)) {
 
             if (bindingResult.hasFieldErrors()) {
 
 
-                List<MemberDTO> memberDTOList =  memberService.memberDtoList(userId);
-                model.addAttribute("memberDTOList",memberDTOList);
+                List<MemberDTO> memberDTOList = memberService.memberDtoList(userId);
+                model.addAttribute("memberDTOList", memberDTOList);
 
 
                 return "main/myPageUpdate";
             }
 
 
-
-            memberService.updateMember(memberUpdateDTO);
-
-
-            session.setAttribute("memberId",memberUpdateDTO.getMemberId());
-            session.setAttribute("userId",memberUpdateDTO.getUserId());
+            memberService.updateMember(memberUpdateDTO,file);
 
 
+            session.setAttribute("memberId", memberUpdateDTO.getMemberId());
+            session.setAttribute("userId", memberUpdateDTO.getUserId());
 
 
             return "redirect:/";
