@@ -1,3 +1,4 @@
+DROP TABLE notice PURGE;
 DROP TABLE review PURGE;
 DROP TABLE DELIVERY PURGE;
 DROP TABLE comments PURGE;
@@ -139,11 +140,27 @@ CREATE TABLE COMMENTS
     memberId       NUMBER        NOT NULL, --주문번호
     bookId      NUMBER  NOT NULL,  --받는사람
     commentContent   VARCHAR2(255)     NOT NULL,
-    commentDate DATE  DEFAULT SYSDATE not null,
+    commentDate DATE  DEFAULT SYSDATE NOT NULL,
     CONSTRAINT PK_COMMENT PRIMARY KEY (commentId),
     CONSTRAINT FK_MEMBER_MEMBERS_ID FOREIGN KEY (memberId) REFERENCES member (memberId),
     CONSTRAINT FK_BOOK_BOOKS_ID FOREIGN KEY (bookId) REFERENCES book (bookId)
 );
+
+
+CREATE TABLE NOTICE
+(
+    noticeId      NUMBER         NOT NULL,
+    memberId     NUMBER         NOT NULL,
+    noticeSubject VARCHAR2(300)  NOT NULL,
+    noticeContent VARCHAR2(1000) NOT NULL,
+    noticeType    VARCHAR2(50)   NOT NULL, --중요,공지,긴급
+    noticeDate     DATE   DEFAULT SYSDATE,
+    noticeViews      NUMBER DEFAULT 0,
+    CONSTRAINT PK_NOTICE PRIMARY KEY (noticeId),
+    CONSTRAINT FK_MEMBERS_MEMBER_ID FOREIGN KEY (memberId) REFERENCES member (memberId)
+);
+
+
 
 
 INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
@@ -180,7 +197,7 @@ select * from orders;
 select * from delivery;
 select * from review;
 select * from comments;
-
+select * from notice;
 
 
 

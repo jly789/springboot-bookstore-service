@@ -62,7 +62,7 @@ padding: 8px 12px;
                                             <c:if test="${userId =='admin'}" >
                                         <li><a href="/bookAdd">책 등록하기</a></li>
                                             </c:if>
-                                        <li><a href="/review">리뷰</a></li>
+                                        <li><a href="/notice">공지사항</a></li>
                                         <c:if test="${userId !=null}" >
 
 

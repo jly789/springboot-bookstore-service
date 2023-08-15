@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-/mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.DreamBook.BookStoreService.mapper.notice.NoticeMapper">
+
+
+    <select id="maxNum" resultType="int">
+        select nvl(max(noticeId),0) from notice
+    </select>
+
+
+
+
+    <insert id="insertDataNotice" parameterType="com.DreamBook.BookStoreService.dto.notice.NoticeAddDTO">
+
+        insert into notice(noticeId,memberId,noticeViews,noticeSubject,noticeContent,noticeType,noticeDate)
+        values (#{noticeId},#{memberId},0,#{noticeSubject},#{noticeContent},#{noticeType},sysdate)
+
+    </insert>
+
+
+
+    <select id="noticeList"  resultType="com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO">
+        select * from notice a
+                 left join member b
+                 on a.memberId = b.memberId
+
+        order by a.noticeType desc
+    </select>
+
+
+
+
+    <update id="noticeUpdate" parameterType="int">
+        update  from comments
+
+        where commentId = #{commentId}
+    </update>
+
+
+    <delete id="noticeDelete" parameterType="com.DreamBook.BookStoreService.dto.notice.NoticeDeleteDTO">
+        delete  from comments
+
+        where commentId = #{commentId}
+    </delete>
+
+
+
+</mapper>
