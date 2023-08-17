@@ -2,6 +2,7 @@ package com.DreamBook.BookStoreService.controller.notice;
 
 import com.DreamBook.BookStoreService.dto.notice.NoticeAddDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO;
+import com.DreamBook.BookStoreService.dto.notice.NoticeUpdateDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.notice.NoticeService;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
@@ -59,6 +60,23 @@ public class NoticeController {
         return "redirect:/notice";
     }
 
+    @GetMapping("/noticeDetail") //공지등록
+    public String noticeDetail(HttpSession session, Model model,@RequestParam("noticeId")int noticeId)throws Exception {
+
+       int memberId =  (int)session.getAttribute("memberId");
+
+        List<NoticeFindDTO> noticeDetail = noticeService.noticeList(noticeId);
+
+        model.addAttribute("noticeDetail",noticeDetail);
+        model.addAttribute("memberId",memberId);
+
+
+
+        return "notice/noticeDetail";
+    }
+
+
+
 
     @GetMapping("/noticeAdd")
     public String noticeAdd(HttpSession session, Model model, NoticeAddDTO NoticeAddDTO) throws Exception {
@@ -66,6 +84,44 @@ public class NoticeController {
 
         return "notice/noticeAdd";
     }
+
+    @GetMapping("/noticeUpdate")
+    public String noticeUpdate(@RequestParam("noticeId")int noticeId,HttpSession session, Model model, NoticeUpdateDTO noticeUpdateDTO) throws Exception {
+
+
+        String userId = (String)session.getAttribute("userId");
+
+        List<NoticeFindDTO> noticeList = noticeService.noticeList();
+
+        model.addAttribute("noticeList",noticeList);
+        model.addAttribute("userId",userId);
+
+        return "notice/notice";
+    }
+
+
+    @GetMapping("/noticeDelete{noticeId}")
+    public String noticeDelete(@RequestParam("noticeId")int noticeId,HttpSession session, Model model, NoticeUpdateDTO noticeUpdateDTO) throws Exception {
+
+
+        String userId = (String)session.getAttribute("userId");
+
+        List<NoticeFindDTO> noticeList = noticeService.noticeList();
+
+        model.addAttribute("noticeList",noticeList);
+        model.addAttribute("userId",userId);
+
+
+        return "notice/notice";
+    }
+
+
+
+
+
+
+
+
 
 
 }

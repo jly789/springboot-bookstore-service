@@ -121,7 +121,7 @@
                     </td>
 
                     <td>
-                     <strong><a style="color: black" href="/reviewAdd?bookId=${noticeList.noticeId}">${noticeList.noticeSubject}</a></strong>
+                     <strong><a style="color: black" href="/noticeDetail?noticeId=${noticeList.noticeId}">${noticeList.noticeSubject}</a></strong>
 
                     </td>
 

@@ -33,4 +33,9 @@ public class NoticeServiceImpl implements NoticeService {
     public List<NoticeFindDTO> noticeList() throws Exception {
         return noticeMapper.noticeList();
     }
+
+    @Override
+    public List<NoticeFindDTO> noticeList(int noticeId) throws Exception {
+        return noticeMapper.noticeDetail(noticeId);
+    }
 }

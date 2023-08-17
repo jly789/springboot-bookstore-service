@@ -13,4 +13,6 @@ public interface NoticeService {
     public void insertDataNotice(NoticeAddDTO noticeAddDTO) throws Exception;
     public List<NoticeFindDTO> noticeList()throws Exception;
 
+    public List<NoticeFindDTO>noticeList(int noticeId)throws Exception;
+
 }

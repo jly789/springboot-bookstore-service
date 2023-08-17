@@ -16,6 +16,10 @@ public interface NoticeMapper {
 
     public List<NoticeFindDTO>noticeList()throws Exception;
 
+    public List<NoticeFindDTO>noticeDetail(int noticeId)throws Exception;
+
+
+
 
 
 

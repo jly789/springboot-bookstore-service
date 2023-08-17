@@ -30,6 +30,12 @@
         order by a.noticeType desc
     </select>
 
+    <select id="noticeDetail" parameterType="int"  resultType="com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO">
+
+    select * from notice
+    where noticeId =#{noticeId}
+    </select>
+
 
 
 
