@@ -101,7 +101,7 @@
                   </thead>
                   <tbody>
 
-
+                  <c:if test="${noticeList !=null}">
                   <c:forEach var="noticeList" items="${noticeList}">
 
                   <tr>
@@ -115,10 +115,19 @@
                       </div>
                     </td>
 
+                    <c:if test="${noticeList.noticeType=='중요'}">
                     <td>
-                      <h5><strong>${noticeList.noticeType}</strong></h5>
+                      <h5 style="color: red;"><strong>${noticeList.noticeType}</strong></h5>
 
                     </td>
+                    </c:if>
+
+                    <c:if test="${noticeList.noticeType=='공지'}">
+                    <td>
+                      <h5 style="color: black;"><strong>${noticeList.noticeType}</strong></h5>
+
+                    </td>
+                    </c:if>
 
                     <td>
                      <strong><a style="color: black" href="/noticeDetail?noticeId=${noticeList.noticeId}">${noticeList.noticeSubject}</a></strong>
@@ -137,7 +146,7 @@
                     <td style="">
 
 
-                        ${noticeList.noticeDate}<br/>
+                        ${noticeList.noticeWriterDate}<br/>
 
 
                     </td>
@@ -146,7 +155,7 @@
 
                     </c:forEach>
 
-
+                    </c:if>
 
 
                   </tr>
@@ -155,118 +164,19 @@
                 </table>
 
 
-              </div>
-            </div>
-          </div>
 
 
 
 
 
-            </div>
-          </div>
-        </div>
 
 
 
 
-        <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
-          <!-- Tab 1 -->
-          <div class="row">
 
-            <c:if test="${reviewAllList !=null}">
-            <div class="best-selling p-0">
-              <div class="row">
-
-
-
-                <c:forEach var="reviewAllList" items="${reviewAllList}">
-                  <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                    <div class="properties pb-30">
-                      <div class="properties-card">
-                        <div class="properties-img">
-                          <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
-                                                                                                                         style="   height: 300px; object-fit: cover;"></a>
-                        </div>
-                        <div class="properties-caption properties-caption2">
-                          <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
-
-
-                          <p>${reviewAllList.reviewContent} </p>
-                          <c:if test="${reviewAllList.userId==checkId}">
-                            <h6 style="color: red; text-align: right;">My Review</h6>
-                          </c:if>
-
-                          <c:if test="${reviewAllList.userId!=checkId}">
-                            <h6 style="color: black; text-align: right;">  (${reviewAllList.userId})</h6>
-                          </c:if>
-                          <div class="properties-footer d-flex justify-content-between align-items-center">
-                            <div class="review">
-                              <div class="rating">
-                                <c:if test="${reviewAllList.grade==1}">
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                </c:if>
-
-                                <c:if test="${reviewAllList.grade==2}">
-
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                </c:if>
-
-                                <c:if test="${reviewAllList.grade==3}">
-
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                </c:if>
-
-                                <c:if test="${reviewAllList.grade==4}">
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                </c:if>
-
-                                <c:if test="${reviewAllList.grade==5}">
-
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                  <i class="fas fa-star" style="color: gold;"></i>
-                                </c:if>
-
-
-
-                              </div>
-                                <%--                                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>--%>
-                            </div>
-                            <div class="price">
-                              <span>${reviewAllList.price}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </c:forEach>
-
-
-                </c:if>
-
-
-
-              </div>
-            </div>
-          </div>
-
-
-        </div>
 
 
   </section>
-
 
 
 
@@ -283,6 +193,16 @@
 
 <script>
 
+
+  $("#nav-one-tab").click(function (){
+    location.href = '/notice';
+    return;
+  });
+
+  $("#nav-three-tab").click(function (){
+    location.href = '/noticeReview';
+    return;
+  });
 
 
 

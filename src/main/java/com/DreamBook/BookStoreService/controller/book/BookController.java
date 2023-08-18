@@ -553,12 +553,10 @@ public class BookController {
 
         if(session.getAttribute("memberId")==null &&session.getAttribute("userId")==null){
 
-
-
-
             List<BookFindDTO> bookList = bookService.bookIdList(id);
 
 
+            model.addAttribute("reviewAllList",reviewService.reviewBookList(id));
             model.addAttribute("id",id);
             model.addAttribute("bookList",bookList);
 

@@ -16,4 +16,5 @@ public class NoticeFindDTO {
     private String noticeType;   //중요,공지,긴급
     private LocalDateTime noticeDate;
     private String userId;
+    private String noticeWriterDate;
 }

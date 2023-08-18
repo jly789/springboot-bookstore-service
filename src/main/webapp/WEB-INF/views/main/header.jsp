@@ -60,9 +60,9 @@ padding: 8px 12px;
                                 <div class="header-info-right d-flex align-items-center">
                                     <ul>
                                             <c:if test="${userId =='admin'}" >
-                                        <li><a href="/bookAdd">책 등록하기</a></li>
+                                        <li><a href="/bookAdd">BookAdd</a></li>
                                             </c:if>
-                                        <li><a href="/notice">공지사항</a></li>
+                                        <li><a href="/notice">Notice</a></li>
                                         <c:if test="${userId !=null}" >
 
 
@@ -111,32 +111,30 @@ padding: 8px 12px;
                                     <ul id="navigation">
                                         <c:if test="${userId ==null}">
                                         <li><a href="/main">Home</a></li>
-                                        <li><a href="/bookMain">책 보기</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="#">Pages</a>
+                                        <li><a href="/bookMain">Book</a></li>
+                                        <li><a href="#">Notice</a>
                                             <ul class="submenu">
-                                                <li><a href="/login">login</a></li>
-                                                <li><a href="/register">회원가입</a></li>
+                                                <li><a href="/notice">Notice</a></li>
+                                                <li><a href="/noticeReview">Review</a></li>
 
                                             </ul>
                                         </li>
-                                        <li><a href="blog.html">Blog</a></li>
+
                                         <li><a href="contact.html">Contect</a></li>
                                         </c:if>
 
                                         <c:if test="${userId !=null}">
                                             <li><a href="/">Home</a></li>
-                                            <li><a href="/bookMain">책 보기</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="#">Pages</a>
+                                            <li><a href="/bookMain">Book</a></li>
+                                            <li><a href="#">Notice</a>
                                                 <ul class="submenu">
-                                                    <li><a href="/logout">loginout</a></li>
-                                                    <li><a href="/reviewAdd">리뷰등록</a></li>
+                                                    <li><a href="/notice">Notice</a></li>
+                                                    <li><a href="/noticeReview">Review</a></li>
 
                                                 </ul>
                                             </li>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="contact.html">Contect</a></li>
+
+                                            <li><a href="/">Contect</a></li>
                                         </c:if>
                                     </ul>
                                 </nav>

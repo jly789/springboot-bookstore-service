@@ -301,6 +301,7 @@
                             <br/>
 
 
+
                             <button type="submit" id="comment" class="white-btn mr-10">댓글on</button>
 
                             <div id="result"></div>
@@ -312,143 +313,90 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
-                    <!-- Tab 1 -->
-                    <div class="row">
-                        <div class="offset-xl-1 col-lg-9">
 
-
-                            <c:if test="${userId!=null}">
-                            <div class="comment-form">
-                                <h4>Comment
-                                    <h4>
-
-                                        <form class="form-contact comment_form" action="/commentAdd" method="get"
-                                              id="commentForm">
-                                            <c:forEach var="bookList" items="${bookList}">
-                                            <input type="hidden" name="bookId" value="${bookList.bookId}"/>
-
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <input class="form-control" name="commentContent"
-                                                                       type="text" value="" placeholder="Comment">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <button type="submit"
-                                                                    class="button button-contactForm btn_1 boxed-btn">
-                                                                작성하기
-                                                            </button>
-                                                        </div>
-                                                        </c:forEach>
-                                        </form>
-                            </div>
-                        </div>
-
-                        </c:if>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-        </div>
 
 
         <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
             <!-- Tab 1 -->
             <div class="row">
 
-                <c:if test="${reviewFindDTOList !=null}">
+                <c:if test="${reviewAllList !=null}">
                 <div class="best-selling p-0">
                     <div class="row">
 
-                        <c:choose>
 
 
-                            <c:when test="${fn:length(reviewFindDTOList) > 0}">
-
-                                <c:forEach var="reviewAllList" items="${reviewFindDTOList}">
-                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                        <div class="properties pb-30">
-                                            <div class="properties-card">
-                                                <div class="properties-img">
-                                                    <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
-                                                                                                                                                   style="   height: 300px; object-fit: cover;"></a>
-                                                </div>
-                                                <div class="properties-caption properties-caption2">
-                                                    <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
+                        <c:forEach var="reviewAllList" items="${reviewAllList}">
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                <div class="properties pb-30">
+                                    <div class="properties-card">
+                                        <div class="properties-img">
+                                            <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
+                                                                                                                                           style="   height: 300px; object-fit: cover;"></a>
+                                        </div>
+                                        <div class="properties-caption properties-caption2">
+                                            <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
 
 
-                                                    <p>${reviewAllList.reviewContent} </p>
-                                                    <h6 style="color: red; text-align: right;">  (${reviewAllList.userId})</h6>
-                                                    <div class="properties-footer d-flex justify-content-between align-items-center">
-                                                        <div class="review">
-                                                            <div class="rating">
-                                                                <c:if test="${reviewAllList.grade==1}">
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                            <p>${reviewAllList.reviewContent} </p>
+                                            <c:if test="${reviewAllList.userId==checkId}">
+                                                <h6 style="color: red; text-align: right;">My Review</h6>
+                                            </c:if>
 
-                                                                <c:if test="${reviewAllList.grade==2}">
+                                            <c:if test="${reviewAllList.userId!=checkId}">
+                                                <h6 style="color: black; text-align: right;">  (${reviewAllList.userId})</h6>
+                                            </c:if>
+                                            <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                <div class="review">
+                                                    <div class="rating">
+                                                        <c:if test="${reviewAllList.grade==1}">
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                                        <c:if test="${reviewAllList.grade==2}">
 
-                                                                <c:if test="${reviewAllList.grade==3}">
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                                        <c:if test="${reviewAllList.grade==3}">
 
-                                                                <c:if test="${reviewAllList.grade==4}">
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
-                                                                <c:if test="${reviewAllList.grade==5}">
+                                                        <c:if test="${reviewAllList.grade==4}">
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                                        <c:if test="${reviewAllList.grade==5}">
+
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
 
 
-                                                            </div>
-                                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>
-                                                        </div>
-                                                        <div class="price">
-                                                            <span>${reviewAllList.price}</span>
-                                                        </div>
                                                     </div>
+                                                        <%--                                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>--%>
+                                                </div>
+                                                <div class="price">
+                                                    <span>${reviewAllList.price}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
-                                </c:forEach>
-                            </c:when>
-
-
-                            <c:otherwise>
-
-                            </c:otherwise>
-
-
-                        </c:choose>
-
+                        </c:forEach>
 
 
                         </c:if>
@@ -475,7 +423,9 @@
 
 <script>
 
-
+    function history_back() {
+        history.back();
+    }
 
     $('#comment').click(function () {
 
@@ -515,8 +465,8 @@
                         let img = $('<img style="  height: 100px; margin-right: 400px; " src="' + '/profileImg/'+subCategoryDTO.fileName+'" />')
                         let writer = $('<h6  style="color: black; font-weight: 900;"> ' + '작성자:' + subCategoryDTO.userId + '</h6>')
                         let content = $('<strong>' + '내용:' + subCategoryDTO.commentContent + '</strong>')
-
-
+                        // let img = $('<img src="' + "/profileImg/"+'subCategoryDTO.fileName'+'"/>')
+                        // let img = $('<img src="' + "/profileImg/안유진.jpg" + '"/>')
 
                         $("#result").append(option)
                         $("#result").append(br)
@@ -534,7 +484,7 @@
 
                 },
                 error: function (a, b, c) {
-                    alert('로그인 하세요!');
+                    alert('ㅇㅇㄴ');
                     console.log(a, b, c);
                 }
 
@@ -546,30 +496,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-    function movePage(currentPage, cntPerPage, pageSize) {
-
-        let bookId = $("#bookId").val();
-
-        var url = "${pageContext.request.contextPath}/" + bookId;
-        url = url + "?currentPage=" + currentPage;
-        url = url + "&cntPerPage=" + cntPerPage;
-        url = url + "&pageSize=" + pageSize;
-
-        // $('#nav-three-tab');
-
-        location.href = url;
-
-
-    }
 </script>
 
 

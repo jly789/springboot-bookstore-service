@@ -23,7 +23,8 @@
 
 
     <select id="noticeList"  resultType="com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO">
-        select * from notice a
+        select a.noticeId,a.memberId,a.noticeSubject,a.noticeContent,a.noticeType,
+               to_char(noticeDate,'yyyy-mm-dd') as noticeWriterDate,b.userId from notice a
                  left join member b
                  on a.memberId = b.memberId
 
@@ -48,10 +49,10 @@
     </update>
 
 
-    <delete id="noticeDelete" parameterType="com.DreamBook.BookStoreService.dto.notice.NoticeDeleteDTO">
-        delete  from comments
+    <delete id="noticeDelete" parameterType="int">
+        delete  from notice
 
-        where commentId = #{commentId}
+        where noticeId = #{noticeId}
     </delete>
 
 

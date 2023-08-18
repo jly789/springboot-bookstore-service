@@ -60,7 +60,7 @@ public class OrderController {
     public String  order(BookCartDTO cartDTO,Model model, HttpSession session,@RequestParam("cartId")int cartId,@RequestParam("totalPrice")int totalPrice)throws Exception{
         int memberId = (Integer) session.getAttribute("memberId");
 
-    System.out.println("aa");
+
 
         List<BookCartDTO> orderBookCartList = bookService.orderBookCartList(cartDTO);
 

@@ -118,10 +118,6 @@
                             <button type="submit" id="update" class="button button-contactForm btn_1 boxed-btn">공지수정</button>
 
 
-
-
-                            <button type="submit" id="delete" class="button button-contactForm btn_1 boxed-btn">삭제하기</button>
-
                         <button type="button" class="button button-contactForm btn_1 boxed-btn" id="historyNotice">뒤로가기</button>
 
 

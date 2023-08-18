@@ -351,15 +351,18 @@
                                 </div>
                             </div>
 
-                            </c:if>
+
 
                         </div>
 
                         </div>
 
 </div>
+
                     </div>
                 </div>
+
+        </c:if>
 
 
         <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">

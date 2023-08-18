@@ -1,8 +1,10 @@
 package com.DreamBook.BookStoreService.controller.notice;
 
+import com.DreamBook.BookStoreService.dto.book.PaginationReview;
 import com.DreamBook.BookStoreService.dto.notice.NoticeAddDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeUpdateDTO;
+import com.DreamBook.BookStoreService.dto.review.ReviewFindDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.notice.NoticeService;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
@@ -36,6 +38,15 @@ public class NoticeController {
 
         String userId = (String)session.getAttribute("userId");
 
+
+        int listCnt = bookService.testTableCount();
+        PaginationReview pagination = new PaginationReview(currentPage, cntPerPage, pageSize);
+        pagination.setTotalRecordCount(listCnt);
+
+        model.addAttribute("pagination",pagination);
+        model.addAttribute("reviewAllList",reviewService.reviewAllList(pagination));
+
+
         List<NoticeFindDTO> noticeList = noticeService.noticeList();
 
         model.addAttribute("noticeList",noticeList);
@@ -59,6 +70,30 @@ public class NoticeController {
 
         return "redirect:/notice";
     }
+
+
+    @GetMapping("/noticeReview")
+    public String review(HttpSession session,Model model,  @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+                         @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
+                         @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception {
+
+        String userId = (String) session.getAttribute("userId");
+
+
+
+        int listCnt = bookService.testTableCount();
+        PaginationReview pagination = new PaginationReview(currentPage, cntPerPage, pageSize);
+        pagination.setTotalRecordCount(listCnt);
+
+        model.addAttribute("pagination",pagination);
+        model.addAttribute("reviewAllList",reviewService.reviewAllList(pagination));
+        model.addAttribute("checkId",userId);
+
+
+
+        return "notice/noticeReview";
+    }
+
 
     @GetMapping("/noticeDetail") //공지등록
     public String noticeDetail(HttpSession session, Model model,@RequestParam("noticeId")int noticeId)throws Exception {
@@ -149,15 +184,10 @@ public class NoticeController {
     public String noticeDelete(@RequestParam("noticeId")int noticeId,HttpSession session, Model model, NoticeUpdateDTO noticeUpdateDTO) throws Exception {
 
 
-        String userId = (String)session.getAttribute("userId");
-
-        List<NoticeFindDTO> noticeList = noticeService.noticeList();
-
-        model.addAttribute("noticeList",noticeList);
-        model.addAttribute("userId",userId);
+      noticeService.noticeDelete(noticeId);
 
 
-        return "notice/notice";
+        return "redirect:/notice";
     }
 
 

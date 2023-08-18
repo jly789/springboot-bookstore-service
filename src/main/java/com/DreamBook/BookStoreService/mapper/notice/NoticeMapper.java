@@ -1,6 +1,7 @@
 package com.DreamBook.BookStoreService.mapper.notice;
 
 import com.DreamBook.BookStoreService.dto.notice.NoticeAddDTO;
+import com.DreamBook.BookStoreService.dto.notice.NoticeDeleteDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeUpdateDTO;
 import com.DreamBook.BookStoreService.dto.review.ReviewAddDTO;
@@ -20,6 +21,10 @@ public interface NoticeMapper {
     public List<NoticeFindDTO>noticeDetail(int noticeId)throws Exception;
 
     public void noticeUpdate(NoticeUpdateDTO noticeUpdateDTO)throws Exception;
+
+    public void noticeDelete(int noticeId)throws Exception;
+
+
 
 
 

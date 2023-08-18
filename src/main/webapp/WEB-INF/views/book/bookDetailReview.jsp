@@ -268,14 +268,12 @@
                             <nav>
                                 <div class="nav nav-tabs " id="nav-tab" role="tablist">
 
-                                    <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one"
-                                       role="tab" aria-controls="nav-one" aria-selected="true">책소개</a>
+                                    <a class="nav-link" id="nav-one-tab"  href="/${bookId}">책소개</a>
 
+                                    <a class="nav-link active" id="nav-three-tab"  href="/reviewBookList?id=${bookId}" >리뷰</a>
 
-                                    <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">리뷰</a>
                                 </div>
                             </nav>
-
 
 
 

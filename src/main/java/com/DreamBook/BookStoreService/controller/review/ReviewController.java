@@ -213,7 +213,7 @@ public class ReviewController {
                 }
                 reviewService.updateReviewDataNotImage(reviewUpdateDTO);
 
-            return "redirect:/review";
+            return "redirect:/noticeReview";
 
             }
         else
@@ -225,7 +225,7 @@ public class ReviewController {
 
 
 
-        return "redirect:/review";
+        return "redirect:/noticeReview";
     }
 
     @GetMapping("/reviewDelete")
@@ -240,7 +240,7 @@ public class ReviewController {
 
 
 
-        return "redirect:/review";
+        return "redirect:/noticeReview";
     }
 
 
