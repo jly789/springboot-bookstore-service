@@ -59,9 +59,22 @@
                     <div style="text-align: center">
                     <div class="comment-form">
                         <h3>공지사항</h3>
-                        <input type="checkbox"name="noticeType" value="${noticeDetail.noticeType}" checked>${noticeDetail.noticeType}
-                        <input type="checkbox"name="noticeType" value="공지">공지</input>
-                        </input>
+
+
+
+                        <c:if test="${memberId==0}">
+                        <input type="checkbox"name="noticeType" checked readonly value="${noticeDetail.noticeType}">${noticeDetail.noticeType}
+
+
+                        </c:if>
+
+                        <c:if test="${memberId!=0}">
+                            <${noticeDetail.noticeType}>
+
+
+                        </c:if>
+
+
 
                         <br/><br/><br/>
 
@@ -76,7 +89,7 @@
 
 
                                                 <input class="form-control" name="noticeSubject" id="noticeSubject"  type="text" placeholder="제목"
-                                                       value="${noticeDetail.noticeSubject}"
+                                                      readonly value="${noticeDetail.noticeSubject}"
                                                 style="width : 500px; height : 40px; margin-left: 539px;" >
 
                                         </div>
@@ -85,7 +98,7 @@
 
 
 
-                                        <textarea  name="noticeContent" id="noticeContent" cols="100" rows="15" style="text-align: center;"
+                                        <textarea  name="noticeContent" readonly id="noticeContent" cols="100" rows="15" style="text-align: center;"
                placeholder=" 내용: ">${noticeDetail.noticeContent}</textarea>
                                     </div>
                                 </div>
@@ -98,7 +111,7 @@
 
 
 
-                            <c:if test="${noticeDetail.memberId==0}">
+                            <c:if test="${memberId==0}">
                             <div class="form-group">
                                 <a href="/noticeUpdate?noticeId=${noticeDetail.noticeId}" id="update">
                                 <button type="submit" class="button button-contactForm btn_1 boxed-btn">공지수정</button>
@@ -115,17 +128,19 @@
                             </c:if>
 
 
-                             </c:forEach>
-
-
                                 <c:if test="${memberId!=0}">
-                                <div class="form-group">
-                                    <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
+                                    <div class="form-group">
+                                        <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
 
-                                </div>
+                                    </div>
                                 </c:if>
 
                             </div>
+
+
+                             </c:forEach>
+
+
 <%--                        </form>--%>
                     </div>
                 </div>
@@ -159,22 +174,7 @@
     });
 
 
-    $('#update').click(function (){
 
-
-
-        if (!confirm("공지사항을 수정 하시겠습니까?")) {
-
-            return false;
-        } else {
-            alert("수정완료");
-            return true;
-        }
-
-
-
-
-    });
 
     $('#delete').click(function (){
 

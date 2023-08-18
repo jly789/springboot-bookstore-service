@@ -97,6 +97,7 @@
 
                             <div class="form-group">
                                 <button type="submit" id="insert" class="button button-contactForm btn_1 boxed-btn">공지등록</button>
+                                <button type="button" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
                             </div>
                             </div>
 <%--                        </form>--%>
@@ -114,6 +115,11 @@
 </div>
 
 <script>
+
+    function history_back() {
+        history.back();
+    }
+
 
     $('#insert').click(function (){
 

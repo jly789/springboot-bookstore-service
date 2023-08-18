@@ -63,12 +63,44 @@ public class NoticeController {
     @GetMapping("/noticeDetail") //공지등록
     public String noticeDetail(HttpSession session, Model model,@RequestParam("noticeId")int noticeId)throws Exception {
 
-       int memberId =  (int)session.getAttribute("memberId");
 
-        List<NoticeFindDTO> noticeDetail = noticeService.noticeList(noticeId);
 
-        model.addAttribute("noticeDetail",noticeDetail);
-        model.addAttribute("memberId",memberId);
+
+
+
+       if(session.getAttribute("memberId")==null){ //비회원
+           int memberId = 1;
+           List<NoticeFindDTO> noticeDetail = noticeService.noticeList(noticeId);
+           model.addAttribute("noticeDetail",noticeDetail);
+           model.addAttribute("memberId",memberId);
+           return "notice/noticeDetail";
+       }
+
+        if(session.getAttribute("memberId").equals(0)){ //관리자
+            int memberId =  (int)session.getAttribute("memberId");
+
+            List<NoticeFindDTO> noticeDetail = noticeService.noticeList(noticeId);
+
+            model.addAttribute("noticeDetail",noticeDetail);
+
+            model.addAttribute("memberId",memberId);
+            return "notice/noticeDetail";
+        }
+
+
+
+        if(!session.getAttribute("memberId").equals(0)){ //회원
+            int memberId =  (int)session.getAttribute("memberId");
+            List<NoticeFindDTO> noticeDetail = noticeService.noticeList(noticeId);
+
+            model.addAttribute("noticeDetail",noticeDetail);
+
+            model.addAttribute("memberId",memberId);
+            return "notice/noticeDetail";
+        }
+
+
+
 
 
 
@@ -89,14 +121,27 @@ public class NoticeController {
     public String noticeUpdate(@RequestParam("noticeId")int noticeId,HttpSession session, Model model, NoticeUpdateDTO noticeUpdateDTO) throws Exception {
 
 
-        String userId = (String)session.getAttribute("userId");
+        int memberId =  (int)session.getAttribute("memberId");
 
-        List<NoticeFindDTO> noticeList = noticeService.noticeList();
+        List<NoticeFindDTO> noticeDetail = noticeService.noticeList(noticeId);
 
-        model.addAttribute("noticeList",noticeList);
-        model.addAttribute("userId",userId);
+        model.addAttribute("noticeDetail",noticeDetail);
 
-        return "notice/notice";
+        model.addAttribute("memberId",memberId);
+
+        return "notice/noticeUpdateDetail";
+    }
+
+    @PostMapping("/noticeUpdate")
+    public String noticeUpdatePost(NoticeUpdateDTO noticeUpdateDTO) throws Exception {
+
+
+
+       noticeService.noticeUpdate(noticeUpdateDTO);
+
+
+
+        return "redirect:/notice";
     }
 
 

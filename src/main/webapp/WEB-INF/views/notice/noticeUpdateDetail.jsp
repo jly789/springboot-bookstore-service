@@ -54,81 +54,102 @@
 
     <!--  Hero area End -->
     <!-- Blog Area Start -->
-
-        <c:forEach var="noticeDetail" items="${noticeDetail}">
-                    <div style="text-align: center">
-                    <div class="comment-form">
-                        <h3>공지사항 수정</h3>
-
-                        <input type="checkbox"name="noticeType" value="중요">중요</input>
-                        <input type="checkbox"name="noticeType" value="공지">공지</input>
-                        </input>
-
-                        <br/><br/><br/>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-
-                                                <input type="hidden" name="memberId" value="0"/>
-
-
-                                                <input class="form-control" name="noticeSubject" id="noticeSubject"  type="text" placeholder="${noticeDetail.noticeSubject}"
-                                                       value=""
-                                                style="width : 500px; height : 40px; margin-left: 539px;" >
-
-                                        </div>
-                                        </div>
+    <form action="/noticeUpdate" method="post">
+    <c:forEach var="noticeDetail" items="${noticeDetail}">
+    <div style="text-align: center">
+        <div class="comment-form">
+            <h3>공지 수정</h3>
 
 
 
+            <c:if test="${memberId==0}">
+                <input type="checkbox"name="noticeType" value="중요"/>중요
+                <input type="checkbox"name="noticeType" value="공지"/>공지
 
-                                        <textarea  name="noticeContent" id="noticeContent" cols="100" rows="15" style="text-align: center;"
-               placeholder=" 내용: ${noticeDetail.noticeContent}"></textarea>
-                                    </div>
-                                </div>
+            </c:if>
 
-                                <div style="text-align: center">
-
-
-
-                                </div>
+            <c:if test="${memberId!=0}">
+                <${noticeDetail.noticeType}>
 
 
+            </c:if>
 
-                            <c:if test="${noticeDetail.memberId==0}">
+
+
+            <br/><br/><br/>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+
+                        <div class="col-sm-6">
                             <div class="form-group">
-                                <a href="/noticeUpdate?noticeId=${noticeDetail.noticeId}" id="update" >
-                                <button type="submit" class="button button-contactForm btn_1 boxed-btn">수정하기</button>
-                                </a>
 
-                                <a href="/noticeDelete?noticeId=${noticeDetail.noticeId}">
-                                    <button type="submit" id="delete" class="button button-contactForm btn_1 boxed-btn">삭제하기</button>
-                                </a>
+                                <input type="hidden" name="memberId" value="0"/>
+                                <input type="hidden" name="noticeId" value="${noticeDetail.noticeId}"/>
 
-                                <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
-                            </div>
-
-
-                            </c:if>
-
-
-                             </c:forEach>
-
-
-
+                                <input class="form-control" name="noticeSubject" id="noticeSubject"  type="text" placeholder="제목"
+                                        value="${noticeDetail.noticeSubject}"
+                                       style="width : 500px; height : 40px; margin-left: 539px;" >
 
                             </div>
-<%--                        </form>--%>
+                        </div>
+
+
+
+
+                        <textarea  name="noticeContent"  id="noticeContent" cols="100" rows="15" style="text-align: center;"
+                                   placeholder=" 내용: ">${noticeDetail.noticeContent}</textarea>
                     </div>
                 </div>
 
+                <div style="text-align: center">
+
+
+
+                </div>
+
+
+
+                <c:if test="${memberId==0}">
+                    <div class="form-group">
+
+
+                            <button type="submit" id="update" class="button button-contactForm btn_1 boxed-btn">공지수정</button>
+
+
+
+
+                            <button type="submit" id="delete" class="button button-contactForm btn_1 boxed-btn">삭제하기</button>
+
+                        <button type="button" class="button button-contactForm btn_1 boxed-btn" id="historyNotice">뒤로가기</button>
+
+
+
+                    </div>
+                </c:if>
+
+
+                <c:if test="${memberId!=0}">
+                    <div class="form-group">
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn" onclick="history_back();">뒤로가기</button>
+
+                    </div>
+                </c:if>
+
+            </div>
+
+
+            </c:forEach>
+    </form>
+
+            <%--                        </form>--%>
+        </div>
+    </div>
+
 
 </div>
-    <!-- Blog Area End -->
+<!-- Blog Area End -->
 </main>
 <jsp:include page="../main/footer.jsp"></jsp:include>
 
@@ -143,23 +164,40 @@
         history.back();
     }
 
-    $('#insert').click(function (){
+    $('#historyNotice').click(function (){
+        window.location.href = "/notice";
+        return true;
+    });
 
-        if($('#reviewSubject').val() ==''){
-            alert("제목을 입력해주세요!");
+
+    $('#update').click(function (){
+
+
+
+        if (!confirm("공지사항을 수정 하시겠습니까?")) {
+
             return false;
+        } else {
+            alert("수정완료");
+            return true;
         }
 
-        $('#update').click(function () {
 
-        alert("정말 수정하시겠습니까?");
-        });
 
-        $('#delete').click(function () {
 
-            alert("정말 삭제하시겠습니까?");
-        });
+    });
 
+    $('#delete').click(function (){
+
+
+
+        if (!confirm("공지사항을 삭제 하시겠습니까?")) {
+
+            return false;
+        } else {
+            alert("삭제완료");
+            return true;
+        }
 
 
 

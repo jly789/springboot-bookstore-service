@@ -39,10 +39,12 @@
 
 
 
-    <update id="noticeUpdate" parameterType="int">
-        update  from comments
+    <update id="noticeUpdate" parameterType="com.DreamBook.BookStoreService.dto.notice.NoticeUpdateDTO">
+        update notice
 
-        where commentId = #{commentId}
+        set noticeSubject = #{noticeSubject} , noticeContent =#{noticeContent} ,noticeType=#{noticeType}
+
+        where noticeId = #{noticeId}
     </update>
 
 
