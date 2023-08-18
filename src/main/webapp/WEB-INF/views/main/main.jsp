@@ -89,7 +89,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-8">
                     <div class="section-tittle text-center mb-55">
-                        <h2>Best Selling Books Ever</h2>
+                        <h2>베스트셀러(주문많은순)</h2>
                     </div>
                 </div>
             </div>
@@ -300,8 +300,8 @@
                         <!-- tittle -->
                         <div class="col-xl-12">
                             <div class="section-tittle d-flex justify-content-between align-items-center mb-40">
-                                <h2 class="mb-0">Featured This Week</h2>
-                                <a href="#" class="browse-btn">View All</a>
+                                <h2 class="mb-0">Top5 인기 도서 view많은순</h2>
+
                             </div>
                         </div>
                     </div>
@@ -380,7 +380,7 @@
                 <div class="col-xl-5 col-lg-5 col-md-12">
                     <!-- Section Tittle -->
                     <div class="section-tittle  mb-40">
-                        <h2>Latest Published items</h2>
+                        <h2>장르별 Top6 도서</h2>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-12">
@@ -1272,7 +1272,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="more-btn text-center mt-15">
-                        <a href="#" class="border-btn border-btn2 more-btn2">Browse More</a>
+                        <a href="#" class="border-btn border-btn2 more-btn2">맨위로</a>
                     </div>
                 </div>
             </div>
@@ -1280,46 +1280,7 @@
     </section>
     <!-- Latest-items End -->
     <!-- Want To work -->
-    <section class="container">
-        <div class="row align-items-center justify-content-between">
-            <div class="col-xl-6 col-lg-6">
-                <div class="wantToWork-area w-padding2 mb-30" data-background="assets/img/gallery/wants-bg1.jpg">
-                    <h2>The History<br> of Phipino</h2>
-                    <div class="linking">
-                        <a href="#" class="btn wantToWork-btn">View Details</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 col-lg-6">
-                <div class="wantToWork-area w-padding2 mb-30" data-background="assets/img/gallery/wants-bg2.jpg">
-                    <h2>Wilma Mumduya</h2>
-                    <div class="linking">
-                        <a href="#" class="btn wantToWork-btn">View Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Want To work End -->
-    <!-- Subscribe Area Start -->
-    <section class="subscribe-area" >
-        <div class="container">
-            <div class="subscribe-caption text-center  subscribe-padding section-img2-bg" data-background="assets/img/gallery/section-bg1.jpg">
-                <div class="row justify-content-center">
 
-                    <div class="col-xl-6 col-lg-8 col-md-9">
-                        <h3>Join Newsletter</h3>
-                        <p>Lorem started its journey with cast iron (CI) products in 1980. The initial main objective was to ensure pure water and affordable irrigation.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your email">
-                            <button class="subscribe-btn">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Subscribe Area End -->
 </main>
 
 <!-- JS here -->
