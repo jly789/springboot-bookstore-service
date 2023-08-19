@@ -20,9 +20,9 @@
         <insert id="insertData" parameterType="com.DreamBook.BookStoreService.dto.book.BookAddDTO">
 
         insert into book(bookId,memberId,bookName,bookContent,author,publisher,genre,
-                         fileName,filePath,price,salesQuantity,bookLoan,views,publicationYear)
+                         fileName,filePath,price,salesQuantity,bookLoan,views,publicationYear,salesRate)
         values (#{bookId},#{memberId},#{bookName},#{bookContent},#{author},#{publisher},
-                #{genre},#{fileName},#{filePath},#{price},#{salesQuantity},1,0,#{publicationYear})
+                #{genre},#{fileName},#{filePath},#{price},#{salesQuantity},1,0,#{publicationYear},0)
 
         </insert>
 
@@ -203,6 +203,8 @@
         </if>
 
     </select>
+
+
 
     <select id="SelectManyReview" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
@@ -450,6 +452,15 @@
 
         update book
         set    views = views+1
+        where bookId =#{bookId}
+
+
+    </update>
+
+    <update id="updateSalesRate" parameterType="com.DreamBook.BookStoreService.dto.book.BookUpdateDTO" >
+
+        update book
+        set    salesRate = salesRate+1
         where bookId =#{bookId}
 
 

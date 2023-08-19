@@ -103,6 +103,9 @@ public interface BookMapper {
 
     public void   updateWishQuantity(BookCartDTO bookCartDTO) throws Exception;
 
+    public void       updateSalesRate(int bookId) throws Exception;
+
+
     public void wishQuantityCheck(BookCartDTO bookCartDTO)throws Exception;
 
     public void   updateWishQuantityMinus(BookCartDTO bookCartDTO) throws Exception;

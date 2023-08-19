@@ -39,6 +39,7 @@ public class BookDTO {
     @NotNull(message = "필수 정보입니다.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publicationYear;
+    private int salesRate;
 
 
 

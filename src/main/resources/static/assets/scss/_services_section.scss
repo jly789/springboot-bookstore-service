@@ -3,7 +3,7 @@
 
     .single-services {
         @include flexbox();
-        background-color:$theme-color;
+        background-color:blue;
         padding: 29px 20px 29px 80px;
         @media #{$md}{
             @include flex-wrap(wrap);
@@ -24,7 +24,7 @@
               width: 100%;
             }
         }
-        
+
         .features-caption {
             margin-left: 50px;
             @media #{$md}{
@@ -36,7 +36,7 @@
             @media #{$xs}{
                 margin-left: 0px;
             }
-           
+
             img{
                 @media #{$md}{
                     margin-bottom: 30px;
@@ -68,7 +68,7 @@
                 line-height: 1.5;
                 color: #fff;
                 margin-bottom: 30px;
-               
+
                 @media #{$lg}{
                     font-size: 15px;
                 }

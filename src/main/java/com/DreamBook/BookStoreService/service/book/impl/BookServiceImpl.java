@@ -267,6 +267,10 @@ public class BookServiceImpl implements BookService {
         bookMapper.updateBookDataNotImage(bookUpdateDTO);
     }
 
+    @Override
+    public void updateSalesRate(int bookId) throws Exception {
+        bookMapper.updateSalesRate(bookId);
+    }
 
     @Override
     public void updateWishQuantity(BookCartDTO bookCartDTO) throws Exception { //장바구니 해당도서의 수량증가

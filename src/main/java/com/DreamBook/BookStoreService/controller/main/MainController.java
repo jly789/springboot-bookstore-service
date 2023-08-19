@@ -1,11 +1,13 @@
 package com.DreamBook.BookStoreService.controller.main;
 
 import ch.qos.logback.core.joran.conditional.ElseAction;
+import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
 import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.comment.CommentService;
+import com.DreamBook.BookStoreService.service.main.MainService;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import com.DreamBook.BookStoreService.service.order.OrderService;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
@@ -41,27 +43,45 @@ public class MainController {
 
     @Resource
     private CommentService commentService;
+    @Resource
+    private MainService mainService;
 
 
     @GetMapping("/")
-    public String main(Model model, HttpSession session){
+    public String main(Model model, HttpSession session) {
 
-        if(session.getAttribute("memberId") !=null) {
 
-            if (session.getAttribute("userId")=="admin") {
-                model.addAttribute("memberId", session.getAttribute("memberId"));
-                model.addAttribute("userId", session.getAttribute("userId"));
-            }
+
+
+        if (session.getAttribute("memberId") == null) {
+
+
+            List<BookFindDTO> bookList = mainService.bookList();
+            List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
+            List<BookFindDTO> weekBook = mainService.weekBook();
+
+            model.addAttribute("bestSellerList", bestSellerList);
+            model.addAttribute("weekBook", weekBook);
 
             return "main/main";
+        } else  {
+            String userId = (String) session.getAttribute("userID");
+            int memberId = (int) session.getAttribute("memberId");
 
+            List<BookFindDTO> bookList = mainService.bookList();
+            List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
+            List<BookFindDTO> weekBook = mainService.weekBook();
+
+            model.addAttribute("bestSellerList", bestSellerList);
+            model.addAttribute("weekBook", weekBook);
+            model.addAttribute("userId", userId);
+            model.addAttribute("memberId", memberId);
+
+
+            return "main/main";
         }
 
-        else
-        return "main/main";
     }
-
-
 
     @GetMapping("/myPage")
     public String myPage(MemberUpdateDTO MemberUpdateDTO,Model model,HttpSession session)throws Exception {
@@ -283,6 +303,9 @@ public class MainController {
 
         return "main/index";
     }
+
+
+
 
 
 

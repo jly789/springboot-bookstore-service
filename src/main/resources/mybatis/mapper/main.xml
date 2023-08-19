@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-/mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.DreamBook.BookStoreService.mapper.main.MainMapper">
+
+
+    <select id="maxNum" resultType="int">
+        select nvl(max(bookId),0) from book
+    </select>
+
+
+    <select id="maxNumCart" resultType="int">
+        select nvl(max(cartId),0) from cart
+    </select>
+
+
+
+    <select id="bookList"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+        select distinct * from book
+
+
+
+    </select>
+
+
+    <select id="bestSeller" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+
+
+        select
+        a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,
+        round(avg(b.grade))as grade,count(b.reviewId) as reviewId from book a
+        left join review b on a.bookId = b.bookId
+
+        WHERE
+
+
+            a.bookId IN
+
+        <foreach item="bookList" collection="bookList" open="(" close=")" separator=",">
+            #{bookList.bookId}
+        </foreach>
+
+        and a.salesRate >1000
+
+
+        GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate
+        ORDER BY a.salesRate desc
+
+    </select>
+
+
+    <select id="weekBook" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+
+        select * from(
+
+                         select
+                             a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,
+                             RANK() OVER(ORDER BY a.views DESC) as ranking,
+                                 round(avg(b.grade))as grade,count(b.reviewId) as reviewId from book a
+                                                                                                    left join review b on a.bookId = b.bookId
+                         GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.views
+                         ORDER BY a.salesRate desc
+                     )
+        where ranking between 1 and 4
+
+    </select>
+
+
+
+
+
+</mapper>

@@ -27,6 +27,7 @@ public class BookFindDTO {
     private int salesQuantity;
     private int bookLoan;
     private int views;
+    private int salesRate;
     private int orderNum;
     private int orderId;
     private String orderState;

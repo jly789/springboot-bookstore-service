@@ -1,8 +1,10 @@
 package com.DreamBook.BookStoreService.controller.member;
 
+import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberJoinDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
+import com.DreamBook.BookStoreService.service.main.MainService;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,9 +27,21 @@ public class MemberController {
     @Resource
 
     private MemberService memberService;
+
+    @Resource
+
+    private MainService mainService;
     @GetMapping("/login")
     public String login(Model model) {
 
+
+
+        List<BookFindDTO> bookList = mainService.bookList();
+        List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
+        List<BookFindDTO> weekBook = mainService.weekBook();
+
+        model.addAttribute("bestSellerList", bestSellerList);
+        model.addAttribute("weekBook", weekBook);
 
         return "member/login";
     }
@@ -40,6 +55,14 @@ public class MemberController {
             session.setAttribute("userId", memberFindDTO.getUserId());
             session.setAttribute("memberId",memberId);
 
+            List<BookFindDTO> bookList = mainService.bookList();
+            List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
+            List<BookFindDTO> weekBook = mainService.weekBook();
+
+            model.addAttribute("bestSellerList", bestSellerList);
+            model.addAttribute("weekBook", weekBook);
+
+
 
             return "main/main";
         } else
@@ -48,11 +71,19 @@ public class MemberController {
 
     }
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
+    public String logout(HttpSession session,Model model) {
 
         session.getAttribute("userId");
         session.removeAttribute("userId");
         session.removeAttribute("memberId");
+
+        List<BookFindDTO> bookList = mainService.bookList();
+        List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
+        List<BookFindDTO> weekBook = mainService.weekBook();
+
+        model.addAttribute("bestSellerList", bestSellerList);
+        model.addAttribute("weekBook", weekBook);
+
 
         return "main/main";
 

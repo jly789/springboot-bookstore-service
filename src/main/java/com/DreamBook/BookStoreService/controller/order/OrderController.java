@@ -3,6 +3,7 @@ package com.DreamBook.BookStoreService.controller.order;
 import com.DreamBook.BookStoreService.dto.book.BookCartDTO;
 import com.DreamBook.BookStoreService.dto.book.BookDTO;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
+import com.DreamBook.BookStoreService.dto.book.BookUpdateDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberFindDTO;
 import com.DreamBook.BookStoreService.dto.order.DeliveryDTO;
@@ -104,8 +105,8 @@ public class OrderController {
     @ResponseBody
     @PostMapping("/payment")
     public String  payment(Model model, HttpSession session, OrderDTO orderDTO, DeliveryDTO deliveryDTO
-                           ,@RequestParam("bookId") int[] bookId,@RequestParam("wishQuantity") int[] wishQuantity
-                          , @RequestParam("cartId") int[] cartId,@RequestParam("usePoint") int point,Math math,
+                           , @RequestParam("bookId") int[] bookId, @RequestParam("wishQuantity") int[] wishQuantity
+                          , @RequestParam("cartId") int[] cartId, @RequestParam("usePoint") int point, Math math,
                            @RequestParam("plusPoint")int plusPoint, @RequestParam("memberId") int memberId)
 
     throws Exception{
@@ -130,6 +131,7 @@ public class OrderController {
 
             orderService.orderInsertData(orderDTO);
             bookService.OrderDeleteCart(cartId[i]);
+            bookService.updateSalesRate(bookId[i]);
 
             deliveryDTO.setDeliveryId(orderMaxNum+1);
 

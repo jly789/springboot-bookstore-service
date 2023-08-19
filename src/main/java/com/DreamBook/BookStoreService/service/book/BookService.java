@@ -80,6 +80,9 @@ public void updateBookData(BookUpdateDTO bookUpdateDTO,MultipartFile file) throw
 
     public void updateBookDataNotImage(BookUpdateDTO bookUpdateDTO) throws Exception; //admin book이미지없을시
 
+
+    public void   updateSalesRate(int bookId) throws Exception;
+
     public void   updateWishQuantity(BookCartDTO bookCartDTO) throws Exception;
 
     public void   updateWishQuantityMinus(BookCartDTO bookCartDTO) throws Exception;
