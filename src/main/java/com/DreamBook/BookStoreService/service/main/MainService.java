@@ -11,4 +11,6 @@ public interface MainService {
     public List<BookFindDTO> bestSeller(List<BookFindDTO>bookList);
 
     public List<BookFindDTO> weekBook();//이주의 top5 책
+
+    public List<BookFindDTO>  top5Genre(String genre);
 }

@@ -48,7 +48,7 @@ public class MainController {
 
 
     @GetMapping("/")
-    public String main(Model model, HttpSession session) {
+    public String main(Model model, HttpSession session,BookFindDTO bookFindDTO) {
 
 
 
@@ -56,12 +56,19 @@ public class MainController {
         if (session.getAttribute("memberId") == null) {
 
 
+
             List<BookFindDTO> bookList = mainService.bookList();
             List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
             List<BookFindDTO> weekBook = mainService.weekBook();
 
+            String genre = "공포";
+
+            List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+
+
             model.addAttribute("bestSellerList", bestSellerList);
             model.addAttribute("weekBook", weekBook);
+            model.addAttribute("top5Genre", top5Genre);
 
             return "main/main";
         } else  {
@@ -72,10 +79,14 @@ public class MainController {
             List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
             List<BookFindDTO> weekBook = mainService.weekBook();
 
+            String genre = "공포";
+            List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+
             model.addAttribute("bestSellerList", bestSellerList);
             model.addAttribute("weekBook", weekBook);
             model.addAttribute("userId", userId);
             model.addAttribute("memberId", memberId);
+            model.addAttribute("top5Genre", top5Genre);
 
 
             return "main/main";

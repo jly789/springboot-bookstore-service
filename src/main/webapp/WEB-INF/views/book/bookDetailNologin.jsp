@@ -203,33 +203,71 @@
                                 <c:forEach var="bookList" items="${bookList}">
 
 
-                                    <div class="single-services d-flex align-items-center mb-0">
+                                    <div class="single-services d-flex align-items-center mb-0"
+                                         style="background-color: #FEF4F4;">
                                         <div class="features-img">
-                                            <img src="files/${bookList.fileName}" alt="">
+                                            <img src="files/${bookList.fileName}" alt="" style="height: 500px; object-fit: cover;" >
                                         </div>
                                         <div class="features-caption">
-                                            <h3>${bookList.bookName}</h3>
-                                            <p>${bookList.author}</p>
+                                            <h3 style="color: black;">${bookList.bookName}</h3>
+                                            <p style="color: black;">${bookList.author}</p>
                                             <input type="hidden" id="bookId" name="bookId" value="${bookList.bookId}">
                                             <input type="hidden" name="amount" value="${bookList.price}">
                                             <div class="price">
-                                                <span>$${bookList.price}</span>
+                                                <span style="color: black;">${bookList.price}원</span>
                                             </div>
                                             <div class="review">
-                                                <div class="rating">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star-half-alt"></i>
-                                                </div>
-                                                <p>(120 Review)</p>
+                                                <c:if test="${bookList.grade==0}">
+
+
+                                                </c:if>
+
+                                                <c:if test="${bookList.grade==1}">
+
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+
+                                                </c:if>
+
+                                                <c:if test="${bookList.grade==2}">
+
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+
+                                                </c:if>
+
+                                                <c:if test="${bookList.grade==3}">
+
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+
+                                                </c:if>
+
+                                                <c:if test="${bookList.grade==4}">
+
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+
+                                                </c:if>
+
+
+                                                    <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
+                                                <c:if test="${bookList.grade==5}">
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                </c:if>
+
+                                                <p style="color: black;">(${bookList.reviewId} Review)</p>
                                             </div>
 
-                                            <button type="submit" class="white-btn mr-10">Add to Cart</button>
+                                            <button type="submit" class="white-btn mr-10">장바구니</button>
 
-                                            <a href="#" class="border-btn share-btn"><i
-                                                    class="fas fa-share-alt"></i></a>
+
                                         </div>
                                     </div>
                                 </c:forEach>

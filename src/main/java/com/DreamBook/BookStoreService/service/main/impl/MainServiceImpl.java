@@ -28,4 +28,9 @@ public class MainServiceImpl implements MainService {
     public List<BookFindDTO> weekBook() {
         return mainMapper.weekBook();   //이주의 top5 책
     }
+
+    @Override
+    public List<BookFindDTO> top5Genre(String genre) {
+        return mainMapper.top5Genre(genre);
+    }
 }
