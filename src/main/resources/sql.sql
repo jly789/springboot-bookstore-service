@@ -56,6 +56,7 @@ CREATE TABLE BOOK
     bookLoan  NUMBER DEFAULT 1,  --책 대출여부
     views NUMBER DEFAULT 0,  --책 조회수
     publicationYear DATE NOT NULL, --책 출판년도
+    salesRate NUMBER DEFAULT 0,
 
     CONSTRAINT BOOK PRIMARY KEY (bookId),
     CONSTRAINT FK_BOOK_MEMBER_ID FOREIGN KEY (memberId) REFERENCES MEMBER (memberId)
@@ -162,6 +163,7 @@ CREATE TABLE NOTICE
 
 
 
+------------------------Member---------------------------------------------------------------------------------------------------------------------------
 
 INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BIRTH ,TEL ,POSTCODE ,ADDRESS, DETAILADDRESS, EXTRAADDRESS ,EMAIL, FAVORITEGENRE, USERGRADE ,PURCHASEAMOUNT, POINT,fileName,filePath)
 values(0,'ADMIN','admin','admin','관리자','남자',29,'관리자님','1995-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
@@ -186,9 +188,125 @@ INSERT into member (MEMBERID,  ROLE, USERID ,PWD, NAME, GENDER, AGE ,NIKNAME, BI
 values(4,'MEMBER','user4','a123123','이지은','여자',31,'이지은','1993-04-01','01020893971',13111,'Suansu Castle, Taepyeong-dong, Seongnam-si, Gyeonggi-do(경기도 성남시 태평동 수앤수캐슬)',
        '402호',null,'jly789@naver.com','코미디','King',200000,10000,'이지금.jpg','/profileImg/이지금.jpg');
 
-INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
-values(1,0,'스티브잡스','스티브잡스','월터 아이작슨','민음사','경영','스티브잡스.jpg','/files/스티브잡스.jpg',22500,10000,1,0,SYSDATE);
+select * from member;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+
+
+------------------------Book---------------------------------------------------------------------------------------------------------------------------
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(1,0,'스티브잡스','스티브잡스','월터 아이작슨','민음사','경영','스티브잡스.jpg','/files/스티브잡스.jpg',22500,10000,1,111,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(2,0,'아무것도하지않는법','아무것도하지않는법','제니 오델','필로우','인문학','아무것도하지않는법.jpg','/files/아무것도하지않는법.jpg',16650,10000,1,222,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(3,0,'수학의정석','수학의정석','홍성대','성지출판','수학영역','수학의정석.jpg','/files/수학의정석.jpg',15300,10000,1,333,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(4,0,'어린이를 위한 역사의 쓸모 인생 편 1','어린이를 위한 역사의 쓸모 인생 편 1','최태성','다산어린이','어린이','어린이를 위한 역사의 쓸모 인생 편 1.jpg','/files/어린이를 위한 역사의 쓸모 인생 편 1.jpg',10500,10000,1,555,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(5,0,'에스콰이어 Esquire A형','에스콰이어 Esquire A형','에스콰이어 편집부','허스트중앙','잡지','에스콰이어 Esquire A형.jpg','/files/에스콰이어 Esquire A형.jpg',32000,10000,1,666,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(6,0,'킹더랜드','킹더랜드','최롬','JTBC','소설','킹더랜드.jpg','/files/킹더랜드.jpg',13000,10000,1,110,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(7,0,'인듀어런스','인듀어런스','김세중','뜨인돌','에세이','인듀어런스.jpg','/files/인듀어런스.jpg',15000,10000,1,235,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(8,0,'공포의 권력','공포의 권력','줄리아 크리스테바','서민원','인문학','공포의 권력.jpg','/files/공포의 권력.jpg',20700,10000,1,2000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(9,0,'관계의 교실','관계의 교실','필립 라일리','지식의날개','인문학','관계의 교실.jpg','/files/관계의 교실.jpg',35000,10000,1,3000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(10,0,'기후변화','기후변화','마크 매슬린','교유서가','과학','기후변화.jpg','/files/기후변화.jpg',22500,10000,1,4000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(11,0,'나의아저씨','나의아저씨','박해영','세계사','소설','나의아저씨.jpg','/files/나의아저씨.jpg',22500,10000,1,5000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(12,0,'느리게 산다는 것','느리게 산다는 것','피에르 쌍소','드림셀러','에세이','느리게 산다는 것.jpg','/files/느리게 산다는 것 .jpg',15200,10000,1,10000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(13,0,'드랍 더 비트','드랍 더 비트','김근','쌤앤파커스','에세이','드랍 더 비트.jpg','/files/드랍 더 비트.jpg',40000,10000,1,5600,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(14,0,'비가 오면 열리는 상점','비가 오면 열리는 상점','유영광','클레이하우스','소설','비가 오면 열리는 상점.jpg','/files/비가 오면 열리는 상점.jpg',37800,10000,1,12000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(15,0,'Dragon Masters','Dragon Masters','트레이시 웨스트','Scholastic Inc.','동화','Dragon Masters.jpg','/files/Dragon Masters.jpg',9000,10000,1,99000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(16,0,'처음 떠나는 시공간 여행','처음 떠나는 시공간 여행','스테판 다스콜리,','북스힐','우주과학','처음 떠나는 시공간 여행.jpg','/files/처음 떠나는 시공간 여행.jpg',18000,10000,1,120000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(17,0,'해파리책','해파리책','파올라 비탈레','원더박스','과학','해파리책.jpg','/files/해파리책.jpg',8900,10000,1,3200,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(18,0,'재벌집 막내아들 1','재벌집 막내아들 1','산경','테라코타','소설','재벌집 막내아들 1.jpg','/files/재벌집 막내아들 1.jpg',35000,10000,1,2200,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(19,0,'재벌집 막내아들 2','재벌집 막내아들 2','산경','테라코타','소설','재벌집 막내아들 2.jpg','/files/재벌집 막내아들 2.jpg',35000,10000,1,1500,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(20,0,'재벌집 막내아들 3','재벌집 막내아들 3','산경','테라코타','소설','재벌집 막내아들 3.jpg','/files/재벌집 막내아들 3.jpg',35000,10000,1,60000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(21,0,'재벌집 막내아들 4','재벌집 막내아들 4','산경','테라코타','소설','재벌집 막내아들 4.jpg','/files/재벌집 막내아들 4.jpg',35000,10000,1,500000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(22,0,'재벌집 막내아들 5','재벌집 막내아들 5','산경','테라코타','소설','재벌집 막내아들 5.jpg','/files/재벌집 막내아들 5.jpg',35000,10000,1,550000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(23,0,'러브크래프트의 공포들','러브크래프트의 공포들','샌디 피터슨','초여명','공포','러브크래프트의 공포들.jpg','/files/러브크래프트의 공포들.jpg',51000,10000,1,600000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(24,0,'너무 한낮의 연애','너무 한낮의 연애','김금희','문학동네','연애','너무 한낮의 연애.jpg','/files/너무 한낮의 연애.jpg',35000,10000,1,3200,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(25,0,'블랙코미디','블랙코미디','유병재','비채','코미디','블랙코미디.jpg','/files/블랙코미디.jpg',21000,10000,1,40000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(26,0,'벤저민 프랭클린 자서전','벤저민 프랭클린 자서전','벤저민 프랭클린 자서전','문학동네','자서전','벤저민 프랭클린 자서전.jpg','/files/벤저민 프랭클린 자서전.jpg',13500,10000,1,22000,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(27,0,'사회과학 하기','사회과학 하기','장-피에르 카바이예','후마니타스','사회과학','사회과학 하기.jpg','/files/사회과학 하기.jpg',18900,10000,1,12032,SYSDATE);
+INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
+values(28,0,'일간 이슬아 수필집','일간 이슬아 수필집','이슬아','혜엄','수필','일간 이슬아 수필집.jpg','/files/일간 이슬아 수필집.jpg',15300,10000,1,4200,SYSDATE);
+
+SELECT * FROM book;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------cart---------------------------------------------------------------------------------------------------------------------------
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(1,1,1,1,22500);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(2,2,2,1,16650);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(3,3,3,1,15300);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(4,1,4,1,10500);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(5,2,5,1,32000);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(6,3,6,1,13000);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(7,1,7,1,15000);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(8,2,8,1,20700);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(9,3,9,1,35000);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(10,4,10,1,35000);
+INSERT into cart (CARTID,MEMBERID,BOOKID,WISHQUANTITY,AMOUNT)
+values(11,4,11,1,35000);
+
+SELECT * FROM cart;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------Comments---------------------------------------------------------------------------------------------------------------------------
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(1,1,1,'1빠유진',SYSDATE);
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(2,2,1,'2빠지용이',SYSDATE);
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(3,3,1,'3빠은채',SYSDATE);
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(4,1,1,'유진인데요',SYSDATE);
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(5,2,1,'지용인데요',SYSDATE);
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(6,3,1,'은채인데요',SYSDATE);
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(7,1,1,'이 책 별루지??',SYSDATE);
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(8,2,1,'나두!!',SYSDATE);
+INSERT into comments (COMMENTID,MEMBERID,BOOKID,COMMENTCONTENT,COMMENTDATE) values(9,3,1,'너도?????',SYSDATE);
+
+SELECT * FROM comments;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------Notice---------------------------------------------------------------------------------------------------------------------------
 INSERT into notice (noticeId,  memberId, noticeSubject ,noticeContent, noticeType, noticeDate, noticeViews)
 values(1,0,'긴급공지입니다','8월19일 14시 점검합니다','중요',SYSDATE,0);
 
@@ -204,11 +322,206 @@ values(4,0,'이달의 도서 공지','8월 베스트셀러 스티브잡스입니
 INSERT into notice (noticeId,  memberId, noticeSubject ,noticeContent, noticeType, noticeDate, noticeViews)
 values(5,0,'환불/교환 공지','환불 또는 교환 필요시 031-1234-5678로 전화문의 바랍니다','공지',SYSDATE,0);
 
+SELECT * FROM notice;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+------------------------Orders---------------------------------------------------------------------------------------------------------------------------
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(1,1,1,'1','1',22500,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(2,2,2,'2','2',16650,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(3,3,3,'3','3',15300,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(4,4,4,'4','4',10500,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(5,1,5,'5','5',32000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(6,2,6,'6','6',13000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(7,3,7,'7','7',15000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(8,4,8,'8','8',20700,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(9,1,9,'9','9',35000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(10,2,10,'10','10',22500,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(11,3,11,'11','11',22500,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(12,4,12,'12','12',15200,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(13,1,13,'13','13',40000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(14,2,14,'14','14',37800,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(15,3,15,'15','15',9000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(16,4,16,'16','16',18000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(17,1,17,'17','17',8900,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(18,2,18,'18','18',35000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(19,3,19,'19','19',35000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(20,4,20,'20','20',350000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(21,1,21,'21','21',350000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(22,2,22,'22','22',350000,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(23,1,28,'23','23',15300,1,'ORDER',SYSDATE,0);
+INSERT into orders (ORDERID,  MEMBERID, BOOKID ,ORDERNUM, IMPUID, AMOUNT, WISHQUANTITY,ORDERSTATE,ORDERDATE,USEPOINT)
+values(24,1,24,'24','24',35000,1,'ORDER',SYSDATE,0);
+
+
+SELECT * FROM orders;
+select * from book
+where genre ='연애';
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------Delivery---------------------------------------------------------------------------------------------------------------------------
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(1,1,1,'안유진','01020893971','13111','경기도 성남시 태평동','수앤수캐슬','402호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(2,2,2,'지드래곤','01012345678','12345','경기도 용인시 마북동','현대홈타운','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(3,3,3,'홍은채','01034559888','12531','서울시 강남구 역삼2동','강남롯데캐슬','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(4,4,4,'이지은','01023569877','11111','서울시 강남구 대치동','이지은타워','302호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(5,5,1,'집','01020893971','13111','경기도 성남시 태평동','수앤수캐슬','402호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(6,6,2,'집','01012345678','12345','경기도 용인시 마북동','현대홈타운','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(7,7,3,'집','01034559888','12531','서울시 강남구 역삼2동','강남롯데캐슬','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(8,8,4,'집','01023569877','11111','서울시 강남구 대치동','이지은타워','302호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(9,9,1,'집','01020893971','13111','경기도 성남시 태평동','수앤수캐슬','402호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(10,10,2,'집','01012345678','12345','경기도 용인시 마북동','현대홈타운','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(11,11,3,'집','01034559888','12531','서울시 강남구 역삼2동','강남롯데캐슬','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(12,12,4,'집','01023569877','11111','서울시 강남구 대치동','이지은타워','302호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(13,13,1,'집','01020893971','13111','경기도 성남시 태평동','수앤수캐슬','402호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(14,14,2,'집','01012345678','12345','경기도 용인시 마북동','현대홈타운','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(15,15,3,'집','01034559888','12531','서울시 강남구 역삼2동','강남롯데캐슬','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(16,16,4,'집','01023569877','11111','서울시 강남구 대치동','이지은타워','302호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(17,17,1,'집','01020893971','13111','경기도 성남시 태평동','수앤수캐슬','402호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(18,18,2,'집','01012345678','12345','경기도 용인시 마북동','현대홈타운','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(19,19,3,'집','01034559888','12531','서울시 강남구 역삼2동','강남롯데캐슬','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(20,20,4,'집','01023569877','11111','서울시 강남구 대치동','이지은타워','302호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(21,21,1,'집','01020893971','13111','경기도 성남시 태평동','수앤수캐슬','402호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(22,22,2,'집','01012345678','12345','경기도 용인시 마북동','현대홈타운','101호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(23,23,1,'집','01020893971','13111','경기도 성남시 태평동','수앤수캐슬','402호',5000,SYSDATE);
+INSERT into delivery (DELIVERYID, ORDERID ,MEMBERID  ,RECIPIENT, DELIVERYTEL, POSTCODE, ADDRESS ,DETAILADDRESS, EXTRAADDRESS ,DELIVERYCOST ,ORDERDATE)
+values(24,24,1,'집','01020893971','13111','경기도 성남시 태평동','수앤수캐슬','402호',5000,SYSDATE);
+
+SELECT * FROM delivery;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------Review---------------------------------------------------------------------------------------------------------------------------
+
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(1,1,1,1,'user1','유진이','스티브잡스.jpg','/reviewImg/스티브잡스.jpg',1,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(2,2,2,2,'user2','지드래곤','아무것도하지않는법.jpg','/reviewImg/아무것도하지않는법.jpg',2,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(3,3,3,3,'user3','홍은채','수학의정석.jpg','/reviewImg/수학의정석.jpg',3,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(4,4,4,4,'user4','이지은','어린이를 위한 역사의 쓸모 인생 편 1.jpg','/reviewImg/어린이를 위한 역사의 쓸모 인생 편 1.jpg',4,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(5,1,5,5,'user1','에스콰이어 Esquire A형','에스콰이어 Esquire A형.jpg','/reviewImg/에스콰이어 Esquire A형.jpg',5,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(6,2,6,6,'user2','킹더랜드','킹더랜드.jpg','/reviewImg/킹더랜드.jpg',4,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(7,3,7,7,'user3','인듀어런스','인듀어런스.jpg','/reviewImg/인듀어런스.jpg',2,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(8,4,8,8,'user4','공포의 권력','공포의 권력.jpg','/reviewImg/공포의 권력.jpg',3,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(9,1,9,9,'user1','관계의 교실','관계의 교실.jpg','/reviewImg/관계의 교실.jpg',3,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(10,2,10,10,'user2','기후변화','기후변화.jpg','/reviewImg/기후변화.jpg',1,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(11,3,11,11,'user3','나의아저씨','나의아저씨.jpg','/reviewImg/나의아저씨.jpg',2,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(12,4,12,12,'user4','느리게 산다는 것','느리게 산다는 것.jpg','/reviewImg/느리게 산다는 것.jpg',4,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(13,1,13,13,'노잼인데 이거','아노잼','드랍 더 비트.jpg','/reviewImg/드랍 더 비트.jpg',4,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(14,2,14,14,'다시 또 살게요!','좋아요','비가 오면 열리는 상점.jpg','/reviewImg/비가 오면 열리는 상점.jpg',3,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(15,3,15,15,'개별루 배송도 구림','별루','Dragon Masters.jpg','/reviewImg/Dragon Masters.jpg',5,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(16,4,16,16,'배송엄청 빨라요!!','오메 배송 ㅠㅠ','처음 떠나는 시공간 여행.jpg','/reviewImg/처음 떠나는 시공간 여행.jpg',5,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(17,1,17,17,'책 보다 배송이 문제임 이거','배송느려여','해파리책.jpg','/reviewImg/해파리책.jpg',2,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(18,2,18,18,'스토리 대박!!','짱 굿','재벌집 막내아들 1.jpg','/reviewImg/재벌집 막내아들 1.jpg',1,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(19,3,19,19,'너무 재밌어요 추천합니다!','추천합니다!!!','재벌집 막내아들 2.jpg','/reviewImg/재벌집 막내아들 2.jpg',4,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(20,4,20,20,'최고!!','잼써요','재벌집 막내아들 3.jpg','/reviewImg/재벌집 막내아들 3.jpg',5,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(21,1,21,21,'재벌집6권은 언제나와요','또살게요','재벌집 막내아들 4.jpg','/reviewImg/재벌집 막내아들 4.jpg',3,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(22,2,22,22,'재벌집 1권부터 5권까지 정주행 완료!!!','배달속도 굿굿','재벌집 막내아들 5.jpg','/reviewImg/재벌집 막내아들 5.jpg',2,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(23,1,28,23,'일간 이슬아 수필집!!!','배달속도 굿굿','일간 이슬아 수필집.jpg','/reviewImg/일간 이슬아 수필집.jpg',2,0,'리뷰완료',sysdate);
+INSERT into review (REVIEWID, MEMBERID ,BOOKID  ,ORDERID, REVIEWSUBJECT, REVIEWCONTENT, REVIEWFILENAME,REVIEWFILEPATH,GRADE,VIEWS,REVIEWSTATE,REVIEWDATE)
+values(24,1,24,24,'너무 한낮의 연애!!!','배달속도 굿굿','너무 한낮의 연애.jpg','/reviewImg/너무 한낮의 연애.jpg',2,0,'리뷰완료',sysdate);
+
+SELECT * FROM review;
+select * from BOOK
+where bookId =28;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+select * from(
+
+                 select
+                     a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,
+
+                     RANK() OVER(ORDER BY a.views DESC) as ranking,
+                         round(avg(b.grade))as grade,count(b.reviewId) as reviewId from book a
+
+                                                                                            left join review b on a.bookId = b.bookId
+
+                 GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.views
+                 ORDER BY a.salesRate desc
+             )
+where genre='공포';
 
 
 commit;
+
 select * from member;
-select * from book;
+select * from book
+where genre  = '소설';
 select * from orders;
 select * from delivery;
 select * from review;
