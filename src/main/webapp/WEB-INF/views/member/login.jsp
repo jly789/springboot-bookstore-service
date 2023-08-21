@@ -22,26 +22,25 @@
     <div class="login-form">
       <!-- Login Heading -->
       <div class="login-heading">
-        <span>Login</span>
-        <p>Enter Login details to get access</p>
+        <span>로그인</span>
+
       </div>
       <form action="/login" method="post">
       <!-- Single Input Fields -->
       <div class="input-box">
         <div class="single-input-fields">
-          <label>userId</label>
+          <label>아이디</label>
           <input type="text" name="userId" placeholder="userId">
         </div>
         <div class="single-input-fields">
-          <label>Password</label>
+          <label>비밀번호</label>
           <input type="password" name="pwd" placeholder="Enter Password">
         </div>
 
 
         <div class="single-input-fields login-check">
-          <input type="checkbox" id="fruit1" name="keep-log">
-          <label for="fruit1">Keep me logged in</label>
-          <a href="/idFind" class="f-right">아이디찾기</a>
+
+          <a href="/idFind" style="margin-left: 600px;" class="f-right">아이디찾기</a>
 
         </div>
 
@@ -60,8 +59,8 @@
       <!-- form Footer -->
       <div class="login-footer">
 
-        <p>Don’t have an account? <a href="/register">Sign Up</a>  here</p>
-        <button class="submit-btn3">Login</button>
+        <p>아이디가 없으세요? <a href="/register">가입하기</a>Click</p>
+        <button class="submit-btn3" style="background-color: #FEF4F4; color: red; ">로그인</button>
       </div>
       </form>
 

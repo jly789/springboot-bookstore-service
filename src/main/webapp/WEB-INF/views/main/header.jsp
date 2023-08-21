@@ -47,7 +47,7 @@ padding: 8px 12px;
                                 <div class="header-info-left d-flex align-items-center">
                                     <!-- logo -->
                                     <div class="logo">
-                                        <a href="/"><img src="assets/img/logo/logo.png" alt=""></a>
+                                        <a href="/"><img src="img/로고.jpg" alt=""></a>
                                     </div>
                                     <!-- Search Box -->
                                     <form action="#" class="form-box">
@@ -65,29 +65,35 @@ padding: 8px 12px;
                                         <li><a href="/notice">Notice</a></li>
                                         <c:if test="${userId !=null}" >
 
-
-                                                <li><a href="/myPage">My Page</a></li>
+                                        <c:if test="${userId !='admin'}" >
+                                            <li><a href="/myPage">My Page</a></li>
                                                 <li><a href="/myOrder">Order</a></li>
+                                        </c:if>
 
+                                            <c:if test="${userId =='admin'}" >
+                                                <li><a href="/myPage">My Page</a></li>
+
+                                            </c:if>
 
 
 
                                         </c:if>
                                         <c:if test="${userId !=null}" >
-                                        <li class="shopping-card">
-                                            <a href="/cart"><img src="assets/img/icon/cart.svg" alt=""></a>
+                                        <li class="">
+                                            <a href="/cart"><img src="assets/img/icon/cart.svg" alt="">
+                                                <strong> 장바구니</strong> </a>
                                         </li>
                                         </c:if>
 
 
                                         <c:if test="${userId ==null}">
-                                        <li><a href="/login" class="btn header-btn">log in</a></li>
+                                        <li><a href="/login">Login</a></li>
                                         </c:if>
 
 
 
                                         <c:if test="${userId !=null}">
-                                            <li><a href="/logout" class="btn header-btn">log out</a></li>
+                                            <li><a href="/logout">Logout</a></li>
                                         </c:if>
                                     </ul>
                                 </div>
@@ -110,7 +116,7 @@ padding: 8px 12px;
                                 <nav>
                                     <ul id="navigation">
                                         <c:if test="${userId ==null}">
-                                        <li><a href="/main">Home</a></li>
+                                        <li><a href="/">Home</a></li>
                                         <li><a href="/bookMain">Book</a></li>
                                         <li><a href="#">Notice</a>
                                             <ul class="submenu">

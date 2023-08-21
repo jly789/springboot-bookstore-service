@@ -115,7 +115,7 @@
 
 
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="recipient" name="recipient" placeholder="받는사람명" />
+                <input type="text" class="form-control" id="recipient" name="recipient" placeholder="배송지명" />
               </div>
               <div class="col-md-6 form-group p_star">
                 <input type="text" class="form-control" id="tel" name="deliveryTel" value="" />
@@ -371,6 +371,10 @@
 
   $('#payment').click(function () {
 
+    if($('#recipient').val()==''){
+      alert('배송지명을 입력하세요!')
+      return false;
+    }
 
     var bookId = [];
     var wishQuantity = [];
