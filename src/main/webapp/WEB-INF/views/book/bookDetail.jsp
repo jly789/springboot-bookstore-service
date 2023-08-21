@@ -334,6 +334,7 @@
                         <div class="offset-xl-1 col-lg-9">
                             <c:forEach var="bookList" items="${bookList}">
                                 <p>${bookList.bookContent}</p>
+
                             </c:forEach>
 
                             <br/>

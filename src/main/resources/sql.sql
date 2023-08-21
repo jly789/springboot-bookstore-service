@@ -189,6 +189,22 @@ values(4,'MEMBER','user4','a123123','이지은','여자',31,'이지은','1993-04
 INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY,BOOKLOAN, VIEWS,PUBLICATIONYEAR)
 values(1,0,'스티브잡스','스티브잡스','월터 아이작슨','민음사','경영','스티브잡스.jpg','/files/스티브잡스.jpg',22500,10000,1,0,SYSDATE);
 
+INSERT into notice (noticeId,  memberId, noticeSubject ,noticeContent, noticeType, noticeDate, noticeViews)
+values(1,0,'긴급공지입니다','8월19일 14시 점검합니다','중요',SYSDATE,0);
+
+INSERT into notice (noticeId,  memberId, noticeSubject ,noticeContent, noticeType, noticeDate, noticeViews)
+values(2,0,'리뷰이벤트 진행예정','8월20일~8월30일 전 상품 30% 여름 할인예정!','중요',SYSDATE,0);
+
+INSERT into notice (noticeId,  memberId, noticeSubject ,noticeContent, noticeType, noticeDate, noticeViews)
+values(3,0,'택배 지연발생 공지','택배 지연발생시 문의바랍니다','공지',SYSDATE,0);
+
+INSERT into notice (noticeId,  memberId, noticeSubject ,noticeContent, noticeType, noticeDate, noticeViews)
+values(4,0,'이달의 도서 공지','8월 베스트셀러 스티브잡스입니다!','공지',SYSDATE,0);
+
+INSERT into notice (noticeId,  memberId, noticeSubject ,noticeContent, noticeType, noticeDate, noticeViews)
+values(5,0,'환불/교환 공지','환불 또는 교환 필요시 031-1234-5678로 전화문의 바랍니다','공지',SYSDATE,0);
+
+
 
 commit;
 select * from member;
@@ -200,7 +216,23 @@ select * from comments;
 select * from notice;
 
 
+select
+    to_char(noticeDate,'yyyy-mm-dd') as noticeDate
+from notice;
 
+
+select  a.*,  to_char(orderDate,'yyyy-mm-dd') as orderTime,b.*
+from orders a
+         left join book b on a.bookId = b.bookId
+where a.memberId = 1;
+
+
+select a.noticeId,a.memberId,a.noticeSubject,a.noticeContent,a.noticeType,
+       to_char(noticeDate,'yyyy-mm-dd') as noticeDate,b.userId from notice a
+                                                                        left join member b
+                                                                                  on a.memberId = b.memberId
+
+order by a.noticeType desc;
 
 --INSERT into book (BOOKID,  MEMBERID, BOOKNAME ,BOOKCONTENT, AUTHOR, PUBLISHER, GENRE ,FILENAME, FILEPATH ,PRICE ,SALESQUANTITY ,BOOKLOAN, VIEWS, PUBLICATIONYEAR)
 --values(2,0,'세중과 슬기로운생활','은밀한 세중의사와 하룻밤','윤재일','YG엔터','소설');

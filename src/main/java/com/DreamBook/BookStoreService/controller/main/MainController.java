@@ -79,14 +79,16 @@ public class MainController {
             List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
             List<BookFindDTO> weekBook = mainService.weekBook();
 
-            String genre = "공포";
-            List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+            String genre = "전체";
 
+            List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+            List<BookFindDTO> genreList = mainService.GenreList();
             model.addAttribute("bestSellerList", bestSellerList);
             model.addAttribute("weekBook", weekBook);
             model.addAttribute("userId", userId);
             model.addAttribute("memberId", memberId);
             model.addAttribute("top5Genre", top5Genre);
+            model.addAttribute("genreList", genreList);
 
 
             return "main/main";

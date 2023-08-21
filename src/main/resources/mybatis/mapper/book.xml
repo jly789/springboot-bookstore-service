@@ -367,11 +367,11 @@
         select * from(
 
                          select
-                             a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,
+                             a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.bookContent,a.views,
                              RANK() OVER(ORDER BY a.views DESC) as ranking,
                                  round(avg(b.grade))as grade,count(b.reviewId) as reviewId from book a
                                                                                                     left join review b on a.bookId = b.bookId
-                         GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.views
+                         GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.bookContent,a.views
                          ORDER BY a.salesRate desc
                      )
         where bookId =#{bookId}

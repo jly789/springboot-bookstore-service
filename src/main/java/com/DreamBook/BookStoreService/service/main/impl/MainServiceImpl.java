@@ -33,4 +33,9 @@ public class MainServiceImpl implements MainService {
     public List<BookFindDTO> top5Genre(String genre) {
         return mainMapper.top5Genre(genre);
     }
+
+    @Override
+    public List<BookFindDTO> GenreList() {
+        return mainMapper.GenreList();
+    }
 }

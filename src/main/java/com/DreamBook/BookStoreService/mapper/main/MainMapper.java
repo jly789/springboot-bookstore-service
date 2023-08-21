@@ -16,6 +16,9 @@ public interface MainMapper {
 
     public List<BookFindDTO>  top5Genre(String genre);
 
+    public List<BookFindDTO>  GenreList();
+
+
 
 
 
