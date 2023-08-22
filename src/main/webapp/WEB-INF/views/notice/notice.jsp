@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="cp" value="<%=request.getContextPath()%>"/>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -27,6 +28,164 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+<style>
+
+  a:link {
+    color: red;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  /* paginate */
+  .paginate {
+    padding: 0;
+    line-height: normal;
+    text-align: center;
+    position: relative;
+    margin: 20px 0 20px 0;
+    z-index: 1;
+  }
+
+  .paginate .paging {
+    text-align: center;
+  }
+
+  .paginate .paging a, .paginate .paging strong {
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: #848484;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .paginate .paging a:hover, .paginate .paging strong {
+    color: #DAA520;
+    font-weight: 600;
+    font-weight: normal;
+  }
+
+  .paginate .paging .direction {
+    z-index: 3;
+    vertical-align: middle;
+    background-color: none;
+    margin: 0 2px;
+    border: 1px solid #777;
+    border-radius: 2px;
+    width: 28px;
+  }
+
+  .paginate .paging .direction:hover {
+    border: 1px solid #C40639;
+  }
+
+  .paginate .paging .direction.prev {
+    margin-right: 4px;
+  }
+
+  .paginate .paging .direction.next {
+    margin-left: 4px;
+    cursor: pointer;
+  }
+
+  .paginate .paging img {
+    vertical-align: middle;
+  }
+
+  .paginate .right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .bottom-left, .bottom-right {
+    position: relative;
+    z-index: 5;
+  }
+
+  .paginate ~ .bottom {
+    margin-top: -50px;
+  }
+
+
+  .bottom select {
+    background: transparent;
+    color: #aaa;
+    cursor: pointer;
+  }
+
+
+  /* paginate */
+  .paginate {
+    padding: 0;
+    line-height: normal;
+    text-align: center;
+    position: relative;
+    margin: 20px 0 20px 0;
+  }
+
+  .paginate .paging {
+    text-align: center;
+  }
+
+  .paginate .paging a, .paginate .paging strong {
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: #999;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .paginate .paging a:hover, .paginate .paging strong {
+    color: #C40639;
+    font-weight: 600;
+    font-weight: normal;
+  }
+
+  .paginate .paging .direction {
+    z-index: 3;
+    vertical-align: middle;
+    background-color: none;
+    margin: 0 2px;
+  }
+
+  .paginate .paging .direction:hover {
+    background-color: transparent;
+  }
+
+  .paginate .paging .direction.prev {
+    margin-right: 4px;
+  }
+
+  .paginate .paging .direction.next {
+    margin-left: 4px;
+  }
+
+  .paginate .paging img {
+    vertical-align: middle;
+  }
+
+  .paginate .right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+</style>
 
 <body>
 
@@ -101,7 +260,14 @@
                   </thead>
                   <tbody>
 
-                  <c:if test="${noticeList !=null}">
+
+
+
+                  <c:choose>
+
+
+                  <c:when test="${fn:length(noticeList) > 0}">
+
                   <c:forEach var="noticeList" items="${noticeList}">
 
                   <tr>
@@ -155,7 +321,19 @@
 
                     </c:forEach>
 
-                    </c:if>
+                    </c:when>
+
+
+                    <c:otherwise>
+
+                    </c:otherwise>
+
+
+                    </c:choose>
+
+
+
+
 
 
                   </tr>
@@ -168,6 +346,36 @@
 
 
 
+                <!--paginate -->
+                <div class="paginate">
+                  <div class="paging">
+                    <a class="direction prev" href="javascript:void(0);" style="color: black;"
+                       onclick="movePage(1,${paginationNotice.cntPerPage},${paginationNotice.pageSize});">
+                      &lt;&lt; </a> <a class="direction prev" href="javascript:void(0);"
+                                       style="color: black;"
+                                       onclick="movePage(${paginationNotice.currentPage}<c:if
+                                               test="${paginationNotice.hasPreviousPage == true}">-1</c:if>,${paginationNotice.cntPerPage},${paginationNotice.pageSize});">
+                    &lt; </a>
+
+                    <c:forEach begin="${paginationNotice.firstPage}"
+                               end="${paginationNotice.lastPage}" var="idx">
+                      <a
+                              style="color: black;
+                                <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
+                              href="javascript:void(0);"
+                              onclick="movePage(${idx},${paginationNotice.cntPerPage},${paginationNotice.pageSize});"><c:out
+                              value="${idx}"/></a>
+                    </c:forEach>
+                    <a class="direction next" href="javascript:void(0);" style="color: black;"
+                       onclick="movePage(${paginationNotice.currentPage}<c:if
+                               test="${paginationNotice.hasNextPage == true}">+1</c:if>,${paginationNotice.cntPerPage},${paginationNotice.pageSize});">
+                      &gt; </a> <a class="direction next" href="javascript:void(0);"
+                                   style="color: black;"
+                                   onclick="movePage(${paginationNotice.totalRecordCount},${paginationNotice.cntPerPage},${paginationNotice.pageSize});">
+                    &gt;&gt; </a>
+                  </div>
+                </div>
+                <!-- /paginate -->
 
 
 
@@ -192,6 +400,18 @@
 </main>
 
 <script>
+
+
+  //페이지 이동
+  function movePage(currentPage, cntPerPage, pageSize) {
+
+    var url = "${pageContext.request.contextPath}/notice";
+    url = url + "?currentPage=" + currentPage;
+    url = url + "&cntPerPage=" + cntPerPage;
+    url = url + "&pageSize=" + pageSize;
+
+    location.href = url;
+  }
 
 
   $("#nav-one-tab").click(function (){

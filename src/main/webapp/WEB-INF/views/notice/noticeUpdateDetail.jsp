@@ -63,16 +63,15 @@
 
 
             <c:if test="${memberId==0}">
-                <input type="checkbox"name="noticeType" value="중요"/>중요
-                <input type="checkbox"name="noticeType" value="공지"/>공지
+            <select name="noticeType" id="noticeType" class="form-control" style="text-align: center; width: 6%; margin-left: 900px;"   >
+                <option value="중요">중요</option>
+                <option value="공지">공지</option>
+
+            </select>
 
             </c:if>
 
-            <c:if test="${memberId!=0}">
-                <${noticeDetail.noticeType}>
 
-
-            </c:if>
 
 
 
@@ -147,7 +146,7 @@
 </div>
 <!-- Blog Area End -->
 </main>
-<jsp:include page="../main/footer.jsp"></jsp:include>
+<%--<jsp:include page="../main/footer.jsp"></jsp:include>--%>
 
 <!-- Scroll Up -->
 <div id="back-top" >
@@ -168,6 +167,23 @@
 
     $('#update').click(function (){
 
+
+
+
+            if($('#noticeSubject').val() ==''){
+                alert("제목을 입력해주세요!");
+                return false;
+            }
+
+            if($('#noticeContent').val() ==''){
+                alert("내용을 입력해주세요!");
+                return false;
+            }
+
+            if($('#noticeType').val() ==''){
+                alert("공지유형을 입력해주세요!");
+                return false;
+            }
 
 
         if (!confirm("공지사항을 수정 하시겠습니까?")) {
@@ -206,33 +222,33 @@
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
-<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="./assets/js/popper.min.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
+<%--<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>--%>
+<%--<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>--%>
+<%--<script src="./assets/js/popper.min.js"></script>--%>
+<%--<script src="./assets/js/bootstrap.min.js"></script>--%>
 
-<!-- Slick-slider , Owl-Carousel ,slick-nav -->
-<script src="./assets/js/owl.carousel.min.js"></script>
-<script src="./assets/js/slick.min.js"></script>
-<script src="./assets/js/jquery.slicknav.min.js"></script>
+<%--<!-- Slick-slider , Owl-Carousel ,slick-nav -->--%>
+<%--<script src="./assets/js/owl.carousel.min.js"></script>--%>
+<%--<script src="./assets/js/slick.min.js"></script>--%>
+<%--<script src="./assets/js/jquery.slicknav.min.js"></script>--%>
 
-<!--wow , counter , waypoint, Nice-select -->
-<script src="./assets/js/wow.min.js"></script>
-<script src="./assets/js/jquery.magnific-popup.js"></script>
-<script src="./assets/js/jquery.nice-select.min.js"></script>
-<script src="./assets/js/jquery.counterup.min.js"></script>
-<script src="./assets/js/waypoints.min.js"></script>
-<script src="./assets/js/price_rangs.js"></script>
+<%--<!--wow , counter , waypoint, Nice-select -->--%>
+<%--<script src="./assets/js/wow.min.js"></script>--%>
+<%--<script src="./assets/js/jquery.magnific-popup.js"></script>--%>
+<%--<script src="./assets/js/jquery.nice-select.min.js"></script>--%>
+<%--<script src="./assets/js/jquery.counterup.min.js"></script>--%>
+<%--<script src="./assets/js/waypoints.min.js"></script>--%>
+<%--<script src="./assets/js/price_rangs.js"></script>--%>
 
 <!-- contact js -->
-<script src="./assets/js/contact.js"></script>
-<script src="./assets/js/jquery.form.js"></script>
-<script src="./assets/js/jquery.validate.min.js"></script>
-<script src="./assets/js/mail-script.js"></script>
-<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+<%--<script src="./assets/js/contact.js"></script>--%>
+<%--<script src="./assets/js/jquery.form.js"></script>--%>
+<%--<script src="./assets/js/jquery.validate.min.js"></script>--%>
+<%--<script src="./assets/js/mail-script.js"></script>--%>
+<%--<script src="./assets/js/jquery.ajaxchimp.min.js"></script>--%>
 
-<!--  Plugins, main-Jquery -->
-<script src="./assets/js/plugins.js"></script>
-<script src="./assets/js/main.js"></script>
+<%--<!--  Plugins, main-Jquery -->--%>
+<%--<script src="./assets/js/plugins.js"></script>--%>
+<%--<script src="./assets/js/main.js"></script>--%>
 </body>
 </html>

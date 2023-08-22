@@ -59,8 +59,6 @@ public class OrderController {
         List<OrderDTO> orderList =   orderService.orderFindList(memberId);
 
 
-
-
         model.addAttribute("userId",userId);
         model.addAttribute("bookList",orderList);
         return  "order/myOrder";

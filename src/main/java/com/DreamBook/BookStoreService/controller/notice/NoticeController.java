@@ -1,5 +1,6 @@
 package com.DreamBook.BookStoreService.controller.notice;
 
+import com.DreamBook.BookStoreService.dto.book.PaginationNotice;
 import com.DreamBook.BookStoreService.dto.book.PaginationReview;
 import com.DreamBook.BookStoreService.dto.notice.NoticeAddDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO;
@@ -42,14 +43,16 @@ public class NoticeController {
         int listCnt = bookService.testTableCount();
         PaginationReview pagination = new PaginationReview(currentPage, cntPerPage, pageSize);
         pagination.setTotalRecordCount(listCnt);
-
         model.addAttribute("pagination",pagination);
         model.addAttribute("reviewAllList",reviewService.reviewAllList(pagination));
 
 
-        List<NoticeFindDTO> noticeList = noticeService.noticeList();
+        int listCntNotice = bookService.NoticeTableCount();
+        PaginationNotice paginationNotice = new PaginationNotice(currentPage, cntPerPage, pageSize);
+        paginationNotice.setTotalRecordCount(listCntNotice);
 
-        model.addAttribute("noticeList",noticeList);
+        model.addAttribute("paginationNotice",paginationNotice);
+        model.addAttribute("noticeList",noticeService.noticeList(paginationNotice));
         model.addAttribute("userId",userId);
 
         return "notice/notice";

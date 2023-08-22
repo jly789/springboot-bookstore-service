@@ -1,6 +1,7 @@
 package com.DreamBook.BookStoreService.service.notice.impl;
 
 
+import com.DreamBook.BookStoreService.dto.book.PaginationNotice;
 import com.DreamBook.BookStoreService.dto.notice.NoticeAddDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeDeleteDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO;
@@ -32,8 +33,8 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public List<NoticeFindDTO> noticeList() throws Exception {
-        return noticeMapper.noticeList();
+    public List<NoticeFindDTO> noticeList(PaginationNotice paginationNotice) throws Exception {
+        return noticeMapper.noticeList(paginationNotice);
     }
 
     @Override

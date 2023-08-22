@@ -31,6 +31,8 @@ public interface OrderMapper {
 
     public void updateDeliveryState()throws Exception;
 
+    public void updateDeliveryOk()throws Exception;
+
 
 
 }

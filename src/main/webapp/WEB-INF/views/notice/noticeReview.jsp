@@ -426,7 +426,7 @@
     //페이지 이동
     function movePage(currentPage, cntPerPage, pageSize) {
 
-        var url = "${pageContext.request.contextPath}/review";
+        var url = "${pageContext.request.contextPath}/noticeReview";
         url = url + "?currentPage=" + currentPage;
         url = url + "&cntPerPage=" + cntPerPage;
         url = url + "&pageSize=" + pageSize;

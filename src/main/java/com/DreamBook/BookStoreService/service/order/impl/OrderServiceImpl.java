@@ -67,9 +67,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-    @Scheduled( fixedRate = 1440000) //24시간뒤 배송준비중 ->배송완료
+    @Scheduled(initialDelay = 60000,fixedRate = 120000) //12시간뒤 상품준비중 ->배송중
     @Override
     public void updateDeliveryState()throws Exception {
         orderMapper.updateDeliveryState();
     }
+    @Scheduled(initialDelay = 120000,fixedRate = 240000) //12시간뒤 배송중 ->배송완료
+    @Override
+    public void updateDeliveryOk()throws Exception {
+        orderMapper.updateDeliveryOk();
+    }
+
 }

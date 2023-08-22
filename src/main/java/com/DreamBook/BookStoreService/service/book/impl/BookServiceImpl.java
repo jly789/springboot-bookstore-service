@@ -92,6 +92,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public int NoticeTableCount() throws Exception {
+        return bookMapper.NoticeTableCount();
+    }
+
+    @Override
     public int maxNum() throws Exception {
         return bookMapper.maxNum();
     }

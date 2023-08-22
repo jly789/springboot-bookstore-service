@@ -28,6 +28,7 @@ public interface BookService {
     public int SearchGenreTableCount(String bookName) throws Exception;
     public int SearchPriceRangeTableCount(int price) throws Exception;
     public int ReviewTableCount() throws Exception;
+    public int NoticeTableCount() throws Exception;
 
     public int maxNum() throws Exception;
     public int maxNumCart() throws Exception;

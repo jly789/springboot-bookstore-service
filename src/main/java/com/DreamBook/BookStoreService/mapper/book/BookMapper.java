@@ -38,9 +38,8 @@ public interface BookMapper {
     public int SearchGenreTableCount(String genreName) throws Exception;
     public int SearchPriceRangeTableCount(int price) throws Exception;
 
-
     public int ReviewTableCount() throws Exception;
-
+    public int NoticeTableCount() throws Exception;
 
     public int maxNum() throws Exception;
 

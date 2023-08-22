@@ -33,5 +33,7 @@ public interface OrderService {
 
     public void updateDeliveryState()throws Exception;
 
+    public void updateDeliveryOk()throws Exception;
+
 
 }

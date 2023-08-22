@@ -31,7 +31,7 @@
 
         insert into DELIVERY(deliveryId,orderId,memberId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost,orderDate,deliveryState)
         VALUES (#{deliveryId},#{orderId},#{memberId},#{recipient},#{deliveryTel},
-                #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost},SYSDATE,'배송준비중')
+                #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost},SYSDATE,'상품준비중')
 
 
     </insert>
@@ -109,11 +109,12 @@
     <update id="updateDeliveryState">
 
     update delivery set
-        deliveryState = '배송완료'
+        deliveryState = '배송중'
+    </update>
 
-
-
-
+    <update id="updateDeliveryOk">
+        update delivery set
+            deliveryState = '배송완료'
     </update>
 
 </mapper>

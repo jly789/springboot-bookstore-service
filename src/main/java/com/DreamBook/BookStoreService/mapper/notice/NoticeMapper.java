@@ -1,5 +1,6 @@
 package com.DreamBook.BookStoreService.mapper.notice;
 
+import com.DreamBook.BookStoreService.dto.book.PaginationNotice;
 import com.DreamBook.BookStoreService.dto.notice.NoticeAddDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeDeleteDTO;
 import com.DreamBook.BookStoreService.dto.notice.NoticeFindDTO;
@@ -16,7 +17,7 @@ public interface NoticeMapper {
     public int maxNum() throws Exception;
     public void insertDataNotice(NoticeAddDTO noticeAddDTO) throws Exception;
 
-    public List<NoticeFindDTO>noticeList()throws Exception;
+    public List<NoticeFindDTO>noticeList(PaginationNotice paginationNotice)throws Exception;
 
     public List<NoticeFindDTO>noticeDetail(int noticeId)throws Exception;
 
