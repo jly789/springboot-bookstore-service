@@ -5,6 +5,8 @@ import com.DreamBook.BookStoreService.dto.order.OrderDTO;
 import com.DreamBook.BookStoreService.mapper.order.OrderMapper;
 import com.DreamBook.BookStoreService.service.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,5 +64,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDTO> dd(OrderDTO orderDTO) throws Exception {
         return orderMapper.dd(orderDTO);
+    }
+
+
+    @Scheduled( fixedRate = 1440000) //24시간뒤 배송준비중 ->배송완료
+    @Override
+    public void updateDeliveryState()throws Exception {
+        orderMapper.updateDeliveryState();
     }
 }

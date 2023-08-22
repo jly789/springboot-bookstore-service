@@ -33,10 +33,11 @@
 
           <c:forEach var="memberDTOList" items="${memberDTOList}">
             <input type="hidden" name="memberId" placeholder=""value="${memberDTOList.memberId}">
-          </c:forEach>
 
-          <input type="text" name="userId" placeholder="userId">
+
+          <input type="text" name="userId" readonly value="${memberDTOList.userId}" />
         </div>
+        </c:forEach>
         <div class="single-input-fields">
           <label>Password</label>
           <input type="password" name="pwd" placeholder="Enter Password">

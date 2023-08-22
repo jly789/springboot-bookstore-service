@@ -55,34 +55,34 @@ public class MainController {
 
         if (session.getAttribute("memberId") == null) {
 
-
+            String genre = "전체";
 
             List<BookFindDTO> bookList = mainService.bookList();
             List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
             List<BookFindDTO> weekBook = mainService.weekBook();
-
-            String genre = "공포";
-
             List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+            List<BookFindDTO> genreList = mainService.GenreList();
 
 
             model.addAttribute("bestSellerList", bestSellerList);
             model.addAttribute("weekBook", weekBook);
             model.addAttribute("top5Genre", top5Genre);
+            model.addAttribute("genreList", genreList);
 
             return "main/main";
         } else  {
             String userId = (String) session.getAttribute("userID");
             int memberId = (int) session.getAttribute("memberId");
+            String genre = "전체";
 
             List<BookFindDTO> bookList = mainService.bookList();
             List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
             List<BookFindDTO> weekBook = mainService.weekBook();
-
-            String genre = "전체";
-
             List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
             List<BookFindDTO> genreList = mainService.GenreList();
+
+
+
             model.addAttribute("bestSellerList", bestSellerList);
             model.addAttribute("weekBook", weekBook);
             model.addAttribute("userId", userId);
@@ -212,6 +212,8 @@ public class MainController {
         String userId = (String) session.getAttribute("userId");
 
 
+
+
         List<MemberDTO> memberDTOList =  memberService.memberDtoList(userId);
         model.addAttribute("memberDTOList",memberDTOList);
 
@@ -226,90 +228,86 @@ public class MainController {
      //   cart,orders,review,COMMENTS
 
 
-            if(memberService.selectCart(memberDeleteDTO)==true){
+
+
+        if(!session.getAttribute("memberId").equals("admin")) {
+
+            if (memberService.selectCart(memberDeleteDTO) == true) {
 
                 memberService.deleteCart(memberDeleteDTO);
-                System.out.println("a1");
+
             }
 
-        if(memberService.selectCart(memberDeleteDTO)==false){
+            if (memberService.selectCart(memberDeleteDTO) == false) {
 
 
-            System.out.println("b1");
+
+            }
+
+            if (memberService.selectDelivery(memberDeleteDTO) == true) {
+
+                memberService.deleteDelivery(memberDeleteDTO);
+
+            }
+
+            if (memberService.selectDelivery(memberDeleteDTO) == false) {
+
+
+
+            }
+
+
+            if (memberService.selectReview(memberDeleteDTO) == true) {
+
+                memberService.deleteReview(memberDeleteDTO);
+
+            }
+
+            if (memberService.selectReview(memberDeleteDTO) == false) {
+
+
+
+            }
+
+
+            if (memberService.selectOrders(memberDeleteDTO) == true) {
+
+                memberService.deleteOrders(memberDeleteDTO);
+
+            }
+
+            if (memberService.selectOrders(memberDeleteDTO) == false) {
+
+
+
+            }
+
+
+            if (memberService.selectComments(memberDeleteDTO) == true) {
+
+                memberService.deleteComments(memberDeleteDTO);
+
+            }
+
+            if (memberService.selectComments(memberDeleteDTO) == false) {
+
+
+
+            }
+
+
+            if (memberService.deleteMember(memberDeleteDTO, response) == 1) {
+
+
+                session.removeAttribute("userId");
+                session.removeAttribute("memberId");
+
+                return "main/main";
+            }
+
+
         }
-
-        if(memberService.selectDelivery(memberDeleteDTO)==true){
-
-            memberService.deleteDelivery(memberDeleteDTO);
-            System.out.println("a2");
-        }
-
-        if(memberService.selectDelivery(memberDeleteDTO)==false){
-
-
-            System.out.println("b2");
-        }
-
-
-
-
-
-        if(memberService.selectReview(memberDeleteDTO)==true){
-
-            memberService.deleteReview(memberDeleteDTO);
-            System.out.println("a3");
-        }
-
-        if(memberService.selectReview(memberDeleteDTO)==false){
-
-
-            System.out.println("b3");
-        }
-
-
-
-
-
-
-        if(memberService.selectOrders(memberDeleteDTO)==true){
-
-            memberService.deleteOrders(memberDeleteDTO);
-            System.out.println("a4");
-        }
-
-        if(memberService.selectOrders(memberDeleteDTO)==false){
-
-
-            System.out.println("b4");
-        }
-
-
-        if(memberService.selectComments(memberDeleteDTO)==true){
-
-            memberService.deleteComments(memberDeleteDTO);
-            System.out.println("a5");
-        }
-
-        if(memberService.selectComments(memberDeleteDTO)==false){
-
-
-            System.out.println("b5");
-        }
-
-
-        if (memberService.deleteMember(memberDeleteDTO,response) == 1) {
-            System.out.println("6");
-
-            session.removeAttribute("userId");
-            session.removeAttribute("memberId");
-
-            return "main/main";
-        }
-
-            System.out.println("gg");
-            return "main/myPageDelete";
-
-
+        return "main/myPageDelete";
     }
     @GetMapping("/index")
     public String index(Model model){

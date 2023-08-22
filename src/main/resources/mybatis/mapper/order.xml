@@ -18,28 +18,20 @@
 
 
 
-<!--    <insert id="orderInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
-<!--        <foreach item="item" index="index" collection="java.util.List" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">-->
-<!--           INSERT INTO orders(orderId,memberId,bookId,orderNum,impUid,amount,orderState,orderDate,usePoint)-->
-<!--            VALUES (#{item.orderId},#{item.memberId},#{item.bookId},#{item.orderNum},-->
-<!--           #{item.impUid},#{item.amount},'ORDER',SYSDATE,#{item.usePoint})-->
-<!--        </foreach>-->
-<!--    </insert>-->
-
     <insert id="orderInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.OrderDTO">
 
-        insert into orders(orderId,memberId,bookId,orderNum,impUid,amount,wishQuantity,orderState,orderDate,usePoint)
+        insert into orders(orderId,memberId,bookId,orderNum,impUid,amount,wishQuantity,orderDate,usePoint)
             VALUES (#{orderId},#{memberId},#{bookId},#{orderNum},
-            #{impUid},#{amount},#{wishQuantity},'ORDER',SYSDATE ,#{usePoint})
+            #{impUid},#{amount},#{wishQuantity},SYSDATE,#{usePoint})
 
 
     </insert>
 
     <insert id="deliveryInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.DeliveryDTO">
 
-        insert into DELIVERY(deliveryId,orderId,memberId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost,orderDate)
+        insert into DELIVERY(deliveryId,orderId,memberId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost,orderDate,deliveryState)
         VALUES (#{deliveryId},#{orderId},#{memberId},#{recipient},#{deliveryTel},
-                #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost},SYSDATE)
+                #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost},SYSDATE,'배송준비중')
 
 
     </insert>
@@ -101,13 +93,27 @@
     <select id="orderFindList"  resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO"
             parameterType="int">
 
-        select  a.*,  to_char(orderDate,'yyyy-mm-dd') as orderTime,b.*
+        select  a.*,b.*,c.*,to_char(a.orderDate,'yyyy-mm-dd') as orderTime
         from orders a
-                 left join book b on a.bookId = b.bookId
+                 left join book b on a.bookId = b.bookId left join DELIVERY c on a.orderId = c.orderId
         where a.memberId = #{memberId}
+        order by a.orderDate desc
+
+
+
 
 
 
     </select>
+
+    <update id="updateDeliveryState">
+
+    update delivery set
+        deliveryState = '배송완료'
+
+
+
+
+    </update>
 
 </mapper>

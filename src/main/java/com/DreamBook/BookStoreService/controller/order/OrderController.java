@@ -14,6 +14,7 @@ import com.DreamBook.BookStoreService.service.book.BookService;
 import com.DreamBook.BookStoreService.service.member.MemberService;
 import com.DreamBook.BookStoreService.service.order.OrderService;
 import com.DreamBook.BookStoreService.service.review.ReviewService;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.Objects;
 
 
+@EnableScheduling
 @Controller
 public class OrderController {
 
@@ -39,8 +41,12 @@ public class OrderController {
 
     @Resource
     private ReviewService reviewService;
+
+
     @Resource
     private OrderService orderService;
+
+
 
 
     @GetMapping("/myOrder")
@@ -52,10 +58,15 @@ public class OrderController {
         String userId = (String) session.getAttribute("userId");
         List<OrderDTO> orderList =   orderService.orderFindList(memberId);
 
+
+
+
         model.addAttribute("userId",userId);
         model.addAttribute("bookList",orderList);
         return  "order/myOrder";
     }
+
+
 
     @PostMapping("/order")
     public String  order(BookCartDTO cartDTO,Model model, HttpSession session,@RequestParam("cartId")int cartId,@RequestParam("totalPrice")int totalPrice)throws Exception{
@@ -139,6 +150,7 @@ public class OrderController {
             deliveryDTO.setOrderId(maxNum+1);
 
             orderService.deliveryInsertData(deliveryDTO);
+
         }
 
         memberService.updatePoint(point,plusPoint,plusPoint2,memberId);

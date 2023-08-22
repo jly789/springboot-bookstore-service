@@ -124,16 +124,23 @@
             </select>
           </div>
         </div>
+        <c:if test="${memberDTOList.memberId==0}">
+          <button class="submit-btn3" type="submit" id="check">수정하기</button>
+        </c:if>
+
+        <div class="register-footer">
+
+
+          <c:if test="${memberDTOList.memberId!=0}">
+            <a class="" href="/myPageDelete" id="alert" style="color: red;"><strong>회원탈퇴</strong> 필요하면 클릭!</a>
+            <button class="submit-btn3" type="submit" id="check">수정하기</button>
+          </c:if>
+
+        </div>
 
         </c:forEach>
         <!-- form Footer -->
-        <div class="register-footer">
 
-          <a class="" href="/myPageDelete" id="alert" style="color: red;"><strong>회원탈퇴</strong> 필요하면 클릭!</a>
-          <button class="submit-btn3" type="submit" id="check">수정하기</button>
-
-
-        </div>
 
       </div>
 

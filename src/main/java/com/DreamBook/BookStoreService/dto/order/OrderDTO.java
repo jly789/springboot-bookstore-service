@@ -22,7 +22,7 @@ public class OrderDTO {
     private String orderNum;//주문번호
     private String impUid;//결제번호
     private int amount;//결제금액
-    private String orderState;//주문상태-order,delivery,cancel,complete
+    private String deliveryState;//주문상태-order,delivery,cancel,complete
     private LocalDateTime orderDate;//주문시간 년월일시간
     private String orderTime; //주문시간 년월일까지만
     private int usePoint;//사용포인트
@@ -30,6 +30,7 @@ public class OrderDTO {
     private String filePath;
     private int price;
     private String reviewState; //리뷰상태 리뷰완료or 리뷰쓰기
+
 
 
 }

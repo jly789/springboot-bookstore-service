@@ -22,6 +22,7 @@ public class DeliveryDTO {
     private String extraAddress;
     private int deliveryCost;
     private LocalDateTime orderDate;
+    private String deliveryState;
 
 
 }

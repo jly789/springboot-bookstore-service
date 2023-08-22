@@ -125,7 +125,7 @@
                   <td style="color: red">
 
 
-                          ${bookList.orderState}  (주문완료)  <br/>
+                          ${bookList.deliveryState}  (주문완료)  <br/>
                               (${bookList.orderTime})
 
                   </td>

@@ -55,10 +55,19 @@ public class MemberController {
             session.setAttribute("userId", memberFindDTO.getUserId());
             session.setAttribute("memberId",memberId);
 
+
+            String genre = "전체";
+
             List<BookFindDTO> bookList = mainService.bookList();
             List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
             List<BookFindDTO> weekBook = mainService.weekBook();
-
+            List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+            List<BookFindDTO> genreList = mainService.GenreList();
+            model.addAttribute("bestSellerList", bestSellerList);
+            model.addAttribute("weekBook", weekBook);
+            model.addAttribute("memberId", memberId);
+            model.addAttribute("top5Genre", top5Genre);
+            model.addAttribute("genreList", genreList);
             model.addAttribute("bestSellerList", bestSellerList);
             model.addAttribute("weekBook", weekBook);
 
@@ -77,12 +86,19 @@ public class MemberController {
         session.removeAttribute("userId");
         session.removeAttribute("memberId");
 
+
+        String genre = "전체";
         List<BookFindDTO> bookList = mainService.bookList();
         List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
         List<BookFindDTO> weekBook = mainService.weekBook();
+        List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+        List<BookFindDTO> genreList = mainService.GenreList();
+
 
         model.addAttribute("bestSellerList", bestSellerList);
         model.addAttribute("weekBook", weekBook);
+        model.addAttribute("top5Genre", top5Genre);
+        model.addAttribute("genreList", genreList);
 
 
         return "main/main";
@@ -132,7 +148,7 @@ public class MemberController {
 
                 memberService.insertMemberNotImage(memberJoinDTO,file);
 
-                //memberService.insertData(memberJoinDTO);
+
 
                 return "member/login";
             }
