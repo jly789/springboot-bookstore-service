@@ -28,7 +28,7 @@
 
       <div class="register-heading">
         <span>아이디 찾기</span>
-        <p>Create your account to get full access</p>
+
       </div>
 
       <!-- Single Input Fields -->
@@ -39,7 +39,7 @@
 
         <div class="single-input-fields">
           <label>이름</label>
-          <input type="text" name="name"  id="name"  placeholder="이름 입력!"/>
+          <input type="text" name="name"  id="name"  placeholder="이름 입력"/>
 
         </div>
 
@@ -49,7 +49,7 @@
 
         <div class="single-input-fields">
           <label>이메일</label>
-          <input type="text" name="email" id="email"  placeholder="이메일을 입력!">
+          <input type="text" name="email" id="email"  placeholder="이메일을 입력">
 
         </div>
 
@@ -60,7 +60,7 @@
 
       <!-- form Footer -->
       <div class="register-footer">
-        <p> Already have an account? <a href="/login"> Login</a> here</p>
+        <p>이미 아이디를 가지고 계신가요? <a href="/login"> 로그인</a> here</p>
 
         <button class="submit-btn3" id="btnCheck">아이디찾기</button>
 

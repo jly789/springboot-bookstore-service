@@ -393,7 +393,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="more-btn text-center mt-15">
-                            <a href="#" class="border-btn border-btn2 more-btn2">Browse More</a>
+                            <a href="#" class="border-btn border-btn2 more-btn2">맨위로</a>
                         </div>
                     </div>
                 </div>

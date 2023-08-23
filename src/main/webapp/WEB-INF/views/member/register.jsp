@@ -28,7 +28,7 @@
       <!-- Login Heading -->
       <div class="register-heading">
         <span>회원가입</span>
-        <p>Create your account to get full access</p>
+
       </div>
 
       <!-- Single Input Fields -->
@@ -37,7 +37,7 @@
 
         <div class="single-input-fields">
 
-          <input type="hidden" name="memberId" value="0" placeholder="Enter full name">
+          <input type="hidden" name="memberId" value="0" placeholder="이름 입력">
         </div>
 
         <div class="single-input-fields">
@@ -58,7 +58,7 @@
 
         <div class="single-input-fields">
           <label>비밀번호</label>
-          <input type="password" name="pwd" value="${memberJoinDTO.pwd}"  placeholder="Confirm Password"/>
+          <input type="password" name="pwd" value="${memberJoinDTO.pwd}"  placeholder="비밀번호 입력"/>
           <form:errors path="pwd" cssStyle="font-weight: bold; color: #e95050"/>
         </div>
 
@@ -133,9 +133,9 @@
 
       <!-- form Footer -->
       <div class="register-footer">
-        <p> Already have an account? <a href="/login"> Login</a> here</p>
+        <p> 이미 아이디를 가지고 계신가요? <a href="/login"> 로그인 </a> here</p>
 
-        <button class="submit-btn3" type="submit" id="check">Sign Up</button>
+        <button class="submit-btn3" type="submit" id="check">가입하기</button>
 
       </div>
 

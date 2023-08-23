@@ -32,7 +32,7 @@ public class MemberDTO {
 
     private String fileName;
     private String filePath;
-
+    private String deliveryName;
 
 
 

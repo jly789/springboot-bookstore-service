@@ -156,6 +156,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public void updateMemberDeliveryName(String userId,String deliveryName) throws Exception {
+        memberMapper.updateMemberDeliveryName(userId,deliveryName);
+    }
+
+    @Override
     public void updateMemberDataNotImage(MemberUpdateDTO memberUpdateDTO) throws Exception {
         memberMapper.updateMemberDataNotImage(memberUpdateDTO);
     }

@@ -244,13 +244,13 @@
     </div>
     <!--  Hero area End -->
     <!-- listing Area Start -->
-    <div class="listing-area pt-50 pb-50">
+    <div class="listing-area pt-50 pb-50" style="padding-bottom: 10%; padding-right: 5%;">
         <div class="container">
             <div class="row">
                 <!--? Left content -->
-                <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="col-xl-4 col-lg-4 col-md-6" >
                     <!-- Job Category Listing start -->
-                    <div class="category-listing mb-50">
+                    <div class="category-listing mb-50" style="width: 300px; margin-left: 45px; ">
                         <!-- single one -->
                         <div class="single-listing">
                             <!-- select-Categories  -->
@@ -260,7 +260,7 @@
                                 </div>
 
                                 <!-- Select City items start -->
-                                <div class="select-job-items2 mb-30">
+                                <div class="select-job-items2 mb-30" style="width: 120px;">
                                     <div class="col-xl-12">
                                         <c:if test="${genreName =='정렬'}">
                                             <select id="genre" name="genre">
@@ -1613,6 +1613,7 @@
 
                                                                             </c:choose>
 
+
                                                                             <!--paginate -->
                                                                             <div class="paginate">
                                                                                 <div class="paging">
@@ -1659,51 +1660,51 @@
                                                                             </c:if>
 
 
-                                                                            <!-- button -->
-                                                                            <div class="row">
-                                                                                <div class="col-xl-12">
-                                                                                    <div class="more-btn text-center mt-15">
-                                                                                        <a href="#"
-                                                                                           class="border-btn border-btn2 more-btn2">Browse
-                                                                                            More</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+<%--                                                                            <!-- button -->--%>
+<%--                                                                            <div class="row">--%>
+<%--                                                                                <div class="col-xl-12">--%>
+<%--                                                                                    <div class="more-btn text-center mt-15">--%>
+<%--                                                                                        <a href="#"--%>
+<%--                                                                                           class="border-btn border-btn2 more-btn2">Browse--%>
+<%--                                                                                            More</a>--%>
+<%--                                                                                    </div>--%>
+<%--                                                                                </div>--%>
+<%--                                                                            </div>--%>
+<%--                                                                        </div>--%>
+<%--                                                                    </div>--%>
+<%--                                                                </div>--%>
+<%--                                                            </div>--%>
                                                             <!-- listing-area Area End -->
 
                                                             <!-- Subscribe Area Start -->
-                                                            <section class="subscribe-area">
-                                                                <div class="container">
-                                                                    <div class="subscribe-caption text-center  subscribe-padding section-img2-bg"
-                                                                         data-background="assets/img/gallery/section-bg1.jpg">
-                                                                        <div class="row justify-content-center">
+<%--                                                            <section class="subscribe-area">--%>
+<%--                                                                <div class="container">--%>
+<%--                                                                    <div class="subscribe-caption text-center  subscribe-padding section-img2-bg"--%>
+<%--                                                                         data-background="assets/img/gallery/section-bg1.jpg">--%>
+<%--                                                                        <div class="row justify-content-center">--%>
 
-                                                                            <div class="col-xl-6 col-lg-8 col-md-9">
-                                                                                <h3>Join Newsletter</h3>
-                                                                                <p>Lorem started its journey with cast
-                                                                                    iron (CI)
-                                                                                    products in
-                                                                                    1980. The initial main objective was
-                                                                                    to
-                                                                                    ensure pure
-                                                                                    water
-                                                                                    and affordable irrigation.</p>
-                                                                                <form action="#">
-                                                                                    <input type="text"
-                                                                                           placeholder="Enter your email">
-                                                                                    <button class="subscribe-btn">
-                                                                                        Subscribe
-                                                                                    </button>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </section>
+<%--                                                                            <div class="col-xl-6 col-lg-8 col-md-9">--%>
+<%--                                                                                <h3>Join Newsletter</h3>--%>
+<%--                                                                                <p>Lorem started its journey with cast--%>
+<%--                                                                                    iron (CI)--%>
+<%--                                                                                    products in--%>
+<%--                                                                                    1980. The initial main objective was--%>
+<%--                                                                                    to--%>
+<%--                                                                                    ensure pure--%>
+<%--                                                                                    water--%>
+<%--                                                                                    and affordable irrigation.</p>--%>
+<%--                                                                                <form action="#">--%>
+<%--                                                                                    <input type="text"--%>
+<%--                                                                                           placeholder="Enter your email">--%>
+<%--                                                                                    <button class="subscribe-btn">--%>
+<%--                                                                                        Subscribe--%>
+<%--                                                                                    </button>--%>
+<%--                                                                                </form>--%>
+<%--                                                                            </div>--%>
+<%--                                                                        </div>--%>
+<%--                                                                    </div>--%>
+<%--                                                                </div>--%>
+<%--                                                            </section>--%>
                                                             <!-- Subscribe Area End -->
 </main>
 <jsp:include page="../main/footer.jsp"></jsp:include>

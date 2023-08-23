@@ -76,4 +76,6 @@ public class MemberUpdateDTO {
 
     private String fileName;
     private String filePath;
+
+    private String deliveryName; //배송지명
 }

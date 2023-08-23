@@ -33,6 +33,9 @@ public interface MemberMapper {
 
     public void updateMember(MemberUpdateDTO memberUpdateDTO) throws  Exception;
 
+    public void updateMemberDeliveryName(String userId,String deliveryName) throws  Exception; //배송지명 수정
+
+
 
     public void updateMemberDataNotImage(MemberUpdateDTO memberUpdateDTO) throws Exception;
 

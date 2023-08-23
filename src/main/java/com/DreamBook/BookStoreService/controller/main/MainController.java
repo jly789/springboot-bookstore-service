@@ -14,10 +14,7 @@ import com.DreamBook.BookStoreService.service.review.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -109,6 +106,44 @@ public class MainController {
 
         return "main/myPage";
     }
+
+
+    @GetMapping("/deliveryName") //배송지 등록 윈도우창 띄우기
+    public String deliveryNameAdd(MemberUpdateDTO MemberUpdateDTO,Model model,HttpSession session)throws Exception {
+
+        int memberId = (int) session.getAttribute("memberId");
+       String userId = (String) session.getAttribute("userId");
+
+
+
+        return "main/deliveryName";
+    }
+    @PostMapping("/deliveryNameCheck") //배송지 입력후 체크
+    public String deliveryNameCheck(MemberUpdateDTO MemberUpdateDTO,Model model,HttpSession session)throws Exception {
+
+        System.out.println(MemberUpdateDTO.getDeliveryName());
+
+        model.addAttribute("deliveryName",MemberUpdateDTO.getDeliveryName());
+
+        return "main/deliveryNameCheck";
+    }
+
+
+
+    @GetMapping("/deliveryNameUpdate") //배송지 등록및 수정
+    public String deliveryNameUpdate(@RequestParam("deliveryName")String deliveryName, MemberUpdateDTO MemberUpdateDTO, Model model, HttpSession session)throws Exception {
+
+        String userId = (String) session.getAttribute("userId");
+
+        List<MemberDTO> memberDTOList =  memberService.memberDtoList(userId);
+        model.addAttribute("memberDTOList",memberDTOList);
+
+        memberService.updateMemberDeliveryName(userId,deliveryName);
+
+
+        return "redirect:/myPage";
+    }
+
 
     @GetMapping("/myPageUpdate")
     public String myPageUpdate(MemberUpdateDTO MemberUpdateDTO,Model model,HttpSession session)throws Exception {

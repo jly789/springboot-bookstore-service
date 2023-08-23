@@ -76,10 +76,10 @@
                       <%--                <span class="placeholder" data-placeholder="이름입력!" ></span>--%>
 
                   </div>
-
-                  <div class="col-md-12 form-group">
-                    <h6 style="color: red">    배송지명 </h6> <input type="text" class="form-control" id="company" name="company" placeholder="배송지명" />
-                  </div>
+                  <a >
+                  <div class="col-md-6 form-group p_star">
+                    <h6 style="color: red">    배송지명 등록및 수정 </h6> <input type="text" class="form-control" id="deliveryName" name="deliveryName" value="${memberDTOList.deliveryName}" />
+                  </div></a>
                   <div class="col-md-6 form-group p_star">
                     <h6 style="color: red">   전화번호</h6>  <input type="text" class="form-control" id="number" name="number" value="${memberDTOList.tel}" />
 
@@ -136,19 +136,21 @@
 <script>
 
 
-  // $('#alert').click(function () {
-  //
-  //   if (confirm("정말 탈퇴하시겠습니까?")) {
-  //
-  //
-  //     location.href='/myPage';
-  //   } else {
-  //
-  //   }
-  //
-  //
-  //
-  // });
+  $("#deliveryName").click(function (){
+
+
+    var popupWidth = 400;
+    var popupHeight = 300;
+
+
+
+    var popupX = Math.ceil(( window.screen.width - popupWidth )/2);
+    var popupY = Math.ceil(( window.screen.height - popupHeight )/2);
+
+    window.open('/deliveryName', '팝업', 'width=' + popupWidth + ',height=' + popupHeight + ',left='+ popupX + ', top='+ popupY);
+
+  });
+
 </script>
 
 <jsp:include page="../main/footer.jsp"></jsp:include>

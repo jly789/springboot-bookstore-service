@@ -31,6 +31,8 @@ public interface MemberService {
 
     public void updateMember(MemberUpdateDTO memberUpdateDTO,MultipartFile file) throws  Exception;
 
+    public void updateMemberDeliveryName(String userId,String deliveryName) throws  Exception;//배송지명 수정
+
     public void updateMemberDataNotImage(MemberUpdateDTO memberUpdateDTO) throws Exception;
 
     public void updatePoint(int point,int plusPoint,int plusPoint2,int memberId)throws Exception;

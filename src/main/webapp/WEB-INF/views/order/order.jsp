@@ -185,7 +185,7 @@
               <h2>구매 도서</h2>
               <ul class="list">
                 <li>
-                  <a href="#" style="color: red;">
+                  <a  style="color: red;">
                     <c:forEach var="orderBookCartList" items="${orderBookCartList}" varStatus="status">
                       <input type="hidden" id="test"  name="name=currentbook${status.index}" value="${orderBookCartList.cartId}">
 
@@ -202,10 +202,10 @@
               </ul>
               <ul class="list list_2">
                 <li>
-                  <span></span>    <a href="#"> Total:${totalPrice}원</a>
+                  <span></span>    <a > Total:${totalPrice}원</a>
                 </li>
                 <li>
-                  <a href="#">배송비
+                  <a >배송비
                     <span>5000원</span>
                     <input type="hidden" id="delivaryAccount" value="5000">
                     <input type="hidden" id="basePrice" value="${totalPrice}">
@@ -215,7 +215,7 @@
                 </li>
 
                 <li>
-                  <a href="#">총 금액
+                  <a >총 금액
                     <span style="color: red;"  id="totalPrice">${totalPrice+5000}</span>
 
                   </a>
@@ -235,14 +235,8 @@
               </ul>
 
 
-              <div class="creat_account checkout-cap">
-                <input type="checkbox" id="f-option8" name="selector" />
-                <label for="f-option8">I’ve read and accept the  <a href="#">terms & conditions*</a> </label>
-              </div>
-
-<%--              <form class="row contact_form" action="/payment" method="post" novalidate="novalidate">--%>
               <button class="btn w-100" id="payment">결제하기</button>
-<%--              </form>--%>
+
             </div>
           </div>
         </div>

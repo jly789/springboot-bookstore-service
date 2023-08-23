@@ -58,9 +58,9 @@
             <tr>
               <th scope="col">Product</th>
               <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
+              <th scope="col" style="margin-right: 10px;">수량</th>
               <th scope="col">Total</th>
-                <th scope="col">수량</th>
+              <th scope="col">수량조절</th>
 
 
             </tr>
@@ -94,7 +94,8 @@
   <table>
     <tr>
 
-      <td><input type="text"  name="wishQuantity" value="${bookCartList.wishQuantity}" readonly /></td>
+      <td><input type="text"  name="wishQuantity" value="${bookCartList.wishQuantity}"
+                 readonly style="margin-right: 50px; width: 65px; height: 40px;" /></td>
 
       <td><input type="hidden" class="price" value="${bookCartList.price}" /></td>
       <td id="totals"></td>
@@ -141,10 +142,11 @@ wishQuantity=${bookCartList.wishQuantity}" style="color: black">
               <td></td>
               <td>
 
-                <h5>Subtotal</h5>
+                <h4>총 금액:</h4>
               </td>
               <td>
-             <input type="text" class="btn"  name="totalPrice" id="totalPrice" value="${totalPrice}"/>
+                <h4 style="margin-right: 150px; color: red;">${totalPrice}원</h4>
+             <input type="hidden" class=""  name="totalPrice" id="totalPrice" value="${totalPrice}"/>
               </td>
             </tr>
 
