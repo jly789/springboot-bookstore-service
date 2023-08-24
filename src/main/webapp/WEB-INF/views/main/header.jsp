@@ -47,11 +47,11 @@ padding: 8px 12px;
                                 <div class="header-info-left d-flex align-items-center">
                                     <!-- logo -->
                                     <div class="logo">
-                                        <a href="/"><img src="img/로고.jpg" alt=""></a>
+                                        <a href="/"><img src="img/로고최종.jpg" alt="" ></a>
                                     </div>
                                     <!-- Search Box -->
                                     <form action="#" class="form-box">
-                                        <input type="text" name="Search" placeholder="Search book by author or publisher">
+                                        <input type="text" name="Search" placeholder="검색 하세요">
                                         <div class="search-icon">
                                             <i class="ti-search"></i>
                                         </div>
@@ -78,7 +78,7 @@ padding: 8px 12px;
 
 
                                         </c:if>
-                                        <c:if test="${userId !=null}" >
+                                        <c:if test="${userId !=null && userId!='admin'}" >
                                         <li class="">
                                             <a href="/cart"><img src="assets/img/icon/cart.svg" alt="">
                                                 <strong> 장바구니</strong> </a>

@@ -27,6 +27,7 @@ public class BookAddDTO {
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate publicationYear;
         private int salesRate;
+        private int recommendedBook; //추천도서여부 0이면 x 1이면 추천도서
 
 
 

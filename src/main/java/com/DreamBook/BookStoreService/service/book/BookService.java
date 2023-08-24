@@ -33,6 +33,7 @@ public interface BookService {
     public int maxNum() throws Exception;
     public int maxNumCart() throws Exception;
 
+    public void   updateRecommendedBook (int bookId) throws Exception; //추천도서설정
     public void  updateViews (int id) throws Exception;
 
     public void insertData(BookAddDTO bookAddDTO, MultipartFile file) throws Exception;
@@ -72,6 +73,8 @@ public interface BookService {
     public List<BookFindDTO> genreSearchAll()throws Exception;
 
     public List<BookFindDTO> bookPriceRange(int price)throws Exception;
+
+    public List<BookFindDTO> recommendedBook() throws Exception; //추천도서인 리스트출력
 
     public List<BookDTO> bookCartList(int memberId) throws Exception;
 

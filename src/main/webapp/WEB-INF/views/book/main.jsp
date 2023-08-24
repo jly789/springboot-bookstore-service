@@ -233,9 +233,9 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="slider-area">
-                    <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center">
+                    <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center" style="height: 450px;">
                         <div class="hero-caption hero-caption2">
-                            <h2>환영 합니다</h2>
+
                         </div>
                     </div>
                 </div>
@@ -638,7 +638,7 @@
                                                                                style="    height: 180px; object-fit: cover;"></a>
                                         </div>
                                         <div class="properties-caption properties-caption2">
-                                            <h6><a href="/${bookList.bookId}">${bookList.bookName}</a></h6>
+                                            <strong><a href="/${bookList.bookId}">${bookList.bookName}</a></strong>
                                             <p>${bookList.author}</p>
                                             <span id="price" style="color: red;">${bookList.price}원</span>
                                             <p style="text-align: right; color: gray;">(${bookList.genre})</p>
@@ -654,42 +654,46 @@
 
                                                         <c:if test="${bookList.grade==1}">
 
-                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                         </c:if>
 
                                                         <c:if test="${bookList.grade==2}">
 
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                         </c:if>
 
                                                         <c:if test="${bookList.grade==3}">
 
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                         </c:if>
 
                                                         <c:if test="${bookList.grade==4}">
 
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                         </c:if>
 
 
                                                             <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
                                                         <c:if test="${bookList.grade==5}">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
                                                         </c:if>
 
 
@@ -772,7 +776,7 @@
                                                                                        style="    height: 180px; object-fit: cover;"></a>
                                                 </div>
                                                 <div class="properties-caption properties-caption2">
-                                                    <h6><a href="/${bookList.bookId}">${bookList.bookName}</a></h6>
+                                                    <strong><a href="/${bookList.bookId}">${bookList.bookName}</a></strong>
                                                     <p>${bookList.author}</p>
                                                     <span id="price" style="color: red;">${bookList.price}원</span>
                                                     <p style="text-align: right; color: gray;">(${bookList.genre})</p>
@@ -788,42 +792,46 @@
 
                                                                 <c:if test="${bookList.grade==1}">
 
-                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                 </c:if>
 
                                                                 <c:if test="${bookList.grade==2}">
 
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                 </c:if>
 
                                                                 <c:if test="${bookList.grade==3}">
 
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                 </c:if>
 
                                                                 <c:if test="${bookList.grade==4}">
 
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                 </c:if>
 
 
                                                                     <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
                                                                 <c:if test="${bookList.grade==5}">
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
-                                                                    <i class="fas fa-star"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                    <i class="fas fa-star" style="color: gold;"></i>
                                                                 </c:if>
 
 
@@ -907,9 +915,9 @@
                                                                     style="    height: 180px; object-fit: cover;"></a>
                                                         </div>
                                                         <div class="properties-caption properties-caption2">
-                                                            <h6>
+                                                            <strong>
                                                                 <a href="/${bookList.bookId}">${bookList.bookName}</a>
-                                                            </h6>
+                                                            </strong>
                                                             <p>${bookList.author}</p>
                                                             <span id="price"
                                                                   style="color: red;">${bookList.price}원</span>
@@ -927,42 +935,46 @@
 
                                                                         <c:if test="${bookList.grade==1}">
 
-                                                                            <i class="fas fa-star"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                         </c:if>
 
                                                                         <c:if test="${bookList.grade==2}">
 
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                         </c:if>
 
                                                                         <c:if test="${bookList.grade==3}">
 
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                         </c:if>
 
                                                                         <c:if test="${bookList.grade==4}">
 
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                         </c:if>
 
 
                                                                             <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
                                                                         <c:if test="${bookList.grade==5}">
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
-                                                                            <i class="fas fa-star"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                            <i class="fas fa-star" style="color: gold;"></i>
                                                                         </c:if>
 
 
@@ -1053,9 +1065,9 @@
                                                                             style="    height: 180px; object-fit: cover;"></a>
                                                                 </div>
                                                                 <div class="properties-caption properties-caption2">
-                                                                    <h6>
+                                                                    <strong>
                                                                         <a href="/${bookList.bookId}">${bookList.bookName}</a>
-                                                                    </h6>
+                                                                    </strong>
                                                                     <p>${bookList.author}</p>
                                                                     <span id="price"
                                                                           style="color: red;">${bookList.price}원</span>
@@ -1073,42 +1085,45 @@
 
                                                                                 <c:if test="${bookList.grade==1}">
 
-                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                 </c:if>
 
                                                                                 <c:if test="${bookList.grade==2}">
 
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                 </c:if>
 
                                                                                 <c:if test="${bookList.grade==3}">
 
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
 
                                                                                 </c:if>
 
                                                                                 <c:if test="${bookList.grade==4}">
 
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                 </c:if>
 
 
                                                                                     <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
                                                                                 <c:if test="${bookList.grade==5}">
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
-                                                                                    <i class="fas fa-star"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                                                    <i class="fas fa-star" style="color: gold;"></i>
                                                                                 </c:if>
 
 
@@ -1202,9 +1217,9 @@
                                                                                     style="    height: 180px; object-fit: cover;"></a>
                                                                         </div>
                                                                         <div class="properties-caption properties-caption2">
-                                                                            <h6>
+                                                                            <strong>
                                                                                 <a href="/${bookList.bookId}">${bookList.bookName}</a>
-                                                                            </h6>
+                                                                            </strong>
                                                                             <p>${bookList.author}</p>
                                                                             <span id="price"
                                                                                   style="color: red;">${bookList.price}원</span>
@@ -1222,42 +1237,46 @@
 
                                                                                         <c:if test="${bookList.grade==1}">
 
-                                                                                            <i class="fas fa-star"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                         </c:if>
 
                                                                                         <c:if test="${bookList.grade==2}">
 
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                         </c:if>
 
                                                                                         <c:if test="${bookList.grade==3}">
 
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                         </c:if>
 
                                                                                         <c:if test="${bookList.grade==4}">
 
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                         </c:if>
 
 
                                                                                             <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
                                                                                         <c:if test="${bookList.grade==5}">
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
-                                                                                            <i class="fas fa-star"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                                                            <i class="fas fa-star" style="color: gold;"></i>
                                                                                         </c:if>
 
 
@@ -1356,9 +1375,9 @@
                                                                                                         style="    height: 180px; object-fit: cover;"></a>
                                                                                             </div>
                                                                                             <div class="properties-caption properties-caption2">
-                                                                                                <h6>
+                                                                                                <strong>
                                                                                                     <a href="/${bookList.bookId}">${bookList.bookName}</a>
-                                                                                                </h6>
+                                                                                                </strong>
                                                                                                 <p>${bookList.author}</p>
                                                                                                 <span id="price"
                                                                                                       style="color: red;">${bookList.price}원</span>
@@ -1380,42 +1399,49 @@
 
                                                                                                             <c:if test="${bookList.grade==1}">
 
-                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+
+
 
                                                                                                             </c:if>
 
                                                                                                             <c:if test="${bookList.grade==2}">
 
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+
+
 
                                                                                                             </c:if>
 
                                                                                                             <c:if test="${bookList.grade==3}">
 
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                                             </c:if>
 
                                                                                                             <c:if test="${bookList.grade==4}">
 
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+
+
 
                                                                                                             </c:if>
 
 
                                                                                                                 <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
                                                                                                             <c:if test="${bookList.grade==5}">
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
-                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                <i class="fas fa-star" style="color: gold;"></i>
                                                                                                             </c:if>
 
 
@@ -1518,9 +1544,9 @@
                                                                                                                 style="    height: 180px; object-fit: cover;"></a>
                                                                                                     </div>
                                                                                                     <div class="properties-caption properties-caption2">
-                                                                                                        <h6>
+                                                                                                        <strong>
                                                                                                             <a href="/${bookList.bookId}">${bookList.bookName}</a>
-                                                                                                        </h6>
+                                                                                                        </strong>
                                                                                                         <p>${bookList.author}</p>
                                                                                                         <span id="price"
                                                                                                               style="color: red;">${bookList.price}원</span>
@@ -1541,43 +1567,45 @@
                                                                                                                     </c:if>
 
                                                                                                                     <c:if test="${bookList.grade==1}">
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
 
-                                                                                                                        <i class="fas fa-star"></i>
 
                                                                                                                     </c:if>
 
                                                                                                                     <c:if test="${bookList.grade==2}">
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
 
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
 
                                                                                                                     </c:if>
 
                                                                                                                     <c:if test="${bookList.grade==3}">
 
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                                                     </c:if>
 
                                                                                                                     <c:if test="${bookList.grade==4}">
 
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+
 
                                                                                                                     </c:if>
 
 
                                                                                                                         <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
                                                                                                                     <c:if test="${bookList.grade==5}">
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
-                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
                                                                                                                     </c:if>
 
 
@@ -1660,52 +1688,7 @@
                                                                             </c:if>
 
 
-<%--                                                                            <!-- button -->--%>
-<%--                                                                            <div class="row">--%>
-<%--                                                                                <div class="col-xl-12">--%>
-<%--                                                                                    <div class="more-btn text-center mt-15">--%>
-<%--                                                                                        <a href="#"--%>
-<%--                                                                                           class="border-btn border-btn2 more-btn2">Browse--%>
-<%--                                                                                            More</a>--%>
-<%--                                                                                    </div>--%>
-<%--                                                                                </div>--%>
-<%--                                                                            </div>--%>
-<%--                                                                        </div>--%>
-<%--                                                                    </div>--%>
-<%--                                                                </div>--%>
-<%--                                                            </div>--%>
-                                                            <!-- listing-area Area End -->
 
-                                                            <!-- Subscribe Area Start -->
-<%--                                                            <section class="subscribe-area">--%>
-<%--                                                                <div class="container">--%>
-<%--                                                                    <div class="subscribe-caption text-center  subscribe-padding section-img2-bg"--%>
-<%--                                                                         data-background="assets/img/gallery/section-bg1.jpg">--%>
-<%--                                                                        <div class="row justify-content-center">--%>
-
-<%--                                                                            <div class="col-xl-6 col-lg-8 col-md-9">--%>
-<%--                                                                                <h3>Join Newsletter</h3>--%>
-<%--                                                                                <p>Lorem started its journey with cast--%>
-<%--                                                                                    iron (CI)--%>
-<%--                                                                                    products in--%>
-<%--                                                                                    1980. The initial main objective was--%>
-<%--                                                                                    to--%>
-<%--                                                                                    ensure pure--%>
-<%--                                                                                    water--%>
-<%--                                                                                    and affordable irrigation.</p>--%>
-<%--                                                                                <form action="#">--%>
-<%--                                                                                    <input type="text"--%>
-<%--                                                                                           placeholder="Enter your email">--%>
-<%--                                                                                    <button class="subscribe-btn">--%>
-<%--                                                                                        Subscribe--%>
-<%--                                                                                    </button>--%>
-<%--                                                                                </form>--%>
-<%--                                                                            </div>--%>
-<%--                                                                        </div>--%>
-<%--                                                                    </div>--%>
-<%--                                                                </div>--%>
-<%--                                                            </section>--%>
-                                                            <!-- Subscribe Area End -->
 </main>
 <jsp:include page="../main/footer.jsp"></jsp:include>
 <!-- Scroll Up -->

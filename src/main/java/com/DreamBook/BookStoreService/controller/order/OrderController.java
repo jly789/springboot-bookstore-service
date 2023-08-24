@@ -84,6 +84,7 @@ public class OrderController {
 
         model.addAttribute("bookCartList", bookCartList);
         model.addAttribute("totalPrice",totalPrice);
+        model.addAttribute("cartId",cartId);
 
        return  "order/order";
     }

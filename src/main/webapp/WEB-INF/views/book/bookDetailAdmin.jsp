@@ -190,7 +190,7 @@
 <body>
 <jsp:include page="../main/header.jsp"></jsp:include>
 <main>
-    <form action="/bookMain" method="get">
+    <form action="/bookUpdate" method="get">
         <!--  services-area start-->
         <div class="services-area2">
             <div class="container">
@@ -200,7 +200,7 @@
                             <div class="col-xl-12">
                                 <!-- Single -->
 
-                                <c:forEach var="bookList" items="${top5Genre}">
+                                <c:forEach var="bookList" items="${bookList}">
 
 
                                     <div class="single-services d-flex align-items-center mb-0"
@@ -265,7 +265,9 @@
                                                 <p style="color: black;">(${bookList.reviewId} Review)</p>
                                             </div>
 
-                                            <button type="submit" class="white-btn mr-10">장바구니</button>
+                                            <button type="submit" class="white-btn mr-10">수정하기</button>
+
+                                            <button type="button" id="recommendedBook"  class="white-btn mr-10">도서추천</button>
 
 
                                         </div>
@@ -295,14 +297,31 @@
                                     <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one"
                                        role="tab" aria-controls="nav-one" aria-selected="true">책소개</a>
 
-
+                                    <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" href="#nav-two"
+                                       role="tab" aria-controls="nav-two" aria-selected="false">댓글작성</a>
 
                                     <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">리뷰</a>
 
                                 </div>
                             </nav>
                         </c:if>
+                        <c:if test="${userId==null}">
+                            <nav>
+                                <div class="nav nav-tabs " id="nav-tab" role="tablist">
 
+                                    <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one"
+                                       role="tab" aria-controls="nav-one" aria-selected="true">책소개</a>
+
+
+                                    <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">리뷰</a>
+                                </div>
+                            </nav>
+
+
+
+
+                        </c:if>
+                        <!--End Nav Button  -->
                     </div>
                 </div>
             </div>
@@ -316,21 +335,17 @@
                     <div class="row">
                         <div class="offset-xl-1 col-lg-9">
                             <c:forEach var="bookList" items="${bookList}">
-                                <div class="col-md-12 form-group">
-
-                                    <p>${bookList.bookContent}</p>
-                                </div>
+                                <p>${bookList.bookContent}</p>
 
                             </c:forEach>
 
                             <br/>
 
 
+
                             <button type="submit" id="comment" class="white-btn mr-10">댓글on</button>
 
                             <div id="result"></div>
-
-
                             <br/>
 
 
@@ -340,52 +355,55 @@
                 </div>
 
                 <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
-                        <!-- Tab 1 -->
-                        <div class="row">
-                            <div class="offset-xl-1 col-lg-9">
+                    <!-- Tab 1 -->
+                    <div class="row">
+                        <div class="offset-xl-1 col-lg-9">
 
 
-                                <c:if test="${userId!=null}">
-                                <div class="comment-form">
-                                    <h4>Comment
-                                        <h4>
+                            <c:if test="${userId!=null}">
+                            <div class="comment-form">
+                                <h4>Comment
+                                    <h4>
 
-                                            <form class="form-contact comment_form" action="/commentAdd" method="get"
-                                                  id="commentForm">
-                                                <c:forEach var="bookList" items="${bookList}">
-                                                <input type="hidden" name="bookId" value="${bookList.bookId}"/>
+                                        <form class="form-contact comment_form" action="/commentAdd" method="get"
+                                              id="commentForm">
+                                            <c:forEach var="bookList" items="${bookList}">
+                                            <input type="hidden" name="bookId" value="${bookList.bookId}"/>
 
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
 
-                                                            <div class="col-sm-6">
-                                                                <div class="form-group">
-                                                                    <input class="form-control" name="commentContent"
-                                                                           type="text" value="" placeholder="Comment">
-                                                                </div>
-                                                            </div>
-
+                                                        <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <button type="submit"
-                                                                        class="button button-contactForm btn_1 boxed-btn">
-                                                                    작성하기
-                                                                </button>
+                                                                <input class="form-control" name="commentContent"
+                                                                       type="text" value="" placeholder="Comment">
                                                             </div>
-                                                            </c:forEach>
-                                            </form>
-                                </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <button type="submit"
+                                                                    class="button button-contactForm btn_1 boxed-btn">
+                                                                작성하기
+                                                            </button>
+                                                        </div>
+                                                        </c:forEach>
+                                        </form>
                             </div>
-
-                            </c:if>
-
                         </div>
 
-                        </div>
 
-</div>
+
                     </div>
+
                 </div>
+
+            </div>
+
+        </div>
+        </div>
+
+        </c:if>
 
 
         <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
@@ -398,77 +416,77 @@
 
 
 
-                                <c:forEach var="reviewAllList" items="${reviewAllList}">
-                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                        <div class="properties pb-30">
-                                            <div class="properties-card">
-                                                <div class="properties-img">
-                                                    <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
-                                                                                                                                                   style="   height: 300px; object-fit: cover;"></a>
-                                                </div>
-                                                <div class="properties-caption properties-caption2">
-                                                    <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
+                        <c:forEach var="reviewAllList" items="${reviewAllList}">
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                <div class="properties pb-30">
+                                    <div class="properties-card">
+                                        <div class="properties-img">
+                                            <a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}"><img src="reviewImg/${reviewAllList.reviewFileName}" alt=""
+                                                                                                                                           style="   height: 300px; object-fit: cover;"></a>
+                                        </div>
+                                        <div class="properties-caption properties-caption2">
+                                            <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
 
 
-                                                    <p>${reviewAllList.reviewContent} </p>
-                                                    <c:if test="${reviewAllList.userId==checkId}">
-                                                    <h6 style="color: red; text-align: right;">My Review</h6>
-                                                    </c:if>
+                                            <p>${reviewAllList.reviewContent} </p>
+                                            <c:if test="${reviewAllList.userId==checkId}">
+                                                <h6 style="color: red; text-align: right;">My Review</h6>
+                                            </c:if>
 
-                                                    <c:if test="${reviewAllList.userId!=checkId}">
-                                                        <h6 style="color: black; text-align: right;">  (${reviewAllList.userId})</h6>
-                                                    </c:if>
-                                                    <div class="properties-footer d-flex justify-content-between align-items-center">
-                                                        <div class="review">
-                                                            <div class="rating">
-                                                                <c:if test="${reviewAllList.grade==1}">
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                            <c:if test="${reviewAllList.userId!=checkId}">
+                                                <h6 style="color: black; text-align: right;">  (${reviewAllList.userId})</h6>
+                                            </c:if>
+                                            <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                <div class="review">
+                                                    <div class="rating">
+                                                        <c:if test="${reviewAllList.grade==1}">
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
-                                                                <c:if test="${reviewAllList.grade==2}">
+                                                        <c:if test="${reviewAllList.grade==2}">
 
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
-                                                                <c:if test="${reviewAllList.grade==3}">
+                                                        <c:if test="${reviewAllList.grade==3}">
 
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
-                                                                <c:if test="${reviewAllList.grade==4}">
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                                        <c:if test="${reviewAllList.grade==4}">
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
-                                                                <c:if test="${reviewAllList.grade==5}">
+                                                        <c:if test="${reviewAllList.grade==5}">
 
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                    <i class="fas fa-star" style="color: gold;"></i>
-                                                                </c:if>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                            <i class="fas fa-star" style="color: gold;"></i>
+                                                        </c:if>
 
 
 
-                                                            </div>
-<%--                                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>--%>
-                                                        </div>
-                                                        <div class="price">
-                                                            <span>${reviewAllList.price}</span>
-                                                        </div>
                                                     </div>
+                                                        <%--                                                            <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>--%>
+                                                </div>
+                                                <div class="price">
+                                                    <span>${reviewAllList.price}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
-                                </c:forEach>
+                        </c:forEach>
 
 
                         </c:if>
@@ -499,22 +517,28 @@
         history.back();
     }
 
-        $('#comment').click(function () {
+
+    $('#recommendedBook').click(function () {
+      let bookId =  $('#bookId').val();
+      location.href="/recommendedBook?bookId="+bookId;
+    })
+
+    $('#comment').click(function () {
 
 
-            if($("#comment").html()=='댓글off') {
+        if($("#comment").html()=='댓글off') {
 
 
-                $("#result").hide();
-                $("#comment").html('댓글on');
-                return true;
+            $("#result").hide();
+            $("#comment").html('댓글on');
+            return true;
 
-            }
+        }
 
 
-            if($("#comment").html()=='댓글on') {
+        if($("#comment").html()=='댓글on') {
 
-                $("#result").show();
+            $("#result").show();
             // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
             $.ajax({
 
@@ -538,7 +562,7 @@
                         let writer = $('<strong  style="color: black; font-weight: 900;"> ' + '작성자:' + subCategoryDTO.userId + '<br/></>')
                         let content = $('<strong>' + '내용:' + subCategoryDTO.commentContent + '<br/><br/></strong>')
                         let deleteComment =  $('<a style="color: red;" href="/deleteCommentAdmin?commentId='+subCategoryDTO.commentId+'&bookId='+subCategoryDTO.bookId+'"  >Delete</a>')
-                            // <a href="/deleteComment"></a>삭제하기
+                        // <a href="/deleteComment"></a>삭제하기
                         $("#result").append(deleteComment)
                         $("#result").append(option)
                         $("#result").append(br)
@@ -546,12 +570,9 @@
                         $("#result").append(writer)
                         $("#result").append(content)
 
-
                         $("#comment").html('댓글off');
 
-                        // let option = $('<button   value="' + subCategoryDTO.categoryId + '">' +
-                        //     ''+  subCategoryDTO.categoryName +' <a href="/category/categoryDelete?categoryId='+subCategoryDTO.categoryId +'"></a>'
-                        //     +  ' &nbsp'+'&nbsp' + '</button>')
+
 
                     }
 
@@ -564,9 +585,9 @@
 
             });
             return  true;
-            }
+        }
         return true;
-        });
+    });
 
 
 

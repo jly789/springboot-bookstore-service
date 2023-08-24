@@ -35,9 +35,9 @@
     <div class="row">
       <div class="col-xl-12">
         <div class="slider-area">
-          <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center">
+          <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center"style="height: 450px;>
             <div class="hero-caption hero-caption2">
-              <h2>Cart</h2>
+
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@
                     <a href="/cartPlus?cartId=${bookCartList.cartId}&price=${bookCartList.price}" style="color: black">
                         <input type='hidden' class="bb" id="bb" name="bb"
                                onclick='count("plus")'
-                               value='${bookCartList.cartId}'>+
+                               value='${bookCartList.cartId}'><strong>+</strong>
 
                     </a>
 
@@ -127,7 +127,7 @@
 wishQuantity=${bookCartList.wishQuantity}" style="color: black">
                   <input type='hidden' class="minus" id="minus" name="minus"
                          onclick='count("minus")'
-                         value='${bookCartList.cartId}'>-
+                         value='${bookCartList.cartId}'><strong>-</strong>
 
                 </a>
 
@@ -142,10 +142,10 @@ wishQuantity=${bookCartList.wishQuantity}" style="color: black">
               <td></td>
               <td>
 
-                <h4>총 금액:</h4>
+                <h5>총 금액:</h5>
               </td>
               <td>
-                <h4 style="margin-right: 150px; color: red;">${totalPrice}원</h4>
+                <h5 style="margin-right: 150px; color: red;">${totalPrice}원</h5>
              <input type="hidden" class=""  name="totalPrice" id="totalPrice" value="${totalPrice}"/>
               </td>
             </tr>
@@ -170,6 +170,10 @@ wishQuantity=${bookCartList.wishQuantity}" style="color: black">
 
   $('#payment').click(function () {
 
+    if($('#totalPrice').val()==0){
+      alert('책을 최소 1권이상 담으세요!')
+      return false;
+    }
     let bookName =0;
     let firstElement =0;
     // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
@@ -196,7 +200,7 @@ wishQuantity=${bookCartList.wishQuantity}" style="color: black">
 
       },
       error: function(a, b, c) {
-        alert('ㅇㅇㄴ');
+        alert('오류');
         console.log(a, b, c);
       }
 

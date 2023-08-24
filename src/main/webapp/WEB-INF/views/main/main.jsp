@@ -42,8 +42,7 @@
                                     <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7">
                                         <div class="hero-caption text-center">
 
-                                            <h1 data-animation="fadeInUp" data-delay=".4s"
-                                            style="color: black;">Welcome<br><br>BookStore</h1>
+                                            <h1 data-animation="fadeInUp" data-delay=".4s"><br><br></h1>
 
                                         </div>
                                     </div>
@@ -57,7 +56,7 @@
                                     <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7">
                                         <div class="hero-caption text-center">
 
-                                            <h1 data-animation="fadeInUp" data-delay=".4s">전국 Top 10<br><br>BookStore</h1>
+                                            <h1 data-animation="fadeInUp" data-delay=".4s"><br><br</h1>
 
                                         </div>
                                     </div>
@@ -71,7 +70,7 @@
                                     <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7">
                                         <div class="hero-caption text-center">
 
-                                            <h1 data-animation="fadeInUp" data-delay=".4s">문의 사항은<br><br>031-000-0000</h1>
+                                            <h1 data-animation="fadeInUp" data-delay=".4s"><br><br></h1>
 
                                         </div>
                                     </div>
@@ -110,7 +109,7 @@
                                             style=" height: 320px; object-fit: cover;"></a>
                                 </div>
                                 <div class="properties-caption">
-                                    <h3>${bestSellerList.bookName}</h3>
+                                    <strong>${bestSellerList.bookName}</strong>
                                     <p>${bestSellerList.author}</p>
                                     <div class="properties-footer d-flex justify-content-between align-items-center">
                                         <div class="review">
@@ -162,9 +161,10 @@
                                             </div>
                                             <p style="color: black;">(${bestSellerList.reviewId} Review)</p>
                                         </div>
-                                        <div class="price">
-                                            <span>${bestSellerList.price}</span>
-                                        </div>
+                                        <br/><br/>
+
+                                            <span style="color: red;">${bestSellerList.price}원</span>
+
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 col-lg-9 col-md-8">
-                    <div class="row">
+                    <div class="row" >
                         <!-- tittle -->
                         <div class="col-xl-12">
                             <div class="section-tittle d-flex justify-content-between align-items-center mb-40">
@@ -191,7 +191,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="width: 80%;">
                         <div class="col-xl-12">
                             <div class="services-active">
                                 <c:forEach var="weekBook" items="${weekBook}">
@@ -206,10 +206,10 @@
                                     </div>
                                     <div class="features-caption">
 
-                                        <h3 style="color: black;">${weekBook.bookName}</h3>
+                                      <h4>  <strong style="color: black;">${weekBook.bookName}</strong></h4>
                                         <p style="color: black;">${weekBook.author}</p>
                                         <div class="price">
-                                            <span style="color: black;">${weekBook.price}원</span>
+                                            <strong style="color: red;">${weekBook.price}원</strong>
                                         </div>
                                         <div class="review">
                                             <div class="rating">
@@ -271,8 +271,39 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-9">
                     <!-- Google Addd -->
-                    <div class="google-add">
-                        <img src="assets/img/gallery/ad.jpg" alt="" class="w-100">
+                    <div class="google-add" style="text-align: center;">
+                        <div class="container"  style="width: 800px;">
+
+                                <div class="col-xl-9 col-lg-9 col-md-8">
+                                    <div class="row">
+                                        <!-- tittle -->
+                                        <div class="col-xl-12">
+                                            <div class="section-tittle d-flex justify-content-between align-items-center mb-40">
+                                                <strong class="mb-0">사서가 추천하는 도서</strong>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row" style="background-color:  #FEF4F4; width: 40%;" >
+                                        <div class="col-xl-12">
+                                            <div class="services-active">
+                                                <c:forEach var="weekBook" items="${recommendedBook}">
+                                                    <!-- Single -->
+                                                    <%--                                <div class="single-services" style="background-color: lightgrey; "> 이놈 색상--%>
+                                                    <div class="features-img">
+                                                        <a href="/${weekBook.bookId}"><img
+                                                                src="files/${weekBook.fileName}"
+                                                                alt=""
+                                                                style="    height: 200px; object-fit: cover;"></a>
+                                                    </div>
+
+                                                </c:forEach>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                     </div>
                 </div>
             </div>
@@ -326,7 +357,7 @@
 
 
 
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
 
                             <div class="properties pb-30">
                                 <div class="properties-card">
@@ -337,7 +368,7 @@
                                                 style="    height: 200px; object-fit: cover;"></a>
                                     </div>
                                     <div class="properties-caption properties-caption2">
-                                        <h3><a href="book-details.html">${top5Genre.bookName}</a></h3>
+                                        <h6><strong><a href="book-details.html">${top5Genre.bookName}</a></strong></h6>
                                         <p>${top5Genre.author}</p>
                                         <div class="properties-footer d-flex justify-content-between align-items-center">
                                             <div class="review">
@@ -388,10 +419,11 @@
                                                     </c:if>
                                                 </div>
                                                 <p style="color: black;">(${top5Genre.reviewId} Review)</p>
+
                                             </div>
-                                            <div class="price">
-                                                <span>${top5Genre.price}</span>
-                                            </div>
+                                                <div class="price">
+                                                    <strong style="color: red;">${top5Genre.price}원</strong>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -410,7 +442,7 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='소설'}">
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
                             <div class="properties pb-30">
                                 <div class="properties-card">
                                     <div class="properties-img">
@@ -420,7 +452,7 @@
                                                 style="    height: 200px; object-fit: cover;"></a>
                                     </div>
                                     <div class="properties-caption properties-caption2">
-                                        <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                        <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                         <p>J. R Rain</p>
                                         <div class="properties-footer d-flex justify-content-between align-items-center">
                                             <div class="review">
@@ -475,7 +507,7 @@
 
 
                                                 <div class="price">
-                                                    <span>${genreList.price}원</span>
+                                                    <strong style="color: red;">${genreList.price}원</strong>
                                                 </div>
                                         </div>
                                     </div>
@@ -497,8 +529,9 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='수필'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                    <div class="properties pb-30">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
+
+                                <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
                                                 <a href="/${genreList.bookId}"><img
@@ -507,7 +540,7 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -561,7 +594,7 @@
                                                             <p style="color: black;">(${genreList.reviewId} Review)</p>
                                                         </div>
                                                         <div class="price">
-                                                            <span>${genreList.price}</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -584,7 +617,7 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='코미디'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
                                     <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
@@ -594,7 +627,7 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -648,7 +681,7 @@
                                                             <p style="color: black;">(${genreList.reviewId} Review)</p>
                                                         </div>
                                                         <div class="price">
-                                                            <span>${genreList.price}</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -668,7 +701,7 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='연애'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
                                     <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
@@ -678,7 +711,8 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
+
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -732,7 +766,7 @@
                                                             <p style="color: black;">(${genreList.reviewId} Review)</p>
                                                         </div>
                                                         <div class="price">
-                                                            <span>${genreList.price}</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -754,7 +788,7 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='공포'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
                                     <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
@@ -764,7 +798,8 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
+
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -818,7 +853,7 @@
                                                             <p style="color: black;">(${genreList.reviewId} Review)</p>
                                                         </div>
                                                         <div class="price">
-                                                            <span>${genreList.price}</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -841,8 +876,9 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='인문학'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                    <div class="properties pb-30">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
+
+                                <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
                                                 <a href="/${genreList.bookId}"><img
@@ -851,7 +887,7 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -905,7 +941,7 @@
                                                             <p style="color: black;">(${genreList.reviewId} Review)</p>
                                                         </div>
                                                         <div class="price">
-                                                            <span>${genreList.price}</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -928,7 +964,7 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='어린이'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
                                     <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
@@ -938,7 +974,8 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -993,7 +1030,7 @@
 
 
                                                         <div class="price">
-                                                            <span>${genreList.price}원</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1015,8 +1052,9 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='자서전'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                    <div class="properties pb-30">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
+
+                                <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
                                                 <a href="/${genreList.bookId}"><img
@@ -1025,7 +1063,7 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -1080,7 +1118,7 @@
 
 
                                                         <div class="price">
-                                                            <span>${genreList.price}원</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1102,7 +1140,7 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='잡지'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
                                     <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
@@ -1112,7 +1150,7 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -1167,7 +1205,7 @@
 
 
                                                         <div class="price">
-                                                            <span>${genreList.price}원</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1189,8 +1227,9 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='과학'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                    <div class="properties pb-30">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
+
+                                <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
                                                 <a href="/${genreList.bookId}"><img
@@ -1199,7 +1238,7 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -1254,7 +1293,7 @@
 
 
                                                         <div class="price">
-                                                            <span>${genreList.price}원</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1276,8 +1315,9 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='우주과학'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                    <div class="properties pb-30">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
+
+                                <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
                                                 <a href="/${genreList.bookId}"><img
@@ -1286,7 +1326,8 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
+
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -1341,7 +1382,7 @@
 
 
                                                         <div class="price">
-                                                            <span>${genreList.price}원</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1363,8 +1404,9 @@
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
                             <c:if test="${genreList.genre=='사회과학'}">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                                    <div class="properties pb-30">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
+
+                                <div class="properties pb-30">
                                         <div class="properties-card">
                                             <div class="properties-img">
                                                 <a href="/${genreList.bookId}"><img
@@ -1373,7 +1415,7 @@
                                                         style="    height: 200px; object-fit: cover;"></a>
                                             </div>
                                             <div class="properties-caption properties-caption2">
-                                                <h3><a href="book-details.html">${genreList.bookName}</a></h3>
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
                                                 <p>J. R Rain</p>
                                                 <div class="properties-footer d-flex justify-content-between align-items-center">
                                                     <div class="review">
@@ -1428,7 +1470,7 @@
 
 
                                                         <div class="price">
-                                                            <span>${genreList.price}원</span>
+                                                            <strong style="color: red;">${genreList.price}원</strong>
                                                         </div>
                                                     </div>
                                                 </div>

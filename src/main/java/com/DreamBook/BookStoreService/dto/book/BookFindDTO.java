@@ -43,13 +43,7 @@ public class BookFindDTO {
     private LocalDateTime reviewDate;
     private int reviewGrade;
     private int reviewIdCount;
-
-
-
-
-
-
-
+    private int recommendedBook; //추천도서여부 0이면 x 1이면 추천도서
 
 
     @NotNull(message = "필수 정보입니다.")

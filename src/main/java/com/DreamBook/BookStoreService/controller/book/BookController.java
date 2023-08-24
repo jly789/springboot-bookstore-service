@@ -519,7 +519,7 @@ public class BookController {
 
         return "book/bookAdd";
     }
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //book 상세리스트
     public String bookDetail(@PathVariable("id") int id, Model model,HttpSession session,
                              @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
                              @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
@@ -532,15 +532,16 @@ public class BookController {
 
                 int memberId = (Integer) session.getAttribute("memberId");
 
-                String userId = (String) session.getAttribute("userId");
+                String userId =(String) session.getAttribute("userId");
 
                 List<BookFindDTO> bookList = bookService.bookIdList(id);
 
 
-                model.addAttribute("reviewAllList", reviewService.reviewBookList(id));
-                model.addAttribute("id", id);
-                model.addAttribute("checkId", userId);
-                model.addAttribute("bookList", bookList);
+
+                model.addAttribute("reviewAllList",reviewService.reviewBookList(id));
+                model.addAttribute("id",id);
+                model.addAttribute("checkId",userId);
+                model.addAttribute("bookList",bookList);
 
 
                 return "book/bookDetailAdmin";
@@ -583,6 +584,18 @@ public class BookController {
 
 
         return "book/bookDetail";
+    }
+
+    @GetMapping("/recommendedBook") //도서추천하기
+    public String recommendedBook(@RequestParam("bookId")int bookId, HttpSession session,Model model)throws Exception{
+
+
+
+        bookService.updateRecommendedBook(bookId);
+
+
+
+        return "redirect:/";
     }
 
     @GetMapping("/bookUpdate")

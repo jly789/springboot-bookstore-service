@@ -107,6 +107,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void updateRecommendedBook(int bookId) throws Exception {
+         bookMapper.updateRecommendedBook(bookId);
+    }
+
+    @Override
     public void updateViews(int id) throws Exception {
         bookMapper.updateViews(id);
 
@@ -225,6 +230,13 @@ public class BookServiceImpl implements BookService {
         //orderId리스트를 이용하여 book리스트찾기
 
         return bookMapper.bookIdList2(orderIdList,memberId);
+
+
+    }
+
+    @Override
+    public List<BookFindDTO> recommendedBook() throws Exception {
+        return  bookMapper.recommendedBook();
     }
 
     @Override

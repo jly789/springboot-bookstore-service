@@ -37,9 +37,9 @@
     <div class="row">
       <div class="col-xl-12">
         <div class="slider-area">
-          <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center">
+          <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center"style="height: 450px;>
             <div class="hero-caption hero-caption2">
-              <h2>Order</h2>
+
             </div>
           </div>
         </div>
@@ -114,8 +114,9 @@
 
 
 
-              <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="recipient" name="recipient" placeholder="배송지명" />
+            <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="deliveryName" name="deliveryName"/>
+              <span id="deliveryNames" class="placeholder" data-placeholder="배송지명 입력하시오!"></span>
               </div>
               <div class="col-md-6 form-group p_star">
                 <input type="text" class="form-control" id="tel" name="deliveryTel" value="" />
@@ -126,8 +127,8 @@
                 <span id="emails" class="placeholder" data-placeholder="이메일 주소입력"></span>
               </div>
 
-              <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="postcode" name="postcode" placeholder="우편번호" />
+            <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="postcode" name="postcode" />
                 <span id="postcodes" class="placeholder" data-placeholder="우편번호 입력"></span>
               </div>
 
@@ -165,7 +166,11 @@
 
 
                 <a id="delivery" class="btn">기존 배송지 적용</a>
-                <a id="reset"   href="/order" style="width: 90px; height: 30px; background-color: red" >reset</a>
+
+
+
+                <button onClick="window.location.reload()" class="btn">새로고침</button>
+
               </div>
 
 
@@ -216,7 +221,7 @@
 
                 <li>
                   <a >총 금액
-                    <span style="color: red;"  id="totalPrice">${totalPrice+5000}</span>
+                    <span style="color: red;"  id="totalPrice">${totalPrice+5000}원</span>
 
                   </a>
 
@@ -249,6 +254,7 @@
 </main>
 
 <script>
+
 
 
 
@@ -365,7 +371,7 @@
 
   $('#payment').click(function () {
 
-    if($('#recipient').val()==''){
+    if($('#deliveryName').val()==''){
       alert('배송지명을 입력하세요!')
       return false;
     }
@@ -429,7 +435,7 @@
             detailAddress: $("#detailAddress").val(),
             extraAddress: $("#extraAddress").val(),
             deliveryCost: $("#delivaryAccount").val(),
-            recipient: $("#recipient").val(),
+            recipient: $("#deliveryName").val(), //배송지명
             plusPoint: parseInt($("#basePrice").val()),
 
           },
@@ -489,6 +495,7 @@ $.ajax({
     let address =0;
     let detailAddress =0;
     let extraAddress =0;
+    let deliveryName =0;
 
 
     if(list !=null){
@@ -499,6 +506,7 @@ $.ajax({
       $("#addresss").hide();
       $("#detailAddresss").hide();
       $("#extraAddresss").hide();
+      $("#deliveryNames").hide();
 
     }
 
@@ -515,6 +523,7 @@ $.ajax({
         address=(list[i].address);
         detailAddress=(list[i].detailAddress);
         extraAddress=(list[i].extraAddress);
+        deliveryName=(list[i].deliveryName);
 
       }
             // console.log(aa.ind);
@@ -527,6 +536,7 @@ $.ajax({
     $("#address").val(address);
     $("#detailAddress").val(detailAddress);
     $("#extraAddress").val(extraAddress);
+    $("#deliveryName").val(deliveryName);
 
 
       // $("#tel").val(tel.replace(reg , ''));

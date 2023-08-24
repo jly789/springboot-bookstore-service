@@ -48,6 +48,8 @@ public interface BookMapper {
 
     public void insertData(BookAddDTO bookAddDTO) throws Exception;
 
+
+    public void   updateRecommendedBook (int bookId) throws Exception; //추천도서설정
     public void  updateViews (int id) throws Exception;
 
     public void bookCartInsertData(BookCartDTO bookCartDTO) throws Exception;
@@ -88,7 +90,7 @@ public interface BookMapper {
 
     public List<BookFindDTO> bookIdList2(List<OrderDTO>orderIdList,int memberId) throws Exception;
 
-
+    public List<BookFindDTO> recommendedBook() throws Exception; //추천도서인 리스트출력
 
     public List<BookDTO> bookCartList(int memberId) throws Exception;
 

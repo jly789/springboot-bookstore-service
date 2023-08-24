@@ -36,9 +36,9 @@
     <div class="row">
       <div class="col-xl-12">
         <div class="slider-area">
-          <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center">
+          <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center" style="height: 450px;>
             <div class="hero-caption hero-caption2">
-              <h2>my Page</h2>
+
             </div>
           </div>
         </div>

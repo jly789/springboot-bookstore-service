@@ -20,9 +20,9 @@
         <insert id="insertData" parameterType="com.DreamBook.BookStoreService.dto.book.BookAddDTO">
 
         insert into book(bookId,memberId,bookName,bookContent,author,publisher,genre,
-                         fileName,filePath,price,salesQuantity,bookLoan,views,publicationYear,salesRate)
+                         fileName,filePath,price,salesQuantity,recommendedBook,views,publicationYear,salesRate)
         values (#{bookId},#{memberId},#{bookName},#{bookContent},#{author},#{publisher},
-                #{genre},#{fileName},#{filePath},#{price},#{salesQuantity},1,0,#{publicationYear},0)
+                #{genre},#{fileName},#{filePath},#{price},#{salesQuantity},0,0,#{publicationYear},0)
 
         </insert>
 
@@ -373,11 +373,11 @@
         select * from(
 
                          select
-                             a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.bookContent,a.views,
+                             a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.bookContent,a.views,a.salesQuantity,
                              RANK() OVER(ORDER BY a.views DESC) as ranking,
                                  round(avg(b.grade))as grade,count(b.reviewId) as reviewId from book a
                                                                                                     left join review b on a.bookId = b.bookId
-                         GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.bookContent,a.views
+                         GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.bookContent,a.views,a.salesQuantity
                          ORDER BY a.salesRate desc
                      )
         where bookId =#{bookId}
@@ -405,6 +405,13 @@
 
         order by b.orderId asc
 
+
+    </select>
+
+
+    <select id="recommendedBook" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+    select * from book
+    where recommendedBook =1
 
     </select>
 
@@ -439,6 +446,8 @@
 
 
 
+
+
     <update id="updateBook" parameterType="com.DreamBook.BookStoreService.dto.book.BookUpdateDTO">
 
         update book
@@ -461,7 +470,13 @@
 
     </update>
 
+    <update id="updateRecommendedBook" parameterType="int">
 
+        update book
+        set    recommendedBook = 1
+        WHERE	bookId= #{bookId}
+
+    </update>
 
 
     <update id="updateViews" parameterType="int">
@@ -522,6 +537,8 @@
         WHERE	cartId = #{cartId}  or bookId = #{bookId}
 
     </update>
+
+
 
     <select id="bookAndReview" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
         SELECT a.bookId, avg(b.grade) from book a

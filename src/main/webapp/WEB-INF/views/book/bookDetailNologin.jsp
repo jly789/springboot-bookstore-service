@@ -265,7 +265,7 @@
                                                 <p style="color: black;">(${bookList.reviewId} Review)</p>
                                             </div>
 
-                                            <button type="submit" class="white-btn mr-10">장바구니</button>
+
 
 
                                         </div>
