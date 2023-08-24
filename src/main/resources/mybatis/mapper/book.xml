@@ -121,10 +121,43 @@
 
     </select>
 
+    <select id="SelectSearchList" resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+
+        SELECT  *
+        FROM (
+        SELECT  ROW_NUMBER() OVER(ORDER by a.bookId asc) AS
+        row_num,
+        a.bookId,a.memberId,a.fileName,a.bookName,a.bookContent,a.genre,a.PUBLISHER,a.author,a.price,round(AVG(b.grade))as grade,count(b.reviewId) as reviewId
+        FROM book a  left join review b on a.bookId = b.bookId
+
+        GROUP BY a.bookId,a.fileName,a.bookName,a.bookContent,a.memberId,a.price,a.genre,a.PUBLISHER,a.author
+
+        )
+        <if test="firstRecordIndex !=null and lastRecordIndex != null">
+            WHERE row_num > #{firstRecordIndex} AND
+            #{lastRecordIndex} >=row_num and bookName like '%' ||  #{searchBookName} || '%' or author like '%' ||  #{searchBookName} || '%'
+            or bookContent like '%' ||  #{searchBookName} || '%'
+
+        </if>
+
+    </select>
+
+
+
+
+
     <select id="testTableCount" resultType="int">
         SELECT count(*) FROM
             book
     </select>
+
+    <select id="SearchBookNameTableCount" parameterType="string" resultType="int">
+        SELECT count(*) FROM
+            book
+         where       bookName like '%' ||  #{searchBookName} || '%' or author like '%' ||  #{searchBookName} || '%'
+            or bookContent like '%' ||  #{searchBookName} || '%'
+    </select>
+
 
     <select id="SearchGenreTableCount" parameterType="string" resultType="int">
         SELECT count(*) FROM

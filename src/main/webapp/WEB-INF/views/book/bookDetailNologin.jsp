@@ -210,11 +210,12 @@
                                         </div>
                                         <div class="features-caption">
                                             <h3 style="color: black;">${bookList.bookName}</h3>
-                                            <p style="color: black;">${bookList.author}</p>
+                                            <p style="color: black; text-align: left;">(${bookList.author})</p>
                                             <input type="hidden" id="bookId" name="bookId" value="${bookList.bookId}">
                                             <input type="hidden" name="amount" value="${bookList.price}">
                                             <div class="price">
-                                                <span style="color: black;">${bookList.price}원</span>
+
+                                                <h4 style="color: red;">${bookList.price}원</h4>
                                             </div>
                                             <div class="review">
                                                 <c:if test="${bookList.grade==0}">

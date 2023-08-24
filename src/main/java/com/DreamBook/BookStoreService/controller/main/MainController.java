@@ -2,6 +2,8 @@ package com.DreamBook.BookStoreService.controller.main;
 
 import ch.qos.logback.core.joran.conditional.ElseAction;
 import com.DreamBook.BookStoreService.dto.book.BookFindDTO;
+import com.DreamBook.BookStoreService.dto.book.Pagination;
+import com.DreamBook.BookStoreService.dto.book.PaginationSearchBookName;
 import com.DreamBook.BookStoreService.dto.member.MemberDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberDeleteDTO;
 import com.DreamBook.BookStoreService.dto.member.MemberUpdateDTO;
@@ -258,10 +260,7 @@ public class MainController {
 
 
     @PostMapping("/")
-    public String myPageDeleteOk(MemberDeleteDTO memberDeleteDTO, HttpServletResponse response, HttpSession session)throws Exception {
-        System.out.println(memberDeleteDTO.getMemberId());
-
-     //   cart,orders,review,COMMENTS
+    public String myPageDeleteOk(MemberDeleteDTO memberDeleteDTO, HttpServletResponse response, HttpSession session,Model model)throws Exception {
 
 
 
@@ -338,13 +337,94 @@ public class MainController {
                 session.removeAttribute("userId");
                 session.removeAttribute("memberId");
 
-                return "main/main";
+                if (session.getAttribute("memberId") == null) {
+
+                    String genre = "전체";
+
+                    List<BookFindDTO> bookList = mainService.bookList();
+                    List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
+                    List<BookFindDTO> weekBook = mainService.weekBook();
+                    List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+                    List<BookFindDTO> genreList = mainService.GenreList();
+                    List<BookFindDTO> recommendedBook =bookService.recommendedBook();
+
+                    model.addAttribute("bestSellerList", bestSellerList);
+                    model.addAttribute("weekBook", weekBook);
+                    model.addAttribute("top5Genre", top5Genre);
+                    model.addAttribute("genreList", genreList);
+                    model.addAttribute("recommendedBook", recommendedBook);
+
+                    return "main/main";
+                }
             }
 
 
         }
-        return "main/myPageDelete";
+        return "main/main";
     }
+
+    @GetMapping("/searchBook")
+    public String search(Model model,HttpSession session,
+                         @RequestParam("searchBookName") String searchBookName,
+                         @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+                         @RequestParam(value = "cntPerPage", required = false, defaultValue = "1") int cntPerPage,
+                         @RequestParam(value = "pageSize", required = false, defaultValue = "100") int pageSize)throws Exception{
+
+        model.addAttribute("searchBookName",searchBookName);
+
+        String choice = "정렬";
+        String genreName = "전체";
+        int firstPriceRange = 0; //처음 가격범위 0원이상
+
+        if(session.getAttribute("userId")!=null) {
+            String userId = (String) session.getAttribute("userId");
+
+            if (userId.equals("admin")) { //관리자모드
+                model.addAttribute("genreName", genreName);
+                model.addAttribute("priceRange", firstPriceRange);
+
+
+                int listCnt = bookService.testTableCount();
+                PaginationSearchBookName pagination = new PaginationSearchBookName(currentPage, cntPerPage, pageSize);
+                pagination.setTotalRecordCount(listCnt);
+                pagination.setSearchBookName(searchBookName);
+
+                model.addAttribute("pagination",pagination);
+                model.addAttribute("searchBook",bookService.SelectSearchList(pagination));
+                model.addAttribute("userId", userId);
+
+
+                return "book/mainAdmin";
+
+            }
+
+        }
+
+        model.addAttribute("genreName",genreName);
+        model.addAttribute("priceRange",firstPriceRange);
+
+
+        int listCnt = bookService.SearchBookNameTableCount(searchBookName);
+        PaginationSearchBookName pagination = new PaginationSearchBookName(currentPage, cntPerPage, pageSize);
+        pagination.setTotalRecordCount(listCnt);
+        pagination.setSearchBookName(searchBookName);
+
+
+        model.addAttribute("pagination",pagination);
+        model.addAttribute("searchBook",bookService.SelectSearchList(pagination));
+
+
+
+
+        return "book/main";
+
+
+
+
+
+    }
+
+
     @GetMapping("/index")
     public String index(Model model){
 

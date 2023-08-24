@@ -17,7 +17,9 @@ public interface BookMapper {
     public List<BookFindDTO> SelectAllList() throws Exception;
 
     //Paging
-    public List<BookFindDTO> SelectAllList(Pagination pagination) throws Exception;
+    public List<BookFindDTO> SelectAllList(Pagination pagination) throws Exception; //전체리스트
+
+    public List<BookFindDTO> SelectSearchList(PaginationSearchBookName pagination) throws Exception; //검색한 책 리스트
 
     public List<BookFindDTO> SelectHighPriceList(Pagination pagination) throws Exception;
 
@@ -35,6 +37,7 @@ public interface BookMapper {
     //count
     public int testTableCount() throws Exception;
 
+    public int SearchBookNameTableCount(String searchBookName) throws Exception;
     public int SearchGenreTableCount(String genreName) throws Exception;
     public int SearchPriceRangeTableCount(int price) throws Exception;
 

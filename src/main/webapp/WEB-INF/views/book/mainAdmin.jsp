@@ -569,12 +569,12 @@
 
                                         <div class="slidecontainer">
                                             <h4 style="text-align: left;">가격 범위 설정</h4>
-                                            <input type="range" step="10000" min="0" max="100000" name="price" value="${priceRange}"
+                                            <input type="range" step="5000" min="0" max="50000" name="price" value="${priceRange}"
                                                    class="slider" id="myRange"
                                                    style="text-align: left;"/>
                                             <p>가격: <span id="value"></span>원 이상인 도서
                                                 <form action="/bookPrice" method="post">
-                                                <input type="submit" id="realPrice" value="검색" style="color: red; background-color: white" /></p>
+                                                <input type="submit" id="realPrice" class="btn" value="검색" /></p>
                                         </form>
 
 

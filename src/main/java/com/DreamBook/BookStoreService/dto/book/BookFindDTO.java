@@ -44,6 +44,7 @@ public class BookFindDTO {
     private int reviewGrade;
     private int reviewIdCount;
     private int recommendedBook; //추천도서여부 0이면 x 1이면 추천도서
+    private String searchBookName; //검색도서명
 
 
     @NotNull(message = "필수 정보입니다.")

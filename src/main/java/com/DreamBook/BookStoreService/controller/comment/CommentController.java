@@ -49,6 +49,17 @@ public class CommentController {
         List<BookFindDTO> bookList = bookService.bookIdList(id);
         model.addAttribute("bookList", bookList);
         model.addAttribute("commentFindDTOList", commentFindDTOList);
+
+
+
+        String userId =(String) session.getAttribute("userId");
+
+
+        model.addAttribute("reviewAllList",reviewService.reviewBookList(id));
+        model.addAttribute("id",id);
+        model.addAttribute("checkId",userId);
+        model.addAttribute("bookList",bookList);
+
         return "book/bookDetail";
     }
 

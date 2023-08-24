@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="slider-area">
-                    <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center">
+                    <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center " style="height: 450px;">
                         <div class="hero-caption hero-caption2">
 
                         </div>
@@ -61,7 +61,7 @@
                         <form class="row contact_form" action="/bookUpdate" method="post" novalidate="novalidate"
                         enctype="multipart/form-data">
                             <c:forEach var="bookList" items="${bookList}">
-                            <div class="col-md-12 form-group p_star">
+                           <div class="col-md-12 form-group p_star">
                                 <input type="hidden" class="form-control"  placeholder="" id="bookId" name="bookId" value="${bookList.bookId}" />
 
                             </div>
@@ -69,40 +69,46 @@
 
 
                             <div class="col-md-12 form-group p_star">
-                              <input type="text" value="${bookList.bookName}" class="form-control" id="bookName" name="bookName" />
+                                <p style="color: red; margin-left: -25px;">제목</p><input type="text" value="${bookList.bookName}" class="form-control" id="bookName" name="bookName" />
 
                             </div>
 
 
                             <div class="col-md-12 form-group">
-
+                                <p style="color: red; margin-left: -25px;">내용</p>
                                 <textarea class="form-control" value="${bookList.bookContent}" name="bookContent" id="bookContent" rows="1">${bookList.bookContent}
                                 </textarea>
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red; margin-left: -25px;">저자</p>
                                 <input type="text" value="${bookList.author}" class="form-control" id="author" name="author" />
 
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red;  margin-left: -25px;">출판사</p>
                                 <input type="text" value="${bookList.publisher}" class="form-control" id="publisher" name="publisher" />
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red;  margin-left: -25px;">장르</p>
                                 <input type="text" class="form-control"value="${bookList.genre}" id="genre" name="genre" />
                             </div>
 
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red;  margin-left: -25px;">가격</p>
                                 <input type="text" class="form-control" value="${bookList.price}" id="price" name="price"  />
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red;  margin-left: -25px;">판매수량</p>
                                 <input type="text" class="form-control" value="${bookList.salesQuantity}" id="salesQuantity" name="salesQuantity" />
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red; margin-left: -25px;">출판년도</p>
                                 <input type="date" class="form-control" placeholder="" id="publicationYear" name="publicationYear" />
                             </div>
                             </div>
@@ -209,19 +215,53 @@
 
 
 
+            if($('#update').click (function (){
 
-            $('#update').click(function () {
-
-                var publicationYear = document.getElementById("publicationYear").value;
-
-
-                if (!publicationYear) {
-                    alert("출판연도를 선택해주세여");
-                    return false;
+                if($('#bookName').val()==''){
+                    alert("책 제목을 입력하세요");
+                    return   false;
                 }
-                return true;
+                if($('#bookContent').val()==''){
+                    alert("책 내용을 입력하세요");
+                    return   false;
+                }
 
-            });
+                if($('#author').val()==''){
+                    alert("저자를 입력하세요");
+                    return   false;
+                }
+
+                if($('#publisher').val()==''){
+                    alert("출판사를 입력하세요");
+                    return   false;
+                }
+
+                if($('#genre').val()==''){
+                    alert("장르를 입력하세요");
+                    return   false;
+                }
+
+                if($('#price').val()==''){
+                    alert("가격 입력하세요");
+                    return   false;
+                }
+
+                if($('#salesQuantity').val()==''){
+                    alert("판매수량을 입력하세요");
+                    return   false;
+                }
+
+                if($('#publicationYear').val()==''){
+                    alert("출판년도를 입력하세요");
+                    return   false;
+                }
+
+
+
+                return   true;
+
+            }));
+
 
 
 

@@ -96,6 +96,14 @@
 
               success: function(result) {
 
+                if(result==''){
+
+                  $("#result").text('해당하는 정보는 존재하지않습니다.');
+
+                  document.getElementById('result').style.color ="red"
+                  return false;
+                }
+
                 $("#result").text('비밀번호는:'+' '+result+''+'  입니다');
 
                 document.getElementById('result').style.color ="red"

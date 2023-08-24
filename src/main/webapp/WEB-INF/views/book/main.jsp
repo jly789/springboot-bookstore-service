@@ -569,12 +569,12 @@
 
                                         <div class="slidecontainer">
                                             <h4 style="text-align: left;">가격 범위 설정</h4>
-                                            <input type="range" step="10000" min="0" max="100000" name="price" value="${priceRange}"
+                                            <input type="range" step="5000" min="0" max="50000" name="price" value="${priceRange}"
                                                    class="slider" id="myRange"
                                                    style="text-align: left;"/>
                                             <p>가격: <span id="value"></span>원 이상인 도서
                                                 <form action="/bookPrice" method="post">
-                                                <input type="submit" id="realPrice" value="검색" style="color: red; background-color: white" /></p>
+                                                <input type="submit" id="realPrice" class="btn" value="검색"  /></p>
                                         </form>
 
 
@@ -1634,6 +1634,7 @@
                                                                                 <c:otherwise>
                                                                                     <tr>
                                                                                         <td colspan="4">조회된 결과가 없습니다.
+
                                                                                         </td>
                                                                                     </tr>
                                                                                 </c:otherwise>
@@ -1687,6 +1688,155 @@
 
                                                                             </c:if>
 
+
+
+                                                                                <c:if test="${searchBook !=null}">
+                                                                                <div class="best-selling p-0">
+                                                                                    <div class="row">
+
+                                                                                        <c:choose>
+
+
+                                                                                        <c:when test="${fn:length(searchBook) > 0}">
+
+
+                                                                                        <c:forEach var="bookList" items="${searchBook}">
+                                                                                            <input type="hidden" name="searchBookName" id="searchBookName" value="${searchBookName}">
+                                                                                        <input type="hidden" name="bookId" id="bookId" value="${bookList.bookId}">
+                                                                                        <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-12 col-sm-6">
+                                                                                            <div class="properties pb-30">
+                                                                                                <div class="properties-card">
+                                                                                                    <div class="properties-img">
+                                                                                                        <a href="/${bookList.bookId}"><img src="files/${bookList.fileName}" alt=""
+                                                                                                                                           style="    height: 180px; object-fit: cover;"></a>
+                                                                                                    </div>
+                                                                                                    <div class="properties-caption properties-caption2">
+                                                                                                        <strong><a href="/${bookList.bookId}">${bookList.bookName}</a></strong>
+                                                                                                        <p>${bookList.author}</p>
+                                                                                                        <span id="price" style="color: red;">${bookList.price}원</span>
+                                                                                                        <p style="text-align: right; color: gray;">(${bookList.genre})</p>
+                                                                                                        <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                                                                            <div class="review">
+                                                                                                                <div class="rating">
+
+
+                                                                                                                    <c:if test="${bookList.grade==0}">
+
+
+                                                                                                                    </c:if>
+
+                                                                                                                    <c:if test="${bookList.grade==1}">
+
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+
+
+                                                                                                                    </c:if>
+
+                                                                                                                    <c:if test="${bookList.grade==2}">
+
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+
+
+                                                                                                                    </c:if>
+
+                                                                                                                    <c:if test="${bookList.grade==3}">
+
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+
+
+                                                                                                                    </c:if>
+
+                                                                                                                    <c:if test="${bookList.grade==4}">
+
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+
+
+                                                                                                                    </c:if>
+
+
+                                                                                                                        <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
+                                                                                                                    <c:if test="${bookList.grade==5}">
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                                                                                    </c:if>
+
+
+                                                                                                                </div>
+                                                                                                                <p>(<span>${bookList.reviewId}</span> Review)</p>
+                                                                                                            </div>
+
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        </c:forEach>
+
+                                                                                        </c:when>
+
+
+                                                                                        <c:otherwise>
+                                                                                        <tr>
+                                                                                            <td colspan="4">조회된 결과가 없습니다.</td>
+                                                                                            <input type="hidden" name="searchBookName" id="searchBookName" value="${searchBookName}">
+                                                                                        </tr>
+                                                                                        </c:otherwise>
+
+
+                                                                                        </c:choose>
+
+                                                                                            <!--paginate -->
+                                                                                            <div class="paginate">
+                                                                                                <div class="paging">
+                                                                                                    <a class="direction prev"
+                                                                                                       href="javascript:void(0);"
+                                                                                                       style="color: black;"
+                                                                                                       onclick="moveSearchBookPage(1,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                                        &lt;&lt; </a> <a class="direction prev"
+                                                                                                                         href="javascript:void(0);"
+                                                                                                                         style="color: black;"
+                                                                                                                         onclick="moveSearchBookPage(${pagination.currentPage}
+                                                                                                                         <c:if
+                                                                                                                                 test="${pagination.hasPreviousPage == true}">-1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                                    &lt; </a>
+
+                                                                                                    <c:forEach begin="${pagination.firstPage}"
+                                                                                                               end="${pagination.lastPage}"
+                                                                                                               var="idx">
+                                                                                                        <a
+                                                                                                                style="color: black;
+                                                                                                                    <c:out value="${pagination.currentPage == idx ? 'black; font-weight:700; margin-bottom: 2px;' : ''}"/> "
+                                                                                                                href="javascript:void(0);"
+                                                                                                                onclick="moveSearchBookPage(${idx},${pagination.cntPerPage},${pagination.pageSize});"><c:out
+                                                                                                                value="${idx}"/></a>
+                                                                                                    </c:forEach>
+                                                                                                    <a class="direction next"
+                                                                                                       href="javascript:void(0);"
+                                                                                                       style="color: black;"
+                                                                                                       onclick="moveSearchBookPage(${pagination.currentPage}
+                                                                                                       <c:if
+                                                                                                               test="${pagination.hasNextPage == true}">+1</c:if>,${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                                        &gt; </a> <a class="direction next"
+                                                                                                                     href="javascript:void(0);"
+                                                                                                                     style="color: black;"
+                                                                                                                     onclick="moveSearchBookPage(${pagination.totalRecordCount},${pagination.cntPerPage},${pagination.pageSize});">
+                                                                                                    &gt;&gt; </a>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <!-- /paginate -->
+                                                                                        </c:if>
+
+                                                                                    </div></div></div></div></div>
 
 
 </main>
@@ -1806,6 +1956,18 @@
 
         location.href = url;
     }
+
+    //페이지 이동
+    function moveSearchBookPage(currentPage, cntPerPage, pageSize) {
+
+        var searchBookName  = $('#searchBookName').val();
+
+        var url = "${pageContext.request.contextPath}/searchBook?searchBookName=" + searchBookName;
+
+
+        location.href = url;
+    }
+
 
 
     var slider = document.getElementById("myRange");

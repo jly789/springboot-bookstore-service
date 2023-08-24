@@ -252,7 +252,7 @@
                                 <c:when test="${fn:length(reviewAllList) > 0}">
 
                                     <c:forEach var="reviewAllList" items="${reviewAllList}">
-                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6"  style="width: 18%;">
                                             <div class="properties pb-30">
                                                 <div class="properties-card">
                                                     <div class="properties-img">
@@ -260,11 +260,11 @@
                                                                                                                                                        style="   height: 300px; object-fit: cover;"></a>
                                                     </div>
                                                     <div class="properties-caption properties-caption2">
-                                                        <h3><a href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></h3>
+                                                        <strong><a style="color: black" href="/reviewDetail?reviewId=${reviewAllList.reviewId}&userId=${reviewAllList.userId}">${reviewAllList.reviewSubject}  </a></strong>
 
 
                                                         <p>${reviewAllList.reviewContent} </p>
-                                                        <p  style="color: red;  font-weight: 900;"  >(${reviewAllList.bookName}) </p>
+                                                        <p  style="color: red;  font-weight: 900;"  >도서명(${reviewAllList.bookName}) </p>
 
 
                                                         <c:if test="${reviewAllList.userId==checkId}">
@@ -321,7 +321,7 @@
                                                                     <%--                                                                                <p>(<span>${reviewAllList.reviewIdCount}</span> Review)</p>--%>
                                                             </div>
                                                             <div class="price">
-                                                                <span>${reviewAllList.price}</span>
+                                                                <strong style="color: red;">${reviewAllList.price}원</strong>
                                                             </div>
                                                         </div>
                                                     </div>

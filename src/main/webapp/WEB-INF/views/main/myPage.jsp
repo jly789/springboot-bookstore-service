@@ -63,7 +63,7 @@
               <div class="col-lg-8" >
                 <h3>배송지 주소
 
-                  <button type="submit" value="" style="margin-left: 525px; color: black; border-color: ghostwhite; background-color: white"/>수정하기</h3>
+                  <button type="submit" class="btn" style="margin-left: 620px;"/>수정하기</h3>
                 <br/>
 
                 <a  style="color: red;" href="/myPageUpdate">프로필변경</a> <br/>

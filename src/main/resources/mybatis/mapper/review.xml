@@ -62,7 +62,7 @@
         FROM (
         SELECT  ROW_NUMBER() OVER(ORDER by a.reviewDate desc) AS
         row_num,
-        a.reviewId, c.userId, a.bookId,a.memberId,a.reviewSubject,a.reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,a.reviewDate,b.price,round(AVG(a.grade))as grade,count(a.reviewId) as reviewIdCount
+        a.reviewId, c.userId, a.bookId,a.memberId,SUBSTR(a.reviewSubject, 1, 10)as reviewSubject,SUBSTR(a.reviewContent, 1, 10)as reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,a.reviewDate,b.price,round(AVG(a.grade))as grade,count(a.reviewId) as reviewIdCount
         from review a
 
         left join book b on a.bookId = b.bookId
@@ -79,6 +79,11 @@
             WHERE row_num > #{firstRecordIndex} AND
             #{lastRecordIndex} >=row_num
         </if>
+
+
+
+
+
 
     </select>
 
@@ -153,7 +158,7 @@
 
 
 
-    <update id="updateBook" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO">
+    <update id="updateReviewData" parameterType="com.DreamBook.BookStoreService.dto.review.ReviewUpdateDTO">
 
     update review
     set reviewSubject= #{reviewSubject},reviewContent=#{reviewContent},reviewFileName =#{reviewFileName},
@@ -182,101 +187,6 @@
 
 
 
-
-
-
-<!--    where b.memberId in #{memberId}-->
-
-<!--    <select id="bookReviewList" resultType="com.DreamBook.BookStoreService.dto.review.ReviewFindDTO">-->
-<!--        select AVG(b.grade),a.* from book a-->
-<!--                                     LEFT JOIN review b ON-->
-<!--            a.bookId = b.bookId-->
-<!--        where a.bookId = 1;-->
-<!--    </select>-->
-
-
-
-
-
-<!--    <select id="maxNum" resultType="int">-->
-<!--        select nvl(max(orderId),0) from orders-->
-<!--    </select>-->
-
-
-
-
-
-<!--    <insert id="orderInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
-<!--        <foreach item="item" index="index" collection="java.util.List" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">-->
-<!--           INSERT INTO orders(orderId,memberId,bookId,orderNum,impUid,amount,orderState,orderDate,usePoint)-->
-<!--            VALUES (#{item.orderId},#{item.memberId},#{item.bookId},#{item.orderNum},-->
-<!--           #{item.impUid},#{item.amount},'ORDER',SYSDATE,#{item.usePoint})-->
-<!--        </foreach>-->
-<!--    </insert>-->
-
-<!--    <insert id="orderInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
-
-<!--        insert into orders(orderId,memberId,bookId,orderNum,impUid,amount,orderState,orderDate,usePoint)-->
-<!--            VALUES (#{orderId},#{memberId},#{bookId},#{orderNum},-->
-<!--            #{impUid},#{amount},'ORDER',SYSDATE ,#{usePoint})-->
-
-
-<!--    </insert>-->
-
-<!--    <insert id="deliveryInsertData" parameterType="com.DreamBook.BookStoreService.dto.order.DeliveryDTO">-->
-
-<!--        insert into DELIVERY(deliveryId,orderId,recipient,deliveryTel,postcode,address,detailAddress,extraAddress,deliveryCost)-->
-<!--        VALUES (#{deliveryId},#{orderId},#{recipient},#{deliveryTel},-->
-<!--                #{postcode},#{address},#{detailAddress},#{extraAddress},#{deliveryCost})-->
-
-
-<!--    </insert>-->
-
-<!--    <select id="orderList"  resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO"-->
-<!--            parameterType="String">-->
-<!--        select * from orders-->
-<!--        where orderNum = #{orderNum}-->
-
-
-
-<!--    </select>-->
-
-<!--    <select id="orderFindList"  resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO"-->
-<!--            parameterType="int">-->
-<!--        select distinct orderNum,orderState from orders-->
-<!--        where memberId = #{memberId}-->
-
-
-
-<!--    </select>-->
-
-
-<!--    <select id="orderIdList" resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
-<!--        SELECT distinct orderNum, bookId from orders-->
-
-<!--        WHERE orderNum IN-->
-<!--        <foreach item="list" collection="list" open="(" close=")" separator=",">-->
-<!--            #{list.orderNum}-->
-<!--        </foreach>-->
-<!--        order by orderNum-->
-
-<!--    </select>-->
-
-
-
-<!--    <select id="orderListOrderState" resultType="com.DreamBook.BookStoreService.dto.order.OrderDTO">-->
-<!--        SELECT distinct  orderState  from orders a-->
-<!--        left join book b on a.bookId = b.bookId-->
-
-
-<!--        WHERE a.orderNum IN-->
-<!--        <foreach item="list" collection="list" open="(" close=")" separator=",">-->
-<!--            #{list.orderNum}-->
-<!--        </foreach>-->
-
-
-
-<!--    </select>-->
 
 
 

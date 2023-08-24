@@ -40,7 +40,7 @@
         </c:forEach>
         <div class="single-input-fields">
           <label>Password</label>
-          <input type="password" name="pwd" placeholder="Enter Password">
+          <input type="password" name="pwd" id="pwd" placeholder="Enter Password">
         </div>
 
 
@@ -63,6 +63,18 @@
 
   </div>
 </div>
+
+<script>
+
+  if($('#remove').click (function (){
+
+    if($('#pwd').val()==''){
+      alert("비밀번호를 제데로 입력하세요");
+      return   false;
+    }}));
+
+</script>
+
 <!-- login Area End -->
 </main>
 <jsp:include page="../main/footer.jsp"></jsp:include>

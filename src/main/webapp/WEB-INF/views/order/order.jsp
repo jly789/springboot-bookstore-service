@@ -104,46 +104,52 @@
 
 
 
-              <div class="col-md-6 form-group p_star">
+              <div>
 
                 <input type="hidden" id="orderNum" name="orderNum" value="">
 
-                <input type="text" class="form-control" id="name" name="name"  value=""/>
+                <input type="text" class="form-control" id="name" name="name"  value=""placeholder="이름을 입력하시오"/>
                 <span id="name1" class="placeholder" data-placeholder="이름을 입력하시오!"></span>
               </div>
 
+            <br/>
 
-
-            <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="deliveryName" name="deliveryName"/>
+            <div >
+                <input type="text" class="form-control" id="deliveryName" name="deliveryName"placeholder="배송지명 입력하시오"/>
               <span id="deliveryNames" class="placeholder" data-placeholder="배송지명 입력하시오!"></span>
               </div>
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="tel" name="deliveryTel" value="" />
+
+            <br/>
+              <div>
+                <input type="text" class="form-control" id="tel" name="deliveryTel" value=""placeholder="핸드폰 번호입력" />
                 <span id="tels" class="placeholder" data-placeholder="핸드폰 번호"></span>
               </div>
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="email" value="" />
+            <br/>
+
+              <div>
+                <input type="text" class="form-control" id="email" name="email" value="" placeholder="이메일 주소입력"/>
                 <span id="emails" class="placeholder" data-placeholder="이메일 주소입력"></span>
               </div>
-
-            <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="postcode" name="postcode" />
+            <br/>
+            <div >
+                <input type="text" class="form-control" id="postcode" name="postcode"placeholder="우편번호 입력" />
                 <span id="postcodes" class="placeholder" data-placeholder="우편번호 입력"></span>
               </div>
+            <br/>
 
-
-              <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="address" name="address" />
-                <span id="addresss" class="placeholder" data-placeholder="주소"></span>
+              <div>
+                <input type="text" class="form-control" id="address" name="address" placeholder="주소 입력"/>
+                <span id="addresss" class="placeholder" data-placeholder="주소입력"></span>
               </div>
-              <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="detailAddress" name="detailAddress" />
-                <span id="detailAddresss"  class="placeholder" data-placeholder="상세주소"></span>
+            <br/>
+
+              <div>
+                <input type="text" class="form-control" id="detailAddress" name="detailAddress"placeholder="상세주소 입력" />
+                <span id="detailAddresss"  class="placeholder" data-placeholder="상세주소입력"></span>
               </div>
 
 
-
+            <br/>
 
 
 
@@ -159,7 +165,7 @@
                 </div>
 
                 <input id="point" name="point" type="text" placeholder="" readonly
-                       value=""/>
+                       value="0"/>
 
                 <%--        <a id="delivery" class="btn">기본 배송지적용</a>--%>
                 <a  id="pointApply" class="btn">포인트적용</a>
@@ -370,11 +376,38 @@
   IMP.init("imp88246600");
 
   $('#payment').click(function () {
-
+    if($('#name').val()==''){
+      alert('이름을 입력하세요!')
+      return false;
+    }
     if($('#deliveryName').val()==''){
       alert('배송지명을 입력하세요!')
       return false;
     }
+    if($('#tel').val()==''){
+      alert('핸드폰번호를 입력하세요!')
+      return false;
+    }
+    if($('#email').val()==''){
+      alert('이메일을 입력하세요!')
+      return false;
+    }
+
+    if($('#postcode').val()==''){
+      alert('우편번호를 입력하세요!')
+      return false;
+    }
+    if($('#address').val()==''){
+      alert('주소를 입력하세요!')
+      return false;
+    }
+    if($('#detailAddress').val()==''){
+      alert('상세주소를 입력하세요!')
+      return false;
+    }
+
+
+
 
     var bookId = [];
     var wishQuantity = [];

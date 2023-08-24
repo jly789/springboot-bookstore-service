@@ -50,8 +50,8 @@ padding: 8px 12px;
                                         <a href="/"><img src="img/로고최종.jpg" alt="" ></a>
                                     </div>
                                     <!-- Search Box -->
-                                    <form action="#" class="form-box">
-                                        <input type="text" name="Search" placeholder="검색 하세요">
+                                    <form action="/searchBook" method="get" class="form-box">
+                                        <input type="text" name="searchBookName" placeholder="검색 하세요">
                                         <div class="search-icon">
                                             <i class="ti-search"></i>
                                         </div>

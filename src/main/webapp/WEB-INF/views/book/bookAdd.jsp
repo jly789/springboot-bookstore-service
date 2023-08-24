@@ -68,45 +68,52 @@
 
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red; margin-left: -25px;">제목</p>
                                 <input type="text" placeholder="책 제목" class="form-control" id="bookName" name="bookName" />
 
                             </div>
 
 
                             <div class="col-md-12 form-group">
-
+                                <p style="color: red; margin-left: -25px;">내용</p>
                                 <textarea class="form-control" placeholder="책 내용" name="bookContent" id="bookContent" rows="1" ></textarea>
                             </div>
 
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" placeholder="작가이름" class="form-control" id="author" name="author" />
+                                <p style="color: red; margin-left: -25px;">저자</p>
+                                <input type="text" placeholder="저자" class="form-control" id="author" name="author" />
 
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red; margin-left: -25px;">출판사</p>
                                 <input type="text" placeholder="출판사" class="form-control" id="publisher" name="publisher" />
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red; margin-left: -25px;">장르</p>
                                 <input type="text" class="form-control" placeholder="장르" id="genre" name="genre" />
                             </div>
 
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red; margin-left: -25px;">가격</p>
                                 <input type="text" class="form-control" placeholder="가격" id="price" name="price"  />
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red; margin-left: -25px;">판매수량</p>
                                 <input type="text" class="form-control"placeholder="판매수량" id="salesQuantity" name="salesQuantity" />
                             </div>
 
                             <div class="col-md-12 form-group p_star">
+                                <p style="color: red; margin-left: -25px;">출판년도</p>
                                 <input type="date" class="form-control" placeholder="출판연도" id="publicationYear" name="publicationYear" />
                             </div>
 
                             <div class="col-md-12 form-group p_star">
-                                <input type="file" class="form-control" id="file" name="file" />
-                                <button type="submit" style="color: red">등록하기</button>
+                                <input type="file" class="form-control" id="file" name="file" /><br/>
+                                <button type="submit" id="insert" class="btn" style="color: red">등록하기</button>
                             </div>
 
 
@@ -122,83 +129,66 @@
     <!--End Checkout Area -->
 
 </main>
-<footer>
-    <div class="footer-wrappper section-bg">
-     <div class="footer-area footer-padding">
-         <div class="container">
-             <div class="row justify-content-between">
-                 <div class="col-xl-3 col-lg-5 col-md-4 col-sm-6">
-                     <div class="single-footer-caption mb-50">
-                         <div class="single-footer-caption mb-30">
-                             <!-- logo -->
-                             <div class="footer-logo mb-25">
-                                 <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-                             </div>
-                             <div class="footer-tittle">
-                                 <div class="footer-pera">
-                                     <p>Get the breathing space now, and we’ll extend your term at the other end year for go.</p>
-                                 </div>
-                             </div>
-                             <!-- social -->
-                             <div class="footer-social">
-                                <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-5">
-                 <div class="single-footer-caption mb-50">
-                     <div class="footer-tittle">
-                         <h4>Book Category</h4>
-                         <ul>  
-                             <li><a href="#">History</a></li>
-                             <li><a href="#">Horror - Thriller</a></li>
-                             <li><a href="#">Love Stories</a></li>
-                             <li><a href="#">Science Fiction</a></li>
-                             <li><a href="#">Business</a></li>
-                         </ul>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                 <div class="single-footer-caption mb-50">
-                     <div class="footer-tittle">
-                         <h4>&nbsp;</h4>
-                         <ul>
-                            <li><a href="#">Biography</a></li>
-                            <li><a href="#">Astrology</a></li>
-                            <li><a href="#">Digital Marketing</a></li>
-                            <li><a href="#">Software Development</a></li>
-                            <li><a href="#">Ecommerce</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-             <div class="single-footer-caption mb-50">
-                 <div class="footer-tittle">
-                     <h4>Site Map</h4>
-                     <ul class="mb-20">
-                         <li><a href="#">Home</a></li>
-                         <li><a href="#">About Us</a></li>
-                         <li><a href="#">FAQs</a></li>
-                         <li><a href="#">Blog</a></li>
-                         <li><a href="#">Contact</a></li>
-                     </ul>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div> 
-</div>
+
         <jsp:include page="../main/footer.jsp"></jsp:include>
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
+
+<script>
+
+    if($('#insert').click (function (){
+
+    if($('#bookName').val()==''){
+        alert("책 제목을 입력하세요");
+      return   false;
+    }
+        if($('#bookContent').val()==''){
+            alert("책 내용을 입력하세요");
+            return   false;
+        }
+
+        if($('#author').val()==''){
+            alert("저자를 입력하세요");
+            return   false;
+        }
+
+        if($('#publisher').val()==''){
+            alert("출판사를 입력하세요");
+            return   false;
+        }
+
+        if($('#genre').val()==''){
+            alert("장르를 입력하세요");
+            return   false;
+        }
+
+        if($('#price').val()==''){
+            alert("가격 입력하세요");
+            return   false;
+        }
+
+        if($('#salesQuantity').val()==''){
+            alert("판매수량을 입력하세요");
+            return   false;
+        }
+
+        if($('#publicationYear').val()==''){
+            alert("출판년도를 입력하세요");
+            return   false;
+        }
+
+        if($('#file').val()==''){
+            alert("책  사진을 넣으세요");
+            return   false;
+        }
+
+        return   true;
+
+    }));
+
+</script>
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->

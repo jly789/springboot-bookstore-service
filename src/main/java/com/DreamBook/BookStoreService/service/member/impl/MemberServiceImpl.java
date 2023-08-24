@@ -184,8 +184,17 @@ public class MemberServiceImpl implements MemberService {
         }
 
         if (memberMapper.deleteMember(MemberDeleteDTO) == 0) {
-            out.println("<script>alert('아이디/비밀번호 오류 다시입력하세요'); </script>");
+
+            out.println("<script>");
+
+            out.println("alert('비밀번호 입력오류!')");
+
+            out.println("history.back()");
+
+            out.println("</script>");
+
             out.flush();
+
             return 0;
         }
         return 3;

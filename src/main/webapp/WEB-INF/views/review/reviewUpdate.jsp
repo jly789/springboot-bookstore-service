@@ -188,7 +188,7 @@
 
 
 
-                            <textarea  name="reviewContent" id="comment" cols="100" rows="15"
+                            <textarea  name="reviewContent" id="reviewContent" cols="100" rows="15"
                                        placeholder=" 내용: ">${reviewDetail.reviewContent}</textarea>
                         </div>
                     </div>
@@ -229,6 +229,11 @@
 
         if($('#reviewSubject').val() ==''){
             alert("제목을 입력해주세요!");
+            return false;
+        }
+
+        if($('#reviewContent').val() ==''){
+            alert("내용을 입력해주세요!");
             return false;
         }
 
