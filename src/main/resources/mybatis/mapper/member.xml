@@ -61,7 +61,7 @@
                        tel,postcode,address,detailAddress,extraAddress,email,favoriteGenre,
                        userGrade,purchaseAmount,point,wishQuantity,fileName,filePath,deliveryName)
     values (#{memberId},'MEMBER',#{userId},#{pwd},#{name},#{gender},#{age},#{nikname},#{birth},
-            #{tel},#{postcode},#{address},#{detailAddress},#{extraAddress},#{email},#{favoriteGenre},'bronze',0,0,0,#{fileName},#{filePath},#{deliveryName})
+            #{tel},#{postcode},#{address},#{detailAddress},#{extraAddress},#{email},#{favoriteGenre},'bronze',0,0,0,#{fileName},#{filePath},'')
 
     </insert>
 

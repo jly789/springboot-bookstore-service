@@ -40,7 +40,7 @@ public class NoticeController {
         String userId = (String)session.getAttribute("userId");
 
 
-        int listCnt = bookService.testTableCount();
+        int listCnt = bookService.ReviewTableCount();
         PaginationReview pagination = new PaginationReview(currentPage, cntPerPage, pageSize);
         pagination.setTotalRecordCount(listCnt);
         model.addAttribute("pagination",pagination);
@@ -84,7 +84,7 @@ public class NoticeController {
 
 
 
-        int listCnt = bookService.testTableCount();
+        int listCnt = bookService.ReviewTableCount();
         PaginationReview pagination = new PaginationReview(currentPage, cntPerPage, pageSize);
         pagination.setTotalRecordCount(listCnt);
 

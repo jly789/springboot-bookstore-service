@@ -63,15 +63,15 @@
                                  round(avg(b.grade))as grade,count(b.reviewId) as reviewId from book a
                                                                                                     left join review b on a.bookId = b.bookId
                          GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.views
-                         ORDER BY a.salesRate desc
+                         ORDER BY a.views desc
                      )
-        where ranking between 1 and 4
+        where ranking between 1 and 5
 
     </select>
 
 
 
-    <select id="top5Genre"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
+    <select id="top10Genre"  resultType="com.DreamBook.BookStoreService.dto.book.BookFindDTO">
 
 
         select * from(
@@ -85,7 +85,7 @@
                         left join review b on a.bookId = b.bookId
 
                          GROUP BY a.bookId,a.memberId,a.fileName,a.bookName,a.genre,a.PUBLISHER,a.author,a.price,a.salesRate,a.views
-                         ORDER BY a.salesRate desc
+                         ORDER BY a.views desc
                      )
         where ranking between 1 and 10
     </select>

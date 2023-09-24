@@ -59,13 +59,13 @@ public class MainController {
             List<BookFindDTO> bookList = mainService.bookList();
             List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
             List<BookFindDTO> weekBook = mainService.weekBook();
-            List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+            List<BookFindDTO> top10Genre = mainService.top10Genre(genre);
             List<BookFindDTO> genreList = mainService.GenreList();
             List<BookFindDTO> recommendedBook =bookService.recommendedBook();
 
             model.addAttribute("bestSellerList", bestSellerList);
             model.addAttribute("weekBook", weekBook);
-            model.addAttribute("top5Genre", top5Genre);
+            model.addAttribute("top10Genre", top10Genre);
             model.addAttribute("genreList", genreList);
             model.addAttribute("recommendedBook", recommendedBook);
 
@@ -78,7 +78,7 @@ public class MainController {
             List<BookFindDTO> bookList = mainService.bookList();
             List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
             List<BookFindDTO> weekBook = mainService.weekBook();
-            List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+            List<BookFindDTO> top10Genre = mainService.top10Genre(genre);
             List<BookFindDTO> genreList = mainService.GenreList();
             List<BookFindDTO> recommendedBook =bookService.recommendedBook();
 
@@ -87,7 +87,7 @@ public class MainController {
             model.addAttribute("weekBook", weekBook);
             model.addAttribute("userId", userId);
             model.addAttribute("memberId", memberId);
-            model.addAttribute("top5Genre", top5Genre);
+            model.addAttribute("top10Genre", top10Genre);
             model.addAttribute("genreList", genreList);
             model.addAttribute("recommendedBook", recommendedBook);
 
@@ -344,13 +344,13 @@ public class MainController {
                     List<BookFindDTO> bookList = mainService.bookList();
                     List<BookFindDTO> bestSellerList = mainService.bestSeller(bookList);
                     List<BookFindDTO> weekBook = mainService.weekBook();
-                    List<BookFindDTO> top5Genre = mainService.top5Genre(genre);
+                    List<BookFindDTO> top10Genre = mainService.top10Genre(genre);
                     List<BookFindDTO> genreList = mainService.GenreList();
                     List<BookFindDTO> recommendedBook =bookService.recommendedBook();
 
                     model.addAttribute("bestSellerList", bestSellerList);
                     model.addAttribute("weekBook", weekBook);
-                    model.addAttribute("top5Genre", top5Genre);
+                    model.addAttribute("top10Genre", top10Genre);
                     model.addAttribute("genreList", genreList);
                     model.addAttribute("recommendedBook", recommendedBook);
 

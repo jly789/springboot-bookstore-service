@@ -260,18 +260,27 @@
                                 </div>
 
                                 <!-- Select City items start -->
-                                <div class="select-job-items2 mb-30">
+                                <div class="select-job-items2 mb-30" style="width: 120px;">
                                     <div class="col-xl-12">
                                         <c:if test="${genreName =='정렬'}">
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
+                                                <option value="전체" selected>전체</option>
                                                 <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
                                                 <option value="연애">연애</option>
+                                                <option value="공포">공포</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
+
 
                                             </select>
                                         </c:if>
@@ -279,82 +288,20 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
+                                                <option value="전체" selected>전체</option>
                                                 <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
                                                 <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
+                                                <option value="공포">공포</option>
                                                 <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
                                                 <option value="어린이">어린이</option>
                                                 <option value="자서전">자서전</option>
                                                 <option value="잡지">잡지</option>
-
-                                            </select>
-                                        </c:if>
-
-                                        <c:if test="${genreName=='공포'}">
-                                            <select id="genre" name="genre">
-                                                <option value="">장르검색</option>
-
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
-                                                <option value="소설">소설</option>
-                                                <option value="연애">연애</option>
                                                 <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
-                                                <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
-                                                <option value="어린이">어린이</option>
-                                                <option value="자서전">자서전</option>
-                                                <option value="잡지">잡지</option>
-
-                                            </select>
-                                        </c:if>
-
-                                        <c:if test="${genreName=='수필'}">
-                                            <select id="genre" name="genre">
-                                                <option value="">장르검색</option>
-
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
-                                                <option value="소설">소설</option>
-                                                <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
-                                                <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
-                                                <option value="어린이">어린이</option>
-                                                <option value="자서전">자서전</option>
-                                                <option value="잡지">잡지</option>
-
-                                            </select>
-                                        </c:if>
-
-                                        <c:if test="${genreName=='코미디'}">
-                                            <select id="genre" name="genre">
-                                                <option value="">장르검색</option>
-
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
-                                                <option value="소설">소설</option>
-                                                <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
-                                                <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
-                                                <option value="어린이">어린이</option>
-                                                <option value="자서전">자서전</option>
-                                                <option value="잡지">잡지</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
 
                                             </select>
                                         </c:if>
@@ -363,19 +310,64 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
+                                                <option value="전체">전체</option>
+                                                <option value="소설" selected>소설</option>
+                                                <option value="수필"> 수필</option>
                                                 <option value="코미디">코미디</option>
-                                                <option value="소설">소설</option>
                                                 <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
+                                                <option value="공포">공포</option>
                                                 <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
                                                 <option value="어린이">어린이</option>
                                                 <option value="자서전">자서전</option>
                                                 <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='수필'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" selected>전체</option>
+                                                <option value="소설">소설</option>
+                                                <option value="수필"selected> 수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="연애">연애</option>
+                                                <option value="공포">공포</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='코미디'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" selected>전체</option>
+                                                <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디"selected>코미디</option>
+                                                <option value="연애">연애</option>
+                                                <option value="공포">공포</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
 
                                             </select>
                                         </c:if>
@@ -384,62 +376,42 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
+                                                <option value="전체" selected>전체</option>
                                                 <option value="소설">소설</option>
-                                                <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="연애"selected>연애</option>
+                                                <option value="공포">공포</option>
                                                 <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
                                                 <option value="어린이">어린이</option>
                                                 <option value="자서전">자서전</option>
                                                 <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
 
                                             </select>
                                         </c:if>
 
-                                        <c:if test="${genreName=='과학'}">
+                                        <c:if test="${genreName=='공포'}">
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
+                                                <option value="전체" selected>전체</option>
                                                 <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
                                                 <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
+                                                <option value="공포"selected>공포</option>
                                                 <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
                                                 <option value="어린이">어린이</option>
                                                 <option value="자서전">자서전</option>
                                                 <option value="잡지">잡지</option>
-
-                                            </select>
-                                        </c:if>
-
-                                        <c:if test="${genreName=='우주과학'}">
-                                            <select id="genre" name="genre">
-                                                <option value="">장르검색</option>
-
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
-                                                <option value="소설">소설</option>
-                                                <option value="연애">연애</option>
                                                 <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
-                                                <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
-                                                <option value="어린이">어린이</option>
-                                                <option value="자서전">자서전</option>
-                                                <option value="잡지">잡지</option>
-
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
                                             </select>
                                         </c:if>
 
@@ -447,40 +419,20 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
+                                                <option value="전체" selected>전체</option>
                                                 <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
                                                 <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
-                                                <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
+                                                <option value="공포">공포</option>
+                                                <option value="인문학"selected>인문학</option>
                                                 <option value="어린이">어린이</option>
                                                 <option value="자서전">자서전</option>
                                                 <option value="잡지">잡지</option>
-
-                                            </select>
-                                        </c:if>
-
-                                        <c:if test="${genreName=='사회과학'}">
-                                            <select id="genre" name="genre">
-                                                <option value="">장르검색</option>
-
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
-                                                <option value="소설">소설</option>
-                                                <option value="연애">연애</option>
                                                 <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
-                                                <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
-                                                <option value="어린이">어린이</option>
-                                                <option value="자서전">자서전</option>
-                                                <option value="잡지">잡지</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
 
                                             </select>
                                         </c:if>
@@ -489,19 +441,20 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
+                                                <option value="전체" selected>전체</option>
                                                 <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
                                                 <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
+                                                <option value="공포">공포</option>
                                                 <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
-                                                <option value="어린이">어린이</option>
+                                                <option value="어린이"selected>어린이</option>
                                                 <option value="자서전">자서전</option>
                                                 <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
 
                                             </select>
                                         </c:if>
@@ -510,19 +463,20 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
+                                                <option value="전체" selected>전체</option>
                                                 <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
                                                 <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
+                                                <option value="공포">공포</option>
                                                 <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
                                                 <option value="어린이">어린이</option>
-                                                <option value="자서전">자서전</option>
+                                                <option value="자서전"selected>자서전</option>
                                                 <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
 
                                             </select>
                                         </c:if>
@@ -531,22 +485,111 @@
                                             <select id="genre" name="genre">
                                                 <option value="">장르검색</option>
 
-                                                <option value="전체" id="all" selected>전체</option>
-                                                <option value="공포" id="fear">공포</option>
-                                                <option value="수필" id="essay">수필</option>
-                                                <option value="코미디">코미디</option>
+                                                <option value="전체" selected>전체</option>
                                                 <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
                                                 <option value="연애">연애</option>
-                                                <option value="과학">과학</option>
-                                                <option value="우주과학">우주과학</option>
+                                                <option value="공포">공포</option>
                                                 <option value="인문학">인문학</option>
-                                                <option value="사회과학">사회과학</option>
                                                 <option value="어린이">어린이</option>
                                                 <option value="자서전">자서전</option>
-                                                <option value="잡지">잡지</option>
+                                                <option value="잡지"selected>잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
 
                                             </select>
                                         </c:if>
+
+                                        <c:if test="${genreName=='과학'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" selected>전체</option>
+                                                <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="연애">연애</option>
+                                                <option value="공포">공포</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+                                                <option value="과학"selected>과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='수학'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" selected>전체</option>
+                                                <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="연애">연애</option>
+                                                <option value="공포">공포</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학"selected>수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이">에세이</option>
+
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='역사'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" selected>전체</option>
+                                                <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="연애">연애</option>
+                                                <option value="공포">공포</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사"selected>역사</option>
+                                                <option value="에세이">에세이</option>
+                                            </select>
+                                        </c:if>
+
+                                        <c:if test="${genreName=='에세이'}">
+                                            <select id="genre" name="genre">
+                                                <option value="">장르검색</option>
+
+                                                <option value="전체" selected>전체</option>
+                                                <option value="소설">소설</option>
+                                                <option value="수필"> 수필</option>
+                                                <option value="코미디">코미디</option>
+                                                <option value="연애">연애</option>
+                                                <option value="공포">공포</option>
+                                                <option value="인문학">인문학</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="자서전">자서전</option>
+                                                <option value="잡지">잡지</option>
+                                                <option value="과학">과학</option>
+                                                <option value="수학">수학</option>
+                                                <option value="역사">역사</option>
+                                                <option value="에세이"selected>에세이</option>
+
+                                            </select>
+                                        </c:if>
+
 
 
                                     </div>

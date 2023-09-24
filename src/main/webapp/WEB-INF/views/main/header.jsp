@@ -126,7 +126,7 @@ padding: 8px 12px;
                                             </ul>
                                         </li>
 
-                                        <li><a href="contact.html">Contect</a></li>
+
                                         </c:if>
 
                                         <c:if test="${userId !=null}">
@@ -140,7 +140,7 @@ padding: 8px 12px;
                                                 </ul>
                                             </li>
 
-                                            <li><a href="/">Contect</a></li>
+
                                         </c:if>
                                     </ul>
                                 </nav>

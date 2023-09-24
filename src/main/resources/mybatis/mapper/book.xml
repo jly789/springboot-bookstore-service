@@ -136,7 +136,7 @@
         <if test="firstRecordIndex !=null and lastRecordIndex != null">
             WHERE row_num > #{firstRecordIndex} AND
             #{lastRecordIndex} >=row_num and bookName like '%' ||  #{searchBookName} || '%' or author like '%' ||  #{searchBookName} || '%'
-            or bookContent like '%' ||  #{searchBookName} || '%'
+
 
         </if>
 

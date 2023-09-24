@@ -30,8 +30,8 @@ public class MainServiceImpl implements MainService {
     }
 
     @Override
-    public List<BookFindDTO> top5Genre(String genre) {
-        return mainMapper.top5Genre(genre);
+    public List<BookFindDTO> top10Genre(String genre) {
+        return mainMapper.top10Genre(genre);
     }
 
     @Override

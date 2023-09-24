@@ -283,12 +283,12 @@ public class BookController {
             return "book/main";
         }
 
-        if (choice.equals("공포")) {
+        if (choice.equals("소설")) {
 
             int listCnt = bookService.SearchGenreTableCount(choice);
             PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
             paginationGenre.setTotalRecordCount(listCnt);
-            paginationGenre.setGenre("공포");
+            paginationGenre.setGenre("소설");
 
 
 
@@ -337,24 +337,7 @@ public class BookController {
 
         }
 
-        if (choice.equals("소설")) {
-            int listCnt = bookService.SearchGenreTableCount(choice);
-            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
-            paginationGenre.setTotalRecordCount(listCnt);
-            paginationGenre.setGenre("소설");
-
-
-            model.addAttribute("pagination",paginationGenre);
-            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
-
-            model.addAttribute("genreName",choice);
-            model.addAttribute("priceRange",firstPriceRange);
-
-            return "book/main";
-        }
-
         if (choice.equals("연애")) {
-
             int listCnt = bookService.SearchGenreTableCount(choice);
             PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
             paginationGenre.setTotalRecordCount(listCnt);
@@ -366,16 +349,16 @@ public class BookController {
 
             model.addAttribute("genreName",choice);
             model.addAttribute("priceRange",firstPriceRange);
-            return "book/main";
 
+            return "book/main";
         }
 
+        if (choice.equals("공포")) {
 
-        if (choice.equals("과학")) {
             int listCnt = bookService.SearchGenreTableCount(choice);
             PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
             paginationGenre.setTotalRecordCount(listCnt);
-            paginationGenre.setGenre("과학");
+            paginationGenre.setGenre("공포");
 
 
             model.addAttribute("pagination",paginationGenre);
@@ -383,26 +366,10 @@ public class BookController {
 
             model.addAttribute("genreName",choice);
             model.addAttribute("priceRange",firstPriceRange);
-
             return "book/main";
+
         }
 
-
-        if (choice.equals("우주과학")) {
-            int listCnt = bookService.SearchGenreTableCount(choice);
-            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
-            paginationGenre.setTotalRecordCount(listCnt);
-            paginationGenre.setGenre("우주과학");
-
-
-            model.addAttribute("pagination",paginationGenre);
-            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
-
-            model.addAttribute("genreName",choice);
-            model.addAttribute("priceRange",firstPriceRange);
-
-            return "book/main";
-        }
 
         if (choice.equals("인문학")) {
             int listCnt = bookService.SearchGenreTableCount(choice);
@@ -420,22 +387,6 @@ public class BookController {
             return "book/main";
         }
 
-        if (choice.equals("사회과학")) {
-            System.out.println(choice);
-            int listCnt = bookService.SearchGenreTableCount(choice);
-            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
-            paginationGenre.setTotalRecordCount(listCnt);
-            paginationGenre.setGenre("사회과학");
-
-
-            model.addAttribute("pagination",paginationGenre);
-            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
-
-            model.addAttribute("genreName",choice);
-            model.addAttribute("priceRange",firstPriceRange);
-
-            return "book/main";
-        }
 
         if (choice.equals("어린이")) {
             int listCnt = bookService.SearchGenreTableCount(choice);
@@ -469,12 +420,79 @@ public class BookController {
             return "book/main";
         }
 
-
         if (choice.equals("잡지")) {
+            System.out.println(choice);
             int listCnt = bookService.SearchGenreTableCount(choice);
             PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
             paginationGenre.setTotalRecordCount(listCnt);
             paginationGenre.setGenre("잡지");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+        if (choice.equals("과학")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("과학");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+        if (choice.equals("수학")) {
+            System.out.println(choice);
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("수학");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+
+
+            return "book/main";
+        }
+
+        if (choice.equals("역사")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("역사");
+
+
+            model.addAttribute("pagination",paginationGenre);
+            model.addAttribute("genreSearch",bookService.SelectGenreSearch(paginationGenre));
+
+            model.addAttribute("genreName",choice);
+            model.addAttribute("priceRange",firstPriceRange);
+
+            return "book/main";
+        }
+
+        if (choice.equals("에세이")) {
+            int listCnt = bookService.SearchGenreTableCount(choice);
+            PaginationGenre paginationGenre = new PaginationGenre(currentPage, cntPerPage, pageSize);
+            paginationGenre.setTotalRecordCount(listCnt);
+            paginationGenre.setGenre("에세이");
 
 
             model.addAttribute("pagination",paginationGenre);

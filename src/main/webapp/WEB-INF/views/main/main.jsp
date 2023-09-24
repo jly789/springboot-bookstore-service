@@ -336,8 +336,10 @@
                                 <a class="nav-link" id="nav-9-tab" data-bs-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9" aria-selected="false">자서전</a>
                                 <a class="nav-link" id="nav-10-tab" data-bs-toggle="tab" href="#nav-10" role="tab" aria-controls="nav-10" aria-selected="false">잡지</a>
                                 <a class="nav-link" id="nav-11-tab" data-bs-toggle="tab" href="#nav-11" role="tab" aria-controls="nav-11" aria-selected="false">과학</a>
-                                <a class="nav-link" id="nav-12-tab" data-bs-toggle="tab" href="#nav-12" role="tab" aria-controls="nav-12" aria-selected="false">우주과학</a>
-                                <a class="nav-link" id="nav-13-tab" data-bs-toggle="tab" href="#nav-13" role="tab" aria-controls="nav-13" aria-selected="false">사회과학</a>
+                                <a class="nav-link" id="nav-14-tab" data-bs-toggle="tab" href="#nav-12" role="tab" aria-controls="nav-14" aria-selected="false">수학</a>
+                                <a class="nav-link" id="nav-12-tab" data-bs-toggle="tab" href="#nav-13" role="tab" aria-controls="nav-12" aria-selected="false">역사</a>
+                                <a class="nav-link" id="nav-13-tab" data-bs-toggle="tab" href="#nav-14" role="tab" aria-controls="nav-13" aria-selected="false">에세이</a>
+
 
 
                             </div>
@@ -353,7 +355,7 @@
                 <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
                     <!-- Tab 1 -->
                     <div class="row">
-                        <c:forEach var="top5Genre" items="${top5Genre}">
+                        <c:forEach var="top10Genre" items="${top10Genre}">
 
 
 
@@ -362,44 +364,44 @@
                             <div class="properties pb-30">
                                 <div class="properties-card">
                                     <div class="properties-img">
-                                        <a href="/${top5Genre.bookId}"><img
-                                                src="files/${top5Genre.fileName}"
+                                        <a href="/${top10Genre.bookId}"><img
+                                                src="files/${top10Genre.fileName}"
                                                 alt=""
                                                 style="    height: 200px; object-fit: cover;"></a>
                                     </div>
                                     <div class="properties-caption properties-caption2">
-                                        <h6><strong><a href="book-details.html">${top5Genre.bookName}</a></strong></h6>
-                                        <p>${top5Genre.author}</p>
+                                        <h6><strong><a href="book-details.html">${top10Genre.bookName}</a></strong></h6>
+                                        <p>${top10Genre.author}</p>
                                         <div class="properties-footer d-flex justify-content-between align-items-center">
                                             <div class="review">
                                                 <div class="rating">
-                                                    <c:if test="${top5Genre.grade==0}">
+                                                    <c:if test="${top10Genre.grade==0}">
 
 
                                                     </c:if>
 
-                                                    <c:if test="${top5Genre.grade==1}">
+                                                    <c:if test="${top10Genre.grade==1}">
 
                                                         <i class="fas fa-star" style="color: gold;"></i>
 
                                                     </c:if>
 
-                                                    <c:if test="${top5Genre.grade==2}">
+                                                    <c:if test="${top10Genre.grade==2}">
 
-                                                        <i class="fas fa-star" style="color: gold;"></i>
-                                                        <i class="fas fa-star" style="color: gold;"></i>
-
-                                                    </c:if>
-
-                                                    <c:if test="${top5Genre.grade==3}">
-
-                                                        <i class="fas fa-star" style="color: gold;"></i>
                                                         <i class="fas fa-star" style="color: gold;"></i>
                                                         <i class="fas fa-star" style="color: gold;"></i>
 
                                                     </c:if>
 
-                                                    <c:if test="${top5Genre.grade==4}">
+                                                    <c:if test="${top10Genre.grade==3}">
+
+                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                        <i class="fas fa-star" style="color: gold;"></i>
+                                                        <i class="fas fa-star" style="color: gold;"></i>
+
+                                                    </c:if>
+
+                                                    <c:if test="${top10Genre.grade==4}">
 
                                                         <i class="fas fa-star" style="color: gold;"></i>
                                                         <i class="fas fa-star" style="color: gold;"></i>
@@ -410,7 +412,7 @@
 
 
                                                         <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
-                                                    <c:if test="${top5Genre.grade==5}">
+                                                    <c:if test="${top10Genre.grade==5}">
                                                         <i class="fas fa-star" style="color: gold;"></i>
                                                         <i class="fas fa-star" style="color: gold;"></i>
                                                         <i class="fas fa-star" style="color: gold;"></i>
@@ -418,11 +420,11 @@
                                                         <i class="fas fa-star" style="color: gold;"></i>
                                                     </c:if>
                                                 </div>
-                                                <p style="color: black;">(${top5Genre.reviewId} Review)</p>
+                                                <p style="color: black;">(${top10Genre.reviewId} Review)</p>
 
                                             </div>
                                                 <div class="price">
-                                                    <strong style="color: red;">${top5Genre.price}원</strong>
+                                                    <strong style="color: red;">${top10Genre.price}원</strong>
                                                 </div>
                                         </div>
                                     </div>
@@ -1314,7 +1316,7 @@
                     <!-- Tab 2 -->
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
-                            <c:if test="${genreList.genre=='우주과학'}">
+                            <c:if test="${genreList.genre=='수학'}">
                                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
 
                                 <div class="properties pb-30">
@@ -1403,7 +1405,95 @@
                     <!-- Tab 2 -->
                     <div class="row">
                         <c:forEach var="genreList" items="${genreList}">
-                            <c:if test="${genreList.genre=='사회과학'}">
+                            <c:if test="${genreList.genre=='역사'}">
+                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
+
+                                    <div class="properties pb-30">
+                                        <div class="properties-card">
+                                            <div class="properties-img">
+                                                <a href="/${genreList.bookId}"><img
+                                                        src="files/${genreList.fileName}"
+                                                        alt=""
+                                                        style="    height: 200px; object-fit: cover;"></a>
+                                            </div>
+                                            <div class="properties-caption properties-caption2">
+                                                <h6><strong><a href="book-details.html">${genreList.bookName}</a></strong></h6>
+
+                                                <p>J. R Rain</p>
+                                                <div class="properties-footer d-flex justify-content-between align-items-center">
+                                                    <div class="review">
+                                                        <div class="rating">
+                                                            <c:if test="${genreList.grade==0}">
+
+
+                                                            </c:if>
+
+                                                            <c:if test="${genreList.grade==1}">
+
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+
+                                                            </c:if>
+
+                                                            <c:if test="${genreList.grade==2}">
+
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+
+                                                            </c:if>
+
+                                                            <c:if test="${genreList.grade==3}">
+
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+
+                                                            </c:if>
+
+                                                            <c:if test="${genreList.grade==4}">
+
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+
+                                                            </c:if>
+
+
+                                                                <%--                                                        <c:forEach var="reviewGrade" items="${reviewGrade}"></c:forEach>--%>
+                                                            <c:if test="${genreList.grade==5}">
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                                <i class="fas fa-star" style="color: gold;"></i>
+                                                            </c:if>
+                                                        </div>
+
+                                                        <p style="color: black;">(${genreList.reviewId} Review)</p>
+
+
+                                                        <div class="price">
+                                                            <strong style="color: red;">${genreList.price}원</strong>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </c:if>
+                        </c:forEach>
+
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="nav-14" role="tabpanel" aria-labelledby="nav-14-tab">
+                    <!-- Tab 2 -->
+                    <div class="row">
+                        <c:forEach var="genreList" items="${genreList}">
+                            <c:if test="${genreList.genre=='에세이'}">
                                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6" style="width: 18%;">
 
                                 <div class="properties pb-30">

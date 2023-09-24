@@ -60,7 +60,7 @@
 
         SELECT  *
         FROM (
-        SELECT  ROW_NUMBER() OVER(ORDER by a.reviewDate desc) AS
+        SELECT  ROW_NUMBER() OVER(ORDER by a.reviewId desc) AS
         row_num,
         a.reviewId, c.userId, a.bookId,a.memberId,SUBSTR(a.reviewSubject, 1, 10)as reviewSubject,SUBSTR(a.reviewContent, 1, 10)as reviewContent,a.reviewFileName,b.bookName,b.genre,b.PUBLISHER,b.author,a.reviewDate,b.price,round(AVG(a.grade))as grade,count(a.reviewId) as reviewIdCount
         from review a

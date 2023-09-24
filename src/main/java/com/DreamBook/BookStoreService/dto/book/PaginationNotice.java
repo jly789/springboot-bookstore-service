@@ -43,7 +43,7 @@ public class PaginationNotice {
             }
             // 하단 페이지 갯수 10개로 제한
             if (pageSize != 100) {
-                pageSize = 100;
+                pageSize = 500;
             }
             this.currentPage = currentPage;
             this.cntPerPage = cntPerPage;

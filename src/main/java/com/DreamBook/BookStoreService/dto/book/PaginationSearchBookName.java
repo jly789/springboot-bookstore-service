@@ -43,11 +43,11 @@ public class PaginationSearchBookName {
             }
             //10,20,30개 단위 이외 처리 방지
             if (cntPerPage != 10 && cntPerPage != 20 && cntPerPage != 30) {
-                cntPerPage = 100;
+                cntPerPage = 500;
             }
             // 하단 페이지 갯수 10개로 제한
             if (pageSize != 100) {
-                pageSize = 100;
+                pageSize = 500;
             }
             this.currentPage = currentPage;
             this.cntPerPage = cntPerPage;
